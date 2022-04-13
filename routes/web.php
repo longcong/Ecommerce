@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 
 route::group(['middleware'=> ['auth','isAdmin']], function(){
-    Route::get('/dashboard', function() {
-        return view('admin.index');
-    }); 
-});
+    Route::get('/dashboard','Admin\FontendController@index');
+    Route::resource('category', 'Admin\CategoryController');
+}); 
+
