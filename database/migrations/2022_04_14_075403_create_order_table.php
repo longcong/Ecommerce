@@ -17,10 +17,10 @@ class CreateOrderTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('delivery_unit');
             $table->integer('sdt');
-            $table->longText('note');
+            $table->longText('note')->nullable();
             $table->bigInteger('status_id');
             $table->bigInteger('payment_id');
             $table->float('delivery_price');

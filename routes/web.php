@@ -15,15 +15,18 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('shop');
 });
 
 
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
+
 
 route::group(['middleware'=> ['auth','isAdmin']], function(){
     Route::get('/dashboard','Admin\FontendController@index');
