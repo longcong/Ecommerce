@@ -30,7 +30,7 @@
         </div><!-- END: CONTENT/MISC/SHOP-BANNER-1 -->
         
         <!-- BEGIN: CONTENT/ISOTOPE/GRID-3 -->
-        <div class="c-content-box c-size-md c-bg-img-center" style="background-image: url({{ asset('main/base/img/content/backgrounds/bg-82.jp ') }}">
+        <div class="c-content-box c-size-md c-bg-img-center" style="background-image: url({{ asset('main/base/img/content/backgrounds/bg-82.jpg ') }}">
             <div class="container">
                 <div class="c-content-title-1">
                     <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Quick Shop</h3>
