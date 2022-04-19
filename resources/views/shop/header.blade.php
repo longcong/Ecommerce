@@ -1125,7 +1125,7 @@
         <div class="c-cart-menu-close">
             <a href="#" class="c-theme-link">×</a>
         </div>
-        <img src="{{ asset('main/base/img/content/shop2/24.jpg>') }}
+        <img src="{{ asset('main/base/img/content/shop2/24.jpg') }}"/>
         <div class="c-cart-menu-content">
             <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
             <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
@@ -1135,7 +1135,7 @@
         <div class="c-cart-menu-close">
             <a href="#" class="c-theme-link">×</a>
         </div>
-        <img src="{{ asset('main/base/img/content/shop2/12.jpg>') }}
+        <img src="{{ asset('main/base/img/content/shop2/12.jpg') }}"/>
         <div class="c-cart-menu-content">
             <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
             <a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>
