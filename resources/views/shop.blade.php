@@ -147,7 +147,7 @@ Follow: http://www.twitter.com/themehats
 @include('shop.page')
 	</div>
 	<!-- END: PAGE CONTAINER -->
-@yield('content')
+@yield('mainshop')
 	<!-- BEGIN: LAYOUT/FOOTERS/FOOTER-5 -->
 <a name="footer"></a>
 <footer class="c-layout-footer c-layout-footer-3 c-bg-dark">

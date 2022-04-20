@@ -60,5 +60,10 @@ class LoginController extends Controller
             return redirect('/')->with('status','Logged in successfully');
         }
     }
+    public function username()
+    {
+        return 'username';
+    }
+
 }
 

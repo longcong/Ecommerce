@@ -6,14 +6,27 @@
         <div class="modal-body">
             <h3 class="c-font-24 c-font-sbold">Good Afternoon!</h3>
             <p>Let's make today a great day!</p>
-            <form>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="form-group">
                     <label for="login-email" class="hide">Email</label>
-                    <input type="email" class="form-control input-lg c-square" id="login-email" placeholder="Email">
+                    <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                 </div>
                 <div class="form-group">
-                    <label for="login-password" class="hide">Password</label>
-                    <input type="password" class="form-control input-lg c-square" id="login-password" placeholder="Password">
+                    <label for="login-password" class="hide">{{ __('Password:') }}</label>
+                    <input id="password" type="password" class="form-control input-lg c-square @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                 </div>
                 <div class="form-group">
                     <div class="c-checkbox">
@@ -27,7 +40,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Login</button>
+                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">{{ __('Login') }}</button>
                     <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">Forgot Your Password ?</a>
                 </div>
                 <div class="clearfix">
