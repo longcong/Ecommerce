@@ -78,8 +78,7 @@ Follow: http://www.twitter.com/themehats
 				<span class="c-color c-green1" data-color="green1"></span>
 				<span class="c-color c-green2" data-color="green2"></span>
 				<span class="c-color c-green3" data-color="green3"></span>
-
-				<span class="c-color c-yellow1" data-color="yellow1"></span>
+<span class="c-color c-yellow1" data-color="yellow1"></span>
 				<span class="c-color c-yellow2" data-color="yellow2"></span>
 				<span class="c-color c-yellow3" data-color="yellow3"></span>
 				
@@ -134,7 +133,7 @@ Follow: http://www.twitter.com/themehats
 		</div>
 		<div class="c-section">
 			<h3>Reading Style</h3>
-			<div class="c-settings">	
+<div class="c-settings">	
 				<a href="../../index.html" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active">LTR</a>		
 				<a href="http://www.themehats.com/themes/jango/rtl/" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase ">RTL</a>		
 			</div>
@@ -147,7 +146,7 @@ Follow: http://www.twitter.com/themehats
 @include('shop.page')
 	</div>
 	<!-- END: PAGE CONTAINER -->
-@yield('content')
+@yield('mainshop')
 	<!-- BEGIN: LAYOUT/FOOTERS/FOOTER-5 -->
 <a name="footer"></a>
 <footer class="c-layout-footer c-layout-footer-3 c-bg-dark">

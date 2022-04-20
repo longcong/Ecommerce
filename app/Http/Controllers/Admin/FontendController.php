@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
 
 class FontendController extends Controller
 {
     //
     public function index(){
-        return view('admin.index');
+
+        $products = Product::orderBy('id','desc');
+        return view('admin.product.index')->withProducts($products);
     }
 }

@@ -34,3 +34,10 @@
 	<!-- END THEME STYLES -->
 
 	<link rel="shortcut icon" href="favicon.ico"/>
+	<style>
+		.btn-basic{
+			background-color: #EEEEEE;
+			padding: 8px;
+    	}
+	</style>
+	<title>BBK! @yield('title')</title>
