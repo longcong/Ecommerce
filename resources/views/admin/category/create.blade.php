@@ -7,7 +7,7 @@
             <h4>Add Category</h4>
         </div>
         <div class="card-body">
-            <form action="{{ url('insert-category }}" method="POST">
+            <form action="{{ url('insert-category') }}" method="POST">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="">Name:</label>

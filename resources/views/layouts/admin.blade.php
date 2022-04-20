@@ -20,7 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet">
-    
+
+    @yield('stylesheet')
+
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 
