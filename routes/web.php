@@ -31,5 +31,6 @@ Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout'
 route::group(['middleware'=> ['auth','isAdmin']], function(){
     Route::get('/dashboard','Admin\FontendController@index');
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
+    Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
 }); 
 

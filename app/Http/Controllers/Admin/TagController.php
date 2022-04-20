@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
+use App\Tag;
 
-
-class CategoryController extends Controller
-{   
+class TagController extends Controller
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,8 +20,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return view('admin.categories.index')->withCategories($categories);
+        $tags = Tag::all();
+        return view('admin.tag.index')->withTags($tags);
     }
 
     /**
@@ -34,18 +33,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        // save a new category and then redirect back to index
         $this->validate($request, array(
             'name' => 'required|max:255'
         ));
-        $category = new Category;
+        $tag = new Tag;
 
-        $category->name = $request->name;
-        $category->save();
-
-        $request->session()->flash('success', 'New Category has been created!');
-
-        return redirect() -> route('categories.index' );
+        $tag->name = $request->name;
+        $tag->save();
+        
+        $request->session()->flash('success', 'New Tag was successfully created!');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -57,6 +54,9 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        $tag = Tag::find($id);
+        return view('admin.tag.show')->withTag($tag);
+
     }
 
     /**
@@ -68,6 +68,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $tag = Tag::find($id);
+        return view('admin.tag.edit')->withTag($tag);
     }
 
     /**
