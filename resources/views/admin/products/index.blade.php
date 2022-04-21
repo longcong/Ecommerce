@@ -14,37 +14,44 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <th>#</th>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Note</th>
-                <th>Created At</th>
-                <th></th>
-            </thead>
+<div class="card">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Code</th>
+                    <th>Discount</th>
+                    <th>Image</th>
+                    <th>Note</th>
+                    <th>Created At</th>
+                    <th></th>
+                </thead>
 
-            <tbody>
-                @foreach($products as $post)
+                <tbody>
+                    @foreach($products as $post)
 
-                    <tr>
-                        <th>{{ $post->id }}</th>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->image }}</td>
-                        <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
-                        <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
-                        <td><a href="{{ route('products.show', $post->id) }}" class="btn btn-deault btn-sm">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-default btn-sm">Edit</a></td>
-                    </tr>
+                        <tr>
+                            <th>{{ $post->id }}</th>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->price }}</td>
+                            <td>{{ $post->discount_unit}}</td>
+                            <td>{{ $post->discount_value}}</td>
+                            <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
+                            <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
+                            <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
+                            <td><a href="{{ route('products.show', $post->id) }}" class="btn btn-deault btn-sm">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-default btn-sm">Edit</a></td>
+                        </tr>
 
-                @endforeach
-            </tbody>
-        </table>
-        <div>
-            {!! $products -> links() !!}
+                    @endforeach
+                </tbody>
+            </table>
+            <div>
+                {!! $products -> links() !!}
+            </div>
         </div>
     </div>
 </div>
-
 @endsection

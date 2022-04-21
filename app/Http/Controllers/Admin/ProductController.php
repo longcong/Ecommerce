@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
 use App\Tag;
+use Image;
 
 class ProductController extends Controller
 {
@@ -46,19 +47,24 @@ class ProductController extends Controller
         $this -> Validate($request,array(
             'title' =>  'required|max:255',
             'discount_unit' => 'required|max:255',
-            'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'category_id' => 'required|integer',
-            'status_id'  => 'required|integer',
+            'discount_value' => 'required|integer',
+            'price' => 'required|integer',
+            //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            //'category_id' => 'required|integer',
+            //'status_id'  => 'required|integer',
             'note'  =>  'required',
-            'featured_image' => 'sometime|image'
+            'featured_image' => 'required|image'
     ));
 
     $post = new Product;
 
     $post -> title = $request->title;
-    $post -> slug = $request ->slug;
-    $post -> category_id = $request->category_id;
-    $post -> body = $request->body;
+    //$post -> slug = $request ->slug;
+    //$post -> category_id = $request->category_id;
+    $post -> price = $request->price;
+    $post -> discount_unit = $request->discount_unit;
+    $post -> discount_value = $request->discount_value;
+    $post -> note = $request->note;
 
     if($request->hasFile('featured_image')){
         $image = $request->file('featured_image');
@@ -70,11 +76,11 @@ class ProductController extends Controller
     }
 
     $post -> save();
-    $post -> tags()->sync($request->tags, false);
+    //$post -> tags()->sync($request->tags, false);
 
     $request->session()->flash('success', 'The blog post was successfully save!');
 
-    return redirect() -> route('products.show', $post -> id);
+    return redirect() -> route('products.show');
     }
 
     /**

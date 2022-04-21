@@ -18,11 +18,11 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('discount_unit');
-            $table->bigInteger('category_id');
-            $table->bigInteger('view');
-            $table->bigInteger('status_id');
+            $table->bigInteger('category_id')->default('0');
+            $table->bigInteger('view')->default('0');
+            $table->bigInteger('status_id')->default('0');
             $table->float('price');
-            $table->integer('quantity');
+            $table->integer('quantity')->default('0');
             $table->longText('note')->nullable();
             $table->integer('discount_value');
             $table->timestamps();
