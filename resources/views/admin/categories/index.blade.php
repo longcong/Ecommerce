@@ -26,8 +26,14 @@
                 <div class="well " style="background-color: #EEEEEE; padding:10px; ">
                     {!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
                         <h3>New Category</h3>
-                        {{ Form::label('name', 'Name:') }}
-                        {{ Form::text('name',null,['class' => 'form-control']) }}           
+                        <div class="row ">
+                            <div class="col-auto">
+                                {{ Form::label('name', 'Name:') }}
+                            </div>
+                            <div class="col-11">
+                                {{ Form::text('name',null,['class' => 'form-control']) }} 
+                            </div>  
+                        </div>        
                         {{ Form::submit ('Create New Category', ['class' => 'btn btn-primary btn-block']) }}
                     {!! Form::close() !!}
                 </div>

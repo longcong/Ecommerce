@@ -12,6 +12,6 @@ class FontendController extends Controller
     public function index(){
 
         $products = Product::orderBy('id','desc');
-        return view('admin.product.index')->withProducts($products);
+        return view('admin.dashboard.index')->withProducts($products);
     }
 }
