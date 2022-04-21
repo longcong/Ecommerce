@@ -41,6 +41,7 @@ class CategoryController extends Controller
         $category = new Category;
 
         $category->name = $request->name;
+        $category->description = $request->description;
         $category->save();
 
         $request->session()->flash('success', 'New Category has been created!');
@@ -57,6 +58,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        $categories = Category::find($id);
+        return view('admin.categories.show')->withCategories($categories);
     }
 
     /**
@@ -68,6 +71,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $categories = Category::find($id);
+        return view('admin.categories.edit')->withCategories($categories);
+        
     }
 
     /**
