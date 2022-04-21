@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\Admin;
 use Illuminate\Http\Request;
+use App\Category;
+
 
 class CategoryController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,18 +22,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.category.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('admin.category.create');
+        $categories = Category::all();
+        return view('admin.categories.index')->withCategories($categories);
     }
 
     /**
@@ -38,6 +35,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        // save a new category and then redirect back to index
+        $this->validate($request, array(
+            'name' => 'required|max:255'
+        ));
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->save();
+
+        $request->session()->flash('success', 'New Category has been created!');
+
+        return redirect() -> route('categories.index' );
     }
 
     /**

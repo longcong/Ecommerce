@@ -42,7 +42,7 @@ class LoginController extends Controller
         }
         elseif(Auth::user()->role == '0') // Normal or Default User Login
         {
-            return '/';
+            return '/home';
         }
     }
 
@@ -57,7 +57,7 @@ class LoginController extends Controller
         }
         elseif(Auth::user()->role == '0') // Normal or Default User Login
         {
-            return redirect('/')->with('status','Logged in successfully');
+            return redirect('/home')->with('status','Logged in successfully');
         }
     }
     public function username()

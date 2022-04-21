@@ -4,8 +4,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-            <h3 class="c-font-24 c-font-sbold">Good Afternoon!</h3>
+            <h3 class="c-font-24 c-font-sbold">Login</h3>
             <p>Let's make today a great day!</p>
+<<<<<<< HEAD
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
@@ -37,11 +38,56 @@
                             <span class="box"></span>
                             Remember Me
                         </label>
+=======
+            <form  method="POST" action="{{ route('login') }}">
+            @csrf
+
+                <div class="form-group row">
+                    <label for="username" class="hide">Username:</label>
+                    <div class="col-md-6">
+                        <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+>>>>>>> 0e7e34e7a014ccb6330a3ad514534fbe10f89c12
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="password" class="hide">{{ __('Password:') }}</label>
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control input-lg c-square @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                 <div class="form-group">
+<<<<<<< HEAD
                     <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">{{ __('Login') }}</button>
                     <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">Forgot Your Password ?</a>
+=======
+                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+                        Login
+                    </button>
+                    <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">
+                        Forgot Your Password ?
+                    </a>
+>>>>>>> 0e7e34e7a014ccb6330a3ad514534fbe10f89c12
                 </div>
                 <div class="clearfix">
                     <div class="c-content-divider c-divider-sm c-icon-bg c-bg-grey c-margin-b-20">

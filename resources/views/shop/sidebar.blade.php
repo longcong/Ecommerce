@@ -7,13 +7,25 @@
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold">Password Recovery</h3>
                 <p>To recover your password please fill in your email address</p>
-                <form>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                <form method="POST" action="{{ route('password.email') }}">
+                @csrf 
                     <div class="form-group">
-                        <label for="forget-email" class="hide">Email</label>
-                        <input type="email" class="form-control input-lg c-square" id="forget-email" placeholder="Email">
+                        <label for="username" class="hide">Username</label>
+                        <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+    
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Submit</button>
+                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Send Password Reset</button>
                         <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
                     </div>
                 </form>
@@ -35,27 +47,47 @@
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
                 <p>Please fill in below form to create an account with us</p>
-                <form>
-                    <div class="form-group">
-                        <label for="signup-email" class="hide">Email</label>
-                        <input type="email" class="form-control input-lg c-square" id="signup-email" placeholder="Email">
+
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="form-group row">
+                        <label for="username" class="hide">Username</label>
+                        <div class="col-md-6">
+                            <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="hide">Password</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control input-lg c-square @error('password') is-invalid @enderror" id="password" placeholder="Password" style="font-weight: 300;">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="signup-username" class="hide">Username</label>
-                        <input type="email" class="form-control input-lg c-square" id="signup-username" placeholder="Username">
+                        <label for="password-confirm" class="hide">Confirm Password:</label>
+                        <input id="password-confirm" type="password" class="form-control input-lg c-square" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+
                     </div>
-                    <div class="form-group">
-                        <label for="signup-fullname" class="hide">Fullname</label>
-                        <input type="email" class="form-control input-lg c-square" id="signup-fullname" placeholder="Fullname">
-                    </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="signup-country" class="hide">Country</label>
                         <select class="form-control input-lg c-square" id="signup-country">
                             <option value="1">Country</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
-                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Signup</button>
+                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+                            Signup
+                        </button>
                         <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
                     </div>
                 </form>
