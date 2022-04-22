@@ -78,7 +78,7 @@ Follow: http://www.twitter.com/themehats
 				<span class="c-color c-green1" data-color="green1"></span>
 				<span class="c-color c-green2" data-color="green2"></span>
 				<span class="c-color c-green3" data-color="green3"></span>
-<span class="c-color c-yellow1" data-color="yellow1"></span>
+				<span class="c-color c-yellow1" data-color="yellow1"></span>
 				<span class="c-color c-yellow2" data-color="yellow2"></span>
 				<span class="c-color c-yellow3" data-color="yellow3"></span>
 				
@@ -162,7 +162,7 @@ Follow: http://www.twitter.com/themehats
     <!-- BEGIN: CORE PLUGINS -->
 	@include('shop.javascript')
 
-	@yield('script')
+	@yield('scripts')
     </body>
 	
 

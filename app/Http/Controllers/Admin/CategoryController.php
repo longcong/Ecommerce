@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'desc')->paginate(6);
         return view('admin.categories.index')->withCategories($categories);
     }
 
@@ -35,8 +35,9 @@ class CategoryController extends Controller
     {
         //
         // save a new category and then redirect back to index
-        $this->validate($request, array(
-            'name' => 'required|max:255'
+        $this-> Validate($request, array(
+            'name' => 'required|max:255',
+            'description' => 'required|max:255'
         ));
         $category = new Category;
 
@@ -58,8 +59,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-        $categories = Category::find($id);
-        return view('admin.categories.show')->withCategories($categories);
+        // $categories = Category::find($id);
+        // return view('admin.categories.show')->withCategories($categories);
     }
 
     /**
@@ -86,6 +87,23 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $categories = Category::find($id);
+
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'description' => 'required|max:255'
+        ));
+        
+        $categories = Category::find($id);
+
+        $categories->name = $request->input('name');
+        $categories->description = $request->input('description');
+        //save
+        $categories->save();
+
+        $request->session()->flash('success', 'Successfully saved your new category!');
+
+        return redirect()->route('categories.index', $categories->id);
     }
 
     /**
@@ -94,8 +112,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
+        $categories = Category::find($id);
+        
+        $categories -> delete(); 
+
+        $request->session()->flash('success', 'This category was successfully saved.');
+
+        return redirect()->route('categories.index');
     }
 }

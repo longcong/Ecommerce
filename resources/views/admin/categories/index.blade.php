@@ -1,8 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', '| All Categories')
+<!-- @section('title', '| All Categories') -->
 
+@section('stylesheets')
 
+    {!! Html::style('css/parsley.css') !!}
+    {!! Html::style('css/select2.min.css') !!}
+
+@endsection
 @section('content')
     <h1>Categories</h1>
     <div class="card">
@@ -10,22 +15,22 @@
             <div class="container">
                 <div class="row">
                         <div class="well " style="background-color: #EEEEEE; padding:10px; text-align:center;">
-                                {!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
+                                {!! Form::open(['route' => 'categories.store', 'data-parsley-validate' =>'', 'method' => 'POST']) !!}
                                     <h4>New Category</h4>
                                     <div class="row g-2 align-items-center">
-                                        <div class="col-auto">
+                                        <div class="col-2">
                                             {{ Form::label('name', 'Name:') }}
                                         </div>
                                         <div class="col-8">
-                                            {{ Form::text('name',null,array('class' => 'form-control','style'=>'margin-bottom: 5px;')) }} 
+                                            {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;')) }} 
                                         </div>  
                                     </div> 
                                     <div class="row g-2 align-items-center">
-                                        <div class="col-auto">
+                                        <div class="col-2">
                                             {{ Form::label('description', 'Description:') }}
                                         </div>
                                         <div class="col-8">
-                                            {{ Form::text('description',null, array('class' => 'form-control', 'style'=>'margin-bottom: 5px;')) }} 
+                                            {{ Form::text('description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;')) }} 
                                         </div>  
                                     </div>
                                     
@@ -41,6 +46,7 @@
                         <th style="padding-left: 4px;">#</th>
                         <th style="padding-left: 4px;">name</th>
                         <th style="padding-left: 4px;">description</th>
+                        <th style="text-align: center;">action</th>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
@@ -48,7 +54,15 @@
                             <th>{{ $category->id }}</th>
                             <th>{{ $category->name }}</th>
                             <th>{{ $category->description}}</th>
-                            <td style="text-align: right;">{!! Html::linkRoute('categories.edit','Edit', array($category->id), array('class'=> 'btn btn-primary btn-block')) !!}</td>
+                            
+                            <td style="text-align: center;"> 
+                              
+                                    {!! Html::linkRoute('categories.edit','Edit', array($category->id), array('class' => 'btn btn-primary btn-block')) !!}
+                                
+                                    <!-- {!! Html::linkRoute('categories.show','Show', array($category->id), array('class' => 'btn btn-info btn-block')) !!} -->
+                            
+                                
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -57,5 +71,16 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+
+    {!! Html::script('js/parsley.min.js') !!}
+    {!! Html::script('js/select2.min.js') !!}
+
+    <script type="text/javascript">
+        $('.select2-multi').select2();
+    </script>
 
 @endsection

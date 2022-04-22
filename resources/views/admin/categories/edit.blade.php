@@ -7,10 +7,13 @@
 {!! Form::model($categories, ['route' => ['categories.update', $categories->id], 'method' => 'PUT']) !!}
     <h1 class="edit catgory">Edit Category</h1>
     <hr>
+    <div class="card">
+        <div class="card-body">
+        </div>
     <div class="row" style="margin-top: 5px;">
         <div class="col-md-8">
             <div class="row g-2 align-items-center">
-                <div class="col-auto">
+                <div class="col-2">
                     {{ Form::label('name', 'Name:') }}
                 </div>
                 <div class="col-8">
@@ -18,7 +21,7 @@
                 </div>  
             </div> 
             <div class="row g-2 align-items-center">
-                <div class="col-auto">
+                <div class="col-2">
                     {{ Form::label('description', 'Description:') }}
                 </div>
                 <div class="col-8">
@@ -28,25 +31,25 @@
         </div>
         <!-- xử lý -->
         <div class="col-md-4">
-            <div class="row">
+            <div class="row" style="text-align:right;">
                 <!-- save change -->
                 <div class="col-sm-3">
-                    {{ Form::submit('Save', ['class' => 'btn btn-success btn-block']) }}
+                    {{ Form::submit('Save As', ['class' => 'btn btn-success btn-block']) }}
                 </div>
                 <!-- delete  -->
-                <div class="col-sm-3">
-                    {{ Form::open(array('method' => 'DELETE', 'route' => array('categories.destroy', $categories->id), 'onsubmit' => 'return confirm_delete()')) }} 
+                <div class="col-sm-4">
+                    {!! Html::linkRoute('categories.index','Cancel', array($categories -> id), array('class'=> 'btn btn-warning btn-block', 'style'=>'margin-left:10px;')) !!}
+                </div>
+{!! Form::close() !!}
+                <!-- Cancel -->
+                <div class="col-sm-4">
+                    {{ Form::open(array('method' => 'DELETE', 'route' => array('categories.destroy', $categories -> id), 'onsubmit' => 'return confirm_delete()')) }} 
                         {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-block', 'style'=>'margin-right:5px;')) }}
                     {{ Form::close() }}
-                </div>
-                <!-- Cancel -->
-                <div class="col-sm-3">
-                    {!! Html::linkRoute('categories.index','Cancel', array($categories->id), array('class'=> 'btn btn-warning btn-block', 'style'=>'margin-left:10px;')) !!}
                 </div>
             </div>
         </div>
        
     </div>
-    {!! Form::close() !!}
-
+        </div>
 @endsection

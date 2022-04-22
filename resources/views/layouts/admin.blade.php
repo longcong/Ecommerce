@@ -23,7 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet">
 
-    @yield('stylesheet')
+    @yield('stylesheets')
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
@@ -51,6 +51,8 @@
     <script src="{{ asset('admin/js/smooth-scrollbar.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/chartjs.min.js') }}" defer></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="{{ asset('js/parsley.min.js') }}" defer></script>
+    <script src="{{ asset('js/select2.min.js') }}" defer></script>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
