@@ -23,6 +23,7 @@
                             {{ Form::text('title',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
+                    <br>
                     <div class="row g-2 align-items-center">
                         <div class="col-auto">
                             {{ Form::label('price','Price:',array('style' => 'margin-top: 10px;')) }}
@@ -43,6 +44,7 @@
                             {{ Form::text('discount_value',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
+                    <br>
                     {{ Form::label ('featured_image','Upload Featured Image:') }}
                     {{ Form::file('featured_image')}} 
 

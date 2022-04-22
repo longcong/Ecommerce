@@ -53,7 +53,7 @@ class LoginController extends Controller
     {
         if(Auth::user()->role == '1') //1 = Admin Login
         {
-            return redirect('dashboard')->with('status','Welcome to your dashboard');
+            return redirect('admin/main')->with('status','Welcome to your dashboard');
         }
         elseif(Auth::user()->role == '0') // Normal or Default User Login
         {
