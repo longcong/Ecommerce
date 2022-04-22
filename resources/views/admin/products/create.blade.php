@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', '| Create Product')
+
 @section('stylesheet')
 
     {!! Html::style('css/parsley.css') !!}

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', '| All Tag')
+
 
 @section('content')
 <div class="card">
@@ -28,14 +30,14 @@
                 </div> <!-- end of .col-md-8 -->
                 <div class="col-md-4" style="text-align:center;">
                     <div class="well" style="background-color: #EEEEEE; margin-top:20px; padding:20px;">
-                    {!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => 'tags.store', 'data-parsley-validate' =>'', 'method' => 'POST']) !!}
                             <h2>New Tag</h2>
                             <div class="row g-2 align-items-center">
                                 <div class="col-auto">
                                     {{ Form::label('name', 'Name:') }}
                                 </div>
-                                <div class="col-8">
-                                    {{ Form::text('name',null,array('class' => 'form-control','style'=>'margin-bottom: 5px;')) }} 
+                                <div class="col-9">
+                                    {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;')) }} 
                                 </div>  
                             </div>           
                             {{ Form::submit ('Create New Tag', array('class' => 'btn btn-primary btn-block btn-h1-spacing', 'style'=>'margin-top:10px;')) }}

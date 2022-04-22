@@ -19,10 +19,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/tables.html">
+          <a class="nav-link text-white " href="{{ url('products') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             </div>
-            <span class="nav-link-text ms-1">Tables</span>
+            <span class="nav-link-text ms-1">Product</span>
           </a>
         </li>
         <li class="nav-item">
@@ -41,13 +41,13 @@
             <span class="nav-link-text ms-1">Tags</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="{{ url('products') }}">
+        <!-- <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/tables.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             </div>
-            <span class="nav-link-text ms-1">Product</span>
+            <span class="nav-link-text ms-1">Tables</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">

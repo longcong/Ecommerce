@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-<!-- @section('title', '| All Categories') -->
+@section('title', '| All Categories')
 
 @section('stylesheets')
 
