@@ -56,12 +56,7 @@
                             <th>{{ $category->description}}</th>
                             
                             <td style="text-align: center;"> 
-                              
-                                    {!! Html::linkRoute('categories.edit','Edit', array($category->id), array('class' => 'btn btn-primary btn-block')) !!}
-                                
-                                    <!-- {!! Html::linkRoute('categories.show','Show', array($category->id), array('class' => 'btn btn-info btn-block')) !!} -->
-                            
-                                
+                                {!! Html::linkRoute('categories.edit','Edit', array($category->id), array('class' => 'btn btn-primary btn-block')) !!}
                             </td>
                         </tr>
                         @endforeach
