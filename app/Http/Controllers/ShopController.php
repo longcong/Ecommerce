@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ShopController extends Controller
 {
@@ -23,6 +24,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop');
+        $products = Product::orderBy('created_at', 'desc')->limit (4)->get();
+        return view('shop')->withProduct($products);
     }
 }

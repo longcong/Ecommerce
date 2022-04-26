@@ -23,7 +23,7 @@
                   <a class="dropdown-item" href="#">
                       My Profile
                   </a>
-                  <a class="dropdown-item" href="{{ ('shop') }}">
+                  <a class="dropdown-item" href="{{ ('/') }}">
                       Home Page
                   </a>
                   <a class="dropdown-item" href="{{ route('logout') }}"

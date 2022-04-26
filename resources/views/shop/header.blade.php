@@ -1101,24 +1101,9 @@
                 Sign In
             </a>
         @else
-            <li class="nav-iteam dropdown">
-                <a id="navbarDropdown" href="#" data-toggle="modal" data-target="#login-form dropdown" class="nav-link dropdown-toggle c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" role="button" aria-haspopup="true" aria-expanded="false" v-pre><i class="icon-user"></i>
-                    {{ Auth::user()->username }}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-
-            </li>
-            
+            <a  href="#" data-toggle="modal" data-target="#login-form " class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" ><i class="icon-user"></i>
+                {{ Auth::user()->username }}
+            </a>
         @endguest
     </li>
 

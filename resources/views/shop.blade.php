@@ -28,7 +28,7 @@ Follow: http://www.twitter.com/themehats
 	@include('shop.sidebar')
 	<!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
 <div class="modal fade c-content-login-form" id="login-form" role="dialog">
-   @include('shop.login')
+  	@include('shop.login')
 </div><!-- END: CONTENT/USER/LOGIN-FORM -->
 
 	<!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->

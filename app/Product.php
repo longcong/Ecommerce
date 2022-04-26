@@ -10,4 +10,9 @@ class Product extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag');
     }
+
+    public function category(){
+        return $this->belongsTo('App\Category');
+    } 
+
 }

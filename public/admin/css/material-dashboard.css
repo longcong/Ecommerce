@@ -22140,9 +22140,15 @@ label,
   transition: 0.2s ease all;
 }
 
+<<<<<<< HEAD
 .form-control {
   /* border: none; */
 }
+=======
+/*.form-control {
+  border: none; 
+}*/
+>>>>>>> 96051bb6e7115570d45416ec828626af62896cae
 
 .form-control.is-invalid {
   border: 1px solid #d2d6da;

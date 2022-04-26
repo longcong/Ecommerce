@@ -6,7 +6,6 @@
         <div class="modal-body">
             <h3 class="c-font-24 c-font-sbold">Login</h3>
             <p>Let's make today a great day!</p>
-
             <form  method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -19,7 +18,6 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-
                     </div>
                 </div>
                 <div class="form-group row">

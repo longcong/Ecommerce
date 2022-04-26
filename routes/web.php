@@ -24,14 +24,21 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/', 'ShopController@index')->name('shop');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 
 
-route::group(['middleware'=> ['auth','isAdmin']], function(){
-    Route::get('/dashboard','Admin\FontendController@index');
+route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(){
+    Route::get('/main','Admin\FontendController@index')->name('admin.dashboard');
+    Route::resource('products', 'Admin\ProductController');
+    // get index -> /products
+    // get show -> /products/$id
+    // get edit -> /products/edit/$id -> show form
+    // PUT update -> /products/edit/$id ->after submit
+    // get create -> /products/create -> show form
+    // POST store -> /products -> after submit
+    // DELETE destroy -> /products -> after submit
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
-    Route::resource('products', 'Admin\ProductController');
+    
 }); 
-
