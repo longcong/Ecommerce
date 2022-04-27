@@ -70,7 +70,7 @@ class ProductController extends Controller
         $image = $request->file('featured_image');
         $filename = time() . '.' . $image->getClientOriginalExtension();
         $location = public_path('images/' . $filename);
-        Image::make($image)->resize(800, 400)->save($location);
+        Image::make($image)->resize(600, 600)->save($location);
 
         $post->image = $filename;
     }
@@ -80,7 +80,7 @@ class ProductController extends Controller
 
     $request->session()->flash('success', 'The product post was successfully save!');
 
-    return redirect() -> route('products.show', $post -> id);
+    return redirect()->route('products.show', $post -> id);
     }
 
     /**
@@ -128,31 +128,35 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $this -> Validate($request,array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
-            'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            //'category_id' => 'required|integer',
-            //'status_id'  => 'required|integer',
-            'note'  =>  'required',
-            'featured_image' => 'required|image'
-            ));
+    {   
         $post = Product::find($id);
+        
         $post->title =$request->input('title');
-        $post -> price = $request->input('price');
-        $post -> discount_unit = $request->input('discount_unit');
-        $post -> discount_value = $request->input('discount_value');
-        $post -> note = $request->input('note');
+        $post->price = $request->input('price');
+        $post->discount_unit = $request->input('discount_unit');
+        $post->discount_value = $request->input('discount_value');
+        $post->note = $request->input('note');
 
-        $post -> save();
+        if($request->hasFile('featured_image')){
+            //add new photo
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(600, 600)->save($location);
+            $oldFilename = $post->image;
+
+            //update
+            $post->image = $filename;
+            //delete
+            Storage::delete($oldFilename);
+        }
+
+        $post->save();
         //$post -> tags()->sync($request->tags, false);
 
         $request->session()->flash('success', 'The product post was successfully save!');
 
-        return redirect()->route('products.show', $post -> id);
+        return redirect()->route('products.show' , $post->id);
     }
 
     /**

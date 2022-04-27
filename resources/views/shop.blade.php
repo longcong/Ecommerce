@@ -17,18 +17,19 @@ Follow: http://www.twitter.com/themehats
 <!-- Mirrored from themehats.com/themes/jango/demos/default/shop-home-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Feb 2019 04:56:00 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-	@include('shop.head')
+	@include('shoppage.head')
 </head><body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-fullscreen"> 
 		
 <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
-	@include('shop.header')
+<header class="c-layout-header c-layout-header-default c-layout-header-dark-mobile c-header-transparent-dark" data-minimize-offset="80">
+	@include('shoppage.header')
+</header>
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
-	
 	<!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
-	@include('shop.sidebar')
+	@include('shoppage.sidebar')
 	<!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
 <div class="modal fade c-content-login-form" id="login-form" role="dialog">
-  	@include('shop.login')
+  	@include('shoppage.login')
 </div><!-- END: CONTENT/USER/LOGIN-FORM -->
 
 	<!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
@@ -140,17 +141,15 @@ Follow: http://www.twitter.com/themehats
 		</div>
 	</div>
 </nav><!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
-
 	<!-- BEGIN: PAGE CONTAINER -->
 	<div class="c-layout-page">
-@include('shop.page')
+	@include('shoppage.page')
 	</div>
 	<!-- END: PAGE CONTAINER -->
-@yield('mainshop')
 	<!-- BEGIN: LAYOUT/FOOTERS/FOOTER-5 -->
 <a name="footer"></a>
 <footer class="c-layout-footer c-layout-footer-3 c-bg-dark">
-	@include('shop.footer')
+	@include('shoppage.footer')
 </footer><!-- END: LAYOUT/FOOTERS/FOOTER-5 -->
 
 	<!-- BEGIN: LAYOUT/FOOTERS/GO2TOP -->
@@ -160,9 +159,9 @@ Follow: http://www.twitter.com/themehats
 
 	<!-- BEGIN: LAYOUT/BASE/BOTTOM -->
     <!-- BEGIN: CORE PLUGINS -->
-	@include('shop.javascript')
+	@include('shoppage.javascript')
 
-	@yield('script')
+		@yield('script')
     </body>
 	
 

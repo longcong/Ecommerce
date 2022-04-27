@@ -21,8 +21,8 @@ class CreateOrderTable extends Migration
             $table->string('delivery_unit');
             $table->integer('sdt');
             $table->longText('note')->nullable();
-            $table->bigInteger('status_id');
-            $table->bigInteger('payment_id');
+            $table->bigInteger('status_id')->nullable();
+            $table->bigInteger('payment_id')->nullable();
             $table->float('delivery_price');
             $table->float('price');
             $table->timestamps();

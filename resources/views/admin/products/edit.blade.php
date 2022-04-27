@@ -8,7 +8,7 @@
 
 @section('content')
 
-{!! Form::model($post, ['route' => ['products.update', $post->id] , 'method' => 'Put']) !!}
+{!! Form::model($post, ['route' => ['products.update', $post->id] , 'method' => 'PUT']) !!}
 
 <div class="row">
     
@@ -28,8 +28,8 @@
             {{ Form::label('feature','Update Featured Image:', ['class' => 'form-spacing-top'])}}
             {{ Form::file('featured_image')}}
             <br>
-            {{ Form::label('body',"Body:", ['class' => 'form-spacing-top']) }}
-            {{ Form::textarea('body', null, ['class' => 'form-control'])}}
+            {{ Form::label('note',"note:", ['class' => 'form-spacing-top']) }}
+            {{ Form::textarea('note', null, ['class' => 'form-control'])}}
     </div>
 
     <div class="col-md-4">
