@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label for="username" class="hide">Username</label>
                         <div class="col-md-6">
-                            <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+                            <input id="username" type="text" class="form-control input-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -63,21 +63,26 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="hide">Password</label>
-                        <div class="col-md-6">
-                            <input type="password" class="form-control input-lg c-square @error('password') is-invalid @enderror" id="password" placeholder="Password" style="font-weight: 300;">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password-confirm" class="hide">Confirm Password:</label>
-                        <input id="password-confirm" type="password" class="form-control input-lg c-square" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                            <label for="password" class="col-md-4  col-form-label text-md-right hide">{{ __('Password:') }}</label>
 
-                    </div>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4  col-form-label text-md-right hide">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                            </div>
+                        </div>
                     <!-- <div class="form-group">
                         <label for="signup-country" class="hide">Country</label>
                         <select class="form-control input-lg c-square" id="signup-country">
@@ -86,7 +91,7 @@
                     </div> -->
                     <div class="form-group">
                         <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
-                            Signup
+                            {{ __('Register') }}
                         </button>
                         <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
                     </div>

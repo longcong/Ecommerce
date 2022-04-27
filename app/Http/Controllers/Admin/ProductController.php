@@ -10,6 +10,7 @@ use App\Category;
 use App\Tag;
 use Image;
 
+
 class ProductController extends Controller
 {
     /**
@@ -34,8 +35,8 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
-        //$tags = Tag::all();
-        return view('admin.products.create ')->withCategories($categories);//->withTags($tags)
+        $tags = Tag::all();
+        return view('admin.products.create ')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -58,35 +59,35 @@ class ProductController extends Controller
             'category_id' => 'required|integer',
             //'status_id'  => 'required|integer',
             'note'  =>  'required',
-            'featured_image' => 'required|image'
-    ));
+            'featured_image' => 'image'
+        ));
 
-    $post = new Product;
+        $post = new Product;
 
-    $post -> title = $request->title;
-    //$post -> slug = $request ->slug;
-    $post -> category_id = $request->category_id;
-    $post -> price = $request->price;
-    $post -> discount_unit = $request->discount_unit;
-    $post -> category_id = $request->category_id;
-    $post -> discount_value = $request->discount_value;
-    $post -> note = $request->note;
+        $post->title = $request->title;
+        //$post -> slug = $request ->slug;
+        $post->category_id = $request->category_id;
+        $post->price = $request->price;
+        $post->discount_unit = $request->discount_unit;
+        $post->category_id = $request->category_id;
+        $post->discount_value = $request->discount_value;
+        $post->note = $request->note;
 
-    if($request->hasFile('featured_image')){
-        $image = $request->file('featured_image');
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $location = public_path('images/' . $filename);
-        Image::make($image)->resize(600, 300)->save($location);
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(600, 300)->save($location);
 
-        $post->image = $filename;
-    }
+            $post->image = $filename;
+        }
 
-    $post -> save();
-    //$post -> tags()->sync($request->tags, false);
+        $post -> save();
+        $post -> tags()->sync($request->tags, false);
 
-    $request->session()->flash('success', 'The product post was successfully save!');
+        $request->session()->flash('success', 'The product post was successfully save!');
 
-    return redirect() -> route('products.show', $post -> id);
+        return redirect() -> route('products.show', $post -> id);
     }
 
     /**
@@ -109,20 +110,20 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $post = Product::find($id);
+        $posts = Product::find($id);
         $categories = Category::all();
         $cats = array();
         foreach  ($categories as $category){
             $cats[$category->id] = $category->name;
         }
 
-        //$tags = Tag::all();
-        //$tags2 = array();
-        //foreach ($tags as $tag){
-        //    $tags2[$tag->id] = $tag->name;
-        //}
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag){
+           $tags2[$tag->id] = $tag->name;
+        }
         // Xem
-        return view('admin.products.edit')->withPost($post)->withCategories($cats);//->withTags($tags2);
+        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -134,31 +135,53 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this -> Validate($request,array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
-            'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'category_id' => 'required|integer',
-            //'status_id'  => 'required|integer',
-            'note'  =>  'required',
-            'featured_image' => 'required|image'
-            ));
-        $post = Product::find($id);
-        $post->title =$request->input('title');
-        $post -> price = $request->input('price');
-        $post -> discount_unit = $request->input('discount_unit');
-        $post -> category_id = $request->input('category_id');
-        $post -> discount_value = $request->input('discount_value');
-        $post -> note = $request->input('note');
+        // $post = Product::find($id);
 
+        // $this -> Validate($request,array(
+        //     'title' =>  'required|max:255',
+        //     'discount_unit' => 'required|max:255',
+        //     'discount_value' => 'required|integer',
+        //     'price' => 'required|integer',
+        //     //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
+        //     'category_id' => 'required|integer',
+        //     //'status_id'  => 'required|integer',
+        //     'note'  =>  'required',
+        //     'featured_image' => 'image'
+        //     ));
+        $post = Product::find($id);
+
+        $post->title = $request->input('title');
+        $post->price = $request->input('price');
+        $post->discount_unit = $request->input('discount_unit');
+        $post->category_id = $request->input('category_id');
+        $post->discount_value = $request->input('discount_value');
+        $post->note = $request->input('note');
+
+        if($request->hasFile('featured_image')) {
+            // Add the new photo
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(600, 300)->save($location);
+
+            $oldFilename = $post->image;
+            // Update the database
+            $post->image = $filename;
+            // Delete the old photo
+            Storage::delete($oldFilename);
+        }
         $post -> save();
-        //$post -> tags()->sync($request->tags, false);
+        if(isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        }else{
+            $post->tags()->sync(array());
+        }
+
+        $post->tags()->sync($request->tags);
 
         $request->session()->flash('success', 'The product post was successfully save!');
 
-        return redirect()->route('products.show', $post -> id);
+        return redirect()->route('products.show', $post->id);
     }
 
     /**
@@ -172,7 +195,7 @@ class ProductController extends Controller
     public function destroy(Request $request ,$id)
     {
         $post = Product ::find($id);
-        //$post -> tags()->detach();
+        $post -> tags()->detach();
         Storage::delete($post->image);
 
         $post -> delete();

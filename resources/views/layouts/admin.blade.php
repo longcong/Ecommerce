@@ -16,6 +16,8 @@
     <!-- icons-svg -->
     <link href="{{ asset('admin/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/parsley.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
@@ -26,7 +28,32 @@
     @yield('stylesheets')
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-
+    <style>
+        .l1{
+            background-color: LightGoldenrodYellow;
+            padding: 3.5px;
+        }
+        .cate{
+            margin-top: 5px;
+        }
+        .action-cate{
+            text-align:right;
+        }
+        .index-cate{
+        background-color: #EEEEEE; 
+        padding:10px; 
+        text-align:center;
+        }
+        .pr-edit{
+            background-color:Gainsboro; 
+            padding: 10px;
+        }
+        .th{
+            padding-left: 5px;
+        }
+        
+   
+    </style>
 
 </head>
 <body class="g-sidenav-show  bg-gray-200">

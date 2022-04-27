@@ -14,11 +14,11 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                        <div class="well " style="background-color: #EEEEEE; padding:10px; text-align:center;">
+                        <div class="well index-cate" >
                                 {!! Form::open(['route' => 'categories.store', 'data-parsley-validate' =>'', 'method' => 'POST']) !!}
                                     <h4>New Category</h4>
                                     <div class="row g-2 align-items-center">
-                                        <div class="col-2">
+                                        <div class="col-2 ">
                                             {{ Form::label('name', 'Name:') }}
                                         </div>
                                         <div class="col-8">
@@ -26,7 +26,7 @@
                                         </div>  
                                     </div> 
                                     <div class="row g-2 align-items-center">
-                                        <div class="col-2">
+                                        <div class="col-2 ">
                                             {{ Form::label('description', 'Description:') }}
                                         </div>
                                         <div class="col-8">

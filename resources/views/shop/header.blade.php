@@ -1094,8 +1094,33 @@
     <li class="c-cart-toggler-wrapper">
         <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
     </li>
-
     <li>
+        <!-- Authentication Links -->
+        @guest
+            <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>
+                Sign In
+            </a>
+        @else
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="#" role="button" data-toggle="dropdown modal" aria-haspopup="true" aria-expanded="false" v-pre><i class="icon-user"></i>
+                    {{ Auth::user()->username }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgb(92, 104, 115);">
+                    <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        @endguest
+    </li>
+
+    <!-- <li>
         @guest
             <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>
                 Sign In
@@ -1105,7 +1130,7 @@
                 {{ Auth::user()->username }}
             </a>
         @endguest
-    </li>
+    </li> -->
 
         <li class="c-quick-sidebar-toggler-wrapper">	
     <a href="#" class="c-quick-sidebar-toggler">		     		

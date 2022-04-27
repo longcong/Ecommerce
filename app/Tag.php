@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     //
-    public function posts(){
-        return $this->belongsToMany('App\Post');
-    }
-    public function product(){
+    
+    public function products(){
         return $this->belongsToMany('App\Product');
     }
-}
+}   

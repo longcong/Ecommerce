@@ -9,59 +9,68 @@
 
 @section('content')
 
-{!! Form::model($post, ['route' => ['products.update', $post->id] , 'method' => 'Put']) !!}
-
-<div class="row">
-    
-    <div class="col-md-8">
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title', null, ["class" => 'form-control input-lg']) }}
-            
-            {{ Form::label('price', 'Price:') }}
-            {{ Form::text('price', null, ["class" => 'form-control input-lg']) }}
-
-            {{ Form::label('discount_unit', 'Code:') }}
-            {{ Form::text('discount_unit', null, ["class" => 'form-control input-lg']) }}
-
-            {{ Form::label('category_id', 'Category:') }}
-            {{ Form::select('category_id', $categories, null, ['class' => 'form-control input-lg']) }}
-
-            {{ Form::label('discount_value', 'Discount:') }}
-            {{ Form::text('discount_value', null, ["class" => 'form-control input-lg']) }}
-
-            {{ Form::label('feature','Update Featured Image:', ['class' => 'form-spacing-top'])}}
-            {{ Form::file('featured_image')}}
-            <br>
-            {{ Form::label('body',"Body:", ['class' => 'form-spacing-top']) }}
-            {{ Form::textarea('body', null, ['class' => 'form-csontrol', 'rows' =>'5', 'cols'=>'82'])}}
-    </div>
-
-    <div class="col-md-4">
-            <div class="well">
-                <dl class="dl-horizontal">
-                    <dt>Created At:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
-                </dl>
-
-                <dl class="dl-horizontal">
-                    <dt>Last Updated:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
-                </dl>
-                <hr>
+    {!! Form::model($post, ['route' => ['products.update', $post->id] ,'data-parsley-validate' =>'', 'method' => 'PUT', 'files' => 'true' ]) !!}
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
-                        {{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
+        
+                    <div class="col-md-8">
+                        {{ Form::label('title', 'Title:') }}
+                        {{ Form::text('title', null, array('class' => 'form-control input-lg')) }}
+                        
+                        {{ Form::label('price', 'Price:') }}
+                        {{ Form::text('price', null, array('class' => 'form-control input-lg')) }}
+
+                        {{ Form::label('discount_unit', 'Code:') }}
+                        {{ Form::text('discount_unit', null, array('class'=> 'form-control input-lg')) }}
+
+                        {{ Form::label('category_id', 'Category:') }}
+                        {{ Form::select('category_id', $categories, null, array('class' => 'form-control input-lg')) }}
+
+                        {{ Form::label('tags', 'Tag:') }}
+                        {{ Form::select('tags[]', $tags, null, array('class' => 'form-control select2-multi', 'multiple' => 'multiple')) }}
+
+                        {{ Form::label('discount_value', 'Discount:') }}
+                        {{ Form::text('discount_value', null, array('class' => 'form-control input-lg')) }}
+
+                        {{ Form::label('featured_image','Update Image:', array('class' => 'form-spacing-top'))}}
+                        {{ Form::file('featured_image') }}
+                        <br>
+                        {{ Form::label('body',"Body:", ['class' => 'form-spacing-top']) }}
+                        {{ Form::textarea('body', null, array('class' => 'form-csontrol', 'rows' =>'5', 'cols'=>'75'))}}
                     </div>
-                    <div class="col-sm-6">
-                        {!! Html::linkRoute('products.show', 'Cancel', array($post->id),array('class' => 'btn btn-danger btn-block')) !!}
-                    </div>
+
+                    <div class="col-md-4" >
+                        <div class="well pr-edit" >
+                            <dl class="dl-horizontal">
+                                <dt>Created At:</dt>
+                                <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
+                            </dl>
+
+                            <dl class="dl-horizontal">
+                                <dt>Last Updated:</dt>
+                                <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
+                            </dl>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
+                                </div>
+                                <div class="col-sm-6">
+                                    {!! Html::linkRoute('products.show', 'Cancel', array($post->id),array('class' => 'btn btn-danger btn-block')) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
                 </div>
             </div>
-    </div>      
-</div>
-{!! Form::close() !!}
+        </div>
+    </div>
+    
+    {!! Form::close() !!}
 
-@stop
+@endsection
 
 @section('scripts')
 
@@ -69,6 +78,7 @@
 
     <script type="text/javascript">
         $('.select2-multi').select2();
+        $('.select2-multi').select2().val('{{ json_encode($post->tags()->allRelatedIds()) }}').trigger('change');
     </script>
 
 

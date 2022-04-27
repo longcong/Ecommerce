@@ -21,7 +21,7 @@ class TagController extends Controller
     {
         //
         $tags = Tag::all();
-        return view('admin.tag.index')->withTags($tags);
+        return view('admin.tags.index')->withTags($tags);
     }
 
     /**
@@ -55,7 +55,7 @@ class TagController extends Controller
     {
         //
         $tag = Tag::find($id);
-        return view('admin.tag.show')->withTag($tag);
+        return view('admin.tags.show')->withTag($tag);
 
     }
 
@@ -69,7 +69,7 @@ class TagController extends Controller
     {
         //
         $tag = Tag::find($id);
-        return view('admin.tag.edit')->withTag($tag);
+        return view('admin.tags.edit')->withTag($tag);
     }
 
     /**
@@ -82,6 +82,16 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $tag = Tag::find($id);
+
+        $this->validate($request, ['name' => 'required|max:255']);
+
+        $tag->name = $request->input('name');
+        $tag->save();
+
+        $request->session()->flash('success', 'Successfully saved your new tag!');
+
+        return redirect()->route('tags.show', $tag->id);
     }
 
     /**
@@ -90,8 +100,15 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
+        $tag = Tag::find($id);
+        $tag -> posts()-> detach();
+        $tag -> delete();
+
+        $request->session()->flash('success', 'Tag was delete successfully!');
+
+        return redirect()->route('tags.index');
     }
 }

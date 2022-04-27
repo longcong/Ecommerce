@@ -12,7 +12,7 @@
                 <div class="form-group row">
                     <label for="username" class="hide">Username:</label>
                     <div class="col-md-6">
-                        <input id="username" type="text" class="form-control input-lg c-square @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
+                        <input id="username" type="text" class="form-control input-lg  @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
                         @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="password" class="hide">{{ __('Password:') }}</label>
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control input-lg c-square @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                        <input id="password" type="password" class="form-control input-lg  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

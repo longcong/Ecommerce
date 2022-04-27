@@ -21,14 +21,14 @@
         <div class="col-md-12">
             <table class="table">
                 <thead >
-                    <th style="padding-left: 1px;">#</th>
-                    <th >Title</th>
-                    <th style="padding-left: 1px;">Price</th>
-                    <th style="padding-left: 1px;">Code</th>
-                    <th style="padding-left: 1px;">Discount</th>
-                    <th >Image</th>
-                    <th style="padding-left: 1px;">Note</th>
-                    <th style="padding-left: 1px;">Created At</th>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Code</th>
+                    <th>Discount</th>
+                    <th>Image</th>
+                    <th>Note</th>
+                    <th>Created At</th>
                     <th style="text-align:center;">action</th>
                 </thead>
 
@@ -44,7 +44,7 @@
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
                             <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
-                            <td><a href="{{ route('products.show', $post->id) }}" class="btn btn-deault btn-sm">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-default btn-sm">Edit</a></td>
+                            <td><a href="{{ route('products.show', $post->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-info btn-sm">Edit</a></td>
                         </tr>
 
                     @endforeach
