@@ -9,7 +9,7 @@
 
 @section('content')
 
-    {!! Form::model($post, ['route' => ['products.update', $post->id] ,'data-parsley-validate' =>'', 'method' => 'PUT', 'files' => 'true' ]) !!}
+    {!! Form::model($post, ['route' => ['products.update', $post->id] , 'method' => 'PUT', 'files' => 'true' ]) !!}
     <div class="card">
         <div class="card-body">
             <div class="container">
