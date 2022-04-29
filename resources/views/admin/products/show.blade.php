@@ -23,7 +23,7 @@
                 <div class="well pr-edit">
                     <dl class="dl-horizontal">
                         <label>Url:</label>
-                        
+                        <p><a href="{{ route('detail.productdetail', $product->slug) }}">{{ route('detail.productdetail', $product->slug) }}</a></p>
                     </dl>
 
                     <dl class="dl-horizontal">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            {{ Html::linkRoute('products.index', '<< All Posts',[],['class'=>'btn btn-default btn-block btn-h1-spacing']) }}
+                            {{ Html::linkRoute('products.index', '<< All Posts',[],['class'=>'btn btn-info btn-block btn-h1-spacing']) }}
                         </div>
                     </div>
                 </div>

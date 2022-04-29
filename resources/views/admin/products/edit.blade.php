@@ -25,6 +25,9 @@
                         {{ Form::label('discount_unit', 'Code:') }}
                         {{ Form::text('discount_unit', null, array('class'=> 'form-control input-lg')) }}
 
+                        {{ Form::label('slug', 'Slug:', ['class' => 'margin-top']) }}
+                        {{ Form::text('slug', null, ['class' => 'form-control input-lg']) }}  
+
                         {{ Form::label('category_id', 'Category:') }}
                         {{ Form::select('category_id', $categories, null, array('class' => 'form-control input-lg')) }}
 

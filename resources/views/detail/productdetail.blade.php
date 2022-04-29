@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
-
-@section('title' ,  '| Product Detail')
+<!-- 
+@section('title' , "| $product->title ") -->
 
 @section('buy_main')
 
@@ -9,51 +9,51 @@
 <!-- BEGIN: HEADER -->
 <header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
     <div class="c-topbar c-topbar-light c-solid-bg">
-    <div class="container">
-        <!-- BEGIN: INLINE NAV -->
-        <nav class="c-top-menu c-pull-left">
-            <ul class="c-icons c-theme-ul">
-                <li><a href="#"><i class="icon-social-twitter"></i></a></li>
-                <li><a href="#"><i class="icon-social-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
-                <li class="hide"><span>Phone: +99890345677</span></li>
-            </ul>
-        </nav>
-        <!-- END: INLINE NAV -->
-        <!-- BEGIN: INLINE NAV -->
-        <nav class="c-top-menu c-pull-right">
-            <ul class="c-links c-theme-ul">
-                <li><a href="#">Help</a></li>
-                <li class="c-divider">|</li>
-                <li><a href="#">Contact</a></li>
-                <li class="c-divider">|</li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-            <ul class="c-ext c-theme-ul">
-                <li class="c-lang dropdown c-last">
-                    <a href="#">en</a>
-                    <ul class="dropdown-menu pull-right" role="menu">
-                        <li class="active"><a href="#">English</a></li>
-                        <li><a href="#">German</a></li>
-                        <li><a href="#">Espaniol</a></li>
-                        <li><a href="#">Portugise</a></li>
-                    </ul>
-                </li>
-                <li class="c-search hide">
-                    <!-- BEGIN: QUICK SEARCH -->
-                    <form action="#">
-                        <input type="text" name="query" placeholder="search..." value="" class="form-control" autocomplete="off">
-                        <i class="fa fa-search"></i>
-                    </form>
-                    <!-- END: QUICK SEARCH -->	
-                </li>
-            </ul>
-        </nav>
-        <!-- END: INLINE NAV -->
+        <div class="container">
+            <!-- BEGIN: INLINE NAV -->
+            <nav class="c-top-menu c-pull-left">
+                <ul class="c-icons c-theme-ul">
+                    <li><a href="#"><i class="icon-social-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-social-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
+                    <li class="hide"><span>Phone: +99890345677</span></li>
+                </ul>
+            </nav>
+            <!-- END: INLINE NAV -->
+            <!-- BEGIN: INLINE NAV -->
+            <nav class="c-top-menu c-pull-right">
+                <ul class="c-links c-theme-ul">
+                    <li><a href="#">Help</a></li>
+                    <li class="c-divider">|</li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="c-divider">|</li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+                <ul class="c-ext c-theme-ul">
+                    <li class="c-lang dropdown c-last">
+                        <a href="#">en</a>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li class="active"><a href="#">English</a></li>
+                            <li><a href="#">German</a></li>
+                            <li><a href="#">Espaniol</a></li>
+                            <li><a href="#">Portugise</a></li>
+                        </ul>
+                    </li>
+                    <li class="c-search hide">
+                        <!-- BEGIN: QUICK SEARCH -->
+                        <form action="#">
+                            <input type="text" name="query" placeholder="search..." value="" class="form-control" autocomplete="off">
+                            <i class="fa fa-search"></i>
+                        </form>
+                        <!-- END: QUICK SEARCH -->	
+                    </li>
+                </ul>
+            </nav>
+            <!-- END: INLINE NAV -->
+        </div>
     </div>
-</div>
-    <div class="c-navbar">
-    <div class="container">
+        <div class="c-navbar">
+        <div class="container">
         <!-- BEGIN: BRAND -->
         <div class="c-navbar-wrapper clearfix">
             <div class="c-brand c-pull-left">
@@ -736,7 +736,7 @@
                     </li>
                                         </ul>
                 <div class="tab-content">
-                                                                    <div class="tab-pane active" id="megamenu_jango_components">
+        <div class="tab-pane active" id="megamenu_jango_components">
                                     <div class="row">
                         <div class="col-md-3">
                 <ul class="dropdown-menu c-menu-type-inline">
@@ -845,7 +845,7 @@
                                         </ul>
             </div>
                 </div>
-                            </div>
+    </div>
                                                                     <div class="tab-pane" id="megamenu_base_components">
                                     <div class="row">
                         <div class="col-md-3">
@@ -1473,17 +1473,17 @@
 <div class="container">
     <div class="c-shop-product-details-2">
         <div class="row">
-        @foreach ($product as $post)
+        
             <div class="col-md-6">
                 <div class="c-product-gallery">
                     <div class="c-product-gallery-content">
                         <div class="c-zoom">
-                            <img src="{{asset('images/' . $post->image)}}">
+                            <img src="{{asset('images/' .$product->image)}}">
                         </div>
                     </div>                        
                     <div class="row c-product-gallery-thumbnail">
                         <div class="col-xs-3 c-product-thumb">
-                            <img src="{{asset('images/' . $post->image)}}">
+                            <img src="{{asset('images/' .$product->image)}}">
                         </div>
                     </div>
                 </div>
@@ -1491,7 +1491,7 @@
             <div class="col-md-6">
                 <div class="c-product-meta">
                     <div class="c-content-title-1">
-                        <h3 class="c-font-uppercase c-font-bold">{{ $post->title }}</h3>
+                        <h3 class="c-font-uppercase c-font-bold">{{$product->title }}</h3>
                         <div class="c-line-left"></div>
                     </div>
                     <div class="c-product-badge">
@@ -1510,12 +1510,12 @@
                             <a class="c-font-red" href="#">Write a review</a>
                         </div>
                     </div>
-                    <div class="c-product-price">{{ $post->price - $post->discount_value}}$</div>
-                    <div class="c-product-price c-font-line-through c-font-red">{{ $post->price }}$</div>
+                    <div class="c-product-price">{{$product->price -$product->discount_value}}$</div>
+                    <div class="c-product-price c-font-line-through c-font-red">{{$product->price }}$</div>
                     <div class="c-product-short-desc">
-                        {{ $post->note }}
+                        {{$product->note }}
                     </div>
-        @endforeach
+        
                     <div class="row c-product-variant">
                         <div class="col-sm-12 col-xs-12">
                             <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">Size:</p>

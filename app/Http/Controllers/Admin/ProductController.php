@@ -55,7 +55,7 @@ class ProductController extends Controller
             'discount_unit' => 'required|max:255',
             'discount_value' => 'required|integer',
             'price' => 'required|integer',
-            //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
             'category_id' => 'required|integer',
             //'status_id'  => 'required|integer',
             'note'  =>  'required',
@@ -65,7 +65,7 @@ class ProductController extends Controller
         $post = new Product;
 
         $post->title = $request->title;
-        //$post -> slug = $request ->slug;
+        $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->price = $request->price;
         $post->discount_unit = $request->discount_unit;
@@ -135,9 +135,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $post = Product::find($id);
 
-        // $this -> Validate($request,array(
+        // $this -> Validate($request, array(
         //     'title' =>  'required|max:255',
         //     'discount_unit' => 'required|max:255',
         //     'discount_value' => 'required|integer',
@@ -152,6 +151,7 @@ class ProductController extends Controller
 
         $post->title = $request->input('title');
         $post->price = $request->input('price');
+        $post->slug = $request->input('slug');
         $post->discount_unit = $request->input('discount_unit');
         $post->category_id = $request->input('category_id');
         $post->discount_value = $request->input('discount_value');

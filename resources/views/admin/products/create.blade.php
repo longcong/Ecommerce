@@ -28,12 +28,14 @@
                     </div>
                     <br>
                     <div class="row g-2 align-items-center">
+                        <!-- price -->
                         <div class="col-auto">
                             {{ Form::label('price','Price:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
                             {{ Form::text('price',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
+                        <!-- discount code -->
                         <div class="col-auto">
                             {{ Form::label('discount_unit','Discount Code:',array('style' => 'margin-top: 10px;')) }}
                         </div>
@@ -41,16 +43,41 @@
                             {{ Form::text('discount_unit',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                         
+                        <!-- discount -->
                         <div class="col-auto">
                             {{ Form::label('discount_value','Discount:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
                             {{ Form::text('discount_value',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
+                        <br>
+                        <!-- slug -->
+                        <div class="col-auto">
+                            {{ Form::label('slug', 'Slug: ', array('style' => 'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-3">
+                            {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255')) }}
+                        </div>
+                        <!-- category -->
+                        <div class="col-auto">
+                            {{ Form::label('category_id', 'Category:', array('style'=>'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-3">
+                            <select class="form-control select2-multi" name="category_id" >
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-2 align-items-center" style="margin-top:10px;">
+                        
+                        <!-- tag -->
                         <div class="col-auto">
                             {{ Form::label('tags', 'Tags:', array('class'=>'margin-top')) }}
                         </div>
-                        <div class="col-3">
+                        <div class="col-11">
                             <select class="form-control select2-multi" name="tags[]" multiple="multiple">
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag-> name }}</option>
