@@ -5,7 +5,7 @@
 
 @else
     <p class="text-danger">
-    You are Logged Out as <strong>Admin</strong>
+        You are Logged Out as <strong>Admin</strong>
     </p>    
 @endif
 
@@ -13,9 +13,9 @@
     <p class="text-success">
         You are Logged In as <strong>User</strong>
     </p>
-
 @else
     <p class="text-danger">
     You are Logged Out as <strong>User</strong>
     </p>    
 @endif
+

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Product;
-use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
 {
     //
     public function getProductDetail($slug){
         $product = Product::where('slug', '=', $slug)->firstorfail();
-        return view('detail.productdetail')->withProduct($product);
+        return view('user.detail.productdetail')->withProduct($product);
     }
 }

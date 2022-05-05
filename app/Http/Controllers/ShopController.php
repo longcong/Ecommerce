@@ -25,4 +25,5 @@ class ShopController extends Controller
         return view('shop')->withProduct($products);
     }
     
+    
 }

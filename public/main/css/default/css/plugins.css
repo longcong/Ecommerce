@@ -1721,15 +1721,18 @@ label.control-label {
 
 .c-btn-border-1x.c-btn-white {
   border-color: #FFFFFF;
-  color: #FFFFFF;
+  /* color: #FFFFFF; */
   background: none;
   border-color: #FFFFFF; }
   .c-btn-border-1x.c-btn-white.c-btn-border-opacity-04 {
-    border-color: rgba(255, 255, 255, 0.4); }
+    border-color: rgba(255, 255, 255, 0.4); 
+    color:#2078de;
+  }
   .c-btn-border-1x.c-btn-white.btn-no-focus:focus, .c-btn-border-1x.c-btn-white.btn-no-focus.focus {
     color: #FFFFFF;
     background: none;
-    border-color: #FFFFFF; }
+    border-color: #FFFFFF;
+  }
   .c-btn-border-1x.c-btn-white.btn-no-focus:hover, .c-btn-border-1x.c-btn-white:hover, .c-btn-border-1x.c-btn-white.btn-no-focus:active, .c-btn-border-1x.c-btn-white:active, .c-btn-border-1x.c-btn-white.active,
   .open > .c-btn-border-1x.c-btn-white.dropdown-toggle {
     color: #2f353b;

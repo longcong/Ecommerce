@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
-<!-- 
-@section('title' , "| $product->title ") -->
+
+@section('title' , "| $product->title ")
 
 @section('buy_main')
 
@@ -57,7 +57,7 @@
         <!-- BEGIN: BRAND -->
         <div class="c-navbar-wrapper clearfix">
             <div class="c-brand c-pull-left">
-                <a href="index.html" class="c-logo">
+                <a href="{{ url('/') }}" class="c-logo">
                     <img src="{{ asset('main/base/img/layout/logos/logo-3.png') }}" alt="JANGO" class="c-desktop-logo">
                     <img src="{{ asset('main/base/img/layout/logos/logo-3.png') }}" alt="JANGO" class="c-desktop-logo-inverse">
                     <img src="{{ asset('main/base/img/layout/logos/logo-3.png') }}" alt="JANGO" class="c-mobile-logo">
@@ -1147,8 +1147,30 @@
         <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
     </li>
     
-            <li>
-        <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
+    <li>
+        <!-- Authentication Links -->
+        @guest
+            <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>
+                Sign In
+            </a>
+        @else
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="#" role="button" data-toggle="dropdown modal" aria-haspopup="true" aria-expanded="false" v-pre><i class="icon-user"></i>
+                    {{ Auth::user()->username }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: rgb(92, 104, 115);">
+                    <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        @endguest
     </li>
     
             <li class="c-quick-sidebar-toggler-wrapper">	
@@ -1242,30 +1264,54 @@
         <div class="modal-body">
             <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
             <p>Please fill in below form to create an account with us</p>
-            <form>
-                <div class="form-group">
-                    <label for="signup-email" class="hide">Email</label>
-                    <input type="email" class="form-control input-lg c-square" id="signup-email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="signup-username" class="hide">Username</label>
-                    <input type="email" class="form-control input-lg c-square" id="signup-username" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="signup-fullname" class="hide">Fullname</label>
-                    <input type="email" class="form-control input-lg c-square" id="signup-fullname" placeholder="Fullname">
-                </div>
-                <div class="form-group">
-                    <label for="signup-country" class="hide">Country</label>
-                    <select class="form-control input-lg c-square" id="signup-country">
-                        <option value="1">Country</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Signup</button>
-                    <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
-                </div>
-            </form>
+            <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="form-group row">
+                        <label for="username" class="hide">Username</label>
+                        <div class="col-md-6">
+                            <input id="username" type="text" class="form-control input-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="password" class="col-md-4  col-form-label text-md-right hide">{{ __('Password:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4  col-form-label text-md-right hide">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    <!-- <div class="form-group">
+                        <label for="signup-country" class="hide">Country</label>
+                        <select class="form-control input-lg c-square" id="signup-country">
+                            <option value="1">Country</option>
+                        </select>
+                    </div> -->
+                    <div class="form-group">
+                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+                            {{ __('Register') }}
+                        </button>
+                        <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
+                    </div>
+                </form>
         </div>
     </div>
 </div>
@@ -1280,29 +1326,51 @@
         <div class="modal-body">
             <h3 class="c-font-24 c-font-sbold">Good Afternoon!</h3>
             <p>Let's make today a great day!</p>
-            <form>
-                <div class="form-group">
-                    <label for="login-email" class="hide">Email</label>
-                    <input type="email" class="form-control input-lg c-square" id="login-email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="login-password" class="hide">Password</label>
-                    <input type="password" class="form-control input-lg c-square" id="login-password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <div class="c-checkbox">
-                        <input type="checkbox" id="login-rememberme" class="c-check">
-                        <label for="login-rememberme" class="c-font-thin c-font-17">
-                            <span></span>
-                            <span class="check"></span>
-                            <span class="box"></span>
-                            Remember Me
-                        </label>
+            <form  method="POST" action="{{ route('login') }}">
+            @csrf
+
+                <div class="form-group row">
+                    <label for="username" class="hide">Username:</label>
+                    <div class="col-md-6">
+                        <input id="username" type="text" class="form-control input-lg  @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="password" class="hide">{{ __('Password:') }}</label>
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control input-lg  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                 <div class="form-group">
-                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Login</button>
-                    <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">Forgot Your Password ?</a>
+
+                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+                        Login
+                    </button>
+                    <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">
+                        Forgot Your Password ?
+                    </a>
+
                 </div>
                 <div class="clearfix">
                     <div class="c-content-divider c-divider-sm c-icon-bg c-bg-grey c-margin-b-20">
@@ -1795,7 +1863,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/18.png') }};"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/18.png') }}) ;"></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">Samsung Galaxy Note 4</p>
@@ -1821,7 +1889,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/27.png') }};"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/27.png') }}) ;"></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">Samsung Galaxy S4</p>
@@ -1847,7 +1915,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/21.png') }};"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image:  url({{ asset('main/base/img/content/shop5/21.png') }});"></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">Apple iPhone 5</p>
@@ -1875,7 +1943,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/22.png') }};"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/22.png') }}) ;"></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">HTC</p>
@@ -1901,7 +1969,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/20.png') }}"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/20.png') }})"></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">Apple iPhone 6</p>
@@ -1928,7 +1996,7 @@
                                     <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                 </div>
                             </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: {{ asset('main/base/img/content/shop5/24.png') }}"></div>
+                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url ({{ asset('main/base/img/content/shop5/24.png') }}) "></div>
                         </div>
                         <div class="c-info">
                             <p class="c-title c-font-18 c-font-slim">Apple iPhone 6+</p>

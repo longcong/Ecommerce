@@ -77,7 +77,7 @@ class ProductController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image)->resize(600, 300)->save($location);
+            Image::make($image)->resize(600, 600)->save($location);
 
             $post->image = $filename;
         }
@@ -162,7 +162,7 @@ class ProductController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image)->resize(600, 300)->save($location);
+            Image::make($image)->resize(600, 600)->save($location);
 
             $oldFilename = $post->image;
             // Update the database

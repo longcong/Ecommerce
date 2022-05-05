@@ -28,10 +28,12 @@ Route::get('/', 'ShopController@index')->name('shop');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/list', 'ProductListController@index')->name('list');
 //Route::get('/product', 'ProductDetailController@getProductDetail')->name('productdetail');
-
-Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'ProductDetailController@getProductDetail']) 
+Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
+
+
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 
 
