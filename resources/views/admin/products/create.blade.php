@@ -51,6 +51,8 @@
                             {{ Form::text('discount_value',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                         <br>
+                    </div>
+                    <div class="row g-2 align-items-center">
                         <!-- slug -->
                         <div class="col-auto">
                             {{ Form::label('slug', 'Slug: ', array('style' => 'margin-top:10px;')) }}

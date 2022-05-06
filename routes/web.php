@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,10 +37,12 @@ Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\Prod
 
 
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
+Route::middleware(['auth'])->group(function(){
+    Route::post('cart',['CartController@index','addProduct']);
+});
 
 
-
-route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(){
+Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(){
     Route::get('/main','Admin\FontendController@index')->name('admin.dashboard');
     Route::resource('products', 'Admin\ProductController');
     // get index -> /products

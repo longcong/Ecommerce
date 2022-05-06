@@ -1695,9 +1695,8 @@
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-8 -->
 @foreach($products as $post)
 <div class="row c-margin-b-40">
-   
-	<div class="c-content-product-2 c-bg-white">
-      
+	<div class="c-content-product-2 c-bg-white product_data">
+			<input type="hidden" value="{{ $post->id }}" class="product_id">
             <div class="col-md-4">
                 <div class="c-content-overlay">
                     <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
@@ -1721,7 +1720,7 @@
                     </p>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                         <i class="fa fa-shopping-cart"></i>Add Cart
                     </button>
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
@@ -1729,161 +1728,9 @@
                     </button>
                 </div>
             </div>
-       
 	</div>
- 
 </div>
 @endforeach
-<!-- <div class="row c-margin-b-40">
-	<div class="c-content-product-2 c-bg-white">
-		<div class="col-md-4">
-			<div class="c-content-overlay">
-				<div class="c-label c-label-right c-theme-bg c-font-uppercase c-font-white c-font-13 c-font-bold">New</div>
-				<div class="c-overlay-wrapper">
-					<div class="c-overlay-content">
-						<a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-					</div>
-				</div>
-				<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: ( asset('main/base/img/content/shop3/10.jpg'));"></div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="c-info-list">
-				<h3 class="c-title c-font-bold c-font-22 c-font-dark">
-					<a class="c-theme-link" href="shop-product-details-2.html">Winter Coat</a>
-				</h3>
-				<p class="c-desc c-font-16 c-font-thin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-				<p class="c-price c-font-26 c-font-thin">$548 &nbsp;
-					<span class="c-font-26 c-font-line-through c-font-red">$600</span>
-				</p>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-shopping-cart"></i>Add Cart
-				</button>
-				<button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-heart-o"></i>Add Wishlist
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row c-margin-b-40">
-	<div class="c-content-product-2 c-bg-white">
-		<div class="col-md-4">
-			<div class="c-content-overlay">
-				<div class="c-overlay-wrapper">
-					<div class="c-overlay-content">
-						<a href="shop-product-details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-					</div>
-				</div>
-				<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: asset('main/base/img/content/shop3/22.jpg') );"></div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="c-info-list">
-				<h3 class="c-title c-font-bold c-font-22 c-font-dark">
-					<a class="c-theme-link" href="shop-product-details.html">Winter Coat</a>
-				</h3>
-				<p class="c-desc c-font-16 c-font-thin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-				<p class="c-price c-font-26 c-font-thin">$548 &nbsp;
-					<span class="c-font-26 c-font-line-through c-font-red">$600</span>
-				</p>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-shopping-cart"></i>Add Cart
-				</button>
-				<button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-heart-o"></i>Add Wishlist
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row c-margin-b-40">
-	<div class="c-content-product-2 c-bg-white">
-		<div class="col-md-4">
-			<div class="c-content-overlay">
-				<div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
-				<div class="c-overlay-wrapper">
-					<div class="c-overlay-content">
-						<a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-					</div>
-				</div>
-				<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: ( asset('main/base/img/content/shop3/21.jpg') );"></div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="c-info-list">
-				<h3 class="c-title c-font-bold c-font-22 c-font-dark">
-					<a class="c-theme-link" href="shop-product-details-2.html">Winter Coat</a>
-				</h3>
-				<p class="c-desc c-font-16 c-font-thin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-				<p class="c-price c-font-26 c-font-thin">$548 &nbsp;
-					<span class="c-font-26 c-font-line-through c-font-red">$600</span>
-				</p>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-shopping-cart"></i>Add Cart
-				</button>
-				<button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-heart-o"></i>Add Wishlist
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row c-margin-b-40"> -->
-	<!-- <div class="c-content-product-2 c-bg-white">
-		<div class="col-md-4">
-			<div class="c-content-overlay">
-				<div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
-				<div class="c-label c-label-right c-theme-bg c-font-uppercase c-font-white c-font-13 c-font-bold">New</div>
-				<div class="c-overlay-wrapper">
-					<div class="c-overlay-content">
-						<a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-					</div>
-				</div>
-				<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url({{ asset('main/base/img/content/shop3/23.jpg') }});"></div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="c-info-list">
-				<h3 class="c-title c-font-bold c-font-22 c-font-dark">
-					<a class="c-theme-link" href="shop-product-details-2.html">Winter Coat</a>
-				</h3>
-				<p class="c-desc c-font-16 c-font-thin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
-				<p class="c-price c-font-26 c-font-thin">$548 &nbsp;
-					<span class="c-font-26 c-font-line-through c-font-red">$600</span>
-				</p>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-shopping-cart"></i>Add Cart
-				</button>
-				<button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
-					<i class="fa fa-heart-o"></i>Add Wishlist
-				</button>
-			</div>
-		</div>
-	</div> -->
-</div><!-- END: CONTENT/SHOPS/SHOP-2-8 -->
-
-<div class="c-margin-t-20"></div>
-
-<ul class="c-content-pagination c-square c-theme pull-right">
-	<li class="c-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-	<li><a href="#">1</a></li>
-	<li class="c-active"><a href="#">2</a></li>
-	<li><a href="#">3</a></li>
-	<li><a href="#">4</a></li>
-	<li class="c-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-</ul>			<!-- END: PAGE CONTENT -->
 			</div>
 		</div>
 	</div>
@@ -1893,5 +1740,29 @@
 @endsection
 
 @section('buy_script')
+<script>
+    $(document).ready(function(){
+        $('.addToCartBtn').click(function(e){
+			e.preventDefault();
+			var product_id = $(this).closest('.product_data').find('.prod_id').val();
 
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			$.ajax({
+				method: "POST",
+				url:"/cart",
+				data:{
+					'product_id':product_id,
+				},
+				success: function(response){
+					alert(response.status);
+				},
+			});
+        });
+    });
+</script>
 @endsection
