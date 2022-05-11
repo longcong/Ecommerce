@@ -1195,8 +1195,8 @@
     </li>
 </ul> 
 <div class="c-cart-menu-footer">
-    <a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
-    <a href="shop-checkout.html" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
+    <a href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
+    <a href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
 </div>
 </div>
 <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->

@@ -603,7 +603,7 @@
                             <a href="shop-home-1.html" target="_blank">Shop Home 1</a>
                         </li>
 											                        <li>
-                            <a href="shop-home-2.html">Shop Home 2</a>
+                            <a href="{{ url('/')}}">Shop Home 2</a>
                         </li>
 											                        <li>
                             <a href="shop-home-3.html">Shop Home 3</a>
@@ -1147,11 +1147,38 @@
 			<a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
 		</li>
 		
-				<li>
-			<a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
-		</li>
+		<li>
+        <!-- Authentication Links -->
+        @guest
+            <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>
+                Sign In
+            </a>
+        @else
+            <li class="nav-item dropdown">
+                <a id="navbarDropdownProfile" class="nav-link dropdown-toggle c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="#" role="button" data-toggle="dropdown modal" aria-haspopup="true" aria-expanded="false" v-pre><i class="icon-user"></i>
+                    {{ Auth::user()->username }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile" style="background-color: initial; padding-bottom:20px; padding-left:10px;">
+                    <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('admin.dashboard') }}">
+                        {{ __('Admin') }}
+                    </a>
+                    <br>
+                    <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('logout') }}" style="margin-top: 10px;"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        @endguest
+    	</li>
+
 		
-				<li class="c-quick-sidebar-toggler-wrapper">	
+		<li class="c-quick-sidebar-toggler-wrapper">	
 			<a href="#" class="c-quick-sidebar-toggler">		     		
 				<span class="c-line"></span>
 				<span class="c-line"></span>
@@ -1195,8 +1222,8 @@
 		</li>
 	</ul> 
 	<div class="c-cart-menu-footer">
-		<a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
-		<a href="shop-checkout.html" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
+		<a href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
+		<a href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
 	</div>
 </div>
 <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
