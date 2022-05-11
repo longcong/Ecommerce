@@ -1740,29 +1740,5 @@
 @endsection
 
 @section('buy_script')
-<script>
-    $(document).ready(function(){
-        $('.addToCartBtn').click(function(e){
-			e.preventDefault();
-			var product_id = $(this).closest('.product_data').find('.product_id').val();
 
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-
-			$.ajax({
-				method: "POST",
-				url:"/add-to-cart",
-				data:{
-					'product_id':product_id,
-				},
-				success: function(response){
-					// alert(response.status);
-				},
-			});
-        });
-    });
-</script>
 @endsection

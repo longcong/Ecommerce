@@ -34,7 +34,6 @@ class CartController extends Controller
                 }       
 
             }
-            return 'ok';
         }
         else
         {
@@ -43,7 +42,7 @@ class CartController extends Controller
     }
     public function viewcart(Request $request)
     {
-        $cartItem = Cart::where('user_id',Auth::id())->get();
-        return view('cart', compact('cartiteam'));
+        $cartitems = Cart::where('user_id',Auth::id())->get();
+        return view('cart', compact('cartitems'));
     }
 }

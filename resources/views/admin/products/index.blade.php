@@ -19,9 +19,9 @@
 <div class="card">
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table id="tblabc" class="table">
                 <thead >
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Title</th>
                     <th>Price</th>
                     <th>Code</th>
@@ -36,7 +36,7 @@
                     @foreach($products as $post)
 
                         <tr>
-                            <th>{{ $post->id }}</th>
+                            <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->price }}</td>
                             <td>{{ $post->discount_unit}}</td>
@@ -56,4 +56,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    var elth = document.getElementsByClassName('id-product');
+    for(var i =0; i <elth.length; i++){
+        elth[i].innerHTML = i + 1;
+    }
+</script>
 @endsection

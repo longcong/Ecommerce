@@ -1493,43 +1493,44 @@
 				<div class="col-md-1 c-cart-remove"></div>
 			</div>
 			<!-- BEGIN: SHOPPING CART ITEM ROW -->
-			<div class="row c-cart-table-row">
+			@foreach ($cartitems as $item)
+			<div class="row c-cart-table-row product_data" id="product_data">
+				<input type="hidden" value="{{ $item->id }}" class="product_id">
 				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
 				<div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
-					<img src="{{ asset('main/base/img/content/shop2/24.jpg')}}"/>
+					<img src="{{ asset('images/' . $item->products->image) }}" height="100px" width="100px"/>
 				</div>
 				<div class="col-md-4 col-sm-9 col-xs-7 c-cart-desc">
-					<h3><a href="shop-product-details-2.html" class="c-font-bold c-theme-link c-font-22 c-font-dark">Winter Jacket</a></h3>
-					<p>Color: Blue</p>
-					<p>Size: S</p>
+					<h3><a href="shop-product-details-2.html" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{$item->products->title}}</a></h3>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">SKU</p>
-					<p>120715</p>
+					<p>{{$item->products->slug}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
 					<div class="c-input-group c-spinner">
-					    <input type="text" class="form-control c-item-1" value="1">
+					    <input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
 					    <div class="c-input-group-btn-vertical">
-					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up"></i></button>
-					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up increment-btn"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down decrement-btn"></i></button>
 					    </div>
 					</div>
 				</div>
 				<div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-					<p class="c-cart-price c-font-bold">$147.00</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->price}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-					<p class="c-cart-price c-font-bold">$147.00</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->price - $item->products->discount_value}}</p>
 				</div>
 				<div class="col-md-1 col-sm-12 c-cart-remove">
-					<a href="#" class="c-theme-link c-cart-remove-desktop">×</a>
+					<a href="#" class="c-theme-link c-cart-remove-desktop">x</a>
 					<a href="#" class="c-cart-remove-mobile btn c-btn c-btn-md c-btn-square c-btn-red c-btn-border-1x c-font-uppercase">Remove item from Cart</a>
 				</div>
 			</div>
+			@endforeach
 			<!-- END: SHOPPING CART ITEM ROW -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
 			<div class="row">
