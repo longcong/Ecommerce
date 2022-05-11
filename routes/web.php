@@ -27,18 +27,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'ShopController@index')->name('shop');
-Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/list', 'ProductListController@index')->name('list');
+
 //Route::get('/product', 'ProductDetailController@getProductDetail')->name('productdetail');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
 
 
+Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
-    Route::post('cart',['CartController@index','addProduct']);
+    Route::post('add-to-cart',[CartController::class,'addProduct']);
 });
 
 

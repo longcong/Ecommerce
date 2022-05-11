@@ -1744,7 +1744,7 @@
     $(document).ready(function(){
         $('.addToCartBtn').click(function(e){
 			e.preventDefault();
-			var product_id = $(this).closest('.product_data').find('.prod_id').val();
+			var product_id = $(this).closest('.product_data').find('.product_id').val();
 
 			$.ajaxSetup({
 				headers: {
@@ -1754,12 +1754,12 @@
 
 			$.ajax({
 				method: "POST",
-				url:"/cart",
+				url:"/add-to-cart",
 				data:{
 					'product_id':product_id,
 				},
 				success: function(response){
-					alert(response.status);
+					// alert(response.status);
 				},
 			});
         });

@@ -16,26 +16,34 @@ class CartController extends Controller
         if(Auth::check())
         {
             $prod_check = Product::where('id',$product_id)->first();
+            
             if($prod_check)
             {
-                if(Cart::where('prod_id',$product_id)->where('used_id',Auth::id())->exists())
+                if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
                 {
                     return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
                 }
                 else
                 {
                     $cartItem = new Cart();
-                    $cartItem->prod_id =$product_id;
+                    $cartItem->prod_id = $product_id;
+                    $cartItem->prod_qty = 1;
                     $cartItem->user_id = Auth::id();
                     $cartItem->save();
                     return response()->json(['status'=>$prod_check->name."Added to Cart"]);
-                }
+                }       
 
             }
+            return 'ok';
         }
         else
         {
             return response()->json(['status'=>"Login to Continue"]);
         }
+    }
+    public function viewcart(Request $request)
+    {
+        $cartItem = Cart::where('user_id',Auth::id())->get();
+        return view('cart', compact('cartiteam'));
     }
 }
