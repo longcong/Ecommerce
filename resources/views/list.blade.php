@@ -1731,6 +1731,11 @@
 	</div>
 </div>
 @endforeach
+<ul class="c-content-pagination c-square c-theme pull-right">
+	<div class="z">
+		{!! $products->links(); !!}
+	</div>
+</ul>	
 			</div>
 		</div>
 	</div>
@@ -1754,12 +1759,12 @@
 
 			$.ajax({
 				method: "POST",
-				url:"/add-to-cart",
+				url:"add-to-cart",
 				data:{
 					'product_id':product_id,
 				},
 				success: function(response){
-					// alert(response.status);
+					alert(response.status);
 				},
 			});
         });

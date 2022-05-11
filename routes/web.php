@@ -37,6 +37,7 @@ Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\Prod
 
 
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
+
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::post('add-to-cart',[CartController::class,'addProduct']);
