@@ -1484,8 +1484,11 @@
 				<div class="col-md-1 c-cart-qty">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Qty</h3>
 				</div>
-				<div class="col-md-2 c-cart-price">
+				<div class="col-md-1 c-cart-price">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Unit Price</h3>
+				</div>
+				<div class="col-md-1 c-cart-price">
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Sale</h3>
 				</div>
 				<div class="col-md-1 c-cart-total">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Total</h3>
@@ -1493,9 +1496,9 @@
 				<div class="col-md-1 c-cart-remove"></div>
 			</div>
 			<!-- BEGIN: SHOPPING CART ITEM ROW -->
+			@php $total =0;@endphp
 			@foreach ($cartitems as $item)
 			<div class="row c-cart-table-row product_data" id="product_data">
-				<input type="hidden" value="{{ $item->id }}" class="product_id">
 				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
 				<div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
 					<img src="{{ asset('images/' . $item->products->image) }}" height="100px" width="100px"/>
@@ -1508,38 +1511,44 @@
 					<p>{{$item->products->slug}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
+					<input type="hidden" value="{{ $item->prod_id }}" class="product_id">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
 					<div class="c-input-group c-spinner">
 					    <input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
 					    <div class="c-input-group-btn-vertical">
-					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up increment-btn"></i></button>
-					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down decrement-btn"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up changeQuantity increment-btn"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity decrement-btn"></i></button>
 					    </div>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
+				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-					<p class="c-cart-price c-font-bold">${{$item->products->price}}</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->price }}.00</p>
+				</div>
+				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-price">
+					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Sale</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->discount_value }}.00</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-					<p class="c-cart-price c-font-bold">${{$item->products->price - $item->products->discount_value}}</p>
+					<p class="c-cart-price c-font-bold">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
 				</div>
 				<div class="col-md-1 col-sm-12 c-cart-remove">
-					<a href="#" class="c-theme-link c-cart-remove-desktop">x</a>
-					<a href="#" class="c-cart-remove-mobile btn c-btn c-btn-md c-btn-square c-btn-red c-btn-border-1x c-font-uppercase">Remove item from Cart</a>
+					<button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i></button>
 				</div>
 			</div>
+			@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
 			@endforeach
 			<!-- END: SHOPPING CART ITEM ROW -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
+			
 			<div class="row">
 				<div class="c-cart-subtotal-row c-margin-t-20">
 					<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">$246.00</h3>
+						<h3 class="c-font-bold c-font-16">{{ $total }}.00</h3>
 					</div>
 				</div>
 			</div>
@@ -1551,7 +1560,7 @@
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Shipping Fee</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">$15.00</h3>
+						<h3 class="c-font-bold c-font-16">0</h3>
 					</div>
 				</div>
 			</div>
@@ -1563,7 +1572,7 @@
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">$261.00</h3>
+						<h3 class="c-font-bold c-font-16">{{ $total }}.00</h3>
 					</div>
 				</div>
 			</div>

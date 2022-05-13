@@ -40,6 +40,8 @@ Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::post('add-to-cart',[CartController::class,'addProduct']);
+    Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
+    Route::post('update-cart',[CartController::class,'updateCart']);
 });
 
 
