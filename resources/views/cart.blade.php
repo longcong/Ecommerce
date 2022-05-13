@@ -602,7 +602,7 @@
                             <a href="shop-home-1.html" target="_blank">Shop Home 1</a>
                         </li>
 											                        <li>
-                            <a href="shop-home-2.html">Shop Home 2</a>
+                            <a href="{{ url('/') }}">Shop Home 2</a>
                         </li>
 											                        <li>
                             <a href="shop-home-3.html">Shop Home 3</a>
@@ -630,7 +630,7 @@
                             <h3>Shop Pages 2</h3>
                         </li>
 																                        <li>
-                            <a href="shop-product-list.html">Product List</a>
+                            <a href="{{ route('list') }}">Product List</a>
                         </li>
 											                        <li>
                             <a href="shop-product-grid.html">Product Grid</a>
@@ -1142,8 +1142,8 @@
 			<a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
 		</li>
 		
-				<li class="c-cart-toggler-wrapper">
-			<a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
+		<li class="c-cart-toggler-wrapper">
+			<a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i><span class="c-cart-number c-theme-bg">2</span></a>
 		</li>
 		
 		<li>
@@ -1196,28 +1196,20 @@
 		<p class="c-cart-menu-float-l c-font-sbold">2 item(s)</p>
 		<p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
 	</div>
+	@foreach
 	<ul class="c-cart-menu-items">
 		<li>
 			<div class="c-cart-menu-close">
 				<a href="#" class="c-theme-link">×</a>
 			</div>
-			<img src="{{ asset('main/base/img/content/shop2/24.jpg')}}"/>
+			<img src="{{ asset('images/' . $item->products->image)}}"/>
 			<div class="c-cart-menu-content">
 				<p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-				<a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
-			</div>
-		</li>
-		<li>
-			<div class="c-cart-menu-close">
-				<a href="#" class="c-theme-link">×</a>
-			</div>
-			<img src="{{ asset('main/base/img/content/shop2/12.jpg')}}"/>
-			<div class="c-cart-menu-content">
-				<p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-				<a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>
+				<a href="shop-product-details.html" class="c-item-name c-font-sbold">{{  }}</a>
 			</div>
 		</li>
 	</ul> 
+	@endforeach
 	<div class="c-cart-menu-footer">
 		<a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
 		<a href="{{route('checkout')}}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
@@ -1523,10 +1515,10 @@
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Image</h3>
 				</div>
 				<div class="col-md-4 c-cart-desc">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Description</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Product</h3>
 				</div>
 				<div class="col-md-1 c-cart-ref">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">SKU</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">SLUG</h3>
 				</div>
 				<div class="col-md-1 c-cart-qty">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Qty</h3>
@@ -1540,43 +1532,44 @@
 				<div class="col-md-1 c-cart-remove"></div>
 			</div>
 			<!-- BEGIN: SHOPPING CART ITEM ROW -->
-			<div class="row c-cart-table-row">
+			@foreach ($cartitems as $item)
+			<div class="row c-cart-table-row product_data" id="product_data">
+				<input type="hidden" value="{{ $item->id }}" class="product_id">
 				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
 				<div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
-					<img src="{{ asset('main/base/img/content/shop2/24.jpg')}}"/>
+					<img src="{{ asset('images/' . $item->products->image) }}" height="100px" width="100px"/>
 				</div>
 				<div class="col-md-4 col-sm-9 col-xs-7 c-cart-desc">
-					<h3><a href="shop-product-details-2.html" class="c-font-bold c-theme-link c-font-22 c-font-dark">Winter Jacket</a></h3>
-					<p>Color: Blue</p>
-					<p>Size: S</p>
+					<h3><a href="shop-product-details-2.html" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $item->products->title }}</a></h3>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">SKU</p>
-					<p>120715</p>
+					<p>{{$item->products->slug}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
 					<div class="c-input-group c-spinner">
-					    <input type="text" class="form-control c-item-1" value="1">
+					    <input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
 					    <div class="c-input-group-btn-vertical">
-					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up"></i></button>
-					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up increment-btn"></i></button>
+					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down decrement-btn"></i></button>
 					    </div>
 					</div>
 				</div>
 				<div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-					<p class="c-cart-price c-font-bold">$147.00</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->price}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-					<p class="c-cart-price c-font-bold">$147.00</p>
+					<p class="c-cart-price c-font-bold">${{$item->products->price - $item->products->discount_value}}</p>
 				</div>
 				<div class="col-md-1 col-sm-12 c-cart-remove">
-					<a href="#" class="c-theme-link c-cart-remove-desktop">×</a>
+					<a href="#" class="c-theme-link c-cart-remove-desktop">x</a>
 					<a href="#" class="c-cart-remove-mobile btn c-btn c-btn-md c-btn-square c-btn-red c-btn-border-1x c-font-uppercase">Remove item from Cart</a>
 				</div>
 			</div>
+			@endforeach
 			<!-- END: SHOPPING CART ITEM ROW -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
 			<div class="row">
