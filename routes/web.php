@@ -4,7 +4,7 @@ use App\Http\Controllers\CartController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,6 @@ Route::get('/', 'ShopController@index')->name('shop');
 Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/list', 'ProductListController@index')->name('list');
-
 //Route::get('/product', 'ProductDetailController@getProductDetail')->name('productdetail');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
@@ -42,6 +41,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('add-to-cart',[CartController::class,'addProduct']);
     Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
     Route::post('update-cart',[CartController::class,'updateCart']);
+    Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
+    Route::post('place-order',[CheckoutController::class,'placeorder']);
 });
 
 

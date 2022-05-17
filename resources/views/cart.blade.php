@@ -1143,7 +1143,7 @@
 		</li>
 		
 				<li class="c-cart-toggler-wrapper">
-			<a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
+			<a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">{{$cartitems->COUNT('user_id')}}</span></a>
 		</li>
 		
 				<li>
@@ -1167,34 +1167,25 @@
 			<!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
 <!-- BEGIN: CART MENU -->
 <div class="c-cart-menu">
-	<div class="c-cart-menu-title">
-		<p class="c-cart-menu-float-l c-font-sbold">2 item(s)</p>
-		<p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
-	</div>
+	
 	<ul class="c-cart-menu-items">
+		@php $total =0;@endphp
+		@foreach ($cartitems as $item)	
 		<li>
-			<div class="c-cart-menu-close">
-				<a href="#" class="c-theme-link">×</a>
-			</div>
-			<img src="{{ asset('main/base/img/content/shop2/24.jpg')}}"/>
+			<img src="{{ asset('images/' . $item->products->image) }}"/>
 			<div class="c-cart-menu-content">
-				<p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-				<a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
+				<p><span class="c-item-price c-theme-font">${{ ($item->products->price - $item->products->discount_value)}}.00</span></p>
+				<a href="shop-product-details-2.html" class="c-item-name c-font-sbold">{{$item->products->title}}</a>
 			</div>
 		</li>
-		<li>
-			<div class="c-cart-menu-close">
-				<a href="#" class="c-theme-link">×</a>
-			</div>
-			<img src="{{ asset('main/base/img/content/shop2/12.jpg')}}"/>
-			<div class="c-cart-menu-content">
-				<p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-				<a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>
-			</div>
-		</li>
+		@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+		@endforeach
+	<div class="c-cart-menu-title">
+		<p class="c-cart-menu-float-l c-font-sbold">{{$cartitems->COUNT('user_id')}} item(s)</p>
+		<p class="c-cart-menu-float-r c-theme-font c-font-sbold">${{$total}}.00</p>
+	</div>	
 	</ul> 
 	<div class="c-cart-menu-footer">
-		<a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
 		<a href="{{route('checkout')}}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
 	</div>
 </div>
@@ -1499,7 +1490,7 @@
 			@php $total =0;@endphp
 			@foreach ($cartitems as $item)
 			<div class="row c-cart-table-row product_data" id="product_data">
-				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item 1</h2>
+				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item {{$item->id}}</h2>
 				<div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
 					<img src="{{ asset('images/' . $item->products->image) }}" height="100px" width="100px"/>
 				</div>
@@ -1512,14 +1503,20 @@
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
 					<input type="hidden" value="{{ $item->prod_id }}" class="product_id">
+					@if($item->products->quantity > $item->prod_qty)
+						<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
+						<div class="c-input-group c-spinner">
+							<input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
+							<div class="c-input-group-btn-vertical">
+								<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up changeQuantity increment-btn"></i></button>
+								<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity decrement-btn"></i></button>
+							</div>
+						</div>
+						@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+					@else
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
-					<div class="c-input-group c-spinner">
-					    <input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
-					    <div class="c-input-group-btn-vertical">
-					    	<button class="btn btn-default" type="button" data_input="c-item-1" data-maximum="10"><i class="fa fa-caret-up changeQuantity increment-btn"></i></button>
-					    	<button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity decrement-btn"></i></button>
-					    </div>
-					</div>
+					<span class="c-font-20 c-font-red">Out of stock</span>
+					@endif
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
@@ -1537,7 +1534,6 @@
 					<button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i></button>
 				</div>
 			</div>
-			@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
 			@endforeach
 			<!-- END: SHOPPING CART ITEM ROW -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
@@ -1548,7 +1544,7 @@
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">{{ $total }}.00</h3>
+						<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
 					</div>
 				</div>
 			</div>
@@ -1557,10 +1553,10 @@
 			<div class="row">
 				<div class="c-cart-subtotal-row">
 					<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Shipping Fee</h3>
+						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Code</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">0</h3>
+						<h3 class="c-font-bold c-font-16">$0</h3>
 					</div>
 				</div>
 			</div>
@@ -1572,7 +1568,7 @@
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">{{ $total }}.00</h3>
+						<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
 					</div>
 				</div>
 			</div>
@@ -1586,7 +1582,7 @@
 </div><!-- END: CONTENT/SHOPS/SHOP-CART-1 -->
 
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 -->
-<div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space">
+{{-- <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space">
 	<div class="container">
 		<div class="c-content-title-4">
 			<h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">Most Popular</span></h3>
@@ -1758,7 +1754,7 @@
 			</div>
 		</div>
 	</div>
-</div><!-- END: CONTENT/SHOPS/SHOP-2-2 -->
+</div><!-- END: CONTENT/SHOPS/SHOP-2-2 --> --}}
 
 <!-- BEGIN: CONTENT/STEPS/STEPS-3 -->
 <div class="c-content-box c-size-md c-theme-bg">

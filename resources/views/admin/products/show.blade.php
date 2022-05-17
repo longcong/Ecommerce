@@ -32,9 +32,15 @@
                     </dl>
 
                     <dl class="dl-horizontal">
+                        <label>Quantity:</label>
+                        <p>{{ $product->quantity}}</p>
+                    </dl>
+
+                    <dl class="dl-horizontal">
                         <label>Price:</label>
                         <p>{{ $product->price }}$</p>
                     </dl>
+
                     <dl class="dl-horizontal">
                         <label>Discount:</label>
                         <p>{{ $product->discount_value }}$</p>

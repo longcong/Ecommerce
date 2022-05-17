@@ -51,7 +51,7 @@
         </nav>
         <!-- END: INLINE NAV -->
     </div>
-</div>
+
     <div class="c-navbar">
     <div class="container">
         <!-- BEGIN: BRAND -->
@@ -74,7 +74,7 @@
                     <i class="fa fa-search"></i>
                 </button>
                 <button class="c-cart-toggler" type="button">
-                    <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg">2</span>
+                    <i class="icon-handbag"></i> <span class="c-cart-number c-theme-bg"></span>
                 </button>
             </div>
             <!-- END: BRAND -->				
@@ -1144,7 +1144,7 @@
     </li>
     
             <li class="c-cart-toggler-wrapper">
-        <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">2</span></a>
+        <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i> <span class="c-cart-number c-theme-bg">{{$cartitems->COUNT('user_id')}} </span></a>
     </li>
     
             <li>
@@ -1168,37 +1168,29 @@
         <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
 <!-- BEGIN: CART MENU -->
 <div class="c-cart-menu">
-<div class="c-cart-menu-title">
-    <p class="c-cart-menu-float-l c-font-sbold">2 item(s)</p>
-    <p class="c-cart-menu-float-r c-theme-font c-font-sbold">$79.00</p>
+	
+	<ul class="c-cart-menu-items">
+		@php $total =0;@endphp
+		@foreach ($cartitems as $item)	
+		<li>
+			<img src="{{ asset('images/' . $item->products->image) }}"/>
+			<div class="c-cart-menu-content">
+				<p><span class="c-item-price c-theme-font">${{ ($item->products->price - $item->products->discount_value)}}.00</span></p>
+				<a href="shop-product-details-2.html" class="c-item-name c-font-sbold">{{$item->products->title}}</a>
+			</div>
+		</li>
+		@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+		@endforeach
+	<div class="c-cart-menu-title">
+		<p class="c-cart-menu-float-l c-font-sbold">{{$cartitems->COUNT('user_id')}} item(s)</p>
+		<p class="c-cart-menu-float-r c-theme-font c-font-sbold">${{$total}}.00</p>
+	</div>	
+	</ul> 
+	<div class="c-cart-menu-footer">
+		<a href="{{route('checkout')}}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
+	</div>
 </div>
-<ul class="c-cart-menu-items">
-    <li>
-        <div class="c-cart-menu-close">
-            <a href="#" class="c-theme-link">×</a>
-        </div>
-        <img src="{{ asset('main/base/img/content/shop2/24.jpg')}}"/>
-        <div class="c-cart-menu-content">
-            <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-            <a href="shop-product-details-2.html" class="c-item-name c-font-sbold">Winter Coat</a>
-        </div>
-    </li>
-    <li>
-        <div class="c-cart-menu-close">
-            <a href="#" class="c-theme-link">×</a>
-        </div>
-        <img src="{{ asset('main/base/img/content/shop2/12.jpg')}}"/>
-        <div class="c-cart-menu-content">
-            <p>1 x <span class="c-item-price c-theme-font">$30</span></p>
-            <a href="shop-product-details.html" class="c-item-name c-font-sbold">Sports Wear</a>
-        </div>
-    </li>
-</ul> 
-<div class="c-cart-menu-footer">
-    <a href="shop-cart.html" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase">View Cart</a>
-    <a href="shop-checkout.html" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase">Checkout</a>
-</div>
-</div>
+
 <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
     </div>
 </div>
@@ -1470,7 +1462,7 @@
     <!-- BEGIN: PAGE CONTENT -->
     <div class="c-content-box c-size-lg">
 <div class="container">
-    <form class="c-shop-form-1">
+    <form action="{{url('place-order')}}" class="c-shop-form-1" method="POST">
         <div class="row">
             <!-- BEGIN: ADDRESS FORM -->
             <div class="col-md-7 c-padding-20">
@@ -1480,11 +1472,12 @@
                     <div class="form-group col-md-12">
                         <label class="control-label">Country</label>
                         <select class="form-control c-square c-theme">
-                            <option value="1">Malaysia</option>
+                            <option value="1">Vietnam</option>
                             <option value="2">Singapore</option>
                             <option value="3">Indonesia</option>
                             <option value="4">Thailand</option>
                             <option value="5">China</option>
+                            <option value="6">Malaysia</option>
                         </select>
                     </div>
                 </div>
@@ -1531,11 +1524,12 @@
                             <div class="form-group col-md-6">
                                 <label class="control-label">State / County</label> <select class="form-control c-square c-theme">
                                     <option value="0">Select an option...</option>
-                                    <option value="1">Malaysia</option>
+                                    <option value="1">Vietnam</option>
                                     <option value="2">Singapore</option>
                                     <option value="3">Indonesia</option>
                                     <option value="4">Thailand</option>
                                     <option value="5">China</option>
+                                    <option value="6">Malaysia</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -1601,11 +1595,12 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label">Country</label> <select class="form-control c-square c-theme">
-                                <option value="1">Malaysia</option>
+                                <option value="1">Vietnam</option>
                                 <option value="2">Singapore</option>
                                 <option value="3">Indonesia</option>
                                 <option value="4">Thailand</option>
                                 <option value="5">China</option>
+                                <option value="6">Malaysia</option>
                             </select>
                         </div>
                     </div>
@@ -1614,11 +1609,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">First Name</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="First Name">
+                                    <input type="text" class="form-control c-square c-theme" name="fname" placeholder="First Name">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="control-label">Last Name</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="Last Name">
+                                    <input type="text" class="form-control c-square c-theme" name="lname" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -1626,31 +1621,31 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label">Company Name</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Company Name">
+                            <input type="text" class="form-control c-square c-theme" name="cname" placeholder="Company Name">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label">Address</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Street Address">
+                            <input type="text" class="form-control c-square c-theme" name="address1" placeholder="Street Address">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <input type="text" class="form-control c-square c-theme" placeholder="Apartment, suite, unit etc. (optional)">
+                            <input type="text" class="form-control c-square c-theme" name="address2" placeholder="Street Address 2">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label">Town / City</label>
-                            <input type="text" class="form-control c-square c-theme" placeholder="Town / City">
+                            <input type="text" class="form-control c-square c-theme" name="city" placeholder="Town / City">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">State / County</label> <select class="form-control c-square c-theme">
+                                    <label class="control-label">State / County</label> <select class="form-control c-square c-theme" name="state">
                                         <option value="0">Select an option...</option>
                                         <option value="1">Malaysia</option>
                                         <option value="2">Singapore</option>
@@ -1661,7 +1656,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="control-label">Postcode / Zip</label>
-                                    <input type="text" class="form-control c-square c-theme" placeholder="Postcode / Zip">
+                                    <input type="text" class="form-control c-square c-theme" name="zipcode" placeholder="Postcode / Zip">
                                 </div>
                             </div>
                         </div>
@@ -1671,11 +1666,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Email Address</label>
-                                    <input type="email" class="form-control c-square c-theme" placeholder="Email Address">
+                                    <input type="email" class="form-control c-square c-theme" name="email" placeholder="Email Address">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="control-label">Phone</label>
-                                    <input type="tel" class="form-control c-square c-theme" placeholder="Phone">
+                                    <input type="tel" class="form-control c-square c-theme" name="phone" placeholder="Phone">
                                 </div>
                             </div>
                         </div>
@@ -1700,22 +1695,20 @@
                         <div class="col-md-6 c-font-20"><h2>Total</h2></div>
                     </li>
                     <li class="row c-border-bottom"></li>
+                    @php $total =0;@endphp
+                    @foreach ($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-6 c-font-20"><a href="shop-product-details.html" class="c-theme-link">Winter Coat x 1</a></div>
+                        <div class="col-md-6 c-font-20"><a href="shop-product-details.html" class="c-theme-link">{{$item->products->title}}</a></div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">$30.99</p>
+                            <p class="">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
                         </div>
                     </li>
-                    <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-6 c-font-20"><a href="shop-product-details-2.html" class="c-theme-link">Sports Wear x 1</a></div>
-                        <div class="col-md-6 c-font-20">
-                            <p class="">$30.99</p>
-                        </div>
-                    </li>
+                    @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+                    @endforeach
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20">Subtotal</div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">$<span class="c-subtotal">61.98</span></p>
+                            <p class="">$<span class="c-subtotal">{{ $total }}.00</span></p>
                         </div>
                     </li>
                     <li class="row c-border-top c-margin-b-15"></li>
@@ -1760,7 +1753,7 @@
                             <p class="c-font-30">Total</p>
                         </div>
                         <div class="col-md-6 c-font-20">
-                            <p class="c-font-bold c-font-30">$<span class="c-shipping-total">81.98</span></p>
+                            <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ $total }}.00</span></p>
                         </div>
                     </li>
                     <li class="row">
@@ -1793,7 +1786,7 @@
                                         <span class="box"></span>
                                         Paypal
                                     </label>
-                                    <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png')}}" />
+                                    <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" />
                                 </div>
                             </div>
                         </div>
@@ -1818,7 +1811,8 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>     
+
             </div>
             <!-- END: ORDER FORM -->
         </div>

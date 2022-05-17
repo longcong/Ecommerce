@@ -58,6 +58,7 @@ class ProductController extends Controller
             'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
             'category_id' => 'required|integer',
             //'status_id'  => 'required|integer',
+            'quantity' => 'required|integer',
             'note'  =>  'required',
             'featured_image' => 'image'
         ));
@@ -66,6 +67,7 @@ class ProductController extends Controller
 
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->quantity = $request->quantity;
         $post->category_id = $request->category_id;
         $post->price = $request->price;
         $post->discount_unit = $request->discount_unit;
@@ -151,6 +153,7 @@ class ProductController extends Controller
 
         $post->title = $request->input('title');
         $post->price = $request->input('price');
+        $post->quantity = $request ->input('quantity');
         $post->slug = $request->input('slug');
         $post->discount_unit = $request->input('discount_unit');
         $post->category_id = $request->input('category_id');

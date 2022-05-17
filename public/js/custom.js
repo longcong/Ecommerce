@@ -13,7 +13,7 @@ $(document).ready(function(){
             method: "POST",
             url:"/add-to-cart",
             data:{
-                'prod_id':product_id,
+                'product_id':product_id,
             },
             success: function(response){
                 alert(response.status);

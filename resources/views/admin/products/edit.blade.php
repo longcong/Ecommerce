@@ -31,6 +31,9 @@
                         {{ Form::label('category_id', 'Category:') }}
                         {{ Form::select('category_id', $categories, null, array('class' => 'form-control input-lg')) }}
 
+                        {{ Form::label('quantity', 'Quantity:') }}
+                        {{ Form::text('quantity', null, array('class' => 'form-control input-lg')) }}
+
                         {{ Form::label('tags', 'Tag:') }}
                         {{ Form::select('tags[]', $tags, null, array('class' => 'form-control select2-multi', 'multiple' => 'multiple')) }}
 
