@@ -603,7 +603,7 @@
                         <a href="shop-home-1.html" target="_blank">Shop Home 1</a>
                     </li>
                                                                 <li>
-                        <a href="shop-home-2.html">Shop Home 2</a>
+                        <a href="{{ url('/') }}">Shop Home 2</a>
                     </li>
                                                                 <li>
                         <a href="shop-home-3.html">Shop Home 3</a>
@@ -631,7 +631,7 @@
                         <h3>Shop Pages 2</h3>
                     </li>
                                                                                     <li>
-                        <a href="shop-product-list.html">Product List</a>
+                        <a href="{{ url('list') }}">Product List</a>
                     </li>
                                                                 <li>
                         <a href="shop-product-grid.html">Product Grid</a>
@@ -1265,53 +1265,53 @@
             <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
             <p>Please fill in below form to create an account with us</p>
             <form method="POST" action="{{ route('register') }}">
-                    @csrf
+                @csrf
 
-                    <div class="form-group row">
-                        <label for="username" class="hide">Username</label>
+                <div class="form-group row">
+                    <label for="username" class="hide">Username</label>
+                    <div class="col-md-6">
+                        <input id="username" type="text" class="form-control input-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <label for="password" class="col-md-4  col-form-label text-md-right hide">{{ __('Password:') }}</label>
+
                         <div class="col-md-6">
-                            <input id="username" type="text" class="form-control input-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
-                            @error('username')
+                            <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+
+                            @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-group row">
-                            <label for="password" class="col-md-4  col-form-label text-md-right hide">{{ __('Password:') }}</label>
+                        <label for="password-confirm" class="col-md-4  col-form-label text-md-right hide">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4  col-form-label text-md-right hide">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-                            </div>
-                        </div>
-                    <!-- <div class="form-group">
-                        <label for="signup-country" class="hide">Country</label>
-                        <select class="form-control input-lg c-square" id="signup-country">
-                            <option value="1">Country</option>
-                        </select>
-                    </div> -->
-                    <div class="form-group">
-                        <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
-                            {{ __('Register') }}
-                        </button>
-                        <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
                     </div>
-                </form>
+                <!-- <div class="form-group">
+                    <label for="signup-country" class="hide">Country</label>
+                    <select class="form-control input-lg c-square" id="signup-country">
+                        <option value="1">Country</option>
+                    </select>
+                </div> -->
+                <div class="form-group">
+                    <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+                        {{ __('Register') }}
+                    </button>
+                    <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
