@@ -1768,13 +1768,23 @@
                     </p>
                 </div>
                 <div>
+					@if($post->quantity >0)
                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                         <i class="fa fa-shopping-cart"></i>Add Cart
                     </button>
+					@endif
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
                         <i class="fa fa-heart-o"></i>Add Wishlist
                     </button>
                 </div>
+				<br>
+				<div>
+				@if($post->quantity >0)
+					<label class="badge c-btn-border-2x c-btn-green-1">In stock</label>
+				@else
+					<label class="badge c-btn-border-2x c-btn-red-1">Out of stock</label>
+				@endif	
+				</div>
             </div>
 	</div>
 </div>

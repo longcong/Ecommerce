@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
 
 class ShopController extends Controller
 {
@@ -18,6 +19,4 @@ class ShopController extends Controller
         $products = Product::orderBy('id', 'desc')->limit (12)->get();
         return view('shop', compact('products'));
     }
-    
-    
 }

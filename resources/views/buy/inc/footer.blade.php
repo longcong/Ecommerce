@@ -1,5 +1,5 @@
 
-	<div class="container">
+	{{-- <div class="container">
 
 		<div class="c-prefooter c-bg-white">
 
@@ -109,7 +109,7 @@
 
 		</div>
 
-	</div>
+	</div> --}}
 
 	<div class="c-postfooter c-bg-dark-2">
 		<div class="container">
