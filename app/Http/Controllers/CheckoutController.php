@@ -29,6 +29,14 @@ class CheckoutController extends Controller
     {
         $order = new Order();
         $order->fname = $request->input('fname');
-        
+        $order->fname = $request->input('lname');
+        $order->fname = $request->input('cname');
+        $order->fname = $request->input('address1');
+        $order->fname = $request->input('address2');
+        $order->fname = $request->input('city');
+        $order->fname = $request->input('state');
+        $order->fname = $request->input('zipcode');
+        $order->fname = $request->input('email');
+        $order->fname = $request->input('phone');
     }
 }
