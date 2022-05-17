@@ -52,6 +52,7 @@
                         </div>
                         <br>
                     </div>
+                    <br>
                     <div class="row g-2 align-items-center">
                         <!-- slug -->
                         <div class="col-auto">
@@ -70,6 +71,12 @@
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-auto">
+                            {{ Form::label('quantity', 'Quantity: ', array('style' => 'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-3">
+                            {{ Form::text('quantity', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255')) }}
                         </div>
                     </div>
                     

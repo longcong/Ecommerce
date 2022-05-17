@@ -25,7 +25,8 @@
                     <th>Title</th>
                     <th>Price</th>
                     <th>Code</th>
-                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <!-- <th>Discount</th> -->
                     <th>Image</th>
                     <th>Note</th>
                     <th>Created At</th>
@@ -39,7 +40,8 @@
                             <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->price }}</td>
-                            <td>{{ $post->discount_unit}}</td>
+                            <!-- <td>{{ $post->discount_unit}}</td> -->
+                            <td>{{ $post->quantity}}</td>
                             <td>{{ $post->discount_value}}</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
                             <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
