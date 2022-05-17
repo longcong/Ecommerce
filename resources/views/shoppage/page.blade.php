@@ -614,6 +614,7 @@
                 @foreach($product as $post)
                 <div class="col-md-3 col-sm-6 c-margin-b-20">
                     <div class="c-content-product-2 c-bg-white c-border">
+                    <input type="hidden" value="{{ $post->id }}" class="product_id">
                         <div class="c-content-overlay">
                             <div class="c-overlay-wrapper">
                                 <div class="c-overlay-content">
@@ -630,11 +631,17 @@
                         </div>
                         <div class="btn-group btn-group-justified" role="group">
                             <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
+                                <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
+                                    <i class="fa fa-heart-o"></i>Add Wishlist
+                                </button>                            
                             </div>
                             <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
+                                <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
+                                    <i class="fa fa-shopping-cart"></i>Add Cart
+                                </button>
+
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -701,5 +708,8 @@
             </div>
         </div><!-- END: CONTENT/SHOPS/SHOP-6-1 -->
                 <!-- END: PAGE CONTENT -->
+@section('javascript')
+
+@endsection
         
                 

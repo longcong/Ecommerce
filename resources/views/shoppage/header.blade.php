@@ -578,7 +578,7 @@
                         <h3>Shop Pages 2</h3>
                     </li>
                                                                                     <li>
-                        <a href="shop-product-list.html">Product List</a>
+                        <a href="{{ 'list' }}">Product List</a>
                     </li>
                                                                 <li>
                         <a href="shop-product-grid.html">Product Grid</a>

@@ -11,34 +11,63 @@ class CartController extends Controller
 {
     public function addProduct(Request $request)
     {
-        $product_id = $request->input('product_id');
+        if (!Auth::check()) {
+            return response()->json(['status'=>"Login to Continue"]);
+        }
 
-        if(Auth::check())
+        $product_id = $request->get('product_id');
+        $prod_check = Product::where('id',$product_id)->first();
+
+        if (!$prod_check) {
+            return response()->json(['status'=>"Product not found"]);
+        }
+
+        if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
         {
-            $prod_check = Product::where('id',$product_id)->first();
-            
-            if($prod_check)
-            {
-                if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-                {
-                    return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
-                }
-                else
-                {
-                    $cartItem = new Cart();
-                    $cartItem->prod_id = $product_id;
-                    $cartItem->prod_qty = 1;
-                    $cartItem->user_id = Auth::id();
-                    $cartItem->save();
-                    return response()->json(['status'=>$prod_check->name."Added to Cart"]);
-                }       
-
-            }
+            return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
         }
         else
         {
-            return response()->json(['status'=>"Login to Continue"]);
-        }
+            $cartItem = new Cart();
+            $cartItem->prod_id = $product_id;
+            $cartItem->prod_qty = 1;
+            $cartItem->user_id = Auth::id();
+            $cartItem->save();
+            return response()->json(['status'=>$prod_check->name."Added to Cart"]);
+        }    
+
+
+
+
+        // $product_id = $request->input('product_id');
+        // if(Auth::check())
+        // {
+        //     $prod_check = Product::where('id',$product_id)->first();
+            
+        //     if($prod_check)
+        //     {
+        //         if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
+        //         {
+        //             return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
+        //         }
+        //         else
+        //         {
+        //             $cartItem = new Cart();
+        //             $cartItem->prod_id = $product_id;
+        //             $cartItem->prod_qty = 1;
+        //             $cartItem->user_id = Auth::id();
+        //             $cartItem->save();
+        //             return response()->json(['status'=>$prod_check->name."Added to Cart"]);
+        //         }       
+
+        //     } else {
+        //         dd('sdfsd');
+        //     }
+        // }
+        // else
+        // {
+        //     return response()->json(['status'=>"Login to Continue"]);
+        // }
     }
 
     public function viewcart(Request $request)

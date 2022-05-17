@@ -7,12 +7,6 @@ use App\Product;
 
 class ShopController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-   
 
     /**
      * Show the application dashboard.
@@ -21,8 +15,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->limit (12)->get();
-        return view('shop')->withProduct($products);
+        $products = Product::orderBy('id', 'desc')->limit (12)->get();
+        return view('shop', compact('products'));
     }
     
     
