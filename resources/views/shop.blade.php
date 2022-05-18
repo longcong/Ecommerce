@@ -22,7 +22,7 @@ Follow: http://www.twitter.com/themehats
 		
 <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
 <header class="c-layout-header c-layout-header-default c-layout-header-dark-mobile c-header-transparent-dark" data-minimize-offset="80">
-	@include('components.header')
+	@include('shoppage.header')
 </header>
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 	<!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->

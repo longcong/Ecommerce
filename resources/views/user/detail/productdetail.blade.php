@@ -432,14 +432,8 @@
         <div role="tabpanel" class="tab-pane fade in active" id="tab-1"> 
             <div class="c-product-desc c-center">
                 <div class="container">
-                    <img src="{{ asset('main/base/img/content/shop5/30.png') }}"/>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer
-                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                        exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                        consequat.
-                    </p>
+                    <img src="{{ asset('images/' .$product->image) }}"/>
+                    <br>
                     <p>
                         Lorem ipsum dolor sit amet, consectetuer
                         adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore

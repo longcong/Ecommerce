@@ -33,5 +33,12 @@ class ViewProvider extends ServiceProvider
             }
             $view->with('minicartitems', $cartItems);
         });
+        View::composer('shoppage.header', function ($view) {
+            $cartItems = [];
+            if (Auth::user()) {
+                $cartItems = Cart::where('user_id', Auth::id())->get();
+            }
+            $view->with('minicartitems', $cartItems);
+        });
     }
 }
