@@ -93,6 +93,7 @@ $(document).ready(function(){
             url:"update-cart",
             data: data,
             success: function(response){
+                alert(response.status);
                 window.location.reload();
             },
         });

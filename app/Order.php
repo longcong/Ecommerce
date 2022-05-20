@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $table= 'orders';
+    protected $table= 'order';
     protected $fillable =[
+        'user_id',
         'fname',
         'lname',
         'cname',
@@ -23,4 +24,9 @@ class Order extends Model
         'message',
         'tracking_no',
     ];
+    
+    public function orderDetail()
+    {
+        return $this ->hasMany(OrderItem::class);
+    }
 }

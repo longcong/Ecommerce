@@ -15,6 +15,7 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('fname');
             $table->string('lname');
             $table->string('cname');
@@ -23,8 +24,9 @@ class CreateOrderTable extends Migration
             $table->string('address1');
             $table->string('address2');
             $table->string('email')->nullable();
-            $table->integer('phone');
+            $table->string('phone');
             $table->integer('zipcode');
+            $table->float('total_price');
             $table->longText('note')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->string('message')->nullable();

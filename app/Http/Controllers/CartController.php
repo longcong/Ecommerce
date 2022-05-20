@@ -21,7 +21,10 @@ class CartController extends Controller
             {
                 if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
                 {
-                    return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
+                    $cartItem = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+                    $cartItem->prod_qty = $cartItem->prod_qty + 1;
+                    $cartItem->save();
+                    return response()->json(['status'=>$prod_check->name."Quantity Update"]);
                 }
                 else
                 {
@@ -63,7 +66,7 @@ class CartController extends Controller
         {
             return response()->json(['status'=>"Not enough quantity in stock"]);
         }
-        if(!Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
+        if(!Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first())
         {
             return response()->json(['status'=>"Not found product"]);
         }
@@ -71,25 +74,7 @@ class CartController extends Controller
         $cart->prod_qty = $cartItemQty ;
         $cart->update();
         return response()->json(['status'=>"Quatity update"]);
-        
-        // if(Auth::check()){
-            
-        //     if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-        //     {
-        //         $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
-        //         $cart->prod_qty = $prod_qty;
-        //         $cart->update();
-        //         return response()->json(['status'=>"Quatity update"]);
-        //     }
-        //     if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-        //     {
-        //         $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
-        //         $product = Product::where('id',$product_id)->where('user_id',Auth::id());
-        //         $product->quantity >= $cart->prod_qty;
-        //         $cart->update();
-        //         return response()->json(['status'=>"Quatity update"]);
-        //     }
-        // }
+
     }
 
     public function deleteProduct(Request $request){

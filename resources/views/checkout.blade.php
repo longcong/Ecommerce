@@ -276,6 +276,7 @@
     <div class="c-content-box c-size-lg">
 <div class="container">
     <form action="{{url('place-order')}}" class="c-shop-form-1" method="POST">
+        @csrf
         <div class="row">
             <!-- BEGIN: ADDRESS FORM -->
             <div class="col-md-7 c-padding-20">
@@ -299,11 +300,11 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">First Name</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="First Name">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->fname}}" name="fname" placeholder="First Name">
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Last Name</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="Last Name">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->lname}}" name="lname" placeholder="Last Name">
                             </div>
                         </div>
                     </div>
@@ -311,31 +312,31 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control c-square c-theme" placeholder="Company Name">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->cname}}" name="cname" placeholder="Company Name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Address</label>
-                        <input type="text" class="form-control c-square c-theme" placeholder="Street Address">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address1}}" name="address1" placeholder="Street Address">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <input type="text" class="form-control c-square c-theme" placeholder="Apartment, suite, unit etc. (optional)">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address2}}" name="address2" placeholder="Apartment, suite, unit etc. (optional)">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Town / City</label>
-                        <input type="text" class="form-control c-square c-theme" placeholder="Town / City">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->city}}" name="city" placeholder="Town / City">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="control-label">State / County</label> <select class="form-control c-square c-theme">
+                                <label class="control-label">State / County</label> <select name="state" value="{{Auth::user()->state}}" class="form-control c-square c-theme">
                                     <option value="0">Select an option...</option>
                                     <option value="1">Vietnam</option>
                                     <option value="2">Singapore</option>
@@ -347,7 +348,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Postcode / Zip</label>
-                                <input type="text" class="form-control c-square c-theme" placeholder="Postcode / Zip">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->zipcode}}" name="zipcode" placeholder="Postcode / Zip">
                             </div>
                         </div>
                     </div>
@@ -357,143 +358,19 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">Email Address</label>
-                                <input type="email" class="form-control c-square c-theme" placeholder="Email Address">
+                                <input type="email" class="form-control c-square c-theme" value="{{Auth::user()->email}}" name="email" placeholder="Email Address">
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Phone</label>
-                                <input type="tel" class="form-control c-square c-theme" placeholder="Phone">
+                                <input type="tel" class="form-control c-square c-theme" value="{{Auth::user()->phone}}" name="phone" placeholder="Phone">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row c-margin-t-15">
-                    <div class="form-group col-md-12">
-                        <div class="c-checkbox c-toggle-hide" data-object-selector="c-account" data-animation-speed="600">
-                            <input type="checkbox" id="checkbox1-77" class="c-check">
-                            <label for="checkbox1-77">
-                                <span class="inc"></span>
-                                <span class="check"></span>
-                                <span class="box"></span>
-                                Create an account?
-                            </label>
-                        </div>
-                        <p class="help-block">Create an account by entering the information below. If you are a returning customer please login.</p>
-                    </div>
-                </div>
-                <div class="row c-account">
-                    <div class="form-group col-md-12">
-                        <label class="control-label">Account Password</label>
-                        <input type="password" class="form-control c-square c-theme" placeholder="Password">
-                    </div>
-                </div>
-                <!-- BILLING ADDRESS -->
-                <!-- SHIPPING ADDRESS -->
-                <h3 class="c-font-bold c-font-uppercase c-font-24">Shipping Address</h3>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <div class="c-checkbox-inline">
-                            <div class="c-checkbox c-toggle-hide" data-object-selector="c-shipping-address" data-animation-speed="600">
-                                <input type="checkbox" id="checkbox6-444" class="c-check">
-                                <label for="checkbox6-444">
-                                    <span class="inc"></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span>
-                                    Ship to different address?
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="c-shipping-address">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Country</label> <select class="form-control c-square c-theme">
-                                <option value="1">Vietnam</option>
-                                <option value="2">Singapore</option>
-                                <option value="3">Indonesia</option>
-                                <option value="4">Thailand</option>
-                                <option value="5">China</option>
-                                <option value="6">Malaysia</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">First Name</label>
-                                    <input type="text" class="form-control c-square c-theme" name="fname" placeholder="First Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Last Name</label>
-                                    <input type="text" class="form-control c-square c-theme" name="lname" placeholder="Last Name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Company Name</label>
-                            <input type="text" class="form-control c-square c-theme" name="cname" placeholder="Company Name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Address</label>
-                            <input type="text" class="form-control c-square c-theme" name="address1" placeholder="Street Address">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <input type="text" class="form-control c-square c-theme" name="address2" placeholder="Street Address 2">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Town / City</label>
-                            <input type="text" class="form-control c-square c-theme" name="city" placeholder="Town / City">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">State / County</label> <select class="form-control c-square c-theme" name="state">
-                                        <option value="0">Select an option...</option>
-                                        <option value="1">Malaysia</option>
-                                        <option value="2">Singapore</option>
-                                        <option value="3">Indonesia</option>
-                                        <option value="4">Thailand</option>
-                                        <option value="5">China</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Postcode / Zip</label>
-                                    <input type="text" class="form-control c-square c-theme" name="zipcode" placeholder="Postcode / Zip">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Email Address</label>
-                                    <input type="email" class="form-control c-square c-theme" name="email" placeholder="Email Address">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label">Phone</label>
-                                    <input type="tel" class="form-control c-square c-theme" name="phone" placeholder="Phone">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- SHIPPING ADDRESS -->
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Order Notes</label>
-                        <textarea class="form-control c-square c-theme" rows="3" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
+                        <textarea class="form-control c-square c-theme" rows="3" value="{{Auth::user()->note}}" name="note" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
                     </div>
                 </div>
             </div>
@@ -521,7 +398,7 @@
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20">Subtotal</div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">$<span class="c-subtotal">{{ $total }}.00</span></p>
+                            <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
                         </div>
                     </li>
                     <li class="row c-border-top c-margin-b-15"></li>
@@ -570,57 +447,9 @@
                         </div>
                     </li>
                     <li class="row">
-                        <div class="col-md-12">
-                            <div class="c-radio-list">
-                                <div class="c-radio">
-                                    <input type="radio" id="radio1" class="c-radio" name="payment" checked="">
-                                    <label for="radio1" class="c-font-bold c-font-20">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Direct Bank Transfer
-                                    </label>
-                                    <p class="help-block">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                </div>
-                                <div class="c-radio">
-                                    <input type="radio" id="radio2" class="c-radio" name="payment">
-                                    <label for="radio2" class="c-font-bold c-font-20">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Cheque Payment
-                                    </label>
-                                </div>
-                                <div class="c-radio">
-                                    <input type="radio" id="radio3" class="c-radio" name="payment">
-                                    <label for="radio3" class="c-font-bold c-font-20">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Paypal
-                                    </label>
-                                    <img class="img-responsive" width="250" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" />
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="form-group col-md-12">
-                            <div class="c-checkbox">
-                                <input type="checkbox" id="checkbox1-11" class="c-check">
-                                <label for="checkbox1-11">
-                                    <span class="inc"></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span>
-                                    I’ve read and accept the Terms & Conditions
-                                </label>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="row">
                         <div class="form-group col-md-12" role="group">
                             <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Submit</button>
-                            <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancel</button>
+                            {{-- <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancel</button> --}}
                         </div>
                     </li>
                 </ul>
