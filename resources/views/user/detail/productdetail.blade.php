@@ -1541,7 +1541,6 @@
 <div class="container">
     <div class="c-shop-product-details-2">
         <div class="row">
-        
             <div class="col-md-6">
                 <div class="c-product-gallery">
                     <div class="c-product-gallery-content">
@@ -1556,7 +1555,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 product_data">
+            <input type="hidden" value="{{ $product->id }}" class="product_id">
                 <div class="c-product-meta">
                     <div class="c-content-title-1">
                         <h3 class="c-font-uppercase c-font-bold">{{$product->title }}</h3>
@@ -1621,7 +1621,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                                <button class="btn c-btn btn-lg c-font-bold c-font-white c-theme-btn c-btn-square c-font-uppercase">Add to Cart</button>
+                            <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
+                                <i class="fa fa-shopping-cart"></i>Add Cart
+                            </button>
                             </div>
                         </div>
                     </div>
