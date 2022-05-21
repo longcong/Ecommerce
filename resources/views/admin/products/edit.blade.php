@@ -44,7 +44,7 @@
                         {{ Form::file('featured_image') }}
                         <br>
                         {{ Form::label('body',"Body:", ['class' => 'form-spacing-top']) }}
-                        {{ Form::textarea('body', null, array('class' => 'form-csontrol', 'rows' =>'5', 'cols'=>'75'))}}
+                        {{ Form::textarea('body', null, array('class' => 'form-control ', 'rows' =>'5', 'cols'=>'75'))}}
                     </div>
 
                     <div class="col-md-4" >
