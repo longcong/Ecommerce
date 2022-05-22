@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::orderBy('id', 'desc')->paginate(6);
+        $categories = Category::orderBy('id', 'asc')->paginate(6);
         return view('admin.categories.index')->withCategories($categories);
     }
 

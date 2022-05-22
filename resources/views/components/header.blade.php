@@ -1975,13 +1975,21 @@
                         </li>
 
                         <li class="c-cart-toggler-wrapper">
-                            <a href="#" class="c-btn-icon c-cart-toggler"
-                                ><i class="icon-handbag c-cart-icon"></i>
-                                <span
-                                    class="c-cart-number c-theme-bg"
-                                    >{{$minicartitems->COUNT('user_id')}}</span
-                                ></a
-                            >
+                            @if(Auth::check())
+                                <li class="c-cart-toggler-wrapper">
+                                    <a href="#" class="c-btn-icon c-cart-toggler"
+                                        ><i class="icon-handbag c-cart-icon"></i>
+                                        <span
+                                            class="c-cart-number c-theme-bg"
+                                            >{{ $minicartitems->COUNT('user_id') }}
+                                        </span>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="c-cart-toggler-wrapper">
+                                    <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i></a>
+                                </li>
+                            @endif
                         </li>
 
                         <li>
@@ -2027,54 +2035,67 @@
             </div>
             <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
             <!-- BEGIN: CART MENU -->
-            <div class="c-cart-menu">
-                <ul class="c-cart-menu-items">
-                    @php $total =0;@endphp @foreach ($minicartitems as $item)
-                    <li>
-                        <img
-                            src="{{ asset('images/' . $item->products->image) }}"
-                        />
-                        <div class="c-cart-menu-content">
-                            <p>
-                                <span class="c-item-price c-theme-font"
-                                    >${{ ($item->products->price - $item->products->discount_value)
-                                    }}.00</span
+            @if (Auth::check())
+                <div class="c-cart-menu">
+                    <ul class="c-cart-menu-items">
+                        @php $total =0;@endphp @foreach ($minicartitems as $item)
+                        <li>
+                            <img
+                                src="{{ asset('images/' . $item->products->image) }}"
+                            />
+                            <div class="c-cart-menu-content">
+                                <p>
+                                    <span class="c-item-price c-theme-font"
+                                        >${{ ($item->products->price - $item->products->discount_value)
+                                        }}.00</span
+                                    >
+                                </p>
+                                <a
+                                    href="{{ url('product/'.$item->products->slug) }}"
+                                    class="c-item-name c-font-sbold"
+                                    >{{$item->products->title}}</a
                                 >
+                            </div>
+                        </li>
+                        @php $total += ($item->products->price -
+                        $item->products->discount_value) * $item->prod_qty ; @endphp
+                        @endforeach
+                        
+                        <div class="c-cart-menu-title">
+                            <p class="c-cart-menu-float-l c-font-sbold">
+                                {{ $minicartitems->COUNT('user_id') }} item(s)
                             </p>
-                            <a
-                                href="shop-product-details-2.html"
-                                class="c-item-name c-font-sbold"
-                                >{{$item->products->title}}</a
+                            <p
+                                class="c-cart-menu-float-r c-theme-font c-font-sbold"
                             >
+                                ${{ $total }}.00
+                            </p>
                         </div>
-                    </li>
-                    @php $total += ($item->products->price -
-                    $item->products->discount_value) * $item->prod_qty ; @endphp
-                    @endforeach
-                    <div class="c-cart-menu-title">
-                        <p class="c-cart-menu-float-l c-font-sbold">
-                            {{$minicartitems->COUNT('user_id')}} item(s)
-                        </p>
-                        <p
-                            class="c-cart-menu-float-r c-theme-font c-font-sbold"
-                        >
-                            ${{ $total }}.00
-                        </p>
+                    </ul>
+                    <div class="c-cart-menu-footer">
+                        <a 
+                            href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
+                            >View Cart
+                        </a>
+                        <a 
+                            href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                            >Checkout</a>
                     </div>
-                </ul>
+                </div>
+            @else
+            <div class="c-cart-menu">
                 <div class="c-cart-menu-footer">
-                    <a
-                        href="{{ route('cart') }}"
-                        class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                    <a 
+                        href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
                         >View Cart
                     </a>
-                    <a
-                        href="{{ route('checkout') }}"
-                        class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                    <a 
+                        href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
                         >Checkout
                     </a>
                 </div>
             </div>
+            @endif 
             <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
         </div>
     </div>

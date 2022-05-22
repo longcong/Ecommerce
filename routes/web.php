@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserDashboard\UserDashboardController;
 use App\UserDashboard;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +50,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
     Route::post('update-cart',[CartController::class,'updateCart']);
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
-    Route::post('place-order',[CheckoutController::class,'placeorder']);
+    Route::post('place-order',[CheckoutController::class,'placeOrder']);
+
+    Route::get('order-info',[CheckoutController::class,'info']);
 });
 
 
@@ -64,6 +69,8 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
     
-    
+    Route::get('users', [FrontendController::class, 'users']);
+    Route::get('orders', [OrderController::class, 'index']);
+    Route::get('admin/view-order/{id}', [OrderController::class, 'view']);
 }); 
 

@@ -7,16 +7,20 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-7">
-                <h1> {{ $product->title }}</h1>
+                <div>
+                    <h1> {{ $product->title }}</h1>
+                    <div class="tags">
+                        @foreach ($product->tags as $tag)
+                            <span class="l1">{{ $tag -> name }}</span>
+                        @endforeach
+                    </div>
+                </div>
+                <br>
                 <img src="{{asset('images/' . $product->image)}}" height="500" width="500" alt="This is a Photo">
                 <p class="lead"></p>
 
                 <hr>
-                <div class="tags">
-                    @foreach ($product->tags as $tag)
-                        <span class="l1">{{ $tag -> name }}</span>
-                    @endforeach
-                </div>
+                
             </div>
 
             <div class="col-md-5">

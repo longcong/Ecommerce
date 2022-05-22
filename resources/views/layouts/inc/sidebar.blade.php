@@ -41,13 +41,21 @@
             <span class="nav-link-text ms-1">Tags</span>
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/tables.html">
+        <li class="nav-item {{Request::is('add-products') ? 'active':''}}">
+          <a class="nav-link text-white " href="{{url('admin/orders')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <!-- <i class="material-icons opacity-10">person</i> -->
+            </div>
+            <span class="nav-link-text ms-1">Order</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{{url('admin/users')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             </div>
-            <span class="nav-link-text ms-1">Tables</span>
+            <span class="nav-link-text ms-1">User</span>
           </a>
-        </li> -->
+        </li>
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
