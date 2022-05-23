@@ -66,7 +66,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
     
     // Route::get('users', [FrontendController::class, 'users']);
-    Route::get('orders', [OrderController::class, 'index']);
+    Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
 
     Route::get('view-order/{id}', [OrderController::class, 'view']);
     Route::put('update-order/{id}',[OrderController::class,'updateorder']);

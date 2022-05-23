@@ -23,11 +23,10 @@ class OrderController extends Controller
     }
     public function updateorder(Request $request, $id)
     {
-        dd('cak');
         $orders = Order::find($id);
         $orders->status = $request->input('order_status');
         $orders->update();
-        return redirect('orders')->with('status',"Order Update Successfully");
+        return redirect('admin/orders')->with('status',"Order Update Successfully");
     }
     public function orderhistory()
     {
