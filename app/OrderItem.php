@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Product;
 
 class OrderItem extends Model
 {
@@ -16,6 +17,6 @@ class OrderItem extends Model
     ];
     public function products(): BelongsTo
     {
-      return $this->belongsTo(Product::class, 'prod_id','id');
+      return $this->belongsTo(Product::class, 'product_id','id');
     }
 }
