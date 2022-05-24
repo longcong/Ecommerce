@@ -52,7 +52,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('update-cart',[CartController::class,'updateCart']);
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('place-order',[CheckoutController::class,'placeOrder']);
-
     Route::get('order-info',[CheckoutController::class,'info']);
 });
 
@@ -68,8 +67,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     // POST store -> /products -> after submit
     // DELETE destroy -> /products -> after submit
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
-    Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
-    
+    Route::resource('tags', 'Admin\TagController', ['except' => ['create']]); 
     // Route::get('users', [FrontendController::class, 'users']);
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);

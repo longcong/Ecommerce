@@ -307,8 +307,7 @@
                                     </h3>
                                 </li>
                             </ul>
-                        </div>
-                        
+                        </div>                       
                     </div>
                 </div>
                 <!-- END: ORDER DETAILS -->

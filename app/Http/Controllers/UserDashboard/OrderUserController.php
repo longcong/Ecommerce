@@ -16,7 +16,6 @@ class OrderUserController extends Controller
         $orders = Order::where('user_id',Auth::id())->get();
         return view('userdashboard.orderuser.index', compact('orders'));
     }
-    
     public function userview($id)
     {
         $orders = Order::where('id', $id)->first();
