@@ -176,7 +176,7 @@
                             <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Customer Details</h3>
                             <ul class="list-unstyled">
                                 <li>{{$orders->fname.' '.$orders->lname}}</li>
-                                <li>Phone: {{$orders->email}}</li>
+                                <li>Phone: {{$orders->phone}}</li>
                                 <li>Email: <a href="{{$orders->email}}" class="c-theme-color">{{$orders->email}}</a></li>
                             </ul>
                         </div>

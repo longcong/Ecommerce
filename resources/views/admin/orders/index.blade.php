@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Dashboard')
+@section('title', '| Order All')
 
 @section('content')
 
@@ -12,6 +12,7 @@
                 <div class="card-header">
                     <h4>New Order </h4>
                 </div>
+                
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -20,7 +21,7 @@
                                 <th>Tracking Number</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th class="order1">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,8 +31,8 @@
                                 <td>{{$item->tracking_no}}</td>
                                 <td>{{$item->total_price}}</td>
                                 <td>{{$item->status == '0' ? 'pending' : 'completed'}}</td>
-                                <td>
-                                    <a href="{{url('admin/view-order/'.$item->id)}}" class="btn btn-primary">View</a>
+                                <td class="order1">
+                                    <a href="{{url('view-orderuser/'.$item->id)}}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                             @endforeach

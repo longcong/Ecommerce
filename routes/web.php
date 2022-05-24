@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserDashboard\UserDashboardController;
-use App\UserDashboard;
-use App\Http\Controllers\UserController;
+use app\Http\Controllers\UserDashboard\OrderUserController;
 
 
 /*
@@ -46,6 +45,8 @@ Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/userdashboard', [UserDashboardController::class,'index'])->name('dashboard');
+    Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
+    Route::get('view-orderuser/{id}', 'UserDashboard\OrderUserController@userview')->name('userview');
     Route::post('add-to-cart',[CartController::class,'addProduct']);
     Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
     Route::post('update-cart',[CartController::class,'updateCart']);
@@ -69,7 +70,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]);
     
-    Route::get('users', [FrontendController::class, 'users']);
+    // Route::get('users', [FrontendController::class, 'users']);
     Route::get('orders', [OrderController::class, 'index']);
     Route::get('admin/view-order/{id}', [OrderController::class, 'view']);
 }); 

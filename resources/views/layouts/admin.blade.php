@@ -51,6 +51,9 @@
         .th{
             padding-left: 5px;
         }
+        .order1{
+            text-align: center;
+        }
         
    
     </style>
