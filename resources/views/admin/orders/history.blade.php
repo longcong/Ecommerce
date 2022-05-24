@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Order All')
+@section('title', '| Order Done')
 
 @section('content')
 
@@ -10,11 +10,10 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>New Order
-                        <a href="{{ 'order-history'}}" class="btn btn-primary float-end">Order History</a>
+                    <h4>New History
+                        <a href="{{ 'orders'}}" class="btn btn-primary float-end">New Order</a>
                     </h4>
                 </div>
-                
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -23,7 +22,7 @@
                                 <th>Tracking Number</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
-                                <th class="order1">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,7 +32,7 @@
                                 <td>{{$item->tracking_no}}</td>
                                 <td>{{$item->total_price}}</td>
                                 <td>{{$item->status == '0' ? 'pending' : 'completed'}}</td>
-                                <td class="order1">
+                                <td>
                                     <a href="{{url('admin/view-order/'.$item->id)}}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>

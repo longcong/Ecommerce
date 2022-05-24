@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
 
-@section('title' ,  '| View Order ')
+@section('title' ,  '| Cart')
 
 @section('buy_main')
 
@@ -258,8 +258,7 @@
                                     </div>
                                     <div class="c-bg-img-top-center c-overlay-object" data-height="height">
                                         <img width="100%" class="img-responsive"
-                                            src="{{ asset('images/' . $item->products->image) }}"
-                                            >
+                                            src="{{ asset('images/' .$item->products->image) }}">
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +307,24 @@
                                 </li>
                             </ul>
                         </div>
-                        
+                        <div class="col-md-6 col-sm-6">
+                            <ul class="c-list list-unstyled">
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Order Status :</h3>
+                                </li>
+                                <li>
+                                <form action="{{ url('admin/update-order/'.$orders->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <select class="form select" name="order_status">
+                                        <option {{ $orders->status == '0'? 'selected':'' }} value="0">Pending</option>
+                                        <option {{ $orders->status == '1'? 'selected':'' }} value="1">Complete</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <!-- END: ORDER DETAILS -->
