@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
 
-@section('title' ,  '| Cart')
+@section('title' ,  '| Show CheckOut')
 
 @section('buy_main')
 

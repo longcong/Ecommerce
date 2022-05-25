@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| All Product')
+@section('title', '| All Products')
 
 @section('content')
 
@@ -30,7 +30,7 @@
                     <th>Image</th>
                     <th>Note</th>
                     <th>Created At</th>
-                    <th style="text-align:center;">action</th>
+                    <th class="order1">action</th>
                 </thead>
 
                 <tbody>
@@ -46,7 +46,7 @@
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
                             <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
-                            <td><a href="{{ route('products.show', $post->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-info btn-sm">Edit</a></td>
+                            <td class="order1"><a href="{{ route('products.show', $post->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-info btn-sm">Edit</a></td>
                         </tr>
 
                     @endforeach

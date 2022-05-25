@@ -2004,9 +2004,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile" style="background-color: initial; padding-bottom:20px; padding-left:10px;">
-                                    <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('admin.dashboard') }}">
-                                        {{ __('Admin') }}
+                                @if(Auth::user()->role == '1')
+                                    <a 
+                                        class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" 
+                                        href="{{ route('admin.dashboard') }}">
+                                            {{ __('Admin') }}
                                     </a>
+                                @else
+                                    <a 
+                                        class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" 
+                                        href="{{ route('dashboard') }}">
+                                            {{ __('User') }}
+                                    </a>
+                                @endif
                                     <br>
                                     <a class="dropdown-item c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold" href="{{ route('logout') }}" style="margin-top: 10px;"
                                         onclick="event.preventDefault();

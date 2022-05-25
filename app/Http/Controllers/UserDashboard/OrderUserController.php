@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderUserController extends Controller
 {
     //
-    public function vỉeworderuser(Request $request)
+    public function vieworderuser(Request $request)
     {
         $orders = Order::where('user_id',Auth::id())->get();
         return view('userdashboard.orderuser.index', compact('orders'));

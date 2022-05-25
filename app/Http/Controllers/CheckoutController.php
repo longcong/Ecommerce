@@ -90,11 +90,11 @@ class CheckoutController extends Controller
         $cartitems = Cart::where('user_id',Auth::id())->get();
         Cart::destroy($cartitems);
 
-        return redirect('order-info')->with('status',"Order placed Successfully");
+        return redirect()->route('order-info', $order->id)->with('status',"Order placed Successfully");
     }
-    public function info()
+    public function info($id)
     {
-        $orders = Order::where('user_id',Auth::id())->first();
+        $orders = Order::where('id', $id)->first();
         $products = Product::orderBy('id','desc')->paginate(10);
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));

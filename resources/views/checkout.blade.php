@@ -34,7 +34,7 @@
     <!-- BEGIN: PAGE CONTENT -->
     <div class="c-content-box c-size-lg">
 <div class="container">
-    <form action="{{url('place-order')}}" class="c-shop-form-1" method="POST">
+    <form action="{{ route('placeorder')}}" class="c-shop-form-1" method="POST">
         @csrf
         <div class="row">
             <!-- BEGIN: ADDRESS FORM -->

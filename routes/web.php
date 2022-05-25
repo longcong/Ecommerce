@@ -45,14 +45,14 @@ Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/userdashboard', [UserDashboardController::class,'index'])->name('dashboard');
-    Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
+    Route::get('ordersuser','UserDashboard\OrderUserController@vieworderuser')->name('orderuser');
     Route::get('view-orderuser/{id}', 'UserDashboard\OrderUserController@userview')->name('userview');
     Route::post('add-to-cart',[CartController::class,'addProduct']);
     Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
     Route::post('update-cart',[CartController::class,'updateCart']);
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
-    Route::post('place-order',[CheckoutController::class,'placeOrder']);
-    Route::get('order-info',[CheckoutController::class,'info']);
+    Route::post('place-order',[CheckoutController::class,'placeOrder'])->name('placeorder');
+    Route::get('order-info/{id}',[CheckoutController::class,'info'])->name('order-info');
 });
 
 

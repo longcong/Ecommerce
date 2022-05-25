@@ -307,7 +307,19 @@
                                     </h3>
                                 </li>
                             </ul>
-                        </div>                       
+                        </div>  
+                        <div class="col-md-6 col-sm-6">
+                            <ul class="c-list list-unstyled">
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">
+                                        Order Status :  &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">
+                                            {{ $orders->status == '0' ? 'Pending' : 'Completed' }}
+                                        </span>
+                                    </h3> 
+                                </li>
+                            </ul>   
+                        </div>                     
                     </div>
                 </div>
                 <!-- END: ORDER DETAILS -->
