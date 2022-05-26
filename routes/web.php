@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use GuzzleHttp\Middleware;
@@ -52,7 +53,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('update-cart',[CartController::class,'updateCart']);
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('place-order',[CheckoutController::class,'placeOrder']);
-    Route::get('order-info',[CheckoutController::class,'info']);
+    Route::get('order-info/{id}',[CheckoutController::class,'info'])->name('order-info');
 });
 
 
@@ -68,10 +69,16 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     // DELETE destroy -> /products -> after submit
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]); 
-    // Route::get('users', [FrontendController::class, 'users']);
+
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);
     Route::put('update-order/{id}',[OrderController::class,'updateorder']);
+
     Route::get('order-history', [OrderController::class, 'orderhistory']);
+
+    Route::get('users', [DashboardController::class, 'users']);
+
+    Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
+
 }); 
 
