@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
+use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
 
@@ -18,25 +19,25 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, ProductInterface $productService)
     {
         //
-        $products = Product::orderBy('id','desc')->paginate(5);
-
-        return view('admin.products.index')-> withProducts($products);
+        $products = $productService->getProducts();
+        return view('admin.products.index', compact('products'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, ProductInterface $productService)
     {
         //
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view('admin.products.create ')->withCategories($categories)->withTags($tags);
+        $categories = $productService->getCategories();
+        $tags = $productService->getTag();
+        return view('admin.products.create', compact('categories','tags'));
     }
 
     /**
@@ -57,6 +58,7 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
             'category_id' => 'required|integer',
+            'is_popular' => 'required|integer',
             //'status_id'  => 'required|integer',
             'quantity' => 'required|integer',
             'note'  =>  'required',
@@ -72,6 +74,7 @@ class ProductController extends Controller
         $post->price = $request->price;
         $post->discount_unit = $request->discount_unit;
         $post->category_id = $request->category_id;
+        $post->is_popular = $request->is_popular;
         $post->discount_value = $request->discount_value;
         $post->note = $request->note;
 
@@ -157,6 +160,7 @@ class ProductController extends Controller
         $post->slug = $request->input('slug');
         $post->discount_unit = $request->input('discount_unit');
         $post->category_id = $request->input('category_id');
+        $post->is_popular = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');
         $post->note = $request->input('note');
 

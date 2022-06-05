@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ProductInterface;
 use App\Order;
 use App\User;
 use Illuminate\Http\Request;
@@ -10,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request, ProductInterface $productService)
     {
-        $orders = Order::where('status','0')->get();
+        $orders = $productService->getOrder();
         return view('admin.orders.index', compact('orders'));
     }
-    public function view($id)
+    public function view(Request $request, $id, ProductInterface $productService)
     {
         $orders = Order::where('id', $id)->first();
         $users = User::where('id',Auth::id())->first();

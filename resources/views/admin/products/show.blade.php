@@ -36,6 +36,11 @@
                     </dl>
 
                     <dl class="dl-horizontal">
+                        <label>Is_Popular:</label>
+                        <p>{{ $product->is_popular }}</p>
+                    </dl>
+
+                    <dl class="dl-horizontal">
                         <label>Quantity:</label>
                         <p>{{ $product->quantity}}</p>
                     </dl>

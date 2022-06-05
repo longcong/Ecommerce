@@ -40,6 +40,9 @@
                         {{ Form::label('discount_value', 'Discount:') }}
                         {{ Form::text('discount_value', null, array('class' => 'form-control input-lg')) }}
 
+                        {{ Form::label('is_popular', 'Is_Popular:') }}
+                        {{ Form::text('is_popular', null, array('class' => 'form-control input-lg')) }}
+
                         {{ Form::label('featured_image','Update Image:', array('class' => 'form-spacing-top'))}}
                         {{ Form::file('featured_image') }}
                         <br>

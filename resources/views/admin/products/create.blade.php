@@ -19,24 +19,24 @@
             <div class="row">
                 {!! Form::open(['route' => 'products.store','data-parsley-validate' =>'', 'files' => true]) !!}
                     <div class="row g-2 align-items-center">
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('title','Title:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-11">
                             {{ Form::text('title',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
-                    <br>
+                    
                     <div class="row g-2 align-items-center">
                         <!-- price -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('price','Price:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
                             {{ Form::text('price',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                         <!-- discount code -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('discount_unit','Discount Code:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
@@ -44,7 +44,7 @@
                         </div>
                         
                         <!-- discount -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('discount_value','Discount:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
@@ -52,17 +52,17 @@
                         </div>
                         <br>
                     </div>
-                    <br>
+                   
                     <div class="row g-2 align-items-center">
                         <!-- slug -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('slug', 'Slug: ', array('style' => 'margin-top:10px;')) }}
                         </div>
                         <div class="col-3">
                             {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255')) }}
                         </div>
                         <!-- category -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('category_id', 'Category:', array('style'=>'margin-top:10px;')) }}
                         </div>
                         <div class="col-3">
@@ -72,7 +72,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('quantity', 'Quantity: ', array('style' => 'margin-top:10px;')) }}
                         </div>
                         <div class="col-3">
@@ -81,9 +81,8 @@
                     </div>
                     
                     <div class="row g-2 align-items-center" style="margin-top:10px;">
-                        
                         <!-- tag -->
-                        <div class="col-auto">
+                        <div class="col-1">
                             {{ Form::label('tags', 'Tags:', array('class'=>'margin-top')) }}
                         </div>
                         <div class="col-11">
@@ -92,6 +91,15 @@
                                     <option value="{{ $tag->id }}">{{ $tag-> name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-2 align-items-center" style="margin-top:5px;">
+                        <div class="col-1">
+                            {{ Form::label('is_popular', 'Is_Popular: ', array('style' => 'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-11">
+                            {{ Form::text('is_popular', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255')) }}
                         </div>
                     </div>
                     

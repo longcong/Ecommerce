@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\Cart;
+use App\Interfaces\ProductInterface;
+
 
 class ShopController extends Controller
 {
@@ -14,9 +14,10 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request, ProductInterface $productService)
     {
-        $products = Product::orderBy('id', 'desc')->limit (12)->get();
-        return view('shop', compact('products'));
+        $products = $productService->getProducts();
+        $populars = $productService->getPopulars();
+        return view('shop', compact('products','populars'));
     }
 }
