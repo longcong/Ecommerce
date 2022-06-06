@@ -7,6 +7,8 @@ use App\Product;
 use App\Interfaces\ProductInterface;
 use App\Order;
 use App\Tag;
+use App\Wishlist;
+use Illuminate\Support\Facades\Auth;
 
 Class ProductService implements ProductInterface{
 
@@ -24,6 +26,10 @@ Class ProductService implements ProductInterface{
     }
     public function getOrder(){
         return Order::where('status','0')->get();
+    }
+    public function getViewWishlist()
+    {
+        return Wishlist::where('user_id', Auth::id())->get();
     }
 }
 

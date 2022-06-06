@@ -8,5 +8,6 @@ interface ProductInterface{
     public function getCategories();
     public function getTag();
     public function getOrder();
+    public function getViewWishlist();
     
 }

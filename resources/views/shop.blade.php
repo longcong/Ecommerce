@@ -173,10 +173,10 @@ Follow: http://www.twitter.com/themehats
                     </div>
                 </div>
             </div>
-        </div><!-- END: CONTENT/MISC/SHOP-BANNER-1 -->
+        </div> <!-- END: CONTENT/MISC/SHOP-BANNER-1  -->
         
         <!-- BEGIN: CONTENT/ISOTOPE/GRID-3 -->
-        <div class="c-content-box c-size-md c-bg-img-center" style="background-image: url({{ asset('main/base/img/content/backgrounds/bg-82.jpg ') }}">
+        <!-- <div class="c-content-box c-size-md c-bg-img-center" style="background-image: url({{ asset('main/base/img/content/backgrounds/bg-82.jpg ') }}">
             <div class="container">
                 <div class="c-content-title-1">
                     <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Quick Shop</h3>
@@ -200,7 +200,7 @@ Follow: http://www.twitter.com/themehats
                     
                 </div>
             </div> 
-        </div><!-- END: CONTENT/ISOTOPE/GRID-3 -->
+        </div>END: CONTENT/ISOTOPE/GRID-3 -->
         
         <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 
         MOST POPULAR-->
@@ -233,7 +233,7 @@ Follow: http://www.twitter.com/themehats
                                     </div>
                                     <div class="btn-group btn-group-justified" role="group">
                                         <div class="btn-group c-border-top" role="group">
-                                            <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
+                                            <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
                                                 <i class="fa fa-heart-o"></i>Add Wishlist
                                             </button>                                        
                                         </div>
@@ -487,7 +487,7 @@ Follow: http://www.twitter.com/themehats
         <!-- END: CONTENT/MISC/PROMO-1-2 -->
         
         <!-- BEGIN: CONTENT/SHOPS/SHOP-4-1 -->
-        <div class="c-content-box c-no-padding c-overflow-hide c-bs-grid-reset-space">
+        <!-- <div class="c-content-box c-no-padding c-overflow-hide c-bs-grid-reset-space">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="c-content-product-4 c-content-bg-1">
@@ -524,7 +524,7 @@ Follow: http://www.twitter.com/themehats
                     </div>
                 </div>
             </div>
-        </div><!-- END: CONTENT/SHOPS/SHOP-4-1 -->
+        </div>END: CONTENT/SHOPS/SHOP-4-1 -->
         
         <div class="c-content-box c-size-md c-bg-white">
             <div class="container">
@@ -555,7 +555,7 @@ Follow: http://www.twitter.com/themehats
                                 </div>
                                 <div class="btn-group btn-group-justified" role="group">
                                     <div class="btn-group c-border-top" role="group">
-                                        <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                        <button type="submit" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
                                             <i class="fa fa-heart-o"></i>Add Wishlist
                                         </button>                            
                                     </div>
@@ -574,7 +574,7 @@ Follow: http://www.twitter.com/themehats
         </div>
         
         <!-- BEGIN: CONTENT/SHOPS/SHOP-3-1 -->
-        <div class="c-content-box c-overflow-hide c-bg-grey">
+        <!-- <div class="c-content-box c-overflow-hide c-bg-grey">
             <div class="c-content-product-3 c-bs-grid-reset-space">
                 <div class="row">
                     <div class="col-md-8 col-sm-6">
@@ -600,7 +600,7 @@ Follow: http://www.twitter.com/themehats
                     </div>
                 </div>
             </div>
-        </div><!-- END: CONTENT/SHOPS/SHOP-3-1 -->
+        </div>END: CONTENT/SHOPS/SHOP-3-1 -->
         
         <!-- BEGIN: CONTENT/SHOPS/SHOP-6-1 -->
         <div class="c-content-box c-size-sm c-overflow-hide c-bg-white c-bs-grid-reset-space">

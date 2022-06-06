@@ -1070,7 +1070,7 @@
                                             <h3>Shop Pages 3</h3>
                                         </li>
                                         <li>
-                                            <a href="shop-product-wishlist.html"
+                                            <a href="{{ 'wishlist' }}"
                                                 >Wish List</a
                                             >
                                         </li>

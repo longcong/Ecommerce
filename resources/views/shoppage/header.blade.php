@@ -609,7 +609,7 @@
                         <h3>Shop Pages 3</h3>
                     </li>
                                                                                     <li>
-                        <a href="shop-product-wishlist.html">Wish List</a>
+                        <a href="{{ 'wishlist' }}">Wish List</a>
                     </li>
                                                                 <li>
                         <a href="shop-customer-account.html">Customer Login/Register</a>
