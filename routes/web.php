@@ -40,13 +40,12 @@ Route::get('/list', 'ProductListController@index')->name('list');
 //Route::get('/product', 'ProductDetailController@getProductDetail')->name('productdetail');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
-
-
+Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/userdashboard', [UserDashboardController::class,'index'])->name('dashboard');
-    Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
+   
     Route::get('view-orderuser/{id}', 'UserDashboard\OrderUserController@userview')->name('userview');
     Route::post('add-to-cart',[CartController::class,'addProduct']);
     Route::post('delete-cart-item',[CartController::class,'deleteProduct']);
