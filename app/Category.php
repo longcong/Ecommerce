@@ -7,19 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     //
-    protected $table = 'categories';
+    protected $table = 'categories'; 
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'status',
-        'popular',
-        'image',
-        'meta_title',
-        'meta_descrip',
-        'meta_keywords',
-        'timestamps',
-
-    ];
+    public function products() {
+        return $this->hasMany('App\Product');
+    }
 }
