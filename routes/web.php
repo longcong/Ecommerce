@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use GuzzleHttp\Middleware;
@@ -39,8 +40,7 @@ Route::get('/list', 'ProductListController@index')->name('list');
 //Route::get('/product', 'ProductDetailController@getProductDetail')->name('productdetail');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
-
-
+Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
@@ -72,10 +72,16 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     // DELETE destroy -> /products -> after submit
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]); 
-    // Route::get('users', [FrontendController::class, 'users']);
+
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);
     Route::put('update-order/{id}',[OrderController::class,'updateorder']);
+
     Route::get('order-history', [OrderController::class, 'orderhistory']);
+
+    Route::get('users', [DashboardController::class, 'users']);
+
+    Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
+
 }); 
 

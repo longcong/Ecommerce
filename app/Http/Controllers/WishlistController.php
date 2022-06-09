@@ -41,8 +41,8 @@ class WishlistController extends Controller
             $product_id = $request->input('product_id');
             if(Wishlist::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
             {
-                $wish=Wishlist::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
-                $wish->delete();
+                $wish = Wishlist::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+                $wish -> delete();
                 return response()->json(['status'=> "Item Remove from Wishlish"]);
             }
         }

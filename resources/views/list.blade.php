@@ -557,7 +557,7 @@
             <div class="col-md-8">
                 <div class="c-info-list">
                     <h3 class="c-title c-font-bold c-font-22 c-font-dark">
-                        <a class="c-theme-link" href="shop-product-details.html">{{ $post->title }}</a>
+                        <a class="c-theme-link" href="{{ url('product/'.$post->slug) }}">{{ $post->title }}</a>
                     </h3>
                     <p class="c-desc c-font-16 c-font-thin">{{ $post->note }}</p>
                     <p class="c-price c-font-26 c-font-thin">{{ $post->price - $post->discount_value}}$ &nbsp;
@@ -570,7 +570,7 @@
                         <i class="fa fa-shopping-cart"></i>Add Cart
                     </button>
 					@endif
-                    <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold">
+                    <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
                         <i class="fa fa-heart-o"></i>Add Wishlist
                     </button>
                 </div>

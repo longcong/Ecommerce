@@ -91,7 +91,7 @@ $(document).ready(function(){
             },
         });
     });
-    $('.deleteWishlistItem').click(function(e){
+    $('.delete-wishlist-item').click(function(e){
         e.preventDefault();
         var product_id = $(this).closest('.product_data').find('.product_id').val();
 
@@ -103,7 +103,7 @@ $(document).ready(function(){
 
         $.ajax({
             method: "POST",
-            url:"delete-wishlist-item",
+            url:"/delete-wishlist-item",
             data:{
                 'product_id':product_id,
             },

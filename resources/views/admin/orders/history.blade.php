@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>New History
-                        <a href="{{ 'orders'}}" class="btn btn-primary float-end">New Order</a>
+                        <a href="{{ 'orders' }}" class="btn btn-primary float-end">New Order</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -26,18 +26,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $item)
-                            <tr>
-                                <td>{{date('d-m-Y', strtotime($item->created_at))}}</td>
-                                <td>{{$item->tracking_no}}</td>
-                                <td>{{$item->total_price}}</td>
-                                <td>{{$item->status == '0' ? 'pending' : 'completed'}}</td>
-                                <td>
-                                    <a href="{{url('admin/view-order/'.$item->id)}}" class="btn btn-primary">View</a>
-                                </td>
-                            </tr>
+                            @foreach($orders as $item)
+                                <tr>
+                                    <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                                    <td>{{ $item->tracking_no }}</td>
+                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ $item->status == '0' ? 'pending' : 'completed' }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('admin/view-order/'.$item->id) }}"
+                                            class="btn btn-primary">View</a>
+                                    </td>
+                                </tr>
                             @endforeach
-                        </tbody>        
+                        </tbody>
                     </table>
                 </div>
             </div>
