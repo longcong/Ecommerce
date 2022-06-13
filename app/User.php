@@ -36,5 +36,7 @@ class User extends Authenticatable
     protected $casts = [
        
     ];
-
+    public function coupons(){
+        return $this->belongsToMany('App\Coupon');
+    }
 }

@@ -9,7 +9,7 @@ class ProductListController extends Controller
 {
     //
     public function index(){
-        $products = Product::orderBy('id','desc')->paginate(2);
+        $products = Product::orderBy('id','desc')->paginate(3);
         return view('list')->withProducts($products);
     }
 }
