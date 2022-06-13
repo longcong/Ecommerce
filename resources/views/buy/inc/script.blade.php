@@ -9,7 +9,7 @@
 	<script src="{{ asset('main/js/jquery.easing.min.js')}}" type="text/javascript" ></script>
 	<script src="{{ asset('main/js/reveal-animate/wow.js')}}" type="text/javascript" ></script>
 	<script src="{{ asset('main/js/scripts/reveal-animate/reveal-animate.js')}}" type="text/javascript" ></script>
-	<script src="{{ asset('js/custom.js') }}" type="text/javascript" ></script>
+	<script src="{{ asset('js/custom.js?t=1') }}" type="text/javascript" ></script>
 
 	<!-- END: CORE PLUGINS -->
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Interfaces\ProductInterface;
 use App\Product;
 use App\Wishlist;
@@ -20,34 +21,37 @@ class WishlistController extends Controller
             return response()->json(['status' => "Login to Continue"]);
         }
 
-        $prod_id = $request->input('product_id');
-        if(!Product::find($prod_id))
+        $product_id = $request->input('product_id');
+        if(!Product::find($product_id))
         {
             return response()->json(['status' => "Product doesnot exist"]);
         }
-        $wish = new Wishlist();
-        $wish->prod_id = $prod_id;
-        $wish->user_id = Auth::id();
-        $wish->save();
+        $wishlist = new Wishlist();
+        $wishlist->product_id = $product_id;    
+        $wishlist->user_id = Auth::id();
+        $wishlist->save();
         return response()->json(['status' => "Product Added to Wishlist"]);
     }
     public function viewwishlist(Request $request, ProductInterface $productService){
-        $wishlist = $productService->getViewWishlist();
-        return view('wishlist', compact('wishlist'));
+        $wishlists = $productService->getViewWishlist();
+        return view('wishlist', compact('wishlists'));
     }
+
+    
+
     public function deleteWishlist(Request $request){
-        if(Auth::check())
+        if(!Auth::check())
         {
-            $product_id = $request->input('product_id');
-            if(Wishlist::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-            {
-                $wish = Wishlist::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
-                $wish -> delete();
-                return response()->json(['status'=> "Item Remove from Wishlish"]);
-            }
-        }
-        else{
             return response()->json(['status'=>"Login to Continue"]);
         }
+        
+        $id = $request->input('id');
+        if(Wishlist::where('id',$id)->where('user_id',Auth::id())->exists())
+        {
+            $wishlist = Wishlist::where('id',$id)->where('user_id',Auth::id())->first();
+            $wishlist -> delete();
+            return response()->json(['status'=> "Item Remove from Wishlish"]);
+        }
+        
     }
 }
