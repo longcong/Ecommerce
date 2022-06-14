@@ -7,9 +7,7 @@ class Coupon extends Model
 {
 
     protected $table= 'coupons';
-    protected $fillable =[ 
-
-    ];
+   
     public function users(){
         return $this->belongsToMany('App\User');
     }

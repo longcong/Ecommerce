@@ -1,75 +1,73 @@
 @extends('layouts.admin')
 
-@section('title', '| Show Coupon')
+@section('title', '| Coupon Detail')
 
 @section('content')
-<div class="card">
-    <div class="card-body">
+<div class="card-body">
+    <div class="container">
         <div class="row">
-            <div class="col-md-7">
-                <div>
-                    <h1> {{ $coupon->title }}</h1>
-                </div>
-                <br>
-                <hr>
-            </div>
-            <div class="col-md-5">
-                <div class="well pr-edit">
-                    <dl class="dl-horizontal">
-                        <label>Category_id:</label>
-                        <p>{{  }}</p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Is_Popular:</label>
-                        <p>{{ }}</p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Quantity:</label>
-                        <p>{{  }}</p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Price:</label>
-                        <p>{{  }}$</p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Discount:</label>
-                        <p>{{  }}$</p>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <label>Description:</label>
-                        <p>{{  }}</p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Created At:</label>
-                        <p>{{ date('M j, Y h:ia', strtotime($product->created_at)) }}
-                        </p>
-                    </dl>
-
-                    <dl class="dl-horizontal">
-                        <label>Last Updated:</label>
-                        <p>{{ date('M j, Y h:ia', strtotime($product->updated_at)) }}
-                        </p>
-                    </dl>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            {!! Html::linkRoute(' EditCoupon', 'Edit', array($product->id), array('class' => 'btn
-                            btn-primary btn-block')) !!}
-                        </div>
-                        <div class="col-sm-2">
-                            <!-- {{ Form::open(array('method' => 'DELETE', 'route' => array('products.destroy', $product->id), 'onsubmit' => 'return confirm_delete()')) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-info')) }}
-                            {{ Form::close() }} -->
-                        </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>User Details
+                            <a href="{{ route('coupons.index') }}"
+                                class="btn btn-primary float-end">
+                                Back
+                            </a>
+                            <a 
+                                href="{{ route('coupons.edit' , $coupon->id )}}" class="btn btn-info float-end" style="margin-right:4px;">
+                                Edit
+                            </a>
+                        </h4>
+                                
+                        <hr>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ Html::linkRoute('products.index', '<< All Posts',[],['class'=>'btn btn-info btn-block btn-h1-spacing']) }}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mt-3">
+                                <label for="">Title</label>
+                                <div class="p-2 border">{{ $coupon->title }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Seller_id</label>
+                                <div class="p-2 border">{{ $coupon->seller_id }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Code</label>
+                                <div class="p-2 border">{{ $coupon->code }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Coupon_Type</label>
+                                <div class="p-2 border">{{ $coupon->type }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Discount_Type</label>
+                                <div class="p-2 border">{{ $coupon->discount_type }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Discount_Coupon</label>
+                                @if($coupon->discount_type == 'Amount')
+                                    <div class="p-2 border">
+                                        ${{ $coupon->discount_coup }}.00
+                                    </div>
+                                @else
+                                    <div class="p-2 border">
+                                        {{ $coupon->discount_coup }}.00%
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Expiry_Date</label>
+                                <div class="p-2 border">{{  $coupon->expiry_date  }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Seller_id</label>
+                                <div class="p-2 border">{{ $coupon->seller_id == '1' ? 'Admin' : 'Users' }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Active</label>
+                                <div class="p-2 border">{{ $coupon->is_active == '1' ? 'Active' : 'Inactive' }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,5 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection

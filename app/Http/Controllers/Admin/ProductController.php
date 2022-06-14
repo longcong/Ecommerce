@@ -207,7 +207,7 @@ class ProductController extends Controller
 
         $post -> delete();
 
-        $request->session()->flash('success', 'The blog post was successfully delete!');
+        $request->session()->flash('success', 'The product was successfully delete!');
 
         return redirect()->route('products.index');
     }

@@ -24,9 +24,7 @@ class CreateCouponsTable extends Migration
             $table->tinyInteger('free_shipping')->default('0');
             $table->longText('detail')->nullable();
             $table->integer('discount_coup');
-            //$table->string('discount_type');
-            $table->tinyInteger('start_date')->nullable();
-            $table->tinyInteger('end_date')->nullable();
+            $table->string('discount_type');
             $table->tinyInteger('is_active')->default('1');
             $table->timestamps();
         });
