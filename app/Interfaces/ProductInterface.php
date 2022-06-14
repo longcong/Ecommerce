@@ -9,5 +9,6 @@ interface ProductInterface{
     public function getTag();
     public function getOrder();
     public function getViewWishlist();
+    public function getCoupons();
     
 }

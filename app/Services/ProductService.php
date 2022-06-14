@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Category;
+use App\Coupon;
 use App\Product;
 use App\Interfaces\ProductInterface;
 use App\Order;
@@ -30,6 +31,10 @@ Class ProductService implements ProductInterface{
     public function getViewWishlist()
     {
         return Wishlist::where('user_id', Auth::id())->get();
+    }
+    public function getCoupons()
+    {
+        return Coupon::all();
     }
 }
 

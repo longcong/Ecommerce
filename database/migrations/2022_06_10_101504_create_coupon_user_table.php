@@ -23,7 +23,7 @@ class CreateCouponUserTable extends Migration
         });
         Schema::table('coupon_user', function (Blueprint $table) {
             
-            $table->foreign('coupon_id')->references('id')->on('coupon');
+            $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('order_id')->references('id')->on('order');
             

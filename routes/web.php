@@ -7,7 +7,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CouponController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\UserDashboard\UserDashboardController;
 use app\Http\Controllers\UserDashboard\OrderUserController;
 use App\Http\Controllers\WishlistController;
@@ -58,8 +58,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('wishlist', [WishlistController::class, 'viewwishlist'])->name('wishlist');
     Route::post('add-to-wishlist',[WishlistController::class, 'addWishlist'])->name('addWishlist');
     Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');    
+    
+    
+    
     Route::middleware(['seller'])->group(function(){
-        Route::post('viewcoupons',[CouponController::class,'couponview']);
+        
     });
 });
 
@@ -86,6 +89,10 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::get('users', [DashboardController::class, 'users']);
 
     Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
+
+    Route::resource('coupons','Admin\CouponController');
+    
+    
 
 }); 
 

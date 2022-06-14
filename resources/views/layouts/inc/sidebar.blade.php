@@ -22,7 +22,7 @@
           <a class="nav-link text-white " href="{{ route('products.index') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             </div>
-            <span class="nav-link-text ms-1">Product</span>
+            <span class="nav-link-text ms-1">Products</span>
           </a>
         </li>
         <li class="nav-item">
@@ -30,7 +30,7 @@
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <!-- <i class="material-icons opacity-10">person</i> -->
             </div>
-            <span class="nav-link-text ms-1">Category</span>
+            <span class="nav-link-text ms-1">Categories</span>
           </a>
         </li>
         <li class="nav-item">
@@ -41,19 +41,28 @@
             <span class="nav-link-text ms-1">Tags</span>
           </a>
         </li>
-        <li class="nav-item {{Request::is('add-products') ? 'active':''}}">
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{{url('admin/coupons')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <!-- <i class="material-icons opacity-10">person</i> -->
+            </div>
+            <span class="nav-link-text ms-1">Coupons</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="{{url('admin/orders')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <!-- <i class="material-icons opacity-10">person</i> -->
             </div>
-            <span class="nav-link-text ms-1">Order</span>
+            <span class="nav-link-text ms-1">Orders</span>
           </a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="{{url('admin/users')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             </div>
-            <span class="nav-link-text ms-1">User</span>
+            <span class="nav-link-text ms-1">Users</span>
           </a>
         </li>
       </ul>

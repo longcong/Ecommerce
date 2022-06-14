@@ -1,17 +1,20 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
-    protected $table= 'coupon';
-    protected $fillable =[
-        
+
+    protected $table= 'coupons';
+    protected $fillable =[ 
+
     ];
     public function users(){
         return $this->belongsToMany('App\User');
+    }
+    public function orders(){
+        return $this->belongsTo('App\Orders');
     }
 }
 
