@@ -154,6 +154,26 @@
                     </li>
                     @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
                     @endforeach
+                    <!-- COUPON -->
+                    <li class="row c-margin-b-15 c-margin-t-15">
+                        <div class="col-md-10 c-font-20">
+                            <label for="have-coupon">
+                                <input class="frm-input" type="checkbox" id="have-code" name="have-code" value="1" wire:model="haveCouponCode">
+                                <span>I have coupon code ?</span>
+                            </label> 
+                        </div>
+                        <div class="col-md-10 c-font-20 abc" style="display:none">
+                            <form action="">
+                                <h2 class="title-box">Coupon Code</h2>
+                                <p class="row-in-form">
+                                    <label for="coupon-code">Enter your coupon code:</label>
+                                    <input type="text" name="coupon-code" wire:model="couponCode"/>
+                                </p>
+                                <button type="submit" class="c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn btn-small">Apply</button>
+                            </form>
+                        </div>
+                    </li>
+                    <!-- END COUPON -->
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20">Subtotal</div>
                         <div class="col-md-6 c-font-20">
@@ -228,5 +248,14 @@
 @endsection
 
 @section('buy_script')
-
+    <script>
+        $("#have-code").change(function(){
+            var check = $(".abc").css("display");
+            if(check=="block"){
+                $(".abc").css("display", "none");
+            }else if(check=="none"){
+                $(".abc").css("display", "block");
+            }
+        });
+    </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Coupon;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
@@ -13,6 +14,7 @@ use App\User;
 
 class CheckoutController extends Controller
 {
+    public $couponCode = '';
     public function index()
     {
         $old_cartitems = Cart::where('user_id',Auth::id())->get();
@@ -98,5 +100,18 @@ class CheckoutController extends Controller
         $products = Product::orderBy('id','desc')->paginate(10);
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
+    }
+    public function applyCouponCode()
+    {
+        $coupon = Coupon::where('code',$this->couponCode)->where('type','<=',Cart::instance('cart')->subtotal())->first();
+        if(!$coupon){
+            session()->flash('coupon_message','Coupon code is invalid!');
+            return;
+        }
+        session()->put('coupon',[
+            'code' => $coupon->code,
+            'type' => $coupon->type,
+            'discount_type' => $coupon->discount_type
+        ]);
     }
 }
