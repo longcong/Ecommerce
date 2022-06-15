@@ -204,7 +204,6 @@ class ProductController extends Controller
         $post = Product ::find($id);
         $post -> tags()->detach();
         Storage::delete($post->image);
-
         $post -> delete();
 
         $request->session()->flash('success', 'The product was successfully delete!');
