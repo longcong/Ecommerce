@@ -11,12 +11,31 @@ use App\Order;
 use App\OrderItem;
 use phpDocumentor\Reflection\Types\Null_;
 use App\User;
+use Illuminate\Support\Carbon;
 
 class CheckoutController extends Controller
 {
-    public $couponCode = '';
+    // public $couponCode = '';
+    // public $discount = '';
+    // public $subtotalDiscont = '';
+
     public function index()
     {
+        $total = 0;
+        $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
+        foreach($cartitemsTotal as $carttotal)
+        {
+            $total += ($carttotal->products->price - $carttotal->products->discount_value) * $carttotal->prod_qty ;
+        }
+
+        if(session()->has('coupon')){
+            if($total < session()->get('coupon')['discount_coup']){
+                session()->forget('coupon');
+            }
+            else{
+                $this->calculateDiscounts();
+            }
+        }
         $old_cartitems = Cart::where('user_id',Auth::id())->get();
         foreach($old_cartitems as $item)
         {
@@ -101,17 +120,39 @@ class CheckoutController extends Controller
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
     }
-    public function applyCouponCode()
-    {
-        $coupon = Coupon::where('code',$this->couponCode)->where('type','<=',Cart::instance('cart')->subtotal())->first();
-        if(!$coupon){
-            session()->flash('coupon_message','Coupon code is invalid!');
-            return;
-        }
-        session()->put('coupon',[
-            'code' => $coupon->code,
-            'type' => $coupon->type,
-            'discount_type' => $coupon->discount_type
-        ]);
-    }
+    // public function applyCouponCode()
+    // {
+    //     $coupon = Coupon::where('code',$this->couponCode)->where('expiry_date','>=',Carbon::today())->first();
+    //     if(!$coupon){
+    //         $coupon = session()->flash('coupon_message','Coupon code is invalid!');
+    //         return;
+    //     }
+    //     $coupon = session()->put('coupon',[
+    //         'code' => $coupon->code,
+    //         'type' => $coupon->type,
+    //         'discount_type' => $coupon->discount_type,
+    //         'discount_coup' => $coupon->discount_coup,
+    //         'expiry_date' => $coupon->expiry_date,
+    //     ]);
+    // }
+    // public function calculateDiscounts()
+    // {
+    //     $total = 0;
+    //     $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
+    //     foreach($cartitemsTotal as $carttotal)
+    //     {
+    //         $total += ($carttotal->products->price - $carttotal->products->discount_value) * $carttotal->prod_qty ;
+    //     }
+
+    //     if(session()->has('coupon')){
+    //         if(session()->get('coupon')['discount_type'] == 'Amount'){
+    //             $this->discount = session()->get('coupon')['discount_coup'];
+    //         }
+    //         else{
+    //             $this->discount = ( $total * session()->get('coupon')['discount_coup'])/100;
+    //         }
+    //         $this->subtotalDiscont = $total - $this->discount;
+    //         $total = $this->subtotalDiscont;
+    //     }
+    // }
 }

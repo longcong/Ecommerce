@@ -43,6 +43,7 @@ Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\Prod
      -> where('slug','[\w\d\-\_]+');
 Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
+Route::post('/cart/apply-coupon',[CartController::class,'applyCoupon'])->name('applyCoupon');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/userdashboard', [UserDashboardController::class,'index'])->name('dashboard');
@@ -91,6 +92,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
 
     Route::resource('coupons','Admin\CouponController');
+    
     
     
 

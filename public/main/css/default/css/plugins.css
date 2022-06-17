@@ -1725,14 +1725,14 @@ label.control-label {
 
 .c-btn-border-1x.c-btn-white {
   border-color: #FFFFFF;
-  color: #FFFFFF;
+  color: black;
   background: aliceblue;
   border-color: #FFFFFF; }
   .c-btn-border-1x.c-btn-white.c-btn-border-opacity-04 {
     border-color: rgba(255, 255, 255, 0.4); 
   }
   .c-btn-border-1x.c-btn-white.btn-no-focus:focus, .c-btn-border-1x.c-btn-white.btn-no-focus.focus {
-    color: #FFFFFF;
+    color: black;
     background: aliceblue;
     border-color: #FFFFFF; 
    }

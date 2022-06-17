@@ -30,7 +30,12 @@
                             </div>
                             <div class="col-md-4 mt-3">
                                 <label for="">Seller_id</label>
-                                <div class="p-2 border">{{ $coupon->seller_id }}</div>
+                                @if( $coupon->seller_id == '')
+                                    <div class="p-2 border">Null</div>
+                                
+                                @else
+                                    <div class="p-2 border">{{ $coupon->seller_id }}</div>
+                                @endif
                             </div>
                             <div class="col-md-4 mt-3">
                                 <label for="">Code</label>

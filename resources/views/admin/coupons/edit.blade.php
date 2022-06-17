@@ -37,7 +37,7 @@
                         {{ Form::label('seller_id', 'Seller_id:') }}
                     </div>
                     <div class="col-8">
-                        <select name="seller_id" value="" class="form-control">
+                        <select id="select" name="seller_id" value="" class="form-control null">
                             <option value="">Select</option>
                             <option value="1">Admin</option>
                         </select>                     
@@ -58,7 +58,7 @@
                         {{ Form::label('type', 'Coupon_Type:') }}
                     </div>
                     <div class="col-8">
-                        <select name="type" value="" class="form-control">
+                        <select id="select" name="type" value="" class="form-control">
                             <option value="">Select</option>
                             <option value="Category_base">Category_base</option>
                             <option value="Product_base">Product_base</option>
@@ -73,7 +73,7 @@
                         {{ Form::label('discount_type', 'Discount_type:') }}
                     </div>
                     <div class="col-8">
-                        <select name="discount_type" value="" class="form-control">
+                        <select id="select" name="discount_type" value="" class="form-control">
                             <option value="">Select</option>
                             <option value="Amount">Amount</option>
                             <option value="Percent">Percent</option>
@@ -166,6 +166,13 @@
                 $this.set('expiry_date',data);
             })
        });  
+    </script>
+    <script>
+        var div_contents =document.getElementById("select");
+        var elements = div_contents.getElementsByTagName("select");
+        for (i=0; i<elements.length; i++) {
+            elements[i].selectedIndex = -1;
+        }
     </script>
 
 @endsection

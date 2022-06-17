@@ -19,7 +19,8 @@
     <link href="{{ asset('css/parsley.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
 
     <!-- Styles -->
@@ -66,6 +67,7 @@
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         @include('layouts.inc.adminnav')
         <div class="container-fluid py-4">
+        @include('layouts.inc.messager')
             @yield('content')
        
         @include('layouts.inc.adminfooter')

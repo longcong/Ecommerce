@@ -147,7 +147,7 @@
                     @php $total =0;@endphp
                     @foreach ($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-6 c-font-20"><a href="shop-product-details.html" class="c-theme-link">{{$item->products->title}}</a></div>
+                        <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
                         <div class="col-md-6 c-font-20">
                             <p class="">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
                         </div>
@@ -155,76 +155,61 @@
                     @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
                     @endforeach
                     <!-- COUPON -->
-                    <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-10 c-font-20">
-                            <label for="have-coupon">
-                                <input class="frm-input" type="checkbox" id="have-code" name="have-code" value="1" wire:model="haveCouponCode">
-                                <span>I have coupon code ?</span>
-                            </label> 
-                        </div>
-                        <div class="col-md-10 c-font-20 abc" style="display:none">
-                            <form action="">
-                                <h2 class="title-box">Coupon Code</h2>
-                                <p class="row-in-form">
-                                    <label for="coupon-code">Enter your coupon code:</label>
-                                    <input type="text" name="coupon-code" wire:model="couponCode"/>
-                                </p>
-                                <button type="submit" class="c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn btn-small">Apply</button>
-                            </form>
-                        </div>
-                    </li>
                     <!-- END COUPON -->
-                    <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-6 c-font-20">Subtotal</div>
-                        <div class="col-md-6 c-font-20">
-                            <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
-                        </div>
-                    </li>
-                    <li class="row c-border-top c-margin-b-15"></li>
-                    <li class="row">
-                        <div class="col-md-6 c-font-20">Shipping</div>
-                        <div class="col-md-6">
-                            <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
-                                <div class="c-radio">
-                                    <input type="radio" value="20" id="radio11" class="c-radio" name="shipping_price" checked="">
-                                    <label for="radio11">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Flat Rate
-                                    </label>
-                                    <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
-                                </div>
-                                <div class="c-radio">
-                                    <input type="radio" value="10" id="radio12" class="c-radio" name="shipping_price">
-                                    <label for="radio12">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Local Delivery
-                                    </label>
-                                    <p class="c-shipping-price c-font-bold c-font-20">$10.00</p>
-                                </div>
-                                <div class="c-radio">
-                                    <input type="radio" value="0" id="radio13" class="c-radio" name="shipping_price">
-                                    <label for="radio13">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span>
-                                        Local Pickup
-                                    </label>
+                    
+                        <li class="row c-margin-b-15 c-margin-t-15">
+                            <div class="col-md-6 c-font-20">Subtotal</div>
+                            <div class="col-md-6 c-font-20">
+                                <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                            </div>
+                        </li>
+                        <li class="row c-border-top c-margin-b-15"></li>
+                        <li class="row">
+                            <div class="col-md-6 c-font-20">Shipping</div>
+                            <div class="col-md-6">
+                                <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
+                                    <div class="c-radio">
+                                        <input type="radio" value="20" id="radio11" class="c-radio" name="shipping_price" checked="">
+                                        <label for="radio11">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Flat Rate
+                                        </label>
+                                        <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
+                                    </div>
+                                    <div class="c-radio">
+                                        <input type="radio" value="10" id="radio12" class="c-radio" name="shipping_price">
+                                        <label for="radio12">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Local Delivery
+                                        </label>
+                                        <p class="c-shipping-price c-font-bold c-font-20">$10.00</p>
+                                    </div>
+                                    <div class="c-radio">
+                                        <input type="radio" value="0" id="radio13" class="c-radio" name="shipping_price">
+                                        <label for="radio13">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            Local Pickup
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="row c-margin-b-15 c-margin-t-15">
-                        <div class="col-md-6 c-font-20">
-                            <p class="c-font-30">Total</p>
-                        </div>
-                        <div class="col-md-6 c-font-20">
-                            <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ $total }}.00</span></p>
-                        </div>
-                    </li>
+                        </li>
+                        @if(!empty(Session::get('couponAmount')))
+                            <li class="row c-margin-b-15 c-margin-t-15">
+                                <div class="col-md-6 c-font-20">
+                                    <p class="c-font-30">Total</p>
+                                </div>
+                                <div class="col-md-6 c-font-20">
+                                    <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
+                                </div>
+                            </li>
+                        @endif
                     <li class="row">
                         <div class="form-group col-md-12" role="group">
                             <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Submit</button>
@@ -235,9 +220,10 @@
             </div>     
 
             </div>
-            <!-- END: ORDER FORM -->
+            
         </div>
     </form>
+    <!-- END: ORDER FORM -->
 </div>
 </div>  
     <!-- END: PAGE CONTENT -->

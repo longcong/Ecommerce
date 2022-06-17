@@ -121,7 +121,7 @@ class CouponController extends Controller
         // $coupons->end_date = $request->input('end_date');
 
         $coupons->save();
-        $request->session()->flash('success', 'The coupon save created successfully!');
+        $request->session()->flash('success', 'The coupon update successfully save!');
       
         return redirect()->route('coupons.show', $coupons->id);
     }
