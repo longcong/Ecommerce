@@ -168,60 +168,79 @@ class CartController extends Controller
     }
     
     public function applyCoupon(Request $request)
-    {
-           
-            
+    {    
+        Session::forget('couponAmount');
+        Session::forget('code');
+        Session::forget('totalFinal');
         if($request->isMethod('post')){
             $data = $request->all();
             $couponCount = Coupon::where('code',$data['code'])->count();
             
             if($couponCount == 0){
-
                 $request->session()->flash('errors', 'Coupon code does not exists!');
                 return redirect()->back();
-                
             }   
             else{
-                // dd("Success");die;
                 $couponDetail = Coupon::where('code',$data['code'])->first();
                 if(!$couponDetail->is_active == 1){
                     $request->session()->flash('errors', 'Coupon code is not active!');
                     return redirect()->back();
                 }
                 $expiry_date = $couponDetail->expiry_date;
-                $current_date = date('y-m-d');
-                dd($current_date);
+                //dd($expiry_date);
+                $current_date = date('Y-m-d');
+                //dd($current_date);
                 if($current_date > $expiry_date){
                     $request->session()->flash('errors', 'Coupon code is not Expired!');
                     return redirect()->back();
                 }
-                // echo $_SESSION["session_id"];
-                // $id= Session::get();
-                // dd($id);
-                // $userCart = DB::table('carts')->where(['session_id'=>$id])->get();
-                $userCart = Cart::where('user_id',Auth::id())->get();
-                $total= 0;
-                foreach($userCart as $item){
-                    $total = ($item->products->price - $item->products->discount_value) * $item->prod_qty;   
-                }
-                //dd($total);
-                if($couponDetail->discount_type == 'Amount'){
-                    $couponAmount = $couponDetail->discount_coup;
-                }
-                else{
-                    $couponAmount = $total * ($couponDetail->discount_coup/100);
-                }
+                //$aaa = $request->input('cart_id');
+                $type = $couponDetail->type;
+               
+                $type_condition_1 = 'Category_base';
+                //$type_condition_2 = 'Product_base';
+                if($type != $type_condition_1){
+                //if(($type != $type_condition_1) || ($type != $type_condition_2)){
+                    //dd('oke');
+                    
+                }else{
+                    //dd('done');
+                    $request->session()->flash('errors', 'Coupon code are not Apply to these products!');
+                    return redirect()->back();
+                    // set mã giảm giá theo số lượng.
 
-                $totalFinal = $total - $couponAmount;
-                dd($totalFinal);
-                Session::put('couponAmount',$couponAmount);
-                Session::put('code',$data['code']);
-                Session::put('totalFinal',$totalFinal);
-                $request->session()->flash('success', 'Coupon code is Successfully Applied. You are Availing Discount!');
-                return redirect()->back();
+                    // $userCart = Cart::where('user_id',Auth::id())->get();
+                    // $CountCart = $userCart->count();
+                    // if($CountCart < 3){
+                    //     $request->session()->flash('errors', 'Coupon code does not apply to the above product total. You need to add the product number if you want to use it!');
+                    //     return redirect()->back();
+                    // }
+                    $userCart = Cart::where('user_id',Auth::id())->get();
+                    $total= 0;
+                    foreach($userCart as $item){
+                        $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty;   
+                    }
+                
+                    if($couponDetail->discount_type == 'Amount'){
+                        $couponAmount = $couponDetail->discount_coup;
+                    }
+                    else{
+                        $couponAmount = $total * ($couponDetail->discount_coup/100);
+                    }
+
+                    $totalFinal = $total - $couponAmount;
+                    //dd($totalFinal);
+                    Session::put('couponAmount',$couponAmount);
+                    Session::put('code',$data['code']);
+                    Session::put('totalFinal',$totalFinal);
+                    
+                    $request->session()->flash('success', 'Coupon code is Successfully Applied. You are Availing Discount!');
+                    return redirect()->back();
+                }
             }
         }
     }
+}
     // public function applyCouponCode(Request $request)
     // {
     //     $coupon = Coupon::where('code',$this->code)->where('expiry_date','>=',Carbon::today())->first();
@@ -257,4 +276,4 @@ class CartController extends Controller
     //     }
     // }
 
-}
+

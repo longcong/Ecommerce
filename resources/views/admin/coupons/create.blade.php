@@ -57,7 +57,7 @@
                             {{ Form::label('code','Code:',array('style' => 'margin-top: 10px; margin-left: 20px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('code',null, array('class'=>'form-control','required' => '','placeholder' => 'Code' ))  }}
+                            {{ Form::text('code',null, array('class'=>'form-control','required' => '','placeholder' => 'Code Coupon' ))  }}
                         </div>
                         <!-- end code -->
                         <!-- Seller_id -->
@@ -92,7 +92,7 @@
                             {{ Form::label('discount_coup','Discount_coup:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-4">
-                            {{ Form::text('discount_coup',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Discount Coupon'  ))  }}
+                            {{ Form::text('discount_coup',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Fixed or Percent'  ))  }}
                         </div>
                         <!-- end discount_coup -->
                     </div>
@@ -103,6 +103,14 @@
                         <div class="col-4" wire:ignore inline="true">
                             {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Expiry Date','wire:model' => 'expiry_date', 'id' => 'expiry_date' ))  }}
                         </div>
+                        <!-- active -->
+                        <div class="col-2 ">
+                            {{ Form::label('is_active', 'Active:') }}
+                        </div>
+                        <div class="col-4">
+                            {{ Form::text('is_active',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;', 'placeholder' => '1 is active')) }}
+                        </div>
+                        <!-- end active -->
                     </div>
                     <br>
                     <!-- {{Form::label('detail',"Detail:")}}

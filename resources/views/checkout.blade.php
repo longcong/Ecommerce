@@ -144,7 +144,7 @@
                         <div class="col-md-6 c-font-20"><h2>Total</h2></div>
                     </li>
                     <li class="row c-border-bottom"></li>
-                    @php $total =0;@endphp
+                    <!-- @php $total =0;@endphp -->
                     @foreach ($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
@@ -152,33 +152,42 @@
                             <p class="">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
                         </div>
                     </li>
-                    @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+                    <!-- @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp -->
                     @endforeach
                     <!-- COUPON -->
                     <!-- END COUPON -->
-                    
                         <li class="row c-margin-b-15 c-margin-t-15">
                             <div class="col-md-6 c-font-20">Subtotal</div>
                             <div class="col-md-6 c-font-20">
                                 <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
                             </div>
                         </li>
+                    
+                        @if(!empty(Session::get('couponAmount')))
+                        <li class="row c-margin-b-15 c-margin-t-15">
+                            <div class="col-md-6 c-font-20">Code</div>
+                            <div class="col-md-6 c-font-20">
+                                <p><span class="c-subtotal">{{ Session::get('code') }}</span></p>
+                            </div>
+                        </li>
+                        @endif
                         <li class="row c-border-top c-margin-b-15"></li>
                         <li class="row">
                             <div class="col-md-6 c-font-20">Shipping</div>
                             <div class="col-md-6">
                                 <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
                                     <div class="c-radio">
-                                        <input type="radio" value="20" id="radio11" class="c-radio" name="shipping_price" checked="">
+                                        <input type="radio" value="0" id="radio11" class="c-radio" name="shipping_price" checked="">
                                         <label for="radio11">
                                             <span class="inc"></span>
                                             <span class="check"></span>
                                             <span class="box"></span>
-                                            Flat Rate
+                                            
+                                            Local Pickup
                                         </label>
-                                        <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
+                                        
                                     </div>
-                                    <div class="c-radio">
+                                    <!-- <div class="c-radio">
                                         <input type="radio" value="10" id="radio12" class="c-radio" name="shipping_price">
                                         <label for="radio12">
                                             <span class="inc"></span>
@@ -189,14 +198,15 @@
                                         <p class="c-shipping-price c-font-bold c-font-20">$10.00</p>
                                     </div>
                                     <div class="c-radio">
-                                        <input type="radio" value="0" id="radio13" class="c-radio" name="shipping_price">
+                                        <input type="radio" value="20" id="radio13" class="c-radio" name="shipping_price">
                                         <label for="radio13">
                                             <span class="inc"></span>
                                             <span class="check"></span>
                                             <span class="box"></span>
-                                            Local Pickup
+                                            Flat Rate
                                         </label>
-                                    </div>
+                                        <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
+                                    </div> -->
                                 </div>
                             </div>
                         </li>
@@ -207,6 +217,7 @@
                                 </div>
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
+                                    <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" name="totalFinal">
                                 </div>
                             </li>
                         @endif

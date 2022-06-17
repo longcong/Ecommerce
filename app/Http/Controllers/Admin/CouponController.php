@@ -65,6 +65,7 @@ class CouponController extends Controller
         $coupon->code=$request->code;
         //$coupon->detail = $request->detal;
         $coupon->discount_coup=$request->discount_coup;
+        $coupon->is_active=$request->is_active;
         $coupon->discount_type = $request->discount_type;
         $coupon->expiry_date = $request->expiry_date;
         // $coupon->end_date = $request->end_date;
@@ -117,6 +118,7 @@ class CouponController extends Controller
         //$coupons->detail = $request->detal;
         $coupons->discount_coup=$request->input('discount_coup');
         $coupons->discount_type = $request->input('discount_type');
+        $coupons->is_active = $request->input('is_active');
         $coupons->expiry_date = $request->input('expiry_date');
         // $coupons->end_date = $request->input('end_date');
 

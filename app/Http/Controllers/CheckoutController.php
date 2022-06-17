@@ -11,6 +11,7 @@ use App\Order;
 use App\OrderItem;
 use phpDocumentor\Reflection\Types\Null_;
 use App\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Carbon;
 
 class CheckoutController extends Controller
@@ -22,19 +23,10 @@ class CheckoutController extends Controller
     public function index()
     {
         $total = 0;
-        $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
-        foreach($cartitemsTotal as $carttotal)
+        $cartitems = Cart::where('user_id',Auth::id())->get();
+        foreach($cartitems as $carttotal)
         {
             $total += ($carttotal->products->price - $carttotal->products->discount_value) * $carttotal->prod_qty ;
-        }
-
-        if(session()->has('coupon')){
-            if($total < session()->get('coupon')['discount_coup']){
-                session()->forget('coupon');
-            }
-            else{
-                $this->calculateDiscounts();
-            }
         }
         $old_cartitems = Cart::where('user_id',Auth::id())->get();
         foreach($old_cartitems as $item)
@@ -45,7 +37,7 @@ class CheckoutController extends Controller
                 $removeItem->delete();
             }
         }
-        $cartitems = Cart::where('user_id',Auth::id())->get();
+        //$cartitems = Cart::where('user_id',Auth::id())->get();
         return view('checkout', compact('cartitems'));
     }
     public function placeOrder(Request $request)
@@ -63,16 +55,17 @@ class CheckoutController extends Controller
         $order->email = $request->input('email');
         $order->phone = $request->input('phone');
         $order->note = $request->input('note');
+        $order->total_price = $request->input('totalFinal');
 
-        $total = 0;
-        $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
-        foreach($cartitemsTotal as $prod)
-        {
-            $total += ($prod->products->price - $prod->products->discount_value) * $prod->prod_qty ;
-        }
+        // $total = 0;
+        // $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
+            //$order->total_price = totalFinal;
+        // foreach($cartitemsTotal as $prod)
+        // {
+        //     $total += ($prod->products->price - $prod->products->discount_value) * $prod->prod_qty ;
+        // }
 
-        $order->total_price = $total;
-
+        // $order->total_price = $total;
         $order->tracking_no= 'Tam Mao'.rand(1111,9999);
         $order->save();
 

@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
-                            <tr>
+                            <tr style="text-align:center">
                                 <th>Coupon Code</th>
                                 <th>Coupon Type</th>
                                 <th>Coupon Discount</th>

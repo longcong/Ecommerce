@@ -25,7 +25,7 @@ class CreateCouponsTable extends Migration
             $table->longText('detail')->nullable();
             $table->integer('discount_coup');
             $table->string('discount_type');
-            $table->tinyInteger('is_active')->default('1');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

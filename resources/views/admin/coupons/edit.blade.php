@@ -38,7 +38,6 @@
                     </div>
                     <div class="col-8">
                         <select id="select" name="seller_id" value="" class="form-control null">
-                            <option value="">Select</option>
                             <option value="1">Admin</option>
                         </select>                     
                     </div>
@@ -59,10 +58,19 @@
                     </div>
                     <div class="col-8">
                         <select id="select" name="type" value="" class="form-control">
-                            <option value="">Select</option>
-                            <option value="Category_base">Category_base</option>
-                            <option value="Product_base">Product_base</option>
-                            <option value="Cart_base">Cart_base</option>
+                            @if($coupons->type == 'Category_base')
+                                <option value="Category_base">Category_base</option>
+                                <option value="Product_base">Product_base</option>
+                                <option value="Cart_base">Cart_base</option>
+                            @elseif($coupons->type == 'Product_base')
+                                <option value="Product_base">Product_base</option>
+                                <option value="Category_base">Category_base</option>
+                                <option value="Cart_base">Cart_base</option>
+                            @else                                
+                                <option value="Cart_base">Cart_base</option>
+                                <option value="Category_base">Category_base</option>
+                                <option value="Product_base">Product_base</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -73,10 +81,14 @@
                         {{ Form::label('discount_type', 'Discount_type:') }}
                     </div>
                     <div class="col-8">
-                        <select id="select" name="discount_type" value="" class="form-control">
-                            <option value="">Select</option>
-                            <option value="Amount">Amount</option>
-                            <option value="Percent">Percent</option>
+                        <select id="select" name="discount_type" value="discount_type" class="form-control">
+                            @if($coupons->discount_type == 'Amount')
+                                <option value="Amount">Amount</option>
+                                <option value="Percent">Percent</option>
+                            @else
+                                <option value="Percent">Percent</option>
+                                <option value="Amount">Amount</option>
+                            @endif
                         </select> 
                     </div>
                 </div>
