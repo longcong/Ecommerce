@@ -170,6 +170,12 @@
                                 <p><span class="c-subtotal">{{ Session::get('code') }}</span></p>
                             </div>
                         </li>
+                        <li class="row c-margin-b-15 c-margin-t-15">
+                            <div class="col-md-6 c-font-20">Discount Coupon</div>
+                            <div class="col-md-6 c-font-20">
+                                <p>$<span class="c-subtotal">{{ Session::get('couponAmount') }}.00</span></p>
+                            </div>
+                        </li>
                         @endif
                         <li class="row c-border-top c-margin-b-15"></li>
                         <li class="row">
@@ -218,6 +224,13 @@
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" name="totalFinal">
+                                </div>
+                            </li>
+                        @else
+                            <li class="row c-margin-b-15 c-margin-t-15">
+                                <div class="col-md-6 c-font-20">Total</div>
+                                <div class="col-md-6 c-font-20">
+                                    <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
                                 </div>
                             </li>
                         @endif
