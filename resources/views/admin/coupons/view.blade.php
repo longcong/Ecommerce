@@ -49,6 +49,7 @@
                                         <a 
                                             href="{{ route('coupons.edit' , $coupon->id )}}" class="btn btn-info btn-sm">
                                             Edit
+                                            
                                         </a>
                                     </td>
                                 </tr>

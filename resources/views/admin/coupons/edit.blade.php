@@ -78,7 +78,7 @@
                 <!-- discount type -->
                 <div class="row g-2 align-items-center" style="margin-top:1px;">
                     <div class="col-2 ">
-                        {{ Form::label('discount_type', 'Discount_type:') }}
+                        {{ Form::label('discount_type', 'Discount_Type:') }}
                     </div>
                     <div class="col-8">
                         <select id="select" name="discount_type" value="discount_type" class="form-control">
@@ -96,17 +96,27 @@
                 <!-- discount coupon -->
                 <div class="row g-2 align-items-center" style="margin-top:1px;">
                     <div class="col-2 ">
-                        {{ Form::label('discount_coup', 'Discount_coupon:') }}
+                        {{ Form::label('discount_coup', 'Discount_Coupon:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('discount_coup',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
                     </div>
                 </div>
                 <!--end discount coupon -->
+                <!-- quantity -->
+                <!-- <div class="row g-2 align-items-center" style="margin-top:1px;">
+                    <div class="col-2 ">
+                        {{ Form::label('quantity', 'Quantity:') }}
+                    </div>
+                    <div class="col-8">
+                        {{ Form::text('quantity',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
+                    </div>
+                </div> -->
+                <!-- end quantity -->
                 <!-- expiry date -->
                 <div class="row g-2 align-items-center" style="margin-top:1px;">
                     <div class="col-2">
-                        {{ Form::label('expiry_date','Expiry_date:',array('style' => 'margin-top: 10px;')) }}
+                        {{ Form::label('expiry_date','Expiry_Date:',array('style' => 'margin-top: 10px;')) }}
                     </div>
                     <div class="col-8" wire:ignore inline="true">
                         {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Expiry Date','wire:model' => 'expiry_date', 'id' => 'expiry_date' ))  }}

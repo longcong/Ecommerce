@@ -61,6 +61,10 @@
                                     </div>
                                 @endif
                             </div>
+                            <!-- <div class="col-md-4 mt-3">
+                                <label for="">Quantity</label>
+                                <div class="p-2 border">{{ $coupon->quantity }}</div>
+                            </div> -->
                             <div class="col-md-4 mt-3">
                                 <label for="">Expiry_Date</label>
                                 <div class="p-2 border">{{  $coupon->expiry_date  }}</div>

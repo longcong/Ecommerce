@@ -59,11 +59,11 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">First Name</label>
-                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->fname}}" name="fname" placeholder="First Name">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->fname}}" id="fname" name="fname" placeholder="First Name">
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Last Name</label>
-                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->lname}}" name="lname" placeholder="Last Name">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->lname}}" id="lname" name="lname" placeholder="Last Name">
                             </div>
                         </div>
                     </div>
@@ -71,31 +71,32 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->cname}}" name="cname" placeholder="Company Name">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->cname}}" id="cname" name="cname" placeholder="Company Name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Address</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address1}}" name="address1" placeholder="Street Address">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address1}}" id="address1" name="address1" placeholder="Street Address">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address2}}" name="address2" placeholder="Apartment, suite, unit etc. (optional)">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address2}}" id="address2" name="address2" placeholder="Apartment, suite, unit etc. (optional)">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Town / City</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->city}}" name="city" placeholder="Town / City">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->city}}" id="city" name="city" placeholder="Town / City">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="control-label">State / County</label> <select name="state" value="{{Auth::user()->state}}" class="form-control c-square c-theme">
+                                <label class="control-label">State / County</label> 
+                                <select name="state" value="{{Auth::user()->state}}" id="state" class="form-control c-square c-theme">
                                     <option value="0">Select an option...</option>
                                     <option value="1">Vietnam</option>
                                     <option value="2">Singapore</option>
@@ -107,7 +108,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Postcode / Zip</label>
-                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->zipcode}}" name="zipcode" placeholder="Postcode / Zip">
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->zipcode}}" id="zipcode" name="zipcode" placeholder="Postcode / Zip">
                             </div>
                         </div>
                     </div>
@@ -117,11 +118,11 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">Email Address</label>
-                                <input type="email" class="form-control c-square c-theme" value="{{Auth::user()->email}}" name="email" placeholder="Email Address">
+                                <input type="email" class="form-control c-square c-theme" id="email" value="{{Auth::user()->email}}" name="email" placeholder="Email Address">
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label">Phone</label>
-                                <input type="tel" class="form-control c-square c-theme" value="{{Auth::user()->phone}}" name="phone" placeholder="Phone">
+                                <input type="tel" class="form-control c-square c-theme" id="phone" value="{{Auth::user()->phone}}" name="phone" placeholder="Phone">
                             </div>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Order Notes</label>
-                        <textarea class="form-control c-square c-theme" rows="3" value="{{Auth::user()->note}}" name="note" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
+                        <textarea class="form-control c-square c-theme" rows="3" value="{{Auth::user()->note}}" id="note" name="note" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
                     </div>
                 </div>
             </div>
@@ -216,6 +217,7 @@
                                 </div>
                             </div>
                         </li>
+                        
                         @if(!empty(Session::get('couponAmount')))
                             <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">
@@ -223,7 +225,7 @@
                                 </div>
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
-                                    <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" name="totalFinal">
+                                    <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>
                         @else
@@ -231,22 +233,51 @@
                                 <div class="col-md-6 c-font-20">Total</div>
                                 <div class="col-md-6 c-font-20">
                                     <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                                    <input type="hidden" class="form-control c-square c-theme" value="{{$total}}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>
                         @endif
-                    <li class="row">
-                        <div class="form-group col-md-12" role="group">
-                            <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Submit</button>
-                            {{-- <button type="submit" class="btn btn-lg btn-default c-btn-square c-btn-uppercase c-btn-bold">Cancel</button> --}}
-                        </div>
-                    </li>
+                        @if(!Session::get('success_momo') == true)
+                            <li class="row c-margin-b-15 c-margin-t-15">
+                                <div class="form-group col-md-6 c-font-20" role="group">
+                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Thanh Toán</button> 
+                                </div>
+                            </li> 
+                        @else
+                            <li class="row c-margin-b-15 c-margin-t-15">
+                                <div class="form-group col-md-12 c-font-20" role="group">
+                                    <h2 class="c-font-bold c-font-uppercase c-font-18">Bạn đã Thanh Toán hóa đơn qua Momo</h2>
+                                    <br>
+                                    <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">Hoàn Thành</button> 
+                                </div>
+                            </li> 
+                        @endif              
+    </form>              
+                        @if(!Session::get('success_momo') == true)
+                        <li class="row c-margin-b-15 c-margin-t-15">
+                            <div class="form-group col-md-6 c-font-20" role="group">
+                                <form action="{{ route('momo_payment')}}" class="c-shop-form-1" method="post">
+                                    @csrf
+                                    @if(!empty(Session::get('couponAmount')))
+                                        <input type="hidden" name="total_momo" value="{{ Session::get('totalFinal') }}">
+                                    @else
+                                        <input type="hidden" name="total_momo" value="{{ $total }}">
+                                    @endif
+                                        <button type="submit" class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" name="payUrl">Thanh Toán Momo</button>
+                                </form>
+                            </div>
+                        </li>
+                        @endif
+                    </div>
                 </ul>
             </div>     
+        </div>  
+    </div>
+    
 
-            </div>
-            
-        </div>
-    </form>
+    
+ 
+                    
     <!-- END: ORDER FORM -->
 </div>
 </div>  
@@ -267,5 +298,26 @@
                 $(".abc").css("display", "block");
             }
         });
+        $(document).ready(function () {
+        $("form").submit(function (event) {
+            var formData = {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            superheroAlias: $("#superheroAlias").val(),
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/placeorder",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                }).done(function (data) {
+                console.log(data);
+            });
+            event.preventDefault();
+        });
+    });
     </script>
+    
 @endsection

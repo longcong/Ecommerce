@@ -307,12 +307,45 @@
                                         <span class="c-font-dark c-font-bold c-font-22">$0.00</span>
                                     </h3>
                                 </li> -->
-                                <li>
-                                    <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
-                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('totalFinal') }}.00</span>
-                                    </h3>
-                                </li>
+                                @if(!Session::get('success_momo') == true)
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                            <span class="c-font-dark c-font-bold c-font-22">
+                                                ${{ Session::get('totalFinal') }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                    @else
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                            <span class="c-font-dark c-font-bold c-font-22">
+                                                ${{ Session::get('totalFinal') }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
                                 @endif
+                            @else
+                                
+                                @if(!Session::get('success_momo') == true)
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                            <span
+                                                class="c-font-dark c-font-bold c-font-22">
+                                                ${{ $orders->total_price }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                    @else
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                            <span
+                                                class="c-font-dark c-font-bold c-font-22">
+                                                ${{ $orders->total_price }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                @endif
+                            @endif
                             </ul>
                         </div>                       
                     </div>

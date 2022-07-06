@@ -19,7 +19,7 @@
 <div class="card">
     <div class="row">
         <div class="col-md-12">
-            <table id="tblabc" class="table">
+            <table id="tblabc" class="table table-bordered">
                 <thead >
                     <th>ID</th>
                     <th>Title</th>
@@ -44,11 +44,10 @@
                             <td>{{ $post->quantity}}</td>
                             <td>{{ $post->discount_value}}</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
-                            <td>{{ substr($post->note, 0, 50) }} {{ strlen($post->note) >50 ? "..." : "" }}</td>
+                            <td>{{ substr($post->note, 0, 20) }} {{ strlen($post->note) > 20 ? "..." : "" }}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
                             <td class="order1"><a href="{{ route('products.show', $post->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-info btn-sm">Edit</a></td>
                         </tr>
-
                     @endforeach
                 </tbody>
             </table>

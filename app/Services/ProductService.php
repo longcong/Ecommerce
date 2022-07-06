@@ -7,6 +7,7 @@ use App\Coupon;
 use App\Product;
 use App\Interfaces\ProductInterface;
 use App\Order;
+use App\Payment;
 use App\Tag;
 use App\Wishlist;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,10 @@ Class ProductService implements ProductInterface{
     public function getCoupons()
     {
         return Coupon::all();
+    }
+    public function getPayments()
+    {
+        return Payment::all();
     }
 }
 

@@ -10,5 +10,5 @@ interface ProductInterface{
     public function getOrder();
     public function getViewWishlist();
     public function getCoupons();
-    
+    public function getPayments();
 }

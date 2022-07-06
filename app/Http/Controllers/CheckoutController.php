@@ -9,16 +9,84 @@ use App\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\OrderItem;
-use phpDocumentor\Reflection\Types\Null_;
+use App\Payment;
 use App\User;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
-    // public $couponCode = '';
-    // public $discount = '';
-    // public $subtotalDiscont = '';
+    public function execPostRequest($url, $data)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data))
+        );
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        //execute post
+        $result = curl_exec($ch);
+        //close connection
+        curl_close($ch);
+        return $result;
+    }
+    public function momo_payment(Request $request)
+    {
+        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+        //$endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+        // $partnerCode = 'MOMOLLM920220618';
+        // $accessKey = '2u8NCe633j8dmL7v';
+        // $secretKey = 'hNNsJiZbXuZE3oqRXBo6SAAM7at7Giit';
+
+        $partnerCode = 'MOMOBKUN20180529';
+        $accessKey = 'klm05TvNBzhg7h7j';
+        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+
+        $orderInfo = "Thanh toán qua MoMo";
+        $amount = $_POST['total_momo'];
+        $orderId = time() . "";
+        $redirectUrl = "http://bbk.localhost/payment";
+        $ipnUrl = "http://bbk.localhost/payment";
+        $extraData = "";
+
+        
+
+        $requestId = time() . "";
+        $requestType = "payWithATM";
+        //$extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
+        //before sign HMAC SHA256 signature
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+        //dd($signature);
+        $data = array('partnerCode' => $partnerCode,
+            'partnerName' => "Test",
+            "storeId" => "MomoTestStore",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature,
+        );
+            
+
+        $result = $this->execPostRequest($endpoint, json_encode($data));
+        $jsonResult = json_decode($result, true);  // decode json
+        Session::put('success_momo',true);
+        
+        //Just a example, please check more in there
+        return redirect()->to($jsonResult['payUrl']);
+        //header('Location: ' . $jsonResult['payUrl']);
+        
+
+    }
 
     public function index()
     {
@@ -42,6 +110,8 @@ class CheckoutController extends Controller
     }
     public function placeOrder(Request $request)
     {
+        
+
         $order = new Order();
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
@@ -57,15 +127,6 @@ class CheckoutController extends Controller
         $order->note = $request->input('note');
         $order->total_price = $request->input('totalFinal');
 
-        // $total = 0;
-        // $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
-            //$order->total_price = totalFinal;
-        // foreach($cartitemsTotal as $prod)
-        // {
-        //     $total += ($prod->products->price - $prod->products->discount_value) * $prod->prod_qty ;
-        // }
-
-        // $order->total_price = $total;
         $order->tracking_no= 'Tam Mao'.rand(1111,9999);
         $order->save();
 
@@ -76,7 +137,7 @@ class CheckoutController extends Controller
                 'order_id'=> $order->id,
                 'product_id'=> $item->prod_id,
                 'quantity' => $item->prod_qty,
-                'price' => $item-> products->price,
+                'price' => $item->products->price,
             ]);
 
             $prod = Product::where('id',$item->prod_id)->first();
@@ -103,7 +164,7 @@ class CheckoutController extends Controller
         }
         $cartitems = Cart::where('user_id',Auth::id())->get();
         Cart::destroy($cartitems);
-
+         
         return redirect()->route('order-info', $order->id)->with('status',"Order placed Successfully");
     }
     public function info($id)
@@ -113,39 +174,7 @@ class CheckoutController extends Controller
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
     }
-    // public function applyCouponCode()
-    // {
-    //     $coupon = Coupon::where('code',$this->couponCode)->where('expiry_date','>=',Carbon::today())->first();
-    //     if(!$coupon){
-    //         $coupon = session()->flash('coupon_message','Coupon code is invalid!');
-    //         return;
-    //     }
-    //     $coupon = session()->put('coupon',[
-    //         'code' => $coupon->code,
-    //         'type' => $coupon->type,
-    //         'discount_type' => $coupon->discount_type,
-    //         'discount_coup' => $coupon->discount_coup,
-    //         'expiry_date' => $coupon->expiry_date,
-    //     ]);
-    // }
-    // public function calculateDiscounts()
-    // {
-    //     $total = 0;
-    //     $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
-    //     foreach($cartitemsTotal as $carttotal)
-    //     {
-    //         $total += ($carttotal->products->price - $carttotal->products->discount_value) * $carttotal->prod_qty ;
-    //     }
 
-    //     if(session()->has('coupon')){
-    //         if(session()->get('coupon')['discount_type'] == 'Amount'){
-    //             $this->discount = session()->get('coupon')['discount_coup'];
-    //         }
-    //         else{
-    //             $this->discount = ( $total * session()->get('coupon')['discount_coup'])/100;
-    //         }
-    //         $this->subtotalDiscont = $total - $this->discount;
-    //         $total = $this->subtotalDiscont;
-    //     }
-    // }
+    
+    
 }

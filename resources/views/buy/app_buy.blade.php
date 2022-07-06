@@ -22,6 +22,7 @@ Follow: http://www.twitter.com/themehats
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
     
     @yield('buy_main')
+    
     <a name="footer"></a>
     <footer class="c-layout-footer c-layout-footer-6 c-bg-grey-1">
         @include('buy.inc.footer')

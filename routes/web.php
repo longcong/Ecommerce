@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\ViewAdminPaymentController;
 use App\Http\Controllers\UserDashboard\UserDashboardController;
-use app\Http\Controllers\UserDashboard\OrderUserController;
+use app\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +58,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('place-order',[CheckoutController::class,'placeOrder'])->name('placeorder');
     Route::get('order-info/{id}',[CheckoutController::class,'info'])->name('order-info');
-
+    Route::post('update-cart2',[ProductDetailController::class,'updateCart2']);
     Route::get('wishlist', [WishlistController::class, 'viewwishlist'])->name('wishlist');
     Route::post('add-to-wishlist',[WishlistController::class, 'addWishlist'])->name('addWishlist');
     Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');    
@@ -90,11 +93,11 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::get('users', [DashboardController::class, 'users']);
 
     Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
+    Route::get('payment-admin',[ViewAdminPaymentController::class,'index'])->name('payments');
 
     Route::resource('coupons','Admin\CouponController');
-    
-    
-    
 
 }); 
+Route::get('payment',[PaymentController::class, 'viewpayment'])->name('viewpayment');
+Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
 

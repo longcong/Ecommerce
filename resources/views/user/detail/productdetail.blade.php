@@ -388,16 +388,19 @@
                     </div>
                     <div class="c-product-add-cart c-margin-t-20">
                         <div class="row">
+                            @foreach($cartitems as $item)
                             <div class="col-sm-4 col-xs-12">
+                            <input type="hidden" value="{{ $item->prod_id }}" class="product_id">
                                 <div class="c-input-group c-spinner">
                                     <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
-                                    <input type="text" class="form-control c-item-1" value="1">
+                                    <input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
                                     <div class="c-input-group-btn-vertical">
-                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
-                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
+                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up changeQuantity-2 increment-btn"></i></button>
+                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity-2 decrement-btn"></i></button>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             <div class="col-sm-12 col-xs-12 c-margin-t-20">
                             <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                                 <i class="fa fa-shopping-cart"></i>Add Cart

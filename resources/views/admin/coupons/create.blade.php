@@ -112,6 +112,14 @@
                         </div>
                         <!-- end active -->
                     </div>
+                    <!-- <div class="row g-2 align-items-center">
+                        <div class="col-2">
+                            {{ Form::label('quantity','Quantity:',array('style' => 'margin-top: 10px;')) }}
+                        </div>
+                        <div class="col-4">
+                            {{ Form::text('quantity',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Quantity'  ))  }}
+                        </div>
+                    </div> -->
                     <br>
                     <!-- {{Form::label('detail',"Detail:")}}
                     {{Form::textarea('detail',null,array('class' => 'form-control','required' =>'' )) }} -->

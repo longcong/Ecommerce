@@ -63,7 +63,7 @@ class CouponController extends Controller
         $coupon->type=$request->type;
         $coupon->seller_id=$request->seller_id;
         $coupon->code=$request->code;
-        //$coupon->detail = $request->detal;
+        //$coupon->quantity = $request->quantity;
         $coupon->discount_coup=$request->discount_coup;
         $coupon->is_active=$request->is_active;
         $coupon->discount_type = $request->discount_type;
@@ -72,7 +72,7 @@ class CouponController extends Controller
         $coupon->save();
         $request->session()->flash('success', 'The coupon has been created successfully!');
       
-        return redirect()->route('coupons.show', $coupon->id);
+        return redirect()->route('coupons.index');
     }
 
     /**
@@ -115,7 +115,7 @@ class CouponController extends Controller
         $coupons->type=$request->input('type');
         $coupons->seller_id=$request->input('seller_id');
         $coupons->code=$request->input('code');
-        //$coupons->detail = $request->detal;
+        //$coupons->quantity = $request->input('quantity');
         $coupons->discount_coup=$request->input('discount_coup');
         $coupons->discount_type = $request->input('discount_type');
         $coupons->is_active = $request->input('is_active');
@@ -125,7 +125,7 @@ class CouponController extends Controller
         $coupons->save();
         $request->session()->flash('success', 'The coupon update successfully save!');
       
-        return redirect()->route('coupons.show', $coupons->id);
+        return redirect()->route('coupons.index');
     }
 
     /**
