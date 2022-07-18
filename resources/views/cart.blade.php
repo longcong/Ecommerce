@@ -7,6 +7,11 @@
 	<!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
 @include('components.header')
 
+<?php
+	session_start();
+		$_SESSION["session_id"] = "x123";
+?>
+
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 	<!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
 	
@@ -27,12 +32,14 @@
 		</ul>
 	</div>
 </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
-		<!-- BEGIN: PAGE CONTENT -->
+		
+<!-- BEGIN: PAGE CONTENT -->
 		<!-- BEGIN: CONTENT/SHOPS/SHOP-CART-1 -->
 <div class="c-content-box c-size-lg">
 	<div class="container">
 		<div class="c-shop-cart-page-1">
 			<div class="row c-cart-table-title">
+				@include('layouts.inc.messager')
 				<div class="col-md-2 c-cart-image">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Image</h3>
 				</div>
@@ -58,6 +65,7 @@
 			</div>
 			<!-- BEGIN: SHOPPING CART ITEM ROW -->
 			@php $total =0;@endphp
+
 			@foreach ($cartitems as $item)
 			<div class="row c-cart-table-row product_data" id="product_data">
 				<h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">Item {{$item->id}}</h2>
@@ -103,6 +111,7 @@
 				<div class="col-md-1 col-sm-12 c-cart-remove">
 					<button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i></button>
 				</div>
+				
 			</div>
 			@endforeach
 			<!-- END: SHOPPING CART ITEM ROW -->
@@ -120,28 +129,76 @@
 			</div>
 			<!-- END: SUBTOTAL ITEM ROW -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
-			<div class="row">
-				<div class="c-cart-subtotal-row">
-					<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Code</h3>
-					</div>
-					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">$0</h3>
-					</div>
-				</div>
-			</div>
-			<!-- END: SUBTOTAL ITEM ROW -->
+
+			<!-- END COUPON -->
 			<!-- BEGIN: SUBTOTAL ITEM ROW -->
-			<div class="row">
-				<div class="c-cart-subtotal-row">
-					<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
-					</div>
-					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
+			@if(!empty(Session::get('couponAmount')))
+				<div class="row">
+					<div class="c-cart-subtotal-row">
+						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Discount Coupon</h3>
+						</div>
+						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-bold c-font-16">${{ Session::get('couponAmount') }}.00</h3>
+						</div>
 					</div>
 				</div>
-			</div>
+
+				<div class="row">
+					<div class="c-cart-subtotal-row">
+						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Discount Code</h3>
+						</div>
+						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-bold c-font-16">{{ Session::get('code') }}</h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="c-cart-subtotal-row">
+						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
+						</div>
+						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-bold c-font-16">${{ Session::get('totalFinal') }}.00</h3>
+						</div>
+					</div>
+				</div>
+			@else
+				<div class="row">
+					<div class="c-cart-subtotal-row">
+						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<label class="c-font-bold c-font-16" for="have-coupon">
+								<input class="frm-input" type="checkbox" id="have-code" name="have-code" value="1" wire:model="haveCouponCode">
+								<span>I have coupon code ?</span>
+							</label>
+							<div class="col-md-10 c-font-20 abc" style="display:none">
+								<form action="{{ route('applyCoupon')}}" method="post">
+									@csrf
+									<div>	
+										<h2 class="title-box">Coupon Code</h2>
+											<p class="row-in-form">
+												<input placeholder="Enter your coupon code" aria-label="Coupon code" type="text" name="code">
+											</p>
+										<button type="submit" class="c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn btn-small">Apply</button>
+										<br>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="c-cart-subtotal-row">
+						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
+						</div>
+						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+							<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
+						</div>
+					</div>
+				</div>
+			@endif
 			<!-- END: SUBTOTAL ITEM ROW -->
 			<div class="c-cart-buttons">
 				<a href="#" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Continue Shopping</a>
@@ -192,5 +249,14 @@
 @endsection
 
 @section('buy_script')
-
+	<script>
+        $("#have-code").change(function(){
+            var check = $(".abc").css("display");
+            if(check=="block"){
+                $(".abc").css("display", "none");
+            }else if(check=="none"){
+                $(".abc").css("display", "block");
+            }
+        });
+    </script>
 @endsection

@@ -2956,9 +2956,8 @@ textarea.form-control-lg {
   padding-left: 1.73em;
   margin-bottom: 0.125rem;
 }
-
 .form-check .form-check-input {
-  float: left;
+  float: inherit;
   margin-left: -1.73em;
 }
 
@@ -22109,7 +22108,7 @@ body.dark-version {
 
 .form-switch .form-check-input:checked {
   border-color: #42424a;
-  background-color: #42424a;
+  background-color: darkcyan;
 }
 
 .form-switch .form-check-input:checked:active:after {
@@ -25187,7 +25186,7 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
 }
 
 .table tbody tr:last-child td {
-  border-width: 0;
+  border-width: 1;
 }
 
 .table> :not(:last-child)> :last-child>* {

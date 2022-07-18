@@ -291,21 +291,61 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <ul class="c-list list-unstyled">
+                            @if(!empty(Session::get('couponAmount')))
                                 <li>
-                                    <h3 class="c-font-regular c-font-22">Subtotal : &nbsp;
-                                        <span class="c-font-dark c-font-bold c-font-22">${{$orders->total_price}}.00</span>
+                                    <h3 class="c-font-regular c-font-22">Coupon Sale: &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('couponAmount') }}</span>
                                     </h3>
                                 </li>
                                 <li>
+                                    <h3 class="c-font-regular c-font-22">Coupon Code: &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">{{ Session::get('code') }}</span>
+                                    </h3>
+                                </li>
+                                <!-- <li>
                                     <h3 class="c-font-regular c-font-22">Shipping Fee : &nbsp;
                                         <span class="c-font-dark c-font-bold c-font-22">$0.00</span>
                                     </h3>
-                                </li>
-                                <li>
-                                    <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
-                                        <span class="c-font-dark c-font-bold c-font-22">${{$orders->total_price}}.00</span>
-                                    </h3>
-                                </li>
+                                </li> -->
+                                @if(!Session::get('success_momo') == true)
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                            <span class="c-font-dark c-font-bold c-font-22">
+                                                ${{ Session::get('totalFinal') }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                    @else
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                            <span class="c-font-dark c-font-bold c-font-22">
+                                                ${{ Session::get('totalFinal') }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                @endif
+                            @else
+                                
+                                @if(!Session::get('success_momo') == true)
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                            <span
+                                                class="c-font-dark c-font-bold c-font-22">
+                                                ${{ $orders->total_price }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                    @else
+                                    <li>
+                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                            <span
+                                                class="c-font-dark c-font-bold c-font-22">
+                                                ${{ $orders->total_price }}.00
+                                            </span>
+                                        </h3>
+                                    </li>
+                                @endif
+                            @endif
                             </ul>
                         </div>                       
                     </div>

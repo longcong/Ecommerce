@@ -1017,7 +1017,7 @@
                                             <h3>Shop Pages 2</h3>
                                         </li>
                                         <li>
-                                            <a href="{{ 'list' }}"
+                                            <a href="{{ route('list') }}"
                                                 >Product List</a
                                             >
                                         </li>
@@ -1070,7 +1070,7 @@
                                             <h3>Shop Pages 3</h3>
                                         </li>
                                         <li>
-                                            <a href="{{ 'wishlist' }}"
+                                            <a href="{{ route('wishlist') }}"
                                                 >Wish List</a
                                             >
                                         </li>
@@ -2109,4 +2109,5 @@
             <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
         </div>
     </div>
+    
 </header>

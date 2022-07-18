@@ -17,14 +17,16 @@ code {
   -webkit-transition: back 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
-  -ms-transition: all 0.2s ease-out; }
+  -ms-transition: all 0.2s ease-out; 
+}
   .close:hover {
     opacity: 0.8;
     filter: alpha(opacity=80);
     -webkit-transition: back 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -o-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out; }
+    -ms-transition: all 0.2s ease-out; 
+  }
 
 label {
   font-weight: 500;
@@ -106,11 +108,12 @@ label.control-label {
 .has-success .form-control {
   border-color: #5dc09c;
   -webkit-box-shadow: none;
+  box-shadow: none; 
+}
+.has-success .form-control:focus {
+  border-color: #42a883;
+  -webkit-box-shadow: none;
   box-shadow: none; }
-  .has-success .form-control:focus {
-    border-color: #42a883;
-    -webkit-box-shadow: none;
-    box-shadow: none; }
 
 .has-success .input-group-addon {
   color: #5dc09c;
@@ -513,11 +516,11 @@ label.control-label {
 .c-btn-black {
   border-color: #000000;
   border-width: 1px;
-  color: #ffffff;
+  color: black;
   background: #000000;
   border-color: #000000; }
   .c-btn-black.btn-no-focus:focus, .c-btn-black.btn-no-focus.focus {
-    color: #ffffff;
+    color: black;
     background: #000000;
     border-color: #000000; }
   .c-btn-black.btn-no-focus:hover, .c-btn-black:hover, .c-btn-black.btn-no-focus:active, .c-btn-black:active, .c-btn-black.active,
@@ -1717,22 +1720,22 @@ label.control-label {
     border-color: #a0a6ab; }
   .c-btn-grey-4 .badge {
     color: #a0a6ab;
-    background: #ffffff; }
+    background: #ffffff; 
+  }
 
 .c-btn-border-1x.c-btn-white {
   border-color: #FFFFFF;
-  /* color: #FFFFFF; */
-  background: none;
+  color: black;
+  background: aliceblue;
   border-color: #FFFFFF; }
   .c-btn-border-1x.c-btn-white.c-btn-border-opacity-04 {
     border-color: rgba(255, 255, 255, 0.4); 
-    color:#2078de;
   }
   .c-btn-border-1x.c-btn-white.btn-no-focus:focus, .c-btn-border-1x.c-btn-white.btn-no-focus.focus {
-    color: #FFFFFF;
-    background: none;
-    border-color: #FFFFFF;
-  }
+    color: black;
+    background: aliceblue;
+    border-color: #FFFFFF; 
+   }
   .c-btn-border-1x.c-btn-white.btn-no-focus:hover, .c-btn-border-1x.c-btn-white:hover, .c-btn-border-1x.c-btn-white.btn-no-focus:active, .c-btn-border-1x.c-btn-white:active, .c-btn-border-1x.c-btn-white.active,
   .open > .c-btn-border-1x.c-btn-white.dropdown-toggle {
     color: #2f353b;

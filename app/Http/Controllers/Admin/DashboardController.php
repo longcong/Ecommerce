@@ -18,4 +18,11 @@ class DashboardController extends Controller
         $users = User::find($id);
         return view('admin.users.view', compact('users'));
     }
+    public function updateRole(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->role = $request->role;
+        $user->save();
+        return response()->json(['status'=>'Access rights have changed successfully.']);
+    }
 }

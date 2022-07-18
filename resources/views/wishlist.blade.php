@@ -64,7 +64,7 @@
                 <h3 class="c-font-uppercase c-font-bold">My Wishlist</h3>
                 <div class="c-line-left"></div>
             </div>
-            @if($wishlist->count() > 0 )
+            @if($wishlists->count() > 0 )
                 <div class="c-shop-wishlist-1">
                     <div class="c-border-bottom hidden-sm hidden-xs">
                         <div class="row">
@@ -83,15 +83,15 @@
                         </div>
                     </div>
                     <!-- BEGIN: PRODUCT ITEM ROW -->
-                    @foreach($wishlist as $item)
+                    @foreach($wishlists as  $item)
                         <div class="c-border-bottom c-row-item product_data">
-                            <input type="hidden" value="{{ $item->id }}" class="product_id">
+                            
                             <div class="row">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="c-content-overlay">
                                         <div class="c-overlay-wrapper">
                                             <div class="c-overlay-content">
-                                                <a href="{{ asset('images/' . $item->products->image) }}"
+                                                <a href="{{ url('product/'.$item->products->slug) }}"
                                                     class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                             </div>
                                         </div>
@@ -101,16 +101,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-sm-8">
+                                <div class="col-md-5 col-sm-8 product_data">
+                                <input type="hidden" value="{{ $item->id }}" class="id">
                                     <ul class="c-list list-unstyled">
                                         <li class="c-margin-b-25"><a
-                                                href="{{ asset('images/' . $item->products->image) }}"
+                                                href="{{ url('product/'.$item->products->slug) }}"
                                                 class="c-font-bold c-font-22 c-theme-link">{{ $item->products->title }}</a>
                                         </li>
                                         <li class="c-margin-b-10">Note: {{ $item->products->note }}</li>
                                         <!-- <li>Size: S</li> -->
                                         <li class="c-margin-t-30">
                                             <div class="form-group" role="group">
+                                                <!-- <input type="hidden" value="{{ $item->id }}" class="product_id"> -->
                                                 <button type="submit"
                                                     class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                                                     <i class="fa fa-shopping-cart"></i>Add Cart

@@ -240,59 +240,63 @@ Follow: http://www.twitter.com/themehats
         <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space">
             <div class="container">
                 <div class="c-content-title-4">
-                    <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">Most
-                            Popular</span></h3>
+                    <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">
+                        Most Popular</span></h3>
                 </div>
-                <div class="row">
-                    <div data-slider="owl">
-                        <div class="owl-carousel owl-theme c-theme owl-small-space c-owl-nav-center" data-rtl="false"
-                            data-items="4" data-slide-speed="8000">
-                            @foreach($populars as $post)
-                                <div class="item product_data">
-                                    <input type="hidden" value="{{ $post->id }}" class="product_id">
-                                    <div class="c-content-product-2 c-bg-white c-border">
-                                        <div class="c-content-overlay">
-                                            <div
-                                                class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">
-                                                Sale</div>
-                                            <div class="c-overlay-wrapper">
-                                                <div class="c-overlay-content">
-                                                    <a href="{{ url('product/'.$post->slug) }}"
-                                                        class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                @if($populars->count() > 0 )
+                    <div class="row">
+                        <div data-slider="owl">
+                            <div class="owl-carousel owl-theme c-theme owl-small-space c-owl-nav-center" data-rtl="false"
+                                data-items="4" data-slide-speed="8000">
+                                @foreach($populars as $post)
+                                    <div class="item product_data">
+                                        <input type="hidden" value="{{ $post->id }}" class="product_id">
+                                        <div class="c-content-product-2 c-bg-white c-border">
+                                            <div class="c-content-overlay">
+                                                <div
+                                                    class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">
+                                                    Sale</div>
+                                                <div class="c-overlay-wrapper">
+                                                    <div class="c-overlay-content">
+                                                        <a href="{{ url('product/'.$post->slug) }}"
+                                                            class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                                                    </div>
+                                                </div>
+                                                <div class="c-bg-img-center-contain c-overlay-object" data-height="height"
+                                                    style="height: 270px; background-image:  url({{ asset('images/' . $post->image) }})">
                                                 </div>
                                             </div>
-                                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height"
-                                                style="height: 270px; background-image:  url({{ asset('images/' . $post->image) }})">
+                                            <div class="c-info">
+                                                <p class="c-title c-font-18 c-font-slim">{{ $post->title }}</p>
+                                                <p class="c-price c-font-16 c-font-slim">
+                                                    {{ $post->price - $post->discount_value }}$ &nbsp;
+                                                    <span
+                                                        class="c-font-16 c-font-line-through c-font-red">{{ $post->price }}$</span>
+                                                </p>
                                             </div>
-                                        </div>
-                                        <div class="c-info">
-                                            <p class="c-title c-font-18 c-font-slim">{{ $post->title }}</p>
-                                            <p class="c-price c-font-16 c-font-slim">
-                                                {{ $post->price - $post->discount_value }}$ &nbsp;
-                                                <span
-                                                    class="c-font-16 c-font-line-through c-font-red">{{ $post->price }}$</span>
-                                            </p>
-                                        </div>
-                                        <div class="btn-group btn-group-justified" role="group">
-                                            <div class="btn-group c-border-top" role="group">
-                                                <button type="submit"
-                                                    class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
-                                                    <i class="fa fa-heart-o"></i>Add Wishlist
-                                                </button>
-                                            </div>
-                                            <div class="btn-group c-border-left c-border-top" role="group">
-                                                <button type="submit"
-                                                    class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
-                                                    <i class="fa fa-shopping-cart"></i>Add Cart
-                                                </button>
+                                            <div class="btn-group btn-group-justified" role="group">
+                                                <div class="btn-group c-border-top" role="group">
+                                                    <button type="submit"
+                                                        class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
+                                                        <i class="fa fa-heart-o"></i>Add Wishlist
+                                                    </button>
+                                                </div>
+                                                <div class="btn-group c-border-left c-border-top" role="group">
+                                                    <button type="submit"
+                                                        class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
+                                                        <i class="fa fa-shopping-cart"></i>Add Cart
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <h3 style="text-align: center;">There are no Products Popular</h3>
+                @endif
             </div>
         </div><!-- END: CONTENT/SHOPS/SHOP-2-2 -->
 

@@ -386,23 +386,50 @@
                             </div>
                         </div>
                     </div>
-                    <div class="c-product-add-cart c-margin-t-20">
+                    
+                    <div class="c-product-add-cart c-margin-t-20 ">
                         <div class="row">
+                        
                             <div class="col-sm-4 col-xs-12">
-                                <div class="c-input-group c-spinner">
-                                    <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
-                                    <input type="text" class="form-control c-item-1" value="1">
-                                    <div class="c-input-group-btn-vertical">
-                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up"></i></button>
-                                        <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down"></i></button>
-                                    </div>
+                                <div class="c-input-group c-spinner product_data">
+                                    <input type="hidden" value="{{ $product->id }}" class="product_id">
+                                    @if(!$product->quantity <= 0)
+                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                                        <input type="text" class="form-control qty-input" value="1">
+                                        <div class="c-input-group-btn-vertical">
+                                            <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up changeQuantity_2 increment-btn-1"></i></button>
+                                            <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity_2 decrement-btn-1"></i></button>
+                                        </div>
+                                    @else
+                                        
+                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                                        <input type="text" class="form-control qty-input" value="1">
+                                        <div class="c-input-group-btn-vertical">
+                                            <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up changeQuantity_2"></i></button>
+                                            <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-down changeQuantity_2"></i></button>
+                                        </div>>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                            <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
-                                <i class="fa fa-shopping-cart"></i>Add Cart
-                            </button>
-                            </div>
+                            @if(!$product->quantity <= 0)
+                                <div class="col-sm-12 col-xs-12 c-margin-t-20">
+                                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
+                                        <i class="fa fa-shopping-cart"></i>Add Cart
+                                    </button>
+                                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
+                                        <i class="fa fa-heart-o"></i>Add Wishlist
+                                    </button>
+                                </div>
+                            @else
+                                <div class="col-sm-12 col-xs-12 c-margin-t-20">
+                                    <button type="button" class="btn btn-sm-1 c-theme-btn-1 c-btn-square-1 c-btn-uppercase-1 c-btn-bold-1">
+                                        <i class="fa fa-shopping-cart"></i>Out Of Stock
+                                    </button>
+                                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square-1 c-btn-uppercase-1 c-btn-bold-1 addtoWishlist">
+                                        <i class="fa fa-heart-o"></i>Add Wishlist
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -420,31 +447,23 @@
             <li role="presentation" class="active">
                 <a class="c-font-uppercase c-font-bold" href="#tab-1" role="tab" data-toggle="tab">Description</a>
             </li>
-            <li role="presentation">
+            <!-- <li role="presentation">
                 <a class="c-font-uppercase c-font-bold" href="#tab-2" role="tab" data-toggle="tab">Additional Information</a>
             </li>
             <li role="presentation">
                 <a class="c-font-uppercase c-font-bold" href="#tab-3" role="tab" data-toggle="tab">Reviews (3)</a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="tab-1"> 
             <div class="c-product-desc c-center">
                 <div class="container">
+                    <!-- chỉnh sửa căn lại -->
                     <img src="{{ asset('images/' .$product->image) }}"/>
                     <br>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer
-                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                        exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                        consequat. Lorem ipsum dolor sit amet, consectetuer
-                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                        exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                        consequat.
-                    </p>
+                    <br>
+                    <p>{{$product->note}}</p>
                 </div>
             </div>
             <div class="c-product-desc c-bg-dark">
@@ -459,15 +478,7 @@
                                 <div class="c-line-left"></div>
                             </div>
                             <p class="c-font-grey">
-                                Lorem ipsum dolor sit amet, consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                consequat. Lorem ipsum dolor sit amet, consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                consequat.
+                                xnxx
                             </p>
                             <br>
                             <button class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square">Add to Cart</button>
@@ -620,179 +631,7 @@
 </div><!-- END: CONTENT/SHOPS/SHOP-PRODUCT-TAB-1 -->
 
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 -->
-<div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space">
-<div class="container">
-    <div class="c-content-title-4">
-        <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">Most Popular</span></h3>
-    </div>
-    <div class="row">
-        <div data-slider="owl">
-            <div class="owl-carousel owl-theme c-theme owl-small-space c-owl-nav-center" data-rtl="false" data-items="4" data-slide-speed="8000">
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/18.png') }}) ;"></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">Samsung Galaxy Note 4</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/27.png') }}) ;"></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">Samsung Galaxy S4</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image:  url({{ asset('main/base/img/content/shop5/21.png') }});"></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">Apple iPhone 5</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
-                            <div class="c-label c-label-right c-theme-bg c-font-uppercase c-font-white c-font-13 c-font-bold">New</div>
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/22.png') }}) ;"></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">HTC</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url({{ asset('main/base/img/content/shop5/20.png') }})"></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">Apple iPhone 6</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="c-content-product-2 c-bg-white c-border">
-                        <div class="c-content-overlay">
-                            <div class="c-label c-bg-red-2 c-font-uppercase c-font-white c-padding-10 c-font-13 c-font-bold">Hot</div>
-                            <div class="c-overlay-wrapper">
-                                <div class="c-overlay-content">
-                                    <a href="shop-product-details-2.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                </div>
-                            </div>
-                            <div class="c-bg-img-center-contain c-overlay-object" data-height="height" style="height: 270px; background-image: url ({{ asset('main/base/img/content/shop5/24.png') }}) "></div>
-                        </div>
-                        <div class="c-info">
-                            <p class="c-title c-font-18 c-font-slim">Apple iPhone 6+</p>
-                            <p class="c-price c-font-16 c-font-slim">$548 &nbsp;
-                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>
-                            </p>
-                        </div>
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group c-border-top" role="group">
-                                <a href="shop-product-wishlist.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Wishlist</a>
-                            </div>
-                            <div class="btn-group c-border-left c-border-top" role="group">
-                                <a href="shop-cart.html" class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div><!-- END: CONTENT/SHOPS/SHOP-2-2 -->
+<!-- END: CONTENT/SHOPS/SHOP-2-2 -->
 
     <!-- END: PAGE CONTENT -->
 </div>
@@ -803,5 +642,59 @@
 @endsection
 
 @section('buy_script')
+    <script>
+        $(document).ready(function(){
+            $('.increment-btn-1').click(function(e){
+                e.preventDefault();
 
+                var inc_value = $(this).closest('.product_data').find('.qty-input').val();
+                var value = parseInt(inc_value, 10)
+                value = isNaN(value) ? 0 : value;
+                if(value < 10){
+                    value++;
+                    $(this).closest('.product_data').find('.qty-input').val(value);
+                }
+            });
+
+            $('.decrement-btn-1').click(function(e){
+                e.preventDefault();
+
+                var dec_value = $(this).closest('.product_data').find('.qty-input').val();
+                var value = parseInt(dec_value, 10)
+                value = isNaN(value) ? 0 : value;
+                if(value < 10 & value > 0){
+                    value--;
+                    $(this).closest('.product_data').find('.qty-input').val(value);
+                }
+            });
+
+            $('.changeQuantity_2').click(function(e){
+                e.preventDefault();
+
+                var product_id = $(this).closest('.product_data').find('.product_id').val();
+                var qty = $(this).closest('.product_data').find('.qty-input').val();
+                data ={
+                    'prod_id':product_id,
+                    'prod_qty': qty,
+                }
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    method: "POST",
+                    url:"/update-cart-2",
+                    data: data,
+                    success: function(response){
+                        alert(response.status);
+                        window.location.reload();
+                    },
+                });
+
+            });
+        });
+    </script>
 @endsection
