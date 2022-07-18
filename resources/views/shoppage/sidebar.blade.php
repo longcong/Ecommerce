@@ -53,7 +53,7 @@
 
                     <div class="form-group row">
                         <label for="username" class="hide">Username</label>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <input id="username" type="text" class="form-control input-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                     <div class="form-group row">
                             <label for="password" class="col-md-4  col-form-label text-md-right hide">{{ __('Password:') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
 
                                 @error('password')
@@ -79,7 +79,7 @@
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4  col-form-label text-md-right hide">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password-confirm" type="password" class="form-control input-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                             </div>
                         </div>

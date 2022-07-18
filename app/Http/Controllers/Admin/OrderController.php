@@ -22,12 +22,12 @@ class OrderController extends Controller
         $users = User::where('id',Auth::id())->first();
         return view('admin.orders.view', compact('orders','users'));
     }
-    public function updateorder(Request $request, $id)
+    public function updateorder(Request $request)
     {
-        $orders = Order::find($id);
-        $orders->status = $request->input('order_status');
-        $orders->update();
-        return redirect('admin/orders')->with('status',"Order Update Successfully");
+        $orders = Order::find($request->order_id);
+        $orders->status = $request->status;
+        $orders->save();
+        return response()->json(['status'=>'Order status has been changed successfully']);
     }
     public function orderhistory()
     {

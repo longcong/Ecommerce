@@ -10,6 +10,7 @@ use App\Category;
 use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
+use Illuminate\Support\Facades\Session;
 
 
 class ProductController extends Controller
@@ -90,7 +91,7 @@ class ProductController extends Controller
         $post -> save();
         $post -> tags()->sync($request->tags, false);
 
-        $request->session()->flash('success', 'The product post was successfully save!');
+        $request->session()->flash('success', 'The product was successfully save!');
 
         return redirect() -> route('products.show', $post -> id);
     }
@@ -186,7 +187,7 @@ class ProductController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        $request->session()->flash('success', 'The product post was successfully save!');
+        $request->session()->flash('success', 'The product update successfully save!');
 
         return redirect()->route('products.show', $post->id);
     }
@@ -204,10 +205,9 @@ class ProductController extends Controller
         $post = Product ::find($id);
         $post -> tags()->detach();
         Storage::delete($post->image);
-
         $post -> delete();
 
-        $request->session()->flash('success', 'The blog post was successfully delete!');
+        $request->session()->flash('success', 'The product was successfully delete!');
 
         return redirect()->route('products.index');
     }

@@ -44,18 +44,19 @@
             <br>
             <table class="table">
                 <thead>
-                    <th style="padding-left: 4px;">#</th>
-                    <th style="padding-left: 4px;">name</th>
-                    <th style="padding-left: 4px;">description</th>
-                    <th style="text-align: center;">action</th>
+                    <tr class="order1">
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($categories as $category)
-                        <tr>
+                        <tr class="order1">
                             <th>{{ $category->id }}</th>
                             <th>{{ $category->name }}</th>
                             <th>{{ $category->description }}</th>
-
                             <td style="text-align: center;">
                                 {!! Html::linkRoute('categories.edit','Edit', array($category->id), array('class' =>
                                 'btn btn-primary btn-block')) !!}

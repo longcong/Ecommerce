@@ -17,25 +17,33 @@
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
-                            <tr>
-                                <th>Order Date</th>
+                            <tr class="order1">
                                 <th>Tracking Number</th>
                                 <th>Total Price</th>
+                                <th>Address</th>
+                                <th>Order Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($orders as $item)
-                                <tr>
-                                    <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                    <td>{{ $item->tracking_no }}</td>
+                                <tr class="order1">
+                                <td>{{ $item->tracking_no }}</td>
                                     <td>{{ $item->total_price }}</td>
-                                    <td>{{ $item->status == '0' ? 'pending' : 'completed' }}
+                                    <td>{{ $item->address1 }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                                    <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}
                                     </td>
                                     <td>
-                                        <a href="{{ url('admin/view-order/'.$item->id) }}"
-                                            class="btn btn-primary">View</a>
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </a>
+                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{  url('admin/view-order/'.$item->id) }}">View</a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

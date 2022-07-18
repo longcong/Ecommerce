@@ -15,24 +15,38 @@
                 <div class="card-body">
                     <table class="table table-bordered ">
                         <thead>
-                            <tr>
+                            <tr style="text-align: center;">
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($users as $item)
-                                <tr>
+                                <tr style="text-align: center;">
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>
-                                        <a href="{{ url('admin/view-user/'.$item->id) }}"
-                                            class="btn btn-primary">View</a>
+                                        <div class="form-check form-switch ps-0 is-filled" >
+                                            <input data-id="{{$item->id}}" class="toggle-class form-check-input ms-auto" type="checkbox" {{ $item->role ? 'checked' : '' }}>                                        
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </a>
+
+                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{ url('admin/view-user/'.$item->id) }}">View</a>
+                                                <a class="dropdown-item" href="#">Update</a>   
+                                            </div>
+                                        </div>  
                                     </td>
                                 </tr>
                             @endforeach
@@ -44,4 +58,25 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() { 
+                $('.toggle-class').change(function() { 
+                var role = $(this).prop('checked') == true ? 1 : 0;  
+                var user_id = $(this).data('id');  
+                $.ajax({ 
+
+                    type: "GET", 
+                    dataType: "json", 
+                    url: 'update/role', 
+                    data: {'role': role, 'user_id': user_id}, 
+                    success: function(response){
+                        alert(response.status);
+                    } 
+                }); 
+            }) 
+        }); 
+    </script>
 @endsection

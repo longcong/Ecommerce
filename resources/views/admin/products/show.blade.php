@@ -59,7 +59,7 @@
                     </dl>
                     <dl class="dl-horizontal">
                         <label>Description:</label>
-                        <p>{{ $product->note }}</p>
+                        <p>{{ substr($product->note, 0, 20) }} {{ strlen($product->note) > 20 ? "..." : "" }}</p>
                     </dl>
 
                     <dl class="dl-horizontal">

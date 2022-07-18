@@ -295,6 +295,36 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <ul class="c-list list-unstyled">
+                            @if(!empty(Session::get('couponAmount')))
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Coupon Sale: &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('couponAmount') }}</span>
+                                    </h3>
+                                </li>
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Coupon Code: &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">{{ Session::get('code') }}</span>
+                                    </h3>
+                                </li>
+                                <!-- <li>
+                                    <h3 class="c-font-regular c-font-22">Shipping Fee : &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">$0.00</span>
+                                    </h3>
+                                </li> -->
+                                @if(!Session::get('success_momo') == true)
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('totalFinal') }}.00</span>
+                                    </h3>
+                                </li>
+                                @else
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('totalFinal') }}.00</span>
+                                    </h3>
+                                </li>
+                                @endif
+                            @else
                                 <li>
                                     <h3 class="c-font-regular c-font-22">Subtotal : &nbsp;
                                         <span
@@ -306,12 +336,23 @@
                                         <span class="c-font-dark c-font-bold c-font-22">$0.00</span>
                                     </h3>
                                 </li>
+                                @if(!Session::get('success_momo') == true)
                                 <li>
                                     <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
                                         <span
                                             class="c-font-dark c-font-bold c-font-22">${{ $orders->total_price }}.00</span>
                                     </h3>
                                 </li>
+                                @else
+                                <li>
+                                    <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                        <span
+                                            class="c-font-dark c-font-bold c-font-22">${{ $orders->total_price }}.00</span>
+                                    </h3>
+                                </li>
+                                @endif
+
+                            @endif
                             </ul>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -320,21 +361,9 @@
                                     <h3 class="c-font-regular c-font-22">Order Status :</h3>
                                 </li>
                                 <li>
-                                    <form
-                                        action="{{ url('admin/update-order/'.$orders->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <select class="form select" name="order_status">
-                                            <option
-                                                {{ $orders->status == '0'? 'selected':'' }}
-                                                value="0">Pending</option>
-                                            <option
-                                                {{ $orders->status == '1'? 'selected':'' }}
-                                                value="1">Complete</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-success">Update</button>
-                                    </form>
+                                    <span class="c-font-dark c-font-bold c-font-22">
+                                        {{ $orders->status == '0' ? 'Pending' : 'Completed' }}
+                                    </span>
                                 </li>
                             </ul>
                         </div>

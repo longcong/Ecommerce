@@ -3,13 +3,16 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\Admin\CouponController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\ViewAdminPaymentController;
 use App\Http\Controllers\UserDashboard\UserDashboardController;
-use app\Http\Controllers\UserDashboard\OrderUserController;
+use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +45,13 @@ Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\Prod
      -> where('slug','[\w\d\-\_]+');
 Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
+Route::post('/cart/apply-coupon',[CartController::class,'applyCoupon'])->name('applyCoupon');
 //Route::get('product', ['uses' => 'ProductDetailController@getDetail', 'as' => 'detail.product_detail']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/userdashboard', [UserDashboardController::class,'index'])->name('dashboard');
+    Route::get('/create/{id}', [UserDashboardController::class,'create'])->name('update');
+    Route::put('/update-account/{id}',[UserDashboardController::class,'UpdateAccount'])->name('updateaccount');
+    Route::get('showaccount/{id}',[UserDashboardController::class,'show'])->name('showaccount');
     Route::get('ordersuser','UserDashboard\OrderUserController@vieworderuser')->name('orderuser');
     Route::get('view-orderuser/{id}', 'UserDashboard\OrderUserController@userview')->name('userview');
     Route::post('add-to-cart',[CartController::class,'addProduct']);
@@ -53,10 +60,16 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('place-order',[CheckoutController::class,'placeOrder'])->name('placeorder');
     Route::get('order-info/{id}',[CheckoutController::class,'info'])->name('order-info');
-
+    Route::post('update-cart-2',[ProductDetailController::class,'updateCart2'])->name('updateCart2');
     Route::get('wishlist', [WishlistController::class, 'viewwishlist'])->name('wishlist');
     Route::post('add-to-wishlist',[WishlistController::class, 'addWishlist'])->name('addWishlist');
-    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');
+    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');    
+    
+    
+    
+    Route::middleware(['seller'])->group(function(){
+        
+    });
 });
 
 
@@ -75,13 +88,20 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
 
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);
-    Route::put('update-order/{id}',[OrderController::class,'updateorder']);
+    Route::get('update/order',[OrderController::class,'updateorder']);
 
     Route::get('order-history', [OrderController::class, 'orderhistory']);
 
     Route::get('users', [DashboardController::class, 'users']);
+    Route::get('view-user/{id}',[DashboardController::class,'viewusers'])->name('viewuser');
+    Route::get('update/role',[DashboardController::class,'updateRole'])->name('update.roles');
 
-    Route::get('view-user/{id}',[DashboardController::class,'viewusers']);
+    Route::get('payment-admin',[ViewAdminPaymentController::class,'index'])->name('payments');
+
+    Route::resource('coupons','Admin\CouponController');
+    Route::get('update/active','Admin\CouponController@active')->name('update.active');
 
 }); 
+Route::get('payment',[PaymentController::class, 'viewpayment'])->name('viewpayment');
+Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
 

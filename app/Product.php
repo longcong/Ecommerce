@@ -18,6 +18,8 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('App\Category');
     } 
-    
+    public function wishlist(){
+        return $this->belongsToMany('App\Wishlist');
+    }
 
 }
