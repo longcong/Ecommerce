@@ -361,21 +361,9 @@
                                     <h3 class="c-font-regular c-font-22">Order Status :</h3>
                                 </li>
                                 <li>
-                                    <form
-                                        action="{{ url('admin/update-order/'.$orders->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <select class="form select" name="order_status">
-                                            <option
-                                                {{ $orders->status == '0'? 'selected':'' }}
-                                                value="0">Pending</option>
-                                            <option
-                                                {{ $orders->status == '1'? 'selected':'' }}
-                                                value="1">Complete</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-success">Update</button>
-                                    </form>
+                                    <span class="c-font-dark c-font-bold c-font-22">
+                                        {{ $orders->status == '0' ? 'Pending' : 'Completed' }}
+                                    </span>
                                 </li>
                             </ul>
                         </div>

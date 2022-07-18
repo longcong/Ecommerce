@@ -26,11 +26,17 @@ class WishlistController extends Controller
         {
             return response()->json(['status' => "Product doesnot exist"]);
         }
+
+        if(Wishlist::where('product_id',$product_id)->first())
+        {
+            return response()->json(['status'=>"The Product is already in the Wishlist"]);
+            // return response()->json(['status' =>$prod_check->name."The Product is already in the Wishlist"]);
+        }
         $wishlist = new Wishlist();
         $wishlist->product_id = $product_id;    
         $wishlist->user_id = Auth::id();
         $wishlist->save();
-        return response()->json(['status' => "Product Added to Wishlist"]);
+        return response()->json(['status'=>"Product Added to Wishlist"]);         
     }
     public function viewwishlist(Request $request, ProductInterface $productService){
         $wishlists = $productService->getViewWishlist();

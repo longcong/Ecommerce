@@ -516,11 +516,11 @@ label.control-label {
 .c-btn-black {
   border-color: #000000;
   border-width: 1px;
-  color: #ffffff;
+  color: black;
   background: #000000;
   border-color: #000000; }
   .c-btn-black.btn-no-focus:focus, .c-btn-black.btn-no-focus.focus {
-    color: #ffffff;
+    color: black;
     background: #000000;
     border-color: #000000; }
   .c-btn-black.btn-no-focus:hover, .c-btn-black:hover, .c-btn-black.btn-no-focus:active, .c-btn-black:active, .c-btn-black.active,

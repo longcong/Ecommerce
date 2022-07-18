@@ -34,6 +34,14 @@ class CouponController extends Controller
         return view('admin.coupons.create');
     }
 
+    public function active(Request $request)
+    {
+        $coupon = Coupon::find($request->coupon_id);
+        $coupon->is_active = $request->is_active;
+        $coupon->save();
+        return response()->json(['status'=>'Coupon status have changed successfully.']);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -108,7 +116,7 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $coupons=Coupon::find($id);
+        $coupons = Coupon::find($id);
 
         $coupons->title=$request->input('title');
         $coupons->description=$request->input('description');
@@ -136,11 +144,12 @@ class CouponController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $coupon=Coupon::find($id);
+        $coupon = Coupon::find($id);
         $coupon->delete();
 
         $request->session()->flash('success', 'The coupon was successfully delete!');
 
         return redirect()->route('coupons.index');
     }
+    
 }

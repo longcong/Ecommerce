@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->cname}}" id="cname" name="cname" placeholder="Company Name">
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->company}}" id="company" name="company" placeholder="Company Name">
                     </div>
                 </div>
                 <div class="row">
@@ -301,9 +301,18 @@
         $(document).ready(function () {
         $("form").submit(function (event) {
             var formData = {
-            name: $("#name").val(),
+            fname: $("#fname").val(),
+            lname: $("#lname").val(),
+            cname: $("#cname").val(),
+            city: $("#city").val(),
+            state: $("#state").val(),
+            address1: $("#address1").val(),
+            address2: $("#address2").val(),
             email: $("#email").val(),
-            superheroAlias: $("#superheroAlias").val(),
+            phone: $("#phone").val(),
+            zipcode: $("#zipcode").val(),
+            total_price: $("#totalFinal").val(),
+            tracking_no: $("#('Tam Mao'.rand(1111,9999))").val(),
             };
 
             $.ajax({

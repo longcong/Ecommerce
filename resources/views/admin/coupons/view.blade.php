@@ -23,7 +23,7 @@
                                 <th>Coupon Type</th>
                                 <th>Coupon Discount</th>
                                 <th>Expiry Date</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th class="order1">Action</th>
                             </tr>
                         </thead>
@@ -40,17 +40,22 @@
                                         @endif
                                     </td>
                                     <td>{{ $coupon->expiry_date }}</td>
-                                    <td>{{ $coupon->is_active == '1' ? 'Active' : 'Inactive' }}</td>
+                                    <td>
+                                        <div class="form-check form-switch ps-0 is-filled" >
+                                            <input data-id="{{$coupon->id}}" class="toggle-class form-check-input ms-auto" type="checkbox" {{ $coupon->is_active ? 'checked' : '' }}>                                        
+                                        </div>
+                                    </td>
                                     <td class="order1">
-                                        <a 
-                                            href="{{ route('coupons.show', $coupon->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">
-                                            View
-                                        </a>
-                                        <a 
-                                            href="{{ route('coupons.edit' , $coupon->id )}}" class="btn btn-info btn-sm">
-                                            Edit
-                                            
-                                        </a>
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </a>
+
+                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{ route('coupons.show', $coupon->id) }}">View</a>
+                                                <a class="dropdown-item" href="{{ route('coupons.edit', $coupon->id) }}">Edit</a>  
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,4 +67,27 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        
+        $(function() { 
+                $('.toggle-class').change(function() { 
+                var is_active = $(this).prop('checked') == true ? 1 : 0;  
+                var coupon_id = $(this).data('id');   
+                $.ajax({ 
+
+                    type: "GET", 
+                    dataType: "json", 
+                    url: 'update/active', 
+                    data: {'is_active': is_active, 'coupon_id': coupon_id }, 
+                    success: function(response){
+                        alert(response.status);
+                    } 
+                }); 
+            }) 
+        }); 
+            
+    </script>
 @endsection

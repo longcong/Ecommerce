@@ -32,11 +32,20 @@ class CartController extends Controller
             return response()->json(['status'=>"Product not found"]);
         }
 
+        $product = Product::where('id',$product_id)->first();
+        $stockQuantity = $product->quantity;
+
+        if($carttm = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first()){
+            $quantitycartitems = $carttm->prod_qty;
+            if($quantitycartitems >= $stockQuantity){
+                return response()->json(['status'=>"Over quantity in stock"]);
+            }
+        }
+
         if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
         {
-            $prod_check = Product::where('id',$product_id)->first();
-            
-            if($prod_check)
+
+            if($prod_check = Product::where('id',$product_id)->first())
             {
                 if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
                 {

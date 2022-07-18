@@ -35,6 +35,7 @@
 	</script>
 	<!-- END: THEME SCRIPTS -->
 			<script src="{{ asset('main/js/zoom-master/jquery.zoom.min.js') }}" type="text/javascript"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<!-- END: LAYOUT/BASE/BOTTOM -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

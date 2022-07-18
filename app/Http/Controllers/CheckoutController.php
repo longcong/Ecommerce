@@ -60,7 +60,6 @@ class CheckoutController extends Controller
         //before sign HMAC SHA256 signature
         $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
         $signature = hash_hmac("sha256", $rawHash, $secretKey);
-        //dd($signature);
         $data = array('partnerCode' => $partnerCode,
             'partnerName' => "Test",
             "storeId" => "MomoTestStore",
@@ -83,7 +82,7 @@ class CheckoutController extends Controller
         
         //Just a example, please check more in there
         return redirect()->to($jsonResult['payUrl']);
-        //header('Location: ' . $jsonResult['payUrl']);
+        
         
 
     }
@@ -110,13 +109,12 @@ class CheckoutController extends Controller
     }
     public function placeOrder(Request $request)
     {
-        
 
         $order = new Order();
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
         $order->lname = $request->input('lname');
-        $order->cname = $request->input('cname');
+        $order->company = $request->input('company');
         $order->address1 = $request->input('address1');
         $order->address2 = $request->input('address2');
         $order->city = $request->input('city');
@@ -150,7 +148,7 @@ class CheckoutController extends Controller
             $user = User::where('id', Auth::id())->first();
             $user->fname = $request->input('fname');
             $user->lname = $request->input('lname');
-            $user->cname = $request->input('cname');
+            $user->company = $request->input('company');
             $user->address1 = $request->input('address1');
             $user->address2 = $request->input('address2');
             $user->city = $request->input('city');

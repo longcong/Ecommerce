@@ -46,7 +46,18 @@
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
                             <td>{{ substr($post->note, 0, 20) }} {{ strlen($post->note) > 20 ? "..." : "" }}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
-                            <td class="order1"><a href="{{ route('products.show', $post->id) }}" class="btn btn-primary btn-sm" style="margin-right:3px;">View</a><a href="{{ route('products.edit' , $post->id )}}" class="btn btn-info btn-sm">Edit</a></td>
+                            <td class="order1">
+                                <div class="dropdown show">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Action
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('products.show', $post->id) }}">View</a>
+                                        <a class="dropdown-item" href="{{ route('products.edit' , $post->id) }}">Edit</a> 
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
