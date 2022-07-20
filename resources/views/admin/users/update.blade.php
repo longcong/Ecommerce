@@ -1,6 +1,6 @@
-@extends('layouts.userdashboard')
+@extends('layouts.admin')
 
-@section('title', '| Update Account')
+@section('title', '| Update Account Admin')
 
 @section('stylesheet_1')
 
@@ -13,25 +13,27 @@
 <div class="card">
     <div class="card-body">
         <div class="container">
-            <h1 class="text-center">Update Information</h1>
+            <h1 class="text-center user1">Update Information</h1>
             <hr>
+             
             <div class="row">
-            {!! Form::model($account, ['route' => ['updateaccount', $account->id],'data-parsley-validate' =>'', 'method'
+            {!! Form::model($acc_admin, ['route' => ['update.admin', $acc_admin->id],'data-parsley-validate' =>'', 'method'
             => 'PUT']) !!}
-                    <div class="row g-2 align-items-center user1">
-                        <div class="col-2 m2">
+                    <div class="row g-2 align-items-center ">
+                        <div class="col-2">
                             {{ Form::label('username','Username:') }}
                         </div>
                         <div class="col-10 font-weight-bolder mb-0" style="margin-bottom: 5px;">
-                            {{ $account->username }}
-                            <input id="username" name="username" type="hidden" value="{{ $account->username }}">
-                            <input id="password" name="password" type="hidden" value="{{ $account->password }}">
-                            <input id="role" name="role" type="hidden" value="{{ $account->role }}">
+                            {{ $acc_admin->username }}
+                            <input id="id" name="id" type="hidden" value="{{ $acc_admin->id }}">
+                            <input id="username" name="username" type="hidden" value="{{ $acc_admin->username }}">
+                            <input id="password" name="password" type="hidden" value="{{ $acc_admin->password }}">
+                            <input id="role" name="role" type="hidden" value="{{ $acc_admin->role }}">
                         </div>
                     </div>
                     <!-- Username, Password, Role -->
-                    <div class="row g-2 align-items-center user1">
-                        <div class="col-2 m2">
+                    <div class="row g-2 align-items-center user1 ">
+                        <div class="col-2">
                             {{ Form::label('email','Email:') }}
                         </div>
                         <div class="col-10">
@@ -39,7 +41,7 @@
                         </div>
                     </div>
                     <!-- email -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('fname','First Name:') }}
                         </div>
@@ -48,7 +50,7 @@
                         </div>
                     </div>
                     <!-- First name -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('lname','Last Name:') }}
                         </div>
@@ -57,7 +59,7 @@
                         </div>
                     </div>
                     <!-- Last name -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('company','Company:') }}
                         </div>
@@ -66,7 +68,7 @@
                         </div>
                     </div>
                     <!-- Company -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('city','City:') }}
                         </div>
@@ -75,7 +77,7 @@
                         </div>
                     </div>
                     <!-- City -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('state','State:') }}
                         </div>
@@ -84,7 +86,7 @@
                         </div>
                     </div>
                     <!-- State -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('address1','Address 1:') }}
                         </div>
@@ -93,7 +95,7 @@
                         </div>
                     </div>
                     <!-- Address 1 -->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('address2','Address 2:') }}
                         </div>
@@ -102,7 +104,7 @@
                         </div>
                     </div>
                     <!-- Address 2-->
-                    <div class="row g-2 align-items-center user1">
+                    <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
                             {{ Form::label('phone','Phone:') }}
                         </div>
@@ -135,7 +137,7 @@
                                 {{ Form::submit('Save As', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 20px;']) }}
                             </div>
                             <div class="col-sm-6" style="text-align: center;">
-                                {{ Html::linkRoute('dashboard', 'Back',[],array('class'=>'btn btn-info btn-block', 'style' => 'margin-top: 20px;')) }}                            
+                                {{ Html::linkRoute('admin.users', 'Back',[],array('class'=>'btn btn-info btn-block', 'style' => 'margin-top: 20px;')) }}                            
                             </div>
                         </div>
                 {!! Form::close() !!}

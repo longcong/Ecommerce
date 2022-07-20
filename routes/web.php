@@ -92,8 +92,10 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
 
     Route::get('order-history', [OrderController::class, 'orderhistory']);
 
-    Route::get('users', [DashboardController::class, 'users']);
+    Route::get('users', [DashboardController::class,'users'])->name('admin.users');
+    Route::get('create/{id}',[DashboardController::class,'create'])->name('admin.create');
     Route::get('view-user/{id}',[DashboardController::class,'viewusers'])->name('viewuser');
+    Route::put('update-admin/{id}',[DashboardController::class,'Updateadmin'])->name('update.admin');
     Route::get('update/role',[DashboardController::class,'updateRole'])->name('update.roles');
 
     Route::get('payment-admin',[ViewAdminPaymentController::class,'index'])->name('payments');

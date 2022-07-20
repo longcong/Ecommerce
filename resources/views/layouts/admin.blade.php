@@ -56,6 +56,12 @@
         .order1{
             text-align: center;
         }
+        .user1{
+            margin-top: 5px;
+        }
+        .m2{
+            font-size: larger;
+        }
         
    
     </style>

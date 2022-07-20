@@ -1208,20 +1208,19 @@
                     </div>
                 </div>
             @else
-            <div class="c-cart-menu">
-                <div class="c-cart-menu-footer">
-                    <a 
-                        href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
-                        >View Cart
-                    </a>
-                    <a 
-                        href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
-                        >Checkout
-                    </a>
+                <div class="c-cart-menu">
+                    <div class="c-cart-menu-footer">
+                        <a 
+                            href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
+                            >View Cart
+                        </a>
+                        <a 
+                            href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                            >Checkout
+                        </a>
+                    </div>
                 </div>
-            </div>
-            @endif 
-                                        
+            @endif                         
     <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
         </div>
     </div>
