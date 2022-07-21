@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
@@ -84,6 +85,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     // POST store -> /products -> after submit
     // DELETE destroy -> /products -> after submit
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
+    Route::get('update/status',[CategoryController::class,'updateStatus'])->name('update.status');
     Route::resource('tags', 'Admin\TagController', ['except' => ['create']]); 
 
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');

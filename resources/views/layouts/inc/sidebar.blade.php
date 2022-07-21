@@ -18,9 +18,11 @@
             <span class="nav-link-text ms-1 ">Dashboard</span>
           </a>
         </li>
+        <!-- Products Management -->
+        <li class="nav-item">
           <div class="dropdown show">
               <a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Product Management
+                <i class="material-icons opacity-10">assignment</i>Product Management
               </a>
 
               <div class="dropdown-menu" style="margin-left:30px;" aria-labelledby="dropdownMenuLink">
@@ -33,20 +35,17 @@
                   <a class="dropdown-item" href="{{ route('tags.index') }}">
                     Tags
                   </a>  
+                  <a class="dropdown-item" href="{{route ('coupons.index')}}">
+                    Coupons
+                  </a> 
               </div>
           </div>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="{{url('admin/coupons')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
-            </div>
-            <span class="nav-link-text ms-1">Coupons</span>
-          </a>
         </li>
-
-        <div class="dropdown show">
+        <!-- Orders Management -->
+        <li class="nav-item">
+          <div class="dropdown show">
               <a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Orders Management
+                <i class="material-icons opacity-10">table_view</i>Orders Management
               </a>
 
               <div class="dropdown-menu" style="margin-left:30px;" aria-labelledby="dropdownMenuLink">
@@ -58,18 +57,21 @@
                   </a> 
               </div>
           </div>
-
+        <li>
+          <!-- Users Management -->
+        <li class="nav-item">
           <div class="dropdown show">
-              <a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Users Management
-              </a>
+                <a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons opacity-10">person</i>Users Management
+                </a>
 
-              <div class="dropdown-menu" style="margin-left:30px;" aria-labelledby="dropdownMenuLink">
-                  <a class=" dropdown-item" href="{{route('admin.users')}}">
-                    Users
-                  </a> 
-              </div>
-          </div>
+                <div class="dropdown-menu" style="margin-left:30px;" aria-labelledby="dropdownMenuLink">
+                    <a class=" dropdown-item" href="{{route('admin.users')}}">
+                      Users
+                    </a> 
+                </div>
+            </div>
+        </li>
 
       </ul>
     </div>
