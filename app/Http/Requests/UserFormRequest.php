@@ -26,14 +26,6 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'phone' => [
-                'required',
-                'digits:10',
-            ],
-            'zipcode' => [
-                'required',
-                'digits:6',
-            ],
             'fname' => [
                 'required',
                 'string',
@@ -83,42 +75,51 @@ class UserFormRequest extends FormRequest
                 'email' => [
                     'required',
                     'email',
+                    
                     'max:191',
                     'unique:users,email',
                 ],
-                'phone' => [
-                    'required',
-                    'phone',
-                    'digits:10',
-                    'unique:users,phone',
+                
+            ];
+            if($this->getMethod() == 'PUT')[
+                $rules += [
+                    'phone' => [
+                        'required',
+                        'digits:10',
+                        'unique:users,phone',
+                    ],
                 ],
-                'zipcode' => [
-                    'required',
-                    'zipcode',
-                    'digits:6',
-                    'unique:users,zipcode',
+            ];
+            if($this->getMethod() == 'PUT')[
+                $rules += [
+                    'zipcode' => [
+                        'required',
+                        'digits:6',
+                        'unique:users,zipcode',
+                    ],
                 ],
             ];
         }
             
         return $rules;
     }
-    // public function messages()
-    // {
-    //     return [
-    //         'email.required' => 'Please enter your email id',
-    //         'email.email'=> 'Please enter your correct email id',
-    //         'fname.required' => 'Please enter your fname',
-    //         'lname.required' => 'Please enter your lname',
-    //         'company.required' => 'Please enter your company',
-    //         'city.required' => 'Please enter your city',
-    //         'state.required' => 'Please enter your state',
-    //         'address1.required' => 'Please enter your first address ',
-    //         'address2.required' => 'Please enter your second address',
-    //         'phone.required' => 'Please enter your phone ',
-    //         'phone.phone' => 'Please enter your correct phone',
-    //         'zipcode.required' => 'Please enter your zipcode',
-    //         'note.required' => 'Please enter your note',
-    //     ];
-    // }
+    public function messages()
+    {
+        $errors = [
+            'email.required' => 'Please enter your email id',
+            'email.email'=> 'Please enter your correct email id',
+            'fname.required' => 'Please enter your fname',
+            'lname.required' => 'Please enter your lname',
+            'company.required' => 'Please enter your company',
+            'city.required' => 'Please enter your city',
+            'state.required' => 'Please enter your state',
+            'address1.required' => 'Please enter your first address ',
+            'address2.required' => 'Please enter your second address',
+            'phone.required' => 'Please enter your phone ',
+            'phone.phone' => 'Please enter your correct phone',
+            'zipcode.required' => 'Please enter your zipcode',
+            'note.required' => 'Please enter your note',
+        ];
+        return $errors;
+    }
 }
