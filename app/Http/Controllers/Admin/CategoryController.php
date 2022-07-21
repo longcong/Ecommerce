@@ -33,21 +33,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
         // save a new category and then redirect back to index
         $this-> Validate($request, array(
             'name' => 'required|max:255',
-            'description' => 'required|max:255'
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:categories,slug',
+            'description' => 'required|max:255',
+            'status' => 'required|max:1',
         ));
         $category = new Category;
 
         $category->name = $request->name;
+        $category->slug = $request->slug;
         $category->description = $request->description;
+        $category->status = $request->status;
         $category->save();
 
         $request->session()->flash('success', 'New Category has been created!');
 
-        return redirect() -> route('categories.index' );
+        return redirect() -> route('categories.index');
     }
 
     /**
@@ -90,15 +93,16 @@ class CategoryController extends Controller
         $categories = Category::find($id);
 
         $this->validate($request, array(
-            'name' => 'required|max:255',
-            'description' => 'required|max:255'
+            'name' => 'required|max:191',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:categories,slug',
+            'description' => 'required|max:255',
         ));
         
         $categories = Category::find($id);
 
         $categories->name = $request->input('name');
+        $categories->slug = $request->input('slug');
         $categories->description = $request->input('description');
-        //save
         $categories->save();
 
         $request->session()->flash('success', 'Successfully saved your new category!');
@@ -122,5 +126,12 @@ class CategoryController extends Controller
         $request->session()->flash('success', 'This category was successfully saved.');
 
         return redirect()->route('categories.index');
+    }
+    public function updateStatus(Request $request)
+    {
+        $categories = Category::find($request->category_id);
+        $categories->status = $request->status;
+        $categories->save();
+        return response()->json(['status'=>'Category status have changed successfully.']);
     }
 }

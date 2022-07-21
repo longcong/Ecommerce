@@ -22,6 +22,14 @@
                 </div>
                 <div class="row g-2 align-items-center">
                     <div class="col-2 ">
+                        {{ Form::label('slug', 'Slug:') }}
+                    </div>
+                    <div class="col-8">
+                        {{ Form::text('slug',null,array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
+                    </div>
+                </div>
+                <div class="row g-2 align-items-center">
+                    <div class="col-2 ">
                         {{ Form::label('description', 'Description:') }}
                     </div>
                     <div class="col-8">
