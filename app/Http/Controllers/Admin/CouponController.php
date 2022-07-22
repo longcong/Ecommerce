@@ -40,7 +40,6 @@ class CouponController extends Controller
         $coupon = Coupon::find($request->coupon_id);
         $coupon->is_active = $request->is_active;
         $coupon->save();
-        return response()->json(['status'=>'Coupon status have changed successfully.']);
     }
 
     /**
@@ -54,6 +53,8 @@ class CouponController extends Controller
 
         $coupon = new Coupon;
         $data = $request->validated();
+        $coupon->start_date = $request->start_date;
+        $coupon->expiry_date = $request->expiry_date;
         $coupon->fill($data);
         $coupon->save();
         $request->session()->flash('success', 'The coupon has been created successfully!');
@@ -97,8 +98,11 @@ class CouponController extends Controller
         $coupons = Coupon::find($id);
 
         $data = $request->validated();
+        $coupons->start_date = $request->input('start_date');
+        $coupons->expiry_date = $request->input('expiry_date');
         $coupons->fill($data);
         $coupons->save();
+
         $request->session()->flash('success', 'The coupon update successfully save!');
       
         return redirect()->route('coupons.index');

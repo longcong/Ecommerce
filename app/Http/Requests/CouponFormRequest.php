@@ -79,7 +79,6 @@ class CouponFormRequest extends FormRequest
                     'required',
                     'string',
                     'max:10',
-                    'unique:coupons,code',
                 ],
             ],
         ];
