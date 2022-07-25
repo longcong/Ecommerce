@@ -158,7 +158,6 @@
        $(function(){
             $('#expiry_date').datepicker({
                 dateFormat: 'yy-mm-dd',
-                parseFormats: ["MMMM yyyy"]
             })
             .on('dp.change',function(ev){
                 var data = $('#expiry_date').val();
@@ -168,7 +167,6 @@
        $(function(){
             $('#start_date').datepicker({
                 dateFormat: 'yy-mm-dd',
-                parseFormats: ["MMMM yyyy"]
             })
             .on('dp.change',function(ev){
                 var data = $('#start_date').val();

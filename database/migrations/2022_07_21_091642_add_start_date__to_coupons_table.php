@@ -27,7 +27,7 @@ class AddStartDateToCouponsTable extends Migration
     public function down()
     {
         Schema::table('coupons', function (Blueprint $table) {
-            $table->date('expiry_date');
+            $table->date('start_date');
         });
     }
 }

@@ -75,9 +75,7 @@ class UserFormRequest extends FormRequest
                 'email' => [
                     'required',
                     'email',
-                    
                     'max:191',
-                    'unique:users,email',
                 ],
                 
             ];
@@ -86,7 +84,6 @@ class UserFormRequest extends FormRequest
                     'phone' => [
                         'required',
                         'digits:10',
-                        'unique:users,phone',
                     ],
                 ],
             ];
@@ -95,31 +92,11 @@ class UserFormRequest extends FormRequest
                     'zipcode' => [
                         'required',
                         'digits:6',
-                        'unique:users,zipcode',
                     ],
                 ],
             ];
         }
             
         return $rules;
-    }
-    public function messages()
-    {
-        $errors = [
-            'email.required' => 'Please enter your email id',
-            'email.email'=> 'Please enter your correct email id',
-            'fname.required' => 'Please enter your fname',
-            'lname.required' => 'Please enter your lname',
-            'company.required' => 'Please enter your company',
-            'city.required' => 'Please enter your city',
-            'state.required' => 'Please enter your state',
-            'address1.required' => 'Please enter your first address ',
-            'address2.required' => 'Please enter your second address',
-            'phone.required' => 'Please enter your phone ',
-            'phone.phone' => 'Please enter your correct phone',
-            'zipcode.required' => 'Please enter your zipcode',
-            'note.required' => 'Please enter your note',
-        ];
-        return $errors;
     }
 }

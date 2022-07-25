@@ -10,7 +10,7 @@ use App\Category;
 use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
-use Illuminate\Support\Facades\Session;
+
 
 
 class ProductController extends Controller

@@ -119,7 +119,7 @@
                         {{ Form::label('start_date','Start date:',array('style' => 'margin-top: 10px;')) }}
                     </div>
                     <div class="col-8" wire:ignore inline="true">
-                        {{ Form::text('start_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','wire:model' => 'expiry_date', 'id' => 'start_date' ))  }}
+                        {{ Form::text('start_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','id' => 'start_date' , 'name' => 'start_date'))  }}
                     </div>
                 </div>
                 <!-- expiry date -->
@@ -127,8 +127,8 @@
                     <div class="col-2">
                         {{ Form::label('expiry_date','Expiry_Date:',array('style' => 'margin-top: 10px;')) }}
                     </div>
-                    <div class="col-8" wire:ignore inline="true">
-                        {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','wire:model' => 'expiry_date', 'id' => 'expiry_date' ))  }}
+                    <div class="col-8" inline="true">
+                        {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255', 'id' => 'expiry_date' ,'name' => 'expiry_date'))  }}
                     </div>
                 </div>
                 <!-- end expiry date -->
@@ -194,16 +194,16 @@
             })
             .on('dp.change',function(ev){
                 var data = $('#expiry_date').val();
-                $this.set('expiry_date',data);
             })
        });  
-       $(function(){
+    </script>
+    <script>
+        $(function(){
             $('#start_date').datepicker({
                 dateFormat: 'yy-mm-dd'
             })
             .on('dp.change',function(ev){
                 var data = $('#start_date').val();
-                $this.set('start_date',data);
             })
        });  
     </script>

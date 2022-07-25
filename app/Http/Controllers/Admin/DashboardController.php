@@ -29,7 +29,6 @@ class DashboardController extends Controller
         $user = User::find($request->user_id);
         $user->role = $request->role;
         $user->save();
-        return response()->json(['status'=>'Access rights have changed successfully.']);
     }
     public function Updateadmin(UserFormRequest $request, $id)
     {

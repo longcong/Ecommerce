@@ -12,8 +12,6 @@
     <div class="col-md-2">
         <a href="{{ route('products.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Product</a>
     </div>
-    <div class="col-md-12">
-    </div>
 </div>
 
 <div class="card">
@@ -26,7 +24,7 @@
                     <th>Price</th>
                     <th>Code</th>
                     <th>Quantity</th>
-                    <!-- <th>Discount</th> -->
+                    <th>Discount</th>
                     <th>Image</th>
                     <th>Note</th>
                     <th>Created At</th>
@@ -40,7 +38,7 @@
                             <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->price }}</td>
-                            <!-- <td>{{ $post->discount_unit}}</td> -->
+                            <td>{{ $post->discount_unit}}</td>
                             <td>{{ $post->quantity}}</td>
                             <td>{{ $post->discount_value}}</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>

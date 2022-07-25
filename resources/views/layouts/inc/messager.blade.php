@@ -5,9 +5,7 @@
     </div>
 @elseif (Session()->has('errors'))
     <div class="alert alert-danger" role="alert">
-         @foreach($errors->all() as $error)
-         <strong>Errors: </strong>{{ $error }} <br>
-        @endforeach
+        <strong>Errors:</strong> {{ Session::get('errors')}}
     </div>
 @endif
 

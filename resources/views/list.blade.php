@@ -7,7 +7,10 @@
  	
 	<!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
 <!-- BEGIN: HEADER -->
-@include('components.header')
+	<header class="c-layout-header c-layout-header-default c-layout-header-dark-mobile c-header-transparent-dark"
+        data-minimize-offset="80">
+        @include('components.header')
+    </header>
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 	
 	<!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
