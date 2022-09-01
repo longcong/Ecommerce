@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Brands;
 use App\Category;
 use App\Coupon;
 use App\Product;
@@ -40,6 +41,10 @@ Class ProductService implements ProductInterface{
     public function getPayments()
     {
         return Payment::all();
+    }
+    public function getBrands()
+    {
+        return Brands::all();
     }
 }
 

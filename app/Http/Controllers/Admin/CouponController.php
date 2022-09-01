@@ -36,7 +36,7 @@ class CouponController extends Controller
     }
 
     public function active(Request $request)
-    {
+    {       
         $coupon = Coupon::find($request->coupon_id);
         $coupon->is_active = $request->is_active;
         $coupon->save();
@@ -57,7 +57,7 @@ class CouponController extends Controller
         $coupon->expiry_date = $request->expiry_date;
         $coupon->fill($data);
         $coupon->save();
-        $request->session()->flash('success', 'The coupon has been created successfully!');
+        $request->session()->flash('success', 'Tạo mới phiếu giảm giá thành công!');
       
         return redirect()->route('coupons.index');
     }
@@ -103,7 +103,7 @@ class CouponController extends Controller
         $coupons->fill($data);
         $coupons->save();
 
-        $request->session()->flash('success', 'The coupon update successfully save!');
+        $request->session()->flash('success', 'Cập nhật phiếu giảm giá thành công!');
       
         return redirect()->route('coupons.index');
     }
@@ -119,7 +119,7 @@ class CouponController extends Controller
         $coupon = Coupon::find($id);
         $coupon->delete();
 
-        $request->session()->flash('success', 'The coupon was successfully delete!');
+        $request->session()->flash('success', 'Phiếu giảm giá đã được xóa đi!');
 
         return redirect()->route('coupons.index');
     }

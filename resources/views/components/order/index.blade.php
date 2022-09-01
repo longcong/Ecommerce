@@ -186,7 +186,7 @@
                         </li>
                         <li>
                             <h3>Total Payable</h3>
-                            <p>${{$orders->total_price}}.00</p>
+                            <p>{{number_format($orders->total_price)}}đ</p>
                         </li>
                         <li>
                             <h3>Payment Method</h3>
@@ -202,23 +202,19 @@
                     </p>
 
                     <h3 class="c-margin-t-40 c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">OUR BANK DETAILS</h3>
-                    <h3 class="c-border-bottom">Account Name : &nbsp;<span class="c-font-thin">{{$users->username}}</span></h3>
+                    <h3 class="c-border-bottom">Account Name : &nbsp;<span class="c-font-thin">{{ $users->fname }}&nbsp;{{ $users->lname }}</span></h3>
                     <ul class="c-list-inline list-inline">
                         <li>
                             <h3>Account Number</h3>
-                            <p></p>
+                            <p>9704 0000 0000 0018</p>
                         </li>
                         <li>
                             <h3>Sort Code</h3>
-                            <p>123</p>
+                            <p>{{ $orders->zipcode }}</p>
                         </li>
                         <li>
                             <h3>Bank</h3>
-                            <p>Bank Name</p>
-                        </li>
-                        <li>
-                            <h3>BIC</h3>
-                            <p>12345</p>
+                            <p>Long Nguyen</p>
                         </li>
                     </ul>
                 </div>
@@ -268,19 +264,20 @@
                                     <li class="c-margin-b-25"><a href="shop-product-details-2.html"
                                             class="c-font-bold c-font-22 c-theme-link"></a></li>
                                     <li>Quantity: {{$item->quantity}} </li>
+                                    <li>Size: {{$item->quantity}} </li>
                                 </ul>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Discount</p>
-                                <p class="c-font-sbold c-font-uppercase c-font-18">{{$item->products->discount_value}}</p>
+                                <p class="c-font-sbold c-font-uppercase c-font-18">{{number_format($item->products->discount_value) }}đ</p>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                <p class="c-font-sbold c-font-uppercase c-font-18">{{$item->price}}</p>
+                                <p class="c-font-sbold c-font-uppercase c-font-18">{{number_format($item->price) }}đ</p>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                <p class="c-font-sbold c-font-18">{{($item->price * $item->quantity)-($item->products->discount_value* $item->quantity)}}</p>
+                                <p class="c-font-sbold c-font-18">{{number_format(($item->price * $item->quantity)-($item->products->discount_value* $item->quantity))}}đ</p>
                             </div>
                         </div>
                     </div>
@@ -294,7 +291,7 @@
                             @if(!empty(Session::get('couponAmount')))
                                 <li>
                                     <h3 class="c-font-regular c-font-22">Coupon Sale: &nbsp;
-                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('couponAmount') }}</span>
+                                        <span class="c-font-dark c-font-bold c-font-22">{{ number_format(Session::get('couponAmount')) }}đ</span>
                                     </h3>
                                 </li>
                                 <li>
@@ -311,7 +308,7 @@
                                     <li>
                                         <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
                                             <span class="c-font-dark c-font-bold c-font-22">
-                                                ${{ Session::get('totalFinal') }}.00
+                                                {{ number_format(Session::get('totalFinal')) }}đ
                                             </span>
                                         </h3>
                                     </li>
@@ -319,7 +316,7 @@
                                     <li>
                                         <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
                                             <span class="c-font-dark c-font-bold c-font-22">
-                                                ${{ Session::get('totalFinal') }}.00
+                                                {{ number_format(Session::get('totalFinal')) }}đ
                                             </span>
                                         </h3>
                                     </li>
@@ -331,7 +328,7 @@
                                         <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
                                             <span
                                                 class="c-font-dark c-font-bold c-font-22">
-                                                ${{ $orders->total_price }}.00
+                                                {{ number_format($orders->total_price) }}đ
                                             </span>
                                         </h3>
                                     </li>
@@ -340,7 +337,7 @@
                                         <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
                                             <span
                                                 class="c-font-dark c-font-bold c-font-22">
-                                                ${{ $orders->total_price }}.00
+                                                {{ number_format($orders->total_price) }}đ
                                             </span>
                                         </h3>
                                     </li>

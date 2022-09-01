@@ -6,7 +6,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <!-- <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
           </ol>
-          @if(Auth::user()->role =='1')
+          @if(Auth::user()->role == '1')
             <h6 class="font-weight-bolder mb-0">Admin</h6>
           @else
             <h6 class="font-weight-bolder mb-0">User</h6>

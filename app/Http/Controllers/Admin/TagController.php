@@ -31,14 +31,17 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TagFormRequest $request)
+    public function store(Request $request)
     {
+        $this->validate($request, array(
+            'name' => 'required|max:255'
+        ));
         $tag = new Tag;
-        $data = $request->validated();
-        $tag -> fill($data);
-        $tag -> save();
 
-        $request -> session()->flash('success', 'New Tag was successfully created!');
+        $tag->name = $request->name;
+        $tag->save();
+        
+        $request->session()->flash('success', 'New Tag was successfully created!');
         return redirect()->route('tags.index');
     }
 
@@ -77,13 +80,14 @@ class TagController extends Controller
     {
         $tag = Tag::find($id);
 
-        $data = $request->validate();
-        $tag -> fill($data);
-        $tag -> save();
+        $this->validate($request, ['name' => 'required|max:255']);
 
-        $request -> session()->flash('success', 'Successfully saved your new tag!');
+        $tag->name = $request->input('name');
+        $tag->save();
 
-        return redirect()->route('tags.show', $tag->id);
+        $request->session()->flash('success', 'Successfully saved your new tag!');
+
+        return redirect()->route('tags.index');
     }
 
     /**

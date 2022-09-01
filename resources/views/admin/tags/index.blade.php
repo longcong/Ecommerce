@@ -1,15 +1,14 @@
 @extends('layouts.admin')
 
 @section('title', '| All Tags')
-
-
 @section('content')
+<h1>Tags</h1>
 <div class="card">
     <div class="card-body">
         <div class="container">
             <div class="row " >
                 <div class="col-md-8 ">
-                    <h1>Tags</h1>
+                 
                     <table class="table">
                         <thead>
                             <tr class="order1">

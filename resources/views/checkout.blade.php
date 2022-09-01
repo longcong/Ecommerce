@@ -146,21 +146,19 @@
                     </li>
                     <li class="row c-border-bottom"></li>
                     <!-- @php $total =0;@endphp -->
-                    @foreach ($cartitems as $item)
+                    @foreach($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
+                            <p class="">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }}đ</p>
                         </div>
                     </li>
-                    <!-- @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp -->
+                    @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
                     @endforeach
-                    <!-- COUPON -->
-                    <!-- END COUPON -->
                         <li class="row c-margin-b-15 c-margin-t-15">
                             <div class="col-md-6 c-font-20">Subtotal</div>
                             <div class="col-md-6 c-font-20">
-                                <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                                <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                             </div>
                         </li>
                     
@@ -174,7 +172,7 @@
                         <li class="row c-margin-b-15 c-margin-t-15">
                             <div class="col-md-6 c-font-20">Discount Coupon</div>
                             <div class="col-md-6 c-font-20">
-                                <p>$<span class="c-subtotal">{{ Session::get('couponAmount') }}.00</span></p>
+                                <p><span class="c-subtotal">{{ number_format(Session::get('couponAmount')) }}đ</span></p>
                             </div>
                         </li>
                         @endif
@@ -224,7 +222,7 @@
                                     <p class="c-font-30">Total</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
+                                    <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ number_format(Session::get('totalFinal')) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>
@@ -232,7 +230,7 @@
                             <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">Total</div>
                                 <div class="col-md-6 c-font-20">
-                                    <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                                    <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{$total}}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>

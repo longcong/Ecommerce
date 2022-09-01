@@ -36,7 +36,7 @@
                                     <td>{{ $coupon->type }}</td>
                                     <td>
                                         @if($coupon->discount_type == 'Amount')
-                                                ${{ $coupon->discount_coup }}.00
+                                                {{ number_format($coupon->discount_coup) }}đ
                                         @else
                                                 {{ $coupon->discount_coup }}.00%
                                         @endif

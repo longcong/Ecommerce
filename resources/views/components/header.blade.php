@@ -110,15 +110,8 @@
                 </div>
                 <!-- END: BRAND -->
                 <!-- BEGIN: QUICK SEARCH -->
-                <form class="c-quick-search" action="#">
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="Type to search..."
-                        value=""
-                        class="form-control"
-                        autocomplete="off"
-                    />
+                <form class="c-quick-search" action="{{ route('search') }}">
+                    <input type="text" name="query" placeholder="Search for product....." value="{{ request()->input('query') }}" class="form-control" autocomplete="off">
                     <span class="c-theme-link">&times;</span>
                 </form>
                 <!-- END: QUICK SEARCH -->
@@ -1975,7 +1968,7 @@
                         </li>
                         @if(Auth::check())
                             <li class="c-cart-toggler-wrapper">
-                                <a href="#" class="c-btn-icon c-cart-toggler"
+                                <a href="{{ route('cart') }}" class="c-btn-icon c-cart-toggler"
                                     ><i class="icon-handbag c-cart-icon"></i>
                                     <span
                                         class="c-cart-number c-theme-bg"
@@ -2052,8 +2045,8 @@
                             <div class="c-cart-menu-content">
                                 <p>
                                     <span class="c-item-price c-theme-font"
-                                        >${{ ($item->products->price - $item->products->discount_value)
-                                        }}.00</span
+                                        >${{ number_format(($item->products->price - $item->products->discount_value))
+                                        }} đ</span
                                     >
                                 </p>
                                 <a
@@ -2074,7 +2067,7 @@
                             <p
                                 class="c-cart-menu-float-r c-theme-font c-font-sbold"
                             >
-                                ${{ $total }}.00
+                                 number_format({{ $total }}) đ
                             </p>
                         </div>
                     </ul>

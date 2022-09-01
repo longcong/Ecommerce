@@ -44,10 +44,7 @@ class CouponFormRequest extends FormRequest
                 'required',
                 'digits:1',
             ],
-            'quantity' => [
-                'required',
-                'integer',
-            ],
+
             'discount_coup' => [
                 'required',
                 'integer',
@@ -73,12 +70,27 @@ class CouponFormRequest extends FormRequest
                 ],
             ],
         ];
+        if($this->getMethod() == 'POST')[
+            $rules += [
+                'quantity' => [
+                    'required',
+                    'integer',
+                ],
+            ],
+        ];
         if($this->getMethod() == 'PUT')[
             $rules += [
                 'code' => [
                     'required',
                     'string',
                     'max:10',
+                ],
+            ],
+        ];
+        if($this->getMethod() == 'PUT')[
+            $rules += [
+                'quantity' => [
+                    'integer',
                 ],
             ],
         ];

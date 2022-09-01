@@ -109,7 +109,7 @@
                         {{ Form::label('quantity', 'Quantity:') }}
                     </div>
                     <div class="col-8">
-                        {{ Form::text('quantity',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
+                        {{ Form::text('quantity',null, array('class' => 'form-control','style'=>'margin-bottom: 5px;')) }}
                     </div>
                 </div>
                 <!-- end quantity -->

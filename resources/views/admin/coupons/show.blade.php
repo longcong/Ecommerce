@@ -53,7 +53,7 @@
                                 <label for="">Discount_Coupon</label>
                                 @if($coupon->discount_type == 'Amount')
                                     <div class="p-2 border">
-                                        ${{ $coupon->discount_coup }}.00
+                                        {{ number_format($coupon->discount_coup) }}đ
                                     </div>
                                 @else
                                     <div class="p-2 border">

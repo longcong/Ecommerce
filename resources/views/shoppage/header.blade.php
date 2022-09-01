@@ -26,8 +26,8 @@
             </div>
             <!-- END: BRAND -->				
             <!-- BEGIN: QUICK SEARCH -->
-            <form class="c-quick-search" action="#">
-                <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
+            <form class="c-quick-search" action="{{ route('search') }}">
+                <input type="text" name="query" placeholder="Search for product....." value="{{ request()->input('query') }}" class="form-control" autocomplete="off">
                 <span class="c-theme-link">&times;</span>
             </form>
             <!-- END: QUICK SEARCH -->	
@@ -37,135 +37,15 @@
     <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
     <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
     <ul class="nav navbar-nav c-theme-nav"> 
-                    <li >
-                    <a href="javascript:;" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
-        
-                    
-                                                                    <div class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
-                            <div class="row">
-                        <div class="col-md-3">
-                <ul class="dropdown-menu c-menu-type-inline">
-                                                <li>
-                            <h3>Home Samples</h3>
-                        </li>
-                                                                                                    <li>
-                            <a href="../corporate_1/index.html">NEW Corporate Demo 1</a>
-                        </li>
-                                                                            <li>
-                            <a href="index.html">Home Version 1</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-2.html">Home Version 2</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-3.html">Home Version 3</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-4.html">Home Version 4</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-5.html">Home Version 5</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-6.html">Home Version 6</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-7.html">Home Version 7</a>
-                        </li>
-                                        </ul>
-            </div>
-                        <div class="col-md-3">
-                <ul class="dropdown-menu c-menu-type-inline">
-                                                <li>
-                            <h3>Home Samples</h3>
-                        </li>
-                                                                                                    <li>
-                            <a href="home-8.html">Home Version 8</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-9.html">Home Version 9</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-10.html">Home Version 10</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-11.html">Home Version 11</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-12.html">Home Version 12</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-13.html">Home Version 13</a>
-                        </li>
-                                                                            <li>
-                            <a href="home-14.html">Home Version 14</a>
-                        </li>
-                                        </ul>
-            </div>
-                        <div class="col-md-3">
-                <ul class="dropdown-menu c-menu-type-inline">
-                                                <li>
-                            <h3>Onepage Samples</h3>
-                        </li>
-                                                                                                    <li>
-                            <a href="../agency_1/index.html" target="_blank">New Agency Onepage Demo</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-1.html" target="_blank">Onepage Version 1</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-2.html" target="_blank">Onepage Version 2</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-3.html" target="_blank">Onepage Version 3</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-4.html" target="_blank">Onepage Version 4</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-5.html" target="_blank">Onepage Version 5</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-6.html" target="_blank">Onepage Version 6</a>
-                        </li>
-                                        </ul>
-            </div>
-                        <div class="col-md-3">
-                <ul class="dropdown-menu c-menu-type-inline">
-                                                <li>
-                            <h3>Onepage Samples</h3>
-                        </li>
-                                                                                                    <li>
-                            <a href="onepage-7.html" target="_blank">Onepage Version 7</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-8.html" target="_blank">Onepage Version 8</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-9.html" target="_blank">Onepage Version 9</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-10.html" target="_blank">Onepage Version 10</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-11.html" target="_blank">Onepage Version 11</a>
-                        </li>
-                                                                            <li>
-                            <a href="onepage-12.html" target="_blank">Onepage Version 12</a>
-                        </li>
-                                        </ul>
-            </div>
-                </div>
-                        </div>
-                
-                                            
-                </li>
-                    <li class="c-menu-type-classic">
-                    <a href="javascript:;" class="c-link dropdown-toggle">Features<span class="c-arrow c-toggler"></span></a>
-        
-                    
-                                                <ul class="dropdown-menu c-menu-type-classic c-pull-left">
-                                                <li class="dropdown-submenu">
+        <li >
+            <a href="javascript:;" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
+ 
+        </li>
+
+        <li class="c-menu-type-classic">
+            <a href="javascript:;" class="c-link dropdown-toggle">Features<span class="c-arrow c-toggler"></span></a>
+        <ul class="dropdown-menu c-menu-type-classic c-pull-left">
+            <li class="dropdown-submenu">
             <a href="javascript:;">Headers<span class="c-arrow c-toggler"></span></a>
                 <ul class="dropdown-menu c-pull-right">
                                             <li>
@@ -1161,63 +1041,73 @@
         <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
     <!-- BEGIN: CART MENU -->
             @if (Auth::check())
-                <div class="c-cart-menu">
-                    <ul class="c-cart-menu-items">
-                        @php $total =0;@endphp @foreach ($minicartitems as $item)
-                        <li>
-                            <img
-                                src="{{ asset('images/' . $item->products->image) }}"
-                            />
-                            <div class="c-cart-menu-content">
-                                <p>
-                                    <span class="c-item-price c-theme-font"
-                                        >${{ ($item->products->price - $item->products->discount_value)
-                                        }}.00</span
-                                    >
+                @if($minicartitems != null)
+                    <div class="c-cart-menu">
+                        <ul class="c-cart-menu-items">
+                            @php $total =0;@endphp 
+                                @foreach ($minicartitems as $item)
+                                <li>
+                                    <img
+                                        src="{{ asset('images/' . $item->products->image) }}"
+                                    />
+                                    <div class="c-cart-menu-content">
+                                        <p>
+                                            <span class="c-item-price c-theme-font"
+                                                >${{ number_format(($item->products->price - $item->products->discount_value))
+                                                }} đ</span
+                                            >
+                                        </p>
+                                        <a
+                                            href="{{ url('product/'.$item->products->slug) }}"
+                                            class="c-item-name c-font-sbold"
+                                            >{{$item->products->title}}</a
+                                        >
+                                    </div>
+                                </li>
+                                @php $total += ($item->products->price -
+                                $item->products->discount_value) * $item->prod_qty ; @endphp
+                            @endforeach
+                            
+                            <div class="c-cart-menu-title">
+                                <p class="c-cart-menu-float-l c-font-sbold">
+                                    {{ $minicartitems->COUNT('user_id') }} item(s)
                                 </p>
-                                <a
-                                    href="{{ url('product/'.$item->products->slug) }}"
-                                    class="c-item-name c-font-sbold"
-                                    >{{$item->products->title}}</a
+                                <p
+                                    class="c-cart-menu-float-r c-theme-font c-font-sbold"
                                 >
+                                    {{ number_format($total) }} đ
+                                </p>
                             </div>
-                        </li>
-                        @php $total += ($item->products->price -
-                        $item->products->discount_value) * $item->prod_qty ; @endphp
-                        @endforeach
-                        
-                        <div class="c-cart-menu-title">
-                            <p class="c-cart-menu-float-l c-font-sbold">
-                                {{ $minicartitems->COUNT('user_id') }} item(s)
-                            </p>
-                            <p
-                                class="c-cart-menu-float-r c-theme-font c-font-sbold"
-                            >
-                                ${{ $total }}.00
-                            </p>
+                        </ul>
+                        <div class="c-cart-menu-footer">
+                            <a 
+                                href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
+                                >View Cart
+                            </a>
+                            <a 
+                                href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                                >Checkout</a>
                         </div>
-                    </ul>
-                    <div class="c-cart-menu-footer">
-                        <a 
-                            href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
-                            >View Cart
-                        </a>
-                        <a 
-                            href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
-                            >Checkout</a>
                     </div>
-                </div>
+                @else
+                    <div class="c-cart-menu">
+                        <div class="c-cart-menu-footer">
+                            <li
+                                class="c-title c-font-18 c-font-slim"
+                                >Your Cart is empty
+                            </li>
+                        
+                        </div>
+                    </div>
+                @endif
             @else
                 <div class="c-cart-menu">
                     <div class="c-cart-menu-footer">
-                        <a 
-                            href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
-                            >View Cart
-                        </a>
-                        <a 
-                            href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
-                            >Checkout
-                        </a>
+                        <ul>
+                            <p class="c-title c-font-18 c-font-slim">
+                                Your Cart is empty
+                            </p>
+                        </ul>
                     </div>
                 </div>
             @endif                         

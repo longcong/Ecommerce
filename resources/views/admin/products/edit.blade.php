@@ -25,11 +25,14 @@
                         {{ Form::label('discount_unit', 'Code:') }}
                         {{ Form::text('discount_unit', null, array('class'=> 'form-control input-lg')) }}
 
-                        {{ Form::label('slug', 'Slug:', ['class' => 'margin-top']) }}
+                        {{ Form::label('slug', 'Slug:') }}
                         {{ Form::text('slug', null, ['class' => 'form-control input-lg']) }}  
 
                         {{ Form::label('category_id', 'Category:') }}
                         {{ Form::select('category_id', $categories, null, array('class' => 'form-control input-lg')) }}
+                        
+                        {{ Form::label('brand_id', 'Brands:') }}
+                        {{ Form::select('brand_id', $brands, null, array('class' => 'form-control input-lg')) }}
 
                         {{ Form::label('quantity', 'Quantity:') }}
                         {{ Form::text('quantity', null, array('class' => 'form-control input-lg')) }}
@@ -42,12 +45,23 @@
 
                         {{ Form::label('is_popular', 'Is_Popular:') }}
                         {{ Form::text('is_popular', null, array('class' => 'form-control input-lg')) }}
-
+                        <br>
                         {{ Form::label('featured_image','Update Image:', array('class' => 'form-spacing-top'))}}
                         {{ Form::file('featured_image') }}
                         <br>
+                        
+                        {{ Form::label ('meta_image','Meta_Image:') }}
+                        {{ Form::file('meta_image',array('class' => 'xxx'))}} 
+                        <br>
                         {{ Form::label('note',"Body:", ['class' => 'form-spacing-top']) }}
                         {{ Form::textarea('note', null, array('class' => 'form-control ', 'rows' =>'5', 'cols'=>'75'))}}
+                        <hr>
+                        <label class="variant">Product Variant</label><br>
+                        {{ Form::label('product_size', 'Product_size:') }}
+                        {{ Form::text('product_size',null, array('class' => 'form-control input-lg')) }}
+
+                        {{ Form::label('product_color', 'Product_color:') }}
+                        {{ Form::text('product_color', null, array('class' => 'form-control input-lg')) }}
                     </div>
 
                     <div class="col-md-4" >

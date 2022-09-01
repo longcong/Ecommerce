@@ -33,25 +33,6 @@ class TagFormRequest extends FormRequest
                 ],
             ],
         ];
-        if($this->getMethod() == 'POST')[
-            $rules += [
-                'name' => [
-                    'required',
-                    'string',
-                    'max:255',
-                    'unique:tags,name',
-                ],
-            ],
-        ];
-        if($this->getMethod() == 'PUT')[
-            $rules += [
-                'name' => [
-                    'required',
-                    'string',
-                    'max:255'
-                ],
-            ],
-        ];
         return $rules;
     }
 }

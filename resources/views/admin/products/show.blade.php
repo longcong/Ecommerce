@@ -18,10 +18,15 @@
                 <br>
                 <img src="{{ asset('images/' . $product->image) }}" height="500" width="500"
                     alt="This is a Photo">
-                <p class="lead"></p>
+                <p class="lead">Image</p>
 
                 <hr>
-
+                <div class="md-5">
+                    <img src="{{ asset('meta_images/' . $product->meta_image) }}" height="200" width="200"
+                        alt="This is a Photo">
+                        <br>
+                    <p class="lead">Meta Image</p>
+                </div>
             </div>
 
             <div class="col-md-5">
@@ -29,12 +34,12 @@
                     <dl class="dl-horizontal">
                         <label>Url:</label>
                         <p><a
-                                href="{{ route('detail.productdetail', $product->slug) }}">{{ route('detail.productdetail', $product->slug) }}</a>
+                            href="{{ route('detail.productdetail', $product->slug) }}">{{ route('detail.productdetail', $product->slug) }}</a>
                         </p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Category_id:</label>
+                        <label>Category:</label>
                         <p>{{ $product->category->name }}</p>
                     </dl>
 
@@ -42,7 +47,10 @@
                         <label>Is_Popular:</label>
                         <p>{{ $product->is_popular }}</p>
                     </dl>
-
+                    <dl class="dl-horizontal">
+                        <label>Brand:</label>
+                        <p>{{ $product->brand->name }}</p>
+                    </dl>
                     <dl class="dl-horizontal">
                         <label>Quantity:</label>
                         <p>{{ $product->quantity }}</p>
@@ -50,13 +58,24 @@
 
                     <dl class="dl-horizontal">
                         <label>Price:</label>
-                        <p>{{ $product->price }}$</p>
+                        <p>{{number_format($product->price) }} đ</p>
                     </dl>
 
                     <dl class="dl-horizontal">
                         <label>Discount:</label>
-                        <p>{{ $product->discount_value }}$</p>
+                        <p>{{ number_format($product->discount_value) }} đ</p>
                     </dl>
+                    <dl class="dl-horizontal">
+                        <label>Size:</label>
+                        <p>{{ $product->product_size }}</p>
+                    </dl>
+                    @if($product->product_color == null)
+                    @else
+                        <dl class="dl-horizontal">
+                            <label>Color:</label>
+                            <p>{{ $product->product_color }}</p>
+                        </dl>
+                    @endif
                     <dl class="dl-horizontal">
                         <label>Description:</label>
                         <p>{{ substr($product->note, 0, 20) }} {{ strlen($product->note) > 20 ? "..." : "" }}</p>

@@ -22,7 +22,7 @@
                         <div class="col-2 ">
                             {{ Form::label('name', 'Name:') }}
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => 'Category')) }}
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="col-2 ">
                             {{ Form::label('slug', 'Slug:') }}
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             {{ Form::text('slug',null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255', 'style'=>'margin-bottom: 5px;','placeholder' => 'Slug Category')) }}
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="col-2 ">
                             {{ Form::label('description', 'Description:') }}
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             {{ Form::text('description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;' , 'placeholder' => 'Description')) }}
                         </div>
                     </div>
@@ -46,11 +46,11 @@
                         <div class="col-2 ">
                             {{ Form::label('status', 'Status:') }}
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             {{ Form::text('status',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => '0 or 1' )) }}
                         </div>
                     </div>
-
+                    <br>
                     {{ Form::submit ('Create New Category',['class' => 'btn btn-primary btn-block']) }}
                     {!! Form::close() !!}
                 </div>

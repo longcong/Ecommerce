@@ -311,8 +311,7 @@
 		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
 			<li><a href="shop-product-list.html">Product List</a></li>
 			<li>/</li>
-															<li class="c-state_active">Jango Components</li>
-									
+			<li class="c-state_active">Jango Components</li>						
 		</ul>
 	</div>
 </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
@@ -514,26 +513,21 @@
 <div class="c-shop-result-filter-1 clearfix form-inline">
 	<div class="c-filter">
 		<label class="control-label c-font-16">Show:</label>
-		<select class="form-control c-square c-theme c-input">
-			<option value="#?limit=24" selected="selected">24</option>
-			<option value="#?limit=25">25</option>
-			<option value="#?limit=50">50</option>
-			<option value="#?limit=75">75</option>
-			<option value="#?limit=100" selected>100</option>
+		<select class="form-control c-square c-theme c-input" wire:model="pagesize">
+			<option value="4" selected="selected">4</option>
+			<option value="6">6</option>
+			<option value="10">10</option>
+			<option value="12">12</option>
 		</select>
 	</div>
 	<div class="c-filter">
 		<label class="control-label c-font-16">Sort&nbsp;By:</label>
-		<select class="form-control c-square c-theme c-input">
-			<option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
-			<option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-			<option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-			<option value="#?sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
-			<option value="#?sort=p.price&amp;order=DESC" selected>Price (High &gt; Low)</option>
-			<option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
-			<option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
-			<option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
-			<option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
+		<select class="form-control c-square c-theme c-input" wire:model="sorting">
+			<option value="default" selected="selected">Tìm kiếm mặc định</option>
+			<option value="populars">Hiện hành</option>
+			<option value="date">Mới nhất</option>
+			<option value="price">Giá (Thấp &gt; Cao)</option>
+			<option value="price-desc">Price (Cao &gt; Thấp)</option>
 		</select>
 	</div>
 </div><!-- END: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->

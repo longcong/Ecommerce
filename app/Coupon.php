@@ -27,5 +27,9 @@ class Coupon extends Model
     public function orders(){
         return $this->belongsTo('App\Orders');
     }
+    public function coupon_user()
+    {
+        return $this -> hasMany(CouponUser::class);
+    }
 }
 

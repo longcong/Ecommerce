@@ -76,7 +76,7 @@ class CategoryController extends Controller
     {
         //
         $categories = Category::find($id);
-        return view('admin.categories.edit')->withCategories($categories);
+        return view('admin.categories.edit',compact('categories'));
         
     }
 
@@ -132,6 +132,5 @@ class CategoryController extends Controller
         $categories = Category::find($request->category_id);
         $categories->status = $request->status;
         $categories->save();
-        return response()->json(['status'=>'Category status have changed successfully.']);
     }
 }
