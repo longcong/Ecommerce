@@ -14,7 +14,7 @@
         <hr>
             <div class="col-md-8">
                 <!-- title -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('title', 'Title:') }}
                     </div>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <!-- description -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('description', 'Description:') }}
                     </div>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <!-- seller -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('seller_id', 'Seller_id:') }}
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <!-- code -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('code', 'Code:') }}
                     </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <!-- type -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('type', 'Coupon_Type:') }}
                     </div>
@@ -76,7 +76,7 @@
                 </div>
                 <!-- end type -->
                 <!-- discount type -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('discount_type', 'Discount_Type:') }}
                     </div>
@@ -94,7 +94,7 @@
                 </div>
                 <!-- end discount type -->
                 <!-- discount coupon -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('discount_coup', 'Discount_Coupon:') }}
                     </div>
@@ -104,27 +104,36 @@
                 </div>
                 <!--end discount coupon -->
                 <!-- quantity -->
-                <!-- <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('quantity', 'Quantity:') }}
                     </div>
                     <div class="col-8">
-                        {{ Form::text('quantity',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
+                        {{ Form::text('quantity',null, array('class' => 'form-control','style'=>'margin-bottom: 5px;')) }}
                     </div>
-                </div> -->
+                </div>
                 <!-- end quantity -->
+                <!-- start_date -->
+                <div class="row g-2 align-items-center user1">
+                    <div class="col-2">
+                        {{ Form::label('start_date','Start date:',array('style' => 'margin-top: 10px;')) }}
+                    </div>
+                    <div class="col-8" wire:ignore inline="true">
+                        {{ Form::text('start_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','id' => 'start_date' , 'name' => 'start_date'))  }}
+                    </div>
+                </div>
                 <!-- expiry date -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2">
                         {{ Form::label('expiry_date','Expiry_Date:',array('style' => 'margin-top: 10px;')) }}
                     </div>
-                    <div class="col-8" wire:ignore inline="true">
-                        {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Expiry Date','wire:model' => 'expiry_date', 'id' => 'expiry_date' ))  }}
+                    <div class="col-8" inline="true">
+                        {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255', 'id' => 'expiry_date' ,'name' => 'expiry_date'))  }}
                     </div>
                 </div>
                 <!-- end expiry date -->
                 <!-- active -->
-                <div class="row g-2 align-items-center" style="margin-top:1px;">
+                <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
                         {{ Form::label('is_active', 'Active:') }}
                     </div>
@@ -185,7 +194,16 @@
             })
             .on('dp.change',function(ev){
                 var data = $('#expiry_date').val();
-                $this.set('expiry_date',data);
+            })
+       });  
+    </script>
+    <script>
+        $(function(){
+            $('#start_date').datepicker({
+                dateFormat: 'yy-mm-dd'
+            })
+            .on('dp.change',function(ev){
+                var data = $('#start_date').val();
             })
        });  
     </script>

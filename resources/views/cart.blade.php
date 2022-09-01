@@ -5,13 +5,10 @@
 @section('buy_main')
 		
 	<!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
-@include('components.header')
-
-<?php
-	session_start();
-		$_SESSION["session_id"] = "x123";
-?>
-
+	<header class="c-layout-header c-layout-header-default c-layout-header-dark-mobile c-header-transparent-dark"
+        data-minimize-offset="80">
+		@include('components.header')
+    </header>
 <!-- END: HEADER --><!-- END: LAYOUT/HEADERS/HEADER-1 -->
 	<!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
 	
@@ -41,25 +38,28 @@
 			<div class="row c-cart-table-title">
 				@include('layouts.inc.messager')
 				<div class="col-md-2 c-cart-image">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Image</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Hình ảnh</h3>
 				</div>
-				<div class="col-md-4 c-cart-desc">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Description</h3>
+				<div class="col-md-3 c-cart-desc">
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Tên sản phẩm</h3>
 				</div>
 				<div class="col-md-1 c-cart-ref">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">SKU</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">màu sắc</h3>
+				</div>
+				<div class="col-md-1 c-cart-ref">
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Size</h3>
 				</div>
 				<div class="col-md-1 c-cart-qty">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Qty</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">số lượng</h3>
 				</div>
 				<div class="col-md-1 c-cart-price">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Unit Price</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">giá ban đầu</h3>
 				</div>
 				<div class="col-md-1 c-cart-price">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Sale</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">giảm giá</h3>
 				</div>
 				<div class="col-md-1 c-cart-total">
-					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Total</h3>
+					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Tổng</h3>
 				</div>
 				<div class="col-md-1 c-cart-remove"></div>
 			</div>
@@ -72,17 +72,21 @@
 				<div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
 					<img src="{{ asset('images/' . $item->products->image) }}" height="100px" width="100px"/>
 				</div>
-				<div class="col-md-4 col-sm-9 col-xs-7 c-cart-desc">
+				<div class="col-md-3 col-sm-6 col-xs-7 c-cart-desc">
 					<h3><a href="{{ url('product/'.$item->products->slug) }}" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{$item->products->title}}</a></h3>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
-					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">SKU</p>
-					<p>{{$item->products->slug}}</p>
+					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">màu</p>
+					<p>{{$item->prod_color}}</p>
+				</div>
+				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
+					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">SIZE</p>
+					<p>{{$item->prod_size}}</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-qty">
 					<input type="hidden" value="{{ $item->prod_id }}" class="product_id">
 					@if($item->products->quantity >= $item->prod_qty)
-						<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
+						<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">số lượng</p>
 						<div class="c-input-group c-spinner">
 							<input type="text" class="form-control qty-input" value="{{$item->prod_qty}}">
 							<div class="c-input-group-btn-vertical">
@@ -92,21 +96,21 @@
 						</div>
 						@php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
 					@else
-					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">QTY</p>
+					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">số lượng</p>
 					<span class="c-font-20 c-font-red">Out of stock</span>
 					@endif
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-					<p class="c-cart-price c-font-bold">${{$item->products->price }}.00</p>
+					<p class="c-cart-price c-font-bold">{{ number_format($item->products->price) }}đ</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-price">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Sale</p>
-					<p class="c-cart-price c-font-bold">${{$item->products->discount_value }}.00</p>
+					<p class="c-cart-price c-font-bold">{{ number_format($item->products->discount_value) }}đ</p>
 				</div>
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
-					<p class="c-cart-price c-font-bold">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
+					<p class="c-cart-price c-font-bold">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }}đ</p>
 				</div>
 				<div class="col-md-1 col-sm-12 c-cart-remove">
 					<button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i></button>
@@ -123,7 +127,7 @@
 						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
+						<h3 class="c-font-bold c-font-16">{{ number_format($total) }}đ</h3>
 					</div>
 				</div>
 			</div>
@@ -139,7 +143,7 @@
 							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Discount Coupon</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-bold c-font-16">${{ Session::get('couponAmount') }}.00</h3>
+							<h3 class="c-font-bold c-font-16">{{ number_format(Session::get('couponAmount')) }}đ</h3>
 						</div>
 					</div>
 				</div>
@@ -160,7 +164,7 @@
 							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-bold c-font-16">${{ Session::get('totalFinal') }}.00</h3>
+							<h3 class="c-font-bold c-font-16">{{ number_format(Session::get('totalFinal')) }}đ</h3>
 						</div>
 					</div>
 				</div>
@@ -194,14 +198,14 @@
 							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-bold c-font-16">${{ $total }}.00</h3>
+							<h3 class="c-font-bold c-font-16">{{ number_format($total) }}đ</h3>
 						</div>
 					</div>
 				</div>
 			@endif
 			<!-- END: SUBTOTAL ITEM ROW -->
 			<div class="c-cart-buttons">
-				<a href="#" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Continue Shopping</a>
+				<a href="{{ url('/') }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Continue Shopping</a>
 				<a href="{{route('checkout')}}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
 			</div>
 		</div>

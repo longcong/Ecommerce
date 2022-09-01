@@ -27,7 +27,6 @@ class OrderController extends Controller
         $orders = Order::find($request->order_id);
         $orders->status = $request->status;
         $orders->save();
-        return response()->json(['status'=>'Order status has been changed successfully']);
     }
     public function orderhistory()
     {

@@ -53,7 +53,7 @@
                                 <label for="">Discount_Coupon</label>
                                 @if($coupon->discount_type == 'Amount')
                                     <div class="p-2 border">
-                                        ${{ $coupon->discount_coup }}.00
+                                        {{ number_format($coupon->discount_coup) }}đ
                                     </div>
                                 @else
                                     <div class="p-2 border">
@@ -61,10 +61,21 @@
                                     </div>
                                 @endif
                             </div>
-                            <!-- <div class="col-md-4 mt-3">
-                                <label for="">Quantity</label>
-                                <div class="p-2 border">{{ $coupon->quantity }}</div>
-                            </div> -->
+                            @if($coupon->quantity == null)
+                                <div class="col-md-4 mt-3">
+                                    <label for="">Quantity</label>
+                                    <div class="p-2 border">Out of stock</div>
+                                </div>
+                            @else
+                                <div class="col-md-4 mt-3">
+                                    <label for="">Quantity</label>
+                                    <div class="p-2 border">{{ $coupon->quantity }}</div>
+                                </div>
+                            @endif
+                            <div class="col-md-4 mt-3">
+                                <label for="">Start_Date</label>
+                                <div class="p-2 border">{{  $coupon->start_date  }}</div>
+                            </div>
                             <div class="col-md-4 mt-3">
                                 <label for="">Expiry_Date</label>
                                 <div class="p-2 border">{{  $coupon->expiry_date  }}</div>

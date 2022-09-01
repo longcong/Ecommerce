@@ -17,7 +17,7 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Username</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Role</th>
@@ -44,7 +44,9 @@
 
                                             <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" href="{{ url('admin/view-user/'.$item->id) }}">View</a>
-                                                <a class="dropdown-item" href="#">Update</a>   
+                                                @if(Auth::check())
+                                                    <a class="dropdown-item" href="{{ url('admin/create/'.$item->id) }}">Update</a>
+                                                @endif
                                             </div>
                                         </div>  
                                     </td>

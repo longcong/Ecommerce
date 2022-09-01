@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Create Product')
+@section('title', '| Create New Product')
 
 @section('stylesheet')
 
@@ -23,7 +23,7 @@
                             {{ Form::label('title','Title:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-11">
-                            {{ Form::text('title',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
+                            {{ Form::text('title',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Title' ))  }}
                         </div>
                     </div>
                     
@@ -33,14 +33,14 @@
                             {{ Form::label('price','Price:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('price',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
+                            {{ Form::text('price',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Price' ))  }}
                         </div>
                         <!-- discount code -->
                         <div class="col-1">
                             {{ Form::label('discount_unit','Discount Code:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('discount_unit',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
+                            {{ Form::text('discount_unit',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Discount code' ))  }}
                         </div>
                         
                         <!-- discount -->
@@ -48,7 +48,7 @@
                             {{ Form::label('discount_value','Discount:',array('style' => 'margin-top: 10px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('discount_value',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
+                            {{ Form::text('discount_value',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','placeholder' => 'Discount value' ))  }}
                         </div>
                         <br>
                     </div>
@@ -59,7 +59,7 @@
                             {{ Form::label('slug', 'Slug: ', array('style' => 'margin-top:10px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255')) }}
+                            {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255','placeholder' => 'Slug')) }}
                         </div>
                         <!-- category -->
                         <div class="col-1">
@@ -68,7 +68,9 @@
                         <div class="col-3">
                             <select class="form-control select2-multi" name="category_id" >
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @if($category->status == "1")
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -76,14 +78,14 @@
                             {{ Form::label('quantity', 'Quantity: ', array('style' => 'margin-top:10px;')) }}
                         </div>
                         <div class="col-3">
-                            {{ Form::text('quantity', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255')) }}
+                            {{ Form::text('quantity', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255','placeholder' => 'Quantity')) }}
                         </div>
                     </div>
                     
                     <div class="row g-2 align-items-center" style="margin-top:10px;">
                         <!-- tag -->
                         <div class="col-1">
-                            {{ Form::label('tags', 'Tags:', array('class'=>'margin-top')) }}
+                            {{ Form::label('tags', 'Tags:', array('class'=>'margin-top:10px;')) }}
                         </div>
                         <div class="col-11">
                             <select class="form-control select2-multi" name="tags[]" multiple="multiple">
@@ -96,18 +98,53 @@
                     
                     <div class="row g-2 align-items-center" style="margin-top:5px;">
                         <div class="col-1">
-                            {{ Form::label('is_popular', 'Is_Popular: ', array('style' => 'margin-top:10px;')) }}
+                            {{ Form::label('is_popular', 'Sale: ', array('style' => 'margin-top:10px;')) }}
                         </div>
-                        <div class="col-11">
-                            {{ Form::text('is_popular', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255')) }}
+                        <div class="col-5">
+                            {{ Form::text('is_popular', null, array('class'=>'form-control', 'required' => '','maxlength'=>'255','placeholder' => '0 or 1')) }}
+                        </div>
+                        <div class="col-1">
+                            {{ Form::label('brand', 'Brands: ', array('style' => 'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-5">
+                            <select class="form-control select2-multi" name="brand_id" >
+                                @foreach($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    
-                    <br>
-                    {{ Form::label ('featured_image','Upload Featured Image:') }}
-                    {{ Form::file('featured_image')}} 
-
-                    <br>
+                    <div class="row g-2 align-items-center">
+                        <div class="col-6">
+                        <br>
+                            {{ Form::label ('featured_image','Featured Image:') }}
+                            {{ Form::file('featured_image')}}
+                        </div>
+                        <!-- meta_images -->
+                        <div class="col-6">
+                            <br>
+                            {{ Form::label ('meta_image','Meta_Image:') }}
+                            {{ Form::file('meta_image')}} 
+                        </div>
+                     </div>
+                     
+                    <div class="row g-2 align-items-center create_2" >
+                        <label>Product Variant</label>
+                         <!-- Size -->
+                        <div class="col-1">
+                            {{ Form::label('product_size', 'Size: ', array('style' => 'margin-top:10px;')) }}
+                        </div>
+                        <div class="col-5">
+                            {{ Form::text('product_size', null, array('class'=>'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255','placeholder' => 'Size')) }}
+                        </div>
+                       <!-- Color -->
+                        <div class="col-1">
+                            {{ Form::label('product_color', 'Color: ', array('style' => 'margin-top:10px;float:left')) }}
+                        </div>
+                        <div class="col-5">
+                            {{ Form::text('product_color', null, array('class'=>'form-control','maxlength'=>'255','placeholder' => 'Color')) }}
+                        </div>
+                    </div>
                     {{Form::label('note',"Post Note:")}}
                     {{Form::textarea('note',null,array('class' => 'form-control','required' =>'' )) }}
                     <div class="row">

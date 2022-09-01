@@ -14,19 +14,11 @@ class CreateCouponUserTable extends Migration
     public function up()
     {
         Schema::create('coupon_user', function (Blueprint $table) {
-            $table->integer('id');
-
-            $table->unsignedBigInteger('coupon_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('order_id');
-            
-        });
-        Schema::table('coupon_user', function (Blueprint $table) {
-            
-            $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('order_id')->references('id')->on('order');
-            
+            $table->id();
+            $table->bigInteger('coupon_id');
+            $table->BigInteger('user_id');
+            $table->BigInteger('qty_cou');
+            $table->timestamps();
         });
     }
 

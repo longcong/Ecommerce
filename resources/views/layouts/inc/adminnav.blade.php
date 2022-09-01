@@ -6,7 +6,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <!-- <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
           </ol>
-          @if(Auth::user()->role =='1')
+          @if(Auth::user()->role == '1')
             <h6 class="font-weight-bolder mb-0">Admin</h6>
           @else
             <h6 class="font-weight-bolder mb-0">User</h6>
@@ -15,12 +15,12 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
-            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+            <!-- <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1"> -->
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item dropdown">
-              <a id="navbarDropdownProfile" class="nav-link" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <li class="dropdown show">
+              <a  id="navbarDropdownProfile" class="nav-link font-weight-bolder mb-0 dropdown-toggle" href="javascript:;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->username }}
               </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownProfile">

@@ -5,14 +5,12 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
         <h1>All Product</h1>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-3" style="text-align: right">
         <a href="{{ route('products.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Product</a>
-    </div>
-    <div class="col-md-12">
     </div>
 </div>
 
@@ -20,33 +18,33 @@
     <div class="row">
         <div class="col-md-12">
             <table id="tblabc" class="table table-bordered">
-                <thead >
+                <thead class="order1" >
                     <th>ID</th>
                     <th>Title</th>
                     <th>Price</th>
                     <th>Code</th>
                     <th>Quantity</th>
-                    <!-- <th>Discount</th> -->
+                    <th>Discount</th>
                     <th>Image</th>
                     <th>Note</th>
                     <th>Created At</th>
-                    <th class="order1">action</th>
+                    <th >action</th>
                 </thead>
 
                 <tbody>
                     @foreach($products as $post)
 
-                        <tr>
+                        <tr class="order1">
                             <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->price }}</td>
-                            <!-- <td>{{ $post->discount_unit}}</td> -->
+                            <td>{{ number_format($post->price) }} đ</td>
+                            <td>{{ $post->discount_unit}}</td>
                             <td>{{ $post->quantity}}</td>
-                            <td>{{ $post->discount_value}}</td>
+                            <td>{{ number_format($post->discount_value) }} đ</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
                             <td>{{ substr($post->note, 0, 20) }} {{ strlen($post->note) > 20 ? "..." : "" }}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
-                            <td class="order1">
+                            <td>
                                 <div class="dropdown show">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Action

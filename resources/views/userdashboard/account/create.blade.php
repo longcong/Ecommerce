@@ -19,10 +19,10 @@
             {!! Form::model($account, ['route' => ['updateaccount', $account->id],'data-parsley-validate' =>'', 'method'
             => 'PUT']) !!}
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('username','Username:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2 m2">
+                            {{ Form::label('username','Username:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10 font-weight-bolder mb-0" style="margin-bottom: 5px;">
                             {{ $account->username }}
                             <input id="username" name="username" type="hidden" value="{{ $account->username }}">
                             <input id="password" name="password" type="hidden" value="{{ $account->password }}">
@@ -31,100 +31,100 @@
                     </div>
                     <!-- Username, Password, Role -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('email','Email:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2 m2">
+                            {{ Form::label('email','Email:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('email',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- email -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('fname','First Name:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('fname','First Name:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('fname',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- First name -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('lname','Last Name:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('lname','Last Name:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('lname',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Last name -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('company','Company:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('company','Company:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('company',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Company -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('city','City:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('city','City:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('city',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- City -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('state','State:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('state','State:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('state',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- State -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('address1','Address 1:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('address1','Address 1:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('address1',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Address 1 -->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('address2','Address 2:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('address2','Address 2:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('address2',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Address 2-->
                     <div class="row g-2 align-items-center user1">
-                        <div class="col-1">
-                            {{ Form::label('phone','Phone:',array('style' => 'margin-top: 10px;')) }}
+                        <div class="col-2">
+                            {{ Form::label('phone','Phone:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('phone',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Phone -->
-                    <div class="row g-2 align-items-center">
-                        <div class="col-1">
-                            {{ Form::label('zipcode','Postcode / Zip:',array('style' => 'margin-top: 10px;')) }}
+                    <div class="row g-2 align-items-center user1">
+                        <div class="col-2">
+                            {{ Form::label('zipcode','Postcode / Zip:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('zipcode',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>
                     <!-- Postcode -->
-                    <div class="row g-2 align-items-center">
-                        <div class="col-1">
-                            {{ Form::label('note','Note:',array('style' => 'margin-top: 10px;')) }}
+                    <div class="row g-2 align-items-center user1">
+                        <div class="col-2">
+                            {{ Form::label('note','Note:') }}
                         </div>
-                        <div class="col-11">
+                        <div class="col-10">
                             {{ Form::text('note',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
                         </div>
                     </div>

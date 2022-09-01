@@ -18,27 +18,38 @@
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
-                            <tr style="text-align:center">
+                            <tr class="order1">
                                 <th>Coupon Code</th>
                                 <th>Coupon Type</th>
                                 <th>Coupon Discount</th>
+                                <th>Quantity</th>
+                                <th>Start Date</th>
                                 <th>Expiry Date</th>
                                 <th>Status</th>
-                                <th class="order1">Action</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($coupons as $coupon)
-                                <tr style="text-align:center;">
+                                <tr class="order1">
                                     <td>{{ $coupon->code }}</td>
                                     <td>{{ $coupon->type }}</td>
                                     <td>
                                         @if($coupon->discount_type == 'Amount')
-                                                ${{ $coupon->discount_coup }}.00
+                                                {{ number_format($coupon->discount_coup) }}đ
                                         @else
                                                 {{ $coupon->discount_coup }}.00%
                                         @endif
                                     </td>
+                                    
+                                    <td>
+                                        @if($coupon->quantity == null)
+                                            Out of stock
+                                        @else
+                                            {{ $coupon->quantity }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $coupon->start_date }}</td>
                                     <td>{{ $coupon->expiry_date }}</td>
                                     <td>
                                         <div class="form-check form-switch ps-0 is-filled" >

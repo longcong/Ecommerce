@@ -110,15 +110,8 @@
                 </div>
                 <!-- END: BRAND -->
                 <!-- BEGIN: QUICK SEARCH -->
-                <form class="c-quick-search" action="#">
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="Type to search..."
-                        value=""
-                        class="form-control"
-                        autocomplete="off"
-                    />
+                <form class="c-quick-search" action="{{ route('search') }}">
+                    <input type="text" name="query" placeholder="Search for product....." value="{{ request()->input('query') }}" class="form-control" autocomplete="off">
                     <span class="c-theme-link">&times;</span>
                 </form>
                 <!-- END: QUICK SEARCH -->
@@ -1973,25 +1966,21 @@
                                 ><i class="fa fa-search"></i
                             ></a>
                         </li>
-
-                        <li class="c-cart-toggler-wrapper">
-                            @if(Auth::check())
-                                <li class="c-cart-toggler-wrapper">
-                                    <a href="#" class="c-btn-icon c-cart-toggler"
-                                        ><i class="icon-handbag c-cart-icon"></i>
-                                        <span
-                                            class="c-cart-number c-theme-bg"
-                                            >{{ $minicartitems->COUNT('user_id') }}
-                                        </span>
-                                    </a>
-                                </li>
-                            @else
-                                <li class="c-cart-toggler-wrapper">
-                                    <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i></a>
-                                </li>
-                            @endif
-                        </li>
-
+                        @if(Auth::check())
+                            <li class="c-cart-toggler-wrapper">
+                                <a href="{{ route('cart') }}" class="c-btn-icon c-cart-toggler"
+                                    ><i class="icon-handbag c-cart-icon"></i>
+                                    <span
+                                        class="c-cart-number c-theme-bg"
+                                        >{{ $minicartitems->COUNT('user_id') }}
+                                    </span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="c-cart-toggler-wrapper">
+                                <a  href="#" class="c-btn-icon c-cart-toggler"><i class="icon-handbag c-cart-icon"></i></a>
+                            </li>
+                        @endif  
                         <li>
                         @guest
                             <a href="#" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i>
@@ -2056,8 +2045,8 @@
                             <div class="c-cart-menu-content">
                                 <p>
                                     <span class="c-item-price c-theme-font"
-                                        >${{ ($item->products->price - $item->products->discount_value)
-                                        }}.00</span
+                                        >${{ number_format(($item->products->price - $item->products->discount_value))
+                                        }} đ</span
                                     >
                                 </p>
                                 <a
@@ -2078,7 +2067,7 @@
                             <p
                                 class="c-cart-menu-float-r c-theme-font c-font-sbold"
                             >
-                                ${{ $total }}.00
+                                 number_format({{ $total }}) đ
                             </p>
                         </div>
                     </ul>
@@ -2093,21 +2082,20 @@
                     </div>
                 </div>
             @else
-            <div class="c-cart-menu">
-                <div class="c-cart-menu-footer">
-                    <a 
-                        href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
-                        >View Cart
-                    </a>
-                    <a 
-                        href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
-                        >Checkout
-                    </a>
+                <div class="c-cart-menu">
+                    <div class="c-cart-menu-footer">
+                        <a 
+                            href="{{ route('cart') }}" class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
+                            >View Cart
+                        </a>
+                        <a 
+                            href="{{ route('checkout') }}" class="btn btn-md c-btn c-btn-square c-theme-btn c-font-white c-font-bold c-center c-font-uppercase"
+                            >Checkout
+                        </a>
+                    </div>
                 </div>
-            </div>
-            @endif 
+            @endif  
             <!-- END: CART MENU --><!-- END: LAYOUT/HEADERS/QUICK-CART -->
         </div>
     </div>
-    
 </header>

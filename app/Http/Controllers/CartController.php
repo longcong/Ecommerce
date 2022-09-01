@@ -7,9 +7,11 @@ use App\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\Coupon;
+use App\CouponUser;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use PHPUnit\Framework\Constraint\Count;
 
 class CartController extends Controller
 {
@@ -22,10 +24,13 @@ class CartController extends Controller
     public function addProduct(Request $request)
     {
         if (!Auth::check()) {
-            return response()->json(['status'=>"Login to Continue"]);
+            return response()->json(['status'=>"Bạn hãy đăng nhập !"]);
         }
 
         $product_id = $request->get('product_id');
+        $product_qty = $request->get('product_qty');
+        $product_size = $request->get('prod_size');
+        $product_color = $request->get('prod_color');
         $prod_check = Product::where('id',$product_id)->first();
 
         if (!$prod_check) {
@@ -44,73 +49,66 @@ class CartController extends Controller
 
         if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
         {
-
             if($prod_check = Product::where('id',$product_id)->first())
             {
                 if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-                {
                     $cartItem = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
-                    $cartItem->prod_qty = $cartItem->prod_qty + 1;
-                    $cartItem->save();
-                    return response()->json(['status'=>$prod_check->name."Quantity Update"]);
+                    if($product_size != $cartItem->prod_size){
+                        $cartItem = new Cart();
+                        $cartItem->prod_id = $product_id;
+                        $cartItem->prod_qty = $product_qty;
+                        $cartItem->user_id = Auth::id();
+                        $cartItem->prod_size = $product_size;
+                        $cartItem->prod_color = $product_color;
+                        $cartItem->save();
 
+                        return response()->json(['status'=>$prod_check->name."Added to Cart 2"]);
+                        }
+
+                        if($product_color != $cartItem->prod_color)
+                        {
+                            $cartItem = new Cart();
+                            $cartItem->prod_id = $product_id;
+                            $cartItem->prod_qty = $product_qty;
+                            $cartItem->user_id = Auth::id();
+                            $cartItem->prod_size = $product_size;
+                            $cartItem->prod_color = $product_color;
+                            $cartItem->save();
+                            return response()->json(['status'=>$prod_check->name."Added to Cart 3"]);
+                        }
+                        else
+                        {
+                            $cartItem->prod_qty = $cartItem->prod_qty + $product_qty;
+                            $cartItem->save();
+                            return response()->json(['status'=>$prod_check->name."Quantity Update"]);
+                        }
                 }
-                else
-                {
+                else {
+                    dd('add1');
                     $cartItem = new Cart();
                     $cartItem->prod_id = $product_id;
-                    $cartItem->prod_qty = 1;
+                    $cartItem->prod_qty = $product_qty;
                     $cartItem->user_id = Auth::id();
+                    $cartItem->prod_size = $product_size;
+                    $cartItem->prod_color = $product_color; 
                     $cartItem->save();
-                    return response()->json(['status'=>$prod_check->name."Added to Cart"]);
-                }       
-
-            }
+                    
+                    return response()->json(['status'=>$prod_check->name."Added to Cart 1"]);
+                }
+                  
         }
         else
         {
             $cartItem = new Cart();
             $cartItem->prod_id = $product_id;
-            $cartItem->prod_qty = 1;
+            $cartItem->prod_qty = $product_qty;
             $cartItem->user_id = Auth::id();
+            $cartItem->prod_size = $product_size;
+            $cartItem->prod_color = $product_color; 
             $cartItem->save();
-            return response()->json(['status'=>$prod_check->name."Added to Cart"]);
-        }
-        
-        
-
-
-
-
-        // $product_id = $request->input('product_id');
-        // if(Auth::check())
-        // {
-        //     $prod_check = Product::where('id',$product_id)->first();
             
-        //     if($prod_check)
-        //     {
-        //         if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
-        //         {
-        //             return response()->json(['status'=>$prod_check->name."Already Added to Cart"]);
-        //         }
-        //         else
-        //         {
-        //             $cartItem = new Cart();
-        //             $cartItem->prod_id = $product_id;
-        //             $cartItem->prod_qty = 1;
-        //             $cartItem->user_id = Auth::id();
-        //             $cartItem->save();
-        //             return response()->json(['status'=>$prod_check->name."Added to Cart"]);
-        //         }       
-
-        //     } else {
-        //         dd('sdfsd');
-        //     }
-        // }
-        // else
-        // {
-        //     return response()->json(['status'=>"Login to Continue"]);
-        // }
+            return response()->json(['status'=>$prod_check->name."Added to Cart 0"]);
+        }
     }
 
     public function viewcart(Request $request)
@@ -142,20 +140,9 @@ class CartController extends Controller
         
         $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
         $cart->prod_qty = $cartItemQty ;
-        
-        
         $cart->update();
+
         return response()->json(['status'=>"Quatity update"]);
-
-        // $total = 0;
-        // $total += ($cart->products->price - $cart->products->discount_value) * $cart->prod_qty;
-        // dd($total);
-
-        // foreach($cart as $item){
-
-        // }
-        
-
     }
 
     public function deleteProduct(Request $request){
@@ -179,7 +166,7 @@ class CartController extends Controller
         $CartCount = Cart::where('user_id',Auth::id())->get();
         $Count = $CartCount->count();
         if($Count == 0){
-            $request->session()->flash('errors', 'Chưa có sản phẩm nhập mã giảm giá anl à!');
+            $request->session()->flash('errors', 'Bạn hãy chọn sản phẩm!');
             return redirect()->back();
         }
         else{
@@ -189,46 +176,44 @@ class CartController extends Controller
             if($request->isMethod('post')){
                 $data = $request->all();
                 $couponCount = Coupon::where('code',$data['code'])->count();
-                
                 if($couponCount == 0){
-                    $request->session()->flash('errors', 'Coupon code does not exists!');
+                    $request->session()->flash('errors', 'Mã giảm giá không hợp lệ!');
                     return redirect()->back();
-                }   
+                }
+                
                 else{
                     $couponDetail = Coupon::where('code',$data['code'])->first();
+                    //dd($couponDetail->quantity);
                     if(!$couponDetail->is_active == 1){
-                        $request->session()->flash('errors', 'Coupon code is not active!');
+                        $request->session()->flash('errors', 'Mã giảm giá không hoạt động trong thời gian này!');
+                        return redirect()->back();
+                    }
+                    if($couponDetail->quantity == 0){
+                        $request->session()->flash('errors', 'Mã giảm giá này đã hết lượt!');
                         return redirect()->back();
                     }
                     $expiry_date = $couponDetail->expiry_date;
-                    //dd($expiry_date);
                     $current_date = date('Y-m-d');
-                    //dd($current_date);
                     if($current_date > $expiry_date){
-                        $request->session()->flash('errors', 'Coupon code is not Expired!');
+                        $request->session()->flash('errors', 'Mã giảm giá đã quá thời gian sử dụng!');
                         return redirect()->back();
                     }
-                    //$aaa = $request->input('cart_id');
+                    $start_date = $couponDetail->start_date;
+                    if($current_date < $start_date){
+                        $request->session()->flash('errors', 'Mã giảm giá chưa được phát hành!');
+                        return redirect()->back();
+                    }
                     $type = $couponDetail->type;
                     $type_condition_1 = 'Category_base';
                     //$type_condition_2 = 'Product_base';
                     if($type != $type_condition_1){
-                        $request->session()->flash('errors', 'Coupon code are not Apply to these products!');
+                        $request->session()->flash('errors', 'Mã giảm giá không áp dụng cho mặt hàng trên!');
                         return redirect()->back();
                     }
                     // sét số lượng mã giảm giá
                     
                     // $cartquant = new Cart();
                     // $cartquant->quantity_cou = 1;
-
-                    // if($type == $type_condition_1){    
-                    //     dd('oke');    
-                    // }elseif($type == $type_condition_2){
-                    //     dd('done');
-                    // }else{
-                    //     dd('xxx');
-                    // }
-                    
                         // set mã giảm giá theo số lượng.
 
                         // $userCart = Cart::where('user_id',Auth::id())->get();
@@ -237,6 +222,7 @@ class CartController extends Controller
                         //     $request->session()->flash('errors', 'Coupon code does not apply to the above product total. You need to add the product number if you want to use it!');
                         //     return redirect()->back();
                         // }
+                    
                     $userCart = Cart::where('user_id',Auth::id())->get();
                     $total= 0;
                     foreach($userCart as $item){
@@ -254,10 +240,23 @@ class CartController extends Controller
                     Session::put('couponAmount',$couponAmount);
                     Session::put('code',$data['code']);
                     Session::put('totalFinal',$totalFinal);
-                    
-                    
 
-                    $request->session()->flash('success', 'Coupon code is Successfully Applied. You are Availing Discount!');
+                    $userCoupons = Coupon::where('code',$data['code'])->get();
+                    foreach($userCoupons as $userCoupon)
+                    {
+                        
+                        CouponUser::create([
+                            'coupon_id'=> $userCoupon->id,
+                            'user_id'=> $item->user_id,
+                            'qty_cou' => 1,
+                        ]);
+            
+                        $prod = Coupon::where('id',$userCoupon->id)->first();
+                        $prod->quantity = $prod->quantity - 1;
+                        $prod->update();
+                    }
+                    
+                    $request->session()->flash('success', 'Áp dụng mã giảm giá thành công!');
                     return redirect()->back();
                 }
             }
@@ -265,41 +264,3 @@ class CartController extends Controller
     }
         
 }
-
-
-    // public function applyCouponCode(Request $request)
-    // {
-    //     $coupon = Coupon::where('code',$this->code)->where('expiry_date','>=',Carbon::today())->first();
-    //     if(!$request->$coupon){
-    //         $coupon = session()->flash('coupon_message','Coupon code is invalid!');
-    //         return;
-    //     }
-    //     $coupon = $request->session()->put('coupon',[
-    //         'code' => $request->coupon->code,
-    //         'type' => $request->coupon->type,
-    //         'discount_type' => $request->coupon->discount_type,
-    //         'discount_coup' => $request->coupon->discount_coup,
-    //     ]);
-    // }
-    // public function calculateDiscounts()
-    // {
-    //     $total = 0;
-    //     $cartitemsTotal = Cart::where('user_id',Auth::id())->get();
-    //     foreach($cartitemsTotal as $carttotal)
-    //     {
-    //         $total += ($carttotal->products->price - $carttotal->products->discount_value) * $carttotal->prod_qty ;
-    //     }
-
-    //     if(session()->has('coupon')){
-    //         if(session()->get('coupon')['discount_type'] == 'Amount'){
-    //             $this->discount = session()->get('coupon')['discount_coup'];
-    //         }
-    //         else{
-    //             $this->discount = ( $total * session()->get('coupon')['discount_coup'])/100;
-    //         }
-    //         $this->subtotalDiscont = $total - $this->discount;
-    //         $total = $this->subtotalDiscont;
-    //     }
-    // }
-
-

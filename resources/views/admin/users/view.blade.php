@@ -16,22 +16,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="">Role</label>
+                                <label for="">Full Name</label>
                                 <div class="p-2 border">
-                                    {{ $users->role == '0' ? 'Users' : 'Admin' }}
+                                    {{ $users->fname }}&nbsp;{{ $users->lname }}
                                 </div>
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="">First Name</label>
-                                <div class="p-2 border">{{ $users->fname }}</div>
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="">Last Name</label>
-                                <div class="p-2 border">{{ $users->lname }}</div>
                             </div>
                             <div class="col-md-4 mt-3">
                                 <label for="">Email</label>
                                 <div class="p-2 border">{{ $users->email }}</div>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                                <label for="">Company</label>
+                                <div class="p-2 border">{{ $users->company }}</div>
                             </div>
                             <div class="col-md-4 mt-3">
                                 <label for="">Phone</label>

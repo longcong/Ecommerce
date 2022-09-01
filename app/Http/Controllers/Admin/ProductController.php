@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Brands;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +11,7 @@ use App\Category;
 use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
-use Illuminate\Support\Facades\Session;
+
 
 
 class ProductController extends Controller
@@ -38,7 +39,8 @@ class ProductController extends Controller
         //
         $categories = $productService->getCategories();
         $tags = $productService->getTag();
-        return view('admin.products.create', compact('categories','tags'));
+        $brands = $productService->getBrands();
+        return view('admin.products.create', compact('categories','tags','brands'));
     }
 
     /**
@@ -59,11 +61,14 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
             'category_id' => 'required|integer',
+            'brand_id'  => 'required|integer',
             'is_popular' => 'required|integer',
-            //'status_id'  => 'required|integer',
+            'product_color'  => 'max:255',
+            'product_size'  => 'required|max:255',
             'quantity' => 'required|integer',
             'note'  =>  'required',
-            'featured_image' => 'image'
+            'featured_image' => 'image',
+            'meta_image' => 'image'
         ));
 
         $post = new Product;
@@ -72,9 +77,11 @@ class ProductController extends Controller
         $post->slug = $request->slug;
         $post->quantity = $request->quantity;
         $post->category_id = $request->category_id;
+        $post->brand_id = $request->brand_id;
         $post->price = $request->price;
         $post->discount_unit = $request->discount_unit;
-        $post->category_id = $request->category_id;
+        $post->product_size = $request->product_size;
+        $post->product_color = $request->product_color;
         $post->is_popular = $request->is_popular;
         $post->discount_value = $request->discount_value;
         $post->note = $request->note;
@@ -87,13 +94,22 @@ class ProductController extends Controller
 
             $post->image = $filename;
         }
+        if($request->hasFile('meta_image')){
+            $image = $request->file('meta_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('meta_images/' . $filename);
+            Image::make($image)->resize(300, 300)->save($location);
+
+            $post->meta_image = $filename;
+        }
+
 
         $post -> save();
         $post -> tags()->sync($request->tags, false);
 
         $request->session()->flash('success', 'The product was successfully save!');
 
-        return redirect() -> route('products.show', $post -> id);
+        return redirect() -> route('products.index');
     }
 
     /**
@@ -128,8 +144,15 @@ class ProductController extends Controller
         foreach ($tags as $tag){
            $tags2[$tag->id] = $tag->name;
         }
-        // Xem
-        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2);
+
+        $brands = Brands::all();
+        $bra = array();
+        foreach  ($brands as $brand){
+            $bra[$brand->id] = $brand->name;
+        }
+        
+        
+        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2)->withBrands($bra);
     }
 
     /**
@@ -142,17 +165,20 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $this -> Validate($request, array(
-        //     'title' =>  'required|max:255',
-        //     'discount_unit' => 'required|max:255',
-        //     'discount_value' => 'required|integer',
-        //     'price' => 'required|integer',
-        //     //'slug'  =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
-        //     'category_id' => 'required|integer',
-        //     //'status_id'  => 'required|integer',
-        //     'note'  =>  'required',
-        //     'featured_image' => 'image'
-        //     ));
+        $this -> Validate($request, array(
+            'title' =>  'required|max:255',
+            'discount_unit' => 'required|max:255',
+            'discount_value' => 'required|integer',
+            'price' => 'required|integer',
+            'slug'  =>  'required|alpha_dash|min:5|max:255|',
+            'product_color'  => 'max:255',
+            'product_size'  => 'required|max:255',
+            'category_id' => 'required|integer',
+            'brand_id'  => 'required|integer',
+            'note'  =>  'required',
+            'featured_image' => 'image',
+            'meta_image' => 'image',
+            ));
         $post = Product::find($id);
 
         $post->title = $request->input('title');
@@ -161,6 +187,9 @@ class ProductController extends Controller
         $post->slug = $request->input('slug');
         $post->discount_unit = $request->input('discount_unit');
         $post->category_id = $request->input('category_id');
+        $post->brand_id = $request->input('brand_id');
+        $post->product_color = $request->input('product_color');
+        $post->product_size = $request->input('product_size');
         $post->is_popular = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');
         $post->note = $request->input('note');
@@ -177,6 +206,20 @@ class ProductController extends Controller
             $post->image = $filename;
             // Delete the old photo
             Storage::delete($oldFilename);
+
+        }
+        if($request->hasFile('meta_image')) {
+            // Add the new photo
+            $image = $request->file('meta_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('meta_images/' . $filename);
+            Image::make($image)->resize(600, 600)->save($location);
+
+            $oldFilename = $post->meta_image;
+            // Update the database
+            $post->meta_image = $filename;
+            // Delete the old photo
+            Storage::delete($oldFilename);
         }
         $post -> save();
         if(isset($request->tags)) {
@@ -189,7 +232,7 @@ class ProductController extends Controller
 
         $request->session()->flash('success', 'The product update successfully save!');
 
-        return redirect()->route('products.show', $post->id);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -202,7 +245,7 @@ class ProductController extends Controller
         //
     public function destroy(Request $request ,$id)
     {
-        $post = Product ::find($id);
+        $post = Product::find($id);
         $post -> tags()->detach();
         Storage::delete($post->image);
         $post -> delete();

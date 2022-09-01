@@ -104,7 +104,6 @@ class CheckoutController extends Controller
                 $removeItem->delete();
             }
         }
-        //$cartitems = Cart::where('user_id',Auth::id())->get();
         return view('checkout', compact('cartitems'));
     }
     public function placeOrder(Request $request)
@@ -160,10 +159,15 @@ class CheckoutController extends Controller
             $user->update();
 
         }
+
         $cartitems = Cart::where('user_id',Auth::id())->get();
-        Cart::destroy($cartitems);
-         
-        return redirect()->route('order-info', $order->id)->with('status',"Order placed Successfully");
+        //ddd($cartitems);
+        if($cartitems){
+            foreach($cartitems as $cartitem){
+                $cartitem->delete();
+            }
+        }
+        return redirect()->route('order-info', $order->id);
     }
     public function info($id)
     {
@@ -172,7 +176,8 @@ class CheckoutController extends Controller
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
     }
+    public function updateTotal(){
 
-    
+    }
     
 }
