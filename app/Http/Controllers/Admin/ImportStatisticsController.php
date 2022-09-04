@@ -10,7 +10,7 @@ class ImportStatisticsController extends Controller
 {
     public function ProductStatistcs()
     {
-        $importProducts = ImportProduct::orderBy('title','desc')->orderBy('created_at','asc')->get();
+        $importProducts = ImportProduct::orderBy('prod_id','asc')->orderBy('created_at','asc')->get();
         return view('admin.import_product_stages',Compact('importProducts'));
     }
 }

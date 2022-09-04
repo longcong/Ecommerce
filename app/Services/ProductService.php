@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Brands;
 use App\Category;
 use App\Coupon;
+use App\ImportProduct;
 use App\Product;
 use App\Interfaces\ProductInterface;
 use App\Order;
@@ -18,8 +19,8 @@ Class ProductService implements ProductInterface{
     public function getPopulars(int $limit = 4){
         return Product::where('is_popular', 1)->orderBy('id','desc')->paginate($limit);
     }
-    public function getProducts(int $limit = 12){
-        return Product::orderBy('id', 'desc')->limit($limit)->get();
+    public function getProducts(int $limit = 6){
+        return Product::orderBy('id', 'asc')->paginate($limit);
     }
     public function getCategories(){
         return Category::all();
@@ -45,6 +46,10 @@ Class ProductService implements ProductInterface{
     public function getBrands()
     {
         return Brands::all();
+    }
+    public function getProductImport()
+    {
+        return Product::all();
     }
 }
 

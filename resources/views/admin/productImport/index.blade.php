@@ -1,16 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', '| All Products')
+@section('title', '| Import Products')
 
 @section('content')
 
 <div class="row">
     <div class="col-md-9">
-        <h1>All Product</h1>
-    </div>
-
-    <div class="col-md-3" style="text-align: right">
-        <a href="{{ route('products.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Product</a>
+        <h1>Import Products</h1>
     </div>
 </div>
 
@@ -22,28 +18,26 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Price</th>
-                    <th>Code</th>
                     <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Image</th>
-                    <th>Note</th>
+                    <th>size S</th>
+                    <th>size M</th>
+                    <th>size L</th>
                     <th>Created At</th>
-                    <th >action</th>
+                    <th>Action</th>
                 </thead>
 
                 <tbody>
-                    @foreach($products as $post)
+                    @foreach($productImports as $productImport)
 
                         <tr class="order1">
                             <th class="id-product"></th>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ number_format($post->price) }} đ</td>
-                            <td>{{ $post->discount_unit}}</td>
-                            <td>{{ $post->quantity}}</td>
-                            <td>{{ number_format($post->discount_value) }} đ</td>
-                            <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
-                            <td>{{ substr($post->note, 0, 20) }} {{ strlen($post->note) > 20 ? "..." : "" }}</td>
-                            <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
+                            <td>{{ $productImport->title }}</td>
+                            <td>{{ number_format($productImport->price) }} đ</td>
+                            <td>{{ $productImport->quantity }}</td>
+                            <td>{{ $productImport->sizeS }}</td>
+                            <td>{{ $productImport->sizeM }}</td>
+                            <td>{{ $productImport->sizeL }}</td>
+                            <td>{{ date('M j, Y', strtotime($productImport->created_at)) }}</td>
                             <td>
                                 <div class="dropdown show">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,8 +45,7 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('products.show', $post->id) }}">View</a>
-                                        <a class="dropdown-item" href="{{ route('products.edit' , $post->id) }}">Edit</a> 
+                                        <a class="dropdown-item" href="{{ route('import.create', $productImport->id) }}">Import</a>
                                     </div>
                                 </div>
                             </td>
@@ -60,9 +53,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="pag">
-                {!! $products->links(); !!}
-            </div>
+            
         </div>
     </div>
 </div>

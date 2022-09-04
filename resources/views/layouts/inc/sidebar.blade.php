@@ -11,12 +11,19 @@
     <div class="navbar" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{ route('admin.dashboard')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1 ">Dashboard</span>
-          </a>
+          <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo0')">
+            <i class="material-icons opacity-10">dashboard</i>
+              <span class="nav-link-text ms-1">Statistics</span>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="demo0" class="w3-hide">
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('admin.dashboard') }}">
+              Dashboard
+            </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('statistics.products') }}">
+              Import Statistics
+            </a>
+          </div>
         </li>
         <!-- Products Management -->
         <li class="nav-item">
@@ -40,6 +47,9 @@
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('tags.index') }}">
               Tags
+            </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('import.index') }}">
+              Product Import
             </a> 
           </div>
         </li>

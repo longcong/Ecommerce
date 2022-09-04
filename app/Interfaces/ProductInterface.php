@@ -12,4 +12,5 @@ interface ProductInterface{
     public function getCoupons();
     public function getPayments();
     public function getBrands();
+    public function getProductImport();
 }
