@@ -39,6 +39,15 @@
 		.btn-basic{
 			background-color: #EEEEEE;
 			padding: 8px;
-    	}
+		}
+		.image1 {
+        width: 15%;
+        float: left;
+        padding: 10px;
+		}
+		.image1 img{
+			width: 100px;
+			height : 100px;
+		}
 	</style>
 	<title>Denimst @yield('title')</title>

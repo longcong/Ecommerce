@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Edit Coupon')
+@section('title', '| Chỉnh sữa mã giảm giá')
 
 @section('content')
 
@@ -10,13 +10,13 @@
 <div class="card">
     <div class="card-body">
         <div class="row cate">
-        <h1 class="edit catgory">Edit Coupon</h1>
+        <h1 class="edit catgory">Chỉnh sửa mã giảm giá</h1>
         <hr>
             <div class="col-md-8">
                 <!-- title -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('title', 'Title:') }}
+                        {{ Form::label('title', 'Tiêu đề:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('title',null,array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
@@ -25,7 +25,7 @@
                 <!-- description -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('description', 'Description:') }}
+                        {{ Form::label('description', 'Mô tả:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('description',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
@@ -34,7 +34,7 @@
                 <!-- seller -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('seller_id', 'Seller_id:') }}
+                        {{ Form::label('seller_id', 'Người tạo:') }}
                     </div>
                     <div class="col-8">
                         <select id="select" name="seller_id" value="" class="form-control null">
@@ -45,7 +45,7 @@
                 <!-- code -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('code', 'Code:') }}
+                        {{ Form::label('code', 'Mã giảm giá:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('code',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
@@ -54,22 +54,22 @@
                 <!-- type -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('type', 'Coupon_Type:') }}
+                        {{ Form::label('type', 'Giảm giá theo:') }}
                     </div>
                     <div class="col-8">
                         <select id="select" name="type" value="" class="form-control">
                             @if($coupons->type == 'Category_base')
-                                <option value="Category_base">Category_base</option>
-                                <option value="Product_base">Product_base</option>
-                                <option value="Cart_base">Cart_base</option>
+                                <option value="Category_base">Danh mục</option>
+                                <option value="Product_base">Sản phẩm</option>
+                                <option value="Cart_base">Giỏ hàng</option>
                             @elseif($coupons->type == 'Product_base')
-                                <option value="Product_base">Product_base</option>
-                                <option value="Category_base">Category_base</option>
-                                <option value="Cart_base">Cart_base</option>
+                                <option value="Product_base">Sản phẩm</option>
+                                <option value="Category_base">Danh mục</option>
+                                <option value="Cart_base">Giỏ hàng</option>
                             @else                                
-                                <option value="Cart_base">Cart_base</option>
-                                <option value="Category_base">Category_base</option>
-                                <option value="Product_base">Product_base</option>
+                                <option value="Cart_base">Giỏ hàng</option>
+                                <option value="Category_base">Danh mục</option>
+                                <option value="Product_base">Sản phẩm</option>
                             @endif
                         </select>
                     </div>
@@ -78,16 +78,16 @@
                 <!-- discount type -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('discount_type', 'Discount_Type:') }}
+                        {{ Form::label('discount_type', 'Giảm giá theo:') }}
                     </div>
                     <div class="col-8">
                         <select id="select" name="discount_type" value="discount_type" class="form-control">
                             @if($coupons->discount_type == 'Amount')
-                                <option value="Amount">Amount</option>
-                                <option value="Percent">Percent</option>
+                                <option value="Amount">Giá tiền</option>
+                                <option value="Percent">Phần trăm</option>
                             @else
-                                <option value="Percent">Percent</option>
-                                <option value="Amount">Amount</option>
+                                <option value="Percent">Phần trăm</option>
+                                <option value="Amount">Giá tiền</option>
                             @endif
                         </select> 
                     </div>
@@ -96,7 +96,7 @@
                 <!-- discount coupon -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('discount_coup', 'Discount_Coupon:') }}
+                        {{ Form::label('discount_coup', 'Giá:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('discount_coup',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
@@ -106,7 +106,7 @@
                 <!-- quantity -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('quantity', 'Quantity:') }}
+                        {{ Form::label('quantity', 'Số lượng:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('quantity',null, array('class' => 'form-control','style'=>'margin-bottom: 5px;')) }}
@@ -116,7 +116,7 @@
                 <!-- start_date -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2">
-                        {{ Form::label('start_date','Start date:',array('style' => 'margin-top: 10px;')) }}
+                        {{ Form::label('start_date','Ngày bắt đầu:',array('style' => 'margin-top: 10px;')) }}
                     </div>
                     <div class="col-8" wire:ignore inline="true">
                         {{ Form::text('start_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255','id' => 'start_date' , 'name' => 'start_date'))  }}
@@ -125,7 +125,7 @@
                 <!-- expiry date -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2">
-                        {{ Form::label('expiry_date','Expiry_Date:',array('style' => 'margin-top: 10px;')) }}
+                        {{ Form::label('expiry_date','Ngày hết hạn:',array('style' => 'margin-top: 10px;')) }}
                     </div>
                     <div class="col-8" inline="true">
                         {{ Form::text('expiry_date',null, array('class'=>'form-control','required' => '', 'maxlength' => '255', 'id' => 'expiry_date' ,'name' => 'expiry_date'))  }}
@@ -135,7 +135,7 @@
                 <!-- active -->
                 <div class="row g-2 align-items-center user1">
                     <div class="col-2 ">
-                        {{ Form::label('is_active', 'Active:') }}
+                        {{ Form::label('is_active', 'Hoạt động:') }}
                     </div>
                     <div class="col-8">
                         {{ Form::text('is_active',null, array('class' => 'form-control','required' => '', 'style'=>'margin-bottom: 5px;')) }}
@@ -152,11 +152,11 @@
                 <div class="row action-cate">
                     <!-- save change -->
                     <div class="col-sm-4">
-                        {{ Form::submit('Save As', ['class' => 'btn btn-success btn-block']) }}
+                        {{ Form::submit('Lưu thay đổi', ['class' => 'btn btn-success btn-block']) }}
                     </div>
                     <!-- delete  -->
                     <div class="col-sm-4">
-                        {!! Html::linkRoute('coupons.index','Cancel', array($coupons -> id), array('class'=> 'btn
+                        {!! Html::linkRoute('coupons.index','Trở về', array($coupons -> id), array('class'=> 'btn
                         btn-warning btn-block', 'style'=>'margin-left:10px;')) !!}
                     </div>
                     {!! Form::close() !!}
@@ -167,7 +167,7 @@
                     <!-- Cancel -->
                     <div class="col-sm-6">
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('coupons.destroy', $coupons -> id), 'onsubmit' => 'return confirm_delete()')) }}
-                        {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-block', 'style'=>'margin-right:5px;')) }}
+                        {{ Form::submit('Xóa', array('class' => 'btn btn-danger btn-block', 'style'=>'margin-right:5px;')) }}
                         {{ Form::close() }}
                     </div>
                 </div>

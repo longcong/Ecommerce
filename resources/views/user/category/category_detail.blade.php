@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
 
-@section('title' , '| Product List')
+@section('title' , "| $filter_category->name")
 
 @section('buy_main')
 
@@ -305,13 +305,11 @@
 <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
 	<div class="container">
 		<div class="c-page-title c-pull-left">
-			<h3 class="c-font-uppercase c-font-sbold">Danh sách sản phẩm</h3>
-			<!-- <h4 class="">Page Sub Title Goes Here</h4> -->
+			<h3 class="c-font-uppercase c-font-sbold">Sản phẩm theo thể loại</h3>
+			<h4 class="">{{ $filter_category->meta_title }}</h4>
 		</div>
 		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-			<li><a href="shop-product-list.html">Danh sách</a></li>
-			<li>/</li>
-			<li class="c-state_active">Denimst</li>						
+			<li class="c-state_active">{{ $filter_category->name }}</li>						
 		</ul>
 	</div>
 </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
@@ -329,144 +327,103 @@
 
 <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
 	<li class="c-dropdown c-active c-open">
-		<a href="javascript:;" class="c-toggler">Hoạt động 1<span class="c-arrow"></span></a>
+		<a href="javascript:;" class="c-toggler">{{  $filter_category->name }}<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
-			<li class="c-active">
-				<a href="#">Hoạt động</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
+			<div class="attribute-title">
+				<label style="line-height: 38px;
+							  width: 280px;
+							  color: #333;
+							  border-bottom: solid 1px #ccc;
+							  text-shadow: 0px 1px 0 #fff;
+							  background: #eee;
+							  font-weight: bold;
+							  padding: 0px 10px;
+							  font-family: 'Roboto', sans-serif;
+							  font-size: 16px;" 
+							  class="form-label tpInputLabel">Hãng Sản Xuất
+				</label>
+			</div>
+			<div class="filter-checkbox">
+				<div class="container-sm">
+					<div class="row">
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="2" class="form-check-input filterhang" type="checkbox" value="Việt Nam" >
+								<label class="form-check-label">
+									Việt Nam
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="2" class="form-check-input filterhang" type="checkbox" value="Quảng Châu" >
+								<label class="form-check-label">
+									Quảng Châu
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		</ul>
-	</li>
-	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Hoạt động phụ<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li class="c-dropdown c-dropdown-sub">
-				<a href="javascript:;" class="c-toggler c-toggler-sub">Sub Menu
-				<span class="c-arrow"></span></a>
-				<ul class="c-dropdown-menu">
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
+			<div class="attribute-title">
+				<label style="line-height: 38px;
+							  width: 280px;
+							  color: #333;
+							  border-bottom: solid 1px #ccc;
+							  text-shadow: 0px 1px 0 #fff;
+							  background: #eee;
+							  font-weight: bold;
+							  padding: 0px 10px;
+							  font-family: 'Roboto', sans-serif;
+							  font-size: 16px;" 
+							  class="form-label tpInputLabel">{{  $filter_category->name }}
+				</label>
+			</div>
+			<!-- 1 cái if quần què gì đó đi -->
+			<div class="filter-checkbox">
+				<div class="container-sm">
+					<div class="row">
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="đủi" >
+								<label class="form-check-label">
+									Đủi
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="đủi" >
+								<label class="form-check-label">
+									Short
+								</label>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+			
 		</ul>
-	</li>
-	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Hoạt động 2<span class="c-arrow"></span></a>
-		<ul class="c-dropdown-menu">
-			<li>
-				<a href="#"><i class="icon-social-dribbble"></i> Ví dụ</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-bell"></i> Ví dụ</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-bubbles"></i> Ví dụ</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-user"></i> Ví dụ</a>
-			</li>
-		</ul>
-	</li>
-	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Hoạt động 3<span class="c-arrow"></span></a>
-		<ul class="c-dropdown-menu">
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-		</ul>
-	</li>
-	<li class="c-dropdown">
-		<a href="javascript:;">Hoạt động 4 <span class="c-arrow c-toggler"></span></a>
-		<ul class="c-dropdown-menu">
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li class="c-dropdown">
-				<a href="javascript:;">Sub Menu
-				<span class="c-arrow c-toggler"></span></a>
-				<ul class="c-dropdown-menu">
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-					<li>
-						<a href="#">Ví dụ</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
+    </li>
 </ul>
 
 <div class="c-padding-20 c-margin-t-40 c-bg-grey-1 c-bg-img-bottom-right" style="background-image:url({{ asset('main/base/img/content/misc/feedback_box_2.png') }});">
 	<div class="c-content-title-1 c-margin-t-20">
-		<h3 class="c-font-uppercase c-font-bold">Có câu hỏi?</h3>
+		<h3 class="c-font-uppercase c-font-bold">Bạn có câu hỏi</h3>
 		<div class="c-line-left"></div>
 		<form action="#">
 			<div class="input-group input-group-lg c-square">
-				<input type="text" class="form-control c-square" placeholder="Ask a question"/>
+				<input type="text" class="form-control c-square" placeholder="Hãy nhập câu hỏi"/>
 				<span class="input-group-btn">
-				<button class="btn c-theme-btn c-btn-square c-btn-uppercase c-font-bold" type="button">Go!</button>
+				<button class="btn c-theme-btn c-btn-square c-btn-uppercase c-font-bold" type="button">Gửi!</button>
 				</span>
 			</div>
 		</form>
-		<p class="c-font-thin">Đặt câu hỏi của bạn và để dịch vụ khách hàng tận tâm của chúng tôi giúp bạn xem qua Câu hỏi thường gặp của chúng tôi để nhận được câu trả lời cho câu hỏi của bạn!</p>
+		<p class="c-font-thin">Hãy đặt câu hỏi của bạn và để dịch vụ khách hàng tận tâm của chúng tôi giúp bạn xem qua Câu hỏi thường gặp của chúng tôi để nhận được câu trả lời cho câu hỏi của bạn!</p>
 	</div>
 </div><!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU -->
 			</div>
@@ -475,37 +432,43 @@
 			<!-- BEGIN: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
 <div class="c-shop-result-filter-1 clearfix form-inline">
 	<div class="c-filter">
-		<label class="control-label c-font-16">Hiện:</label>
-		<select class="form-control c-square c-theme c-input" wire:model="pagesize">
-			<option value="4" selected="selected">4</option>
-			<option value="6">6</option>
-			<option value="10">10</option>
-			<option value="12">12</option>
+		<label class="control-label c-font-16">Show:</label>
+		<select class="form-control c-square c-theme c-input">
+			<option value="#?limit=24" selected="selected">24</option>
+			<option value="#?limit=25">25</option>
+			<option value="#?limit=50">50</option>
+			<option value="#?limit=75">75</option>
+			<option value="#?limit=100" selected>100</option>
 		</select>
 	</div>
 	<div class="c-filter">
-		<label class="control-label c-font-16">tTheo&nbsp;:</label>
-		<select class="form-control c-square c-theme c-input" wire:model="sorting">
-			<option value="default" selected="selected">Tìm kiếm mặc định</option>
-			<option value="populars">Hiện hành</option>
-			<option value="date">Mới nhất</option>
-			<option value="price">Giá (Thấp &gt; Cao)</option>
-			<option value="price-desc">Price (Cao &gt; Thấp)</option>
+		<label class="control-label c-font-16">Sort&nbsp;By:</label>
+		<select class="form-control c-square c-theme c-input">
+			<option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
+			<option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
+			<option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
+			<option value="#?sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
+			<option value="#?sort=p.price&amp;order=DESC" selected>Price (High &gt; Low)</option>
+			<option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
+			<option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
+			<option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
+			<option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
 		</select>
 	</div>
-</div><!-- END: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
+</div>
+<!-- END: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
 
 <div class="c-margin-t-20"></div>
 
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-8 -->
-@foreach($products as $post)
+@foreach($product_filter as $post)
 <div class="row c-margin-b-40 product_data">
 	<input type="hidden" value="{{ $post->id }}" class="product_id">
 	<div class="c-content-product-2 c-bg-white">
             <div class="col-md-4">
                 <div class="c-content-overlay">
                     <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
-                    <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">Sale</div>
+                    <div class="c-label c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold"></div>
                     <div class="c-overlay-wrapper">
                         <div class="c-overlay-content">
                             <a href="{{ url('product/'.$post->slug) }}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
@@ -520,18 +483,19 @@
                         <a class="c-theme-link" href="{{ url('product/'.$post->slug) }}">{{ $post->title }}</a>
                     </h3>
                     <p class="c-desc c-font-16 c-font-thin">{{ $post->note }}</p>
-                    <p class="c-price c-font-26 c-font-thin">{{ $post->price - $post->discount_value}}$ &nbsp;
-                        <span class="c-font-26 c-font-line-through c-font-red">{{ $post->price }}$</span>
+                    <p class="c-price c-font-26 c-font-line-through">{{number_format($post->price) }} VNĐ </p>
+					<p>
+                        <span class="c-font-26 c-font-red">{{ number_format($post->price - $post->discount_value) }} VNĐ</span>
                     </p>
                 </div>
                 <div>
 					@if($post->quantity>0)
                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
+                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
                     </button>
 					@endif
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
-                        <i class="fa fa-heart-o"></i>Thêm vào mục yêu thích
+                        <i class="fa fa-heart-o"></i>Yêu Thích
                     </button>
                 </div>
 				<br>
@@ -555,7 +519,7 @@
 
 <ul class="c-content-pagination c-square c-theme pull-right">
     <div class="row">
-        {!! $products->links(); !!}
+        {!! $product_filter->links(); !!}
     </div>
 </ul>			<!-- END: PAGE CONTENT -->
 			</div>
@@ -567,5 +531,67 @@
 @endsection
 
 @section('buy_script')
+	<script type="text/javascript">
+            //Chơi lẻ
+            
+            // const brands = 
+            // document.getElementById('2').onclick = function() {
+            //     if(document.getElementById("2").checked == true) {
+            //         var test =  document.getElementById("2").value;	
+            //         var asus =  document.getElementsByClassName('product_data')
+            //         for (  var index = 0 ; index < asus.length ; index++) {
+            //             if(asus[index].getAttribute("data-filter") != "ASUS"){
+            //                 asus[index].style.display="none";
+            //             }    
+            //         }
+            //     }   
+            //     else{ 
+            //         var asus =  document.getElementsByClassName('product_data');
+            //         for (  var index = 0 ; index < asus.length ; index++) {
+            //             asus[index].style.display="block";
+            //         }
+            //     }
+            // };
+            
+            //Chấp tất
+            var classtesst = document.querySelectorAll(".filterhang");
+            var producttest = document.querySelectorAll(".product_data");
+            for(var i = 0; i < classtesst.length ;i++){
+                classtesst[i].addEventListener("click", function() {
+                    if(this.checked == true){
+                        for(var j = 0; j < producttest.length; j++){
+                            if(this.value == producttest[j].getAttribute("data-filter")){
+                                producttest[j].style.display = "block";
+                            }
+                        }
+                    }
+                    else{
+                        for(var j = 0; j < producttest.length; j++){
+                            producttest[j].style.display = "none";
+                        }
+                    }
+                    
+                })
+            };
 
+            var danhmuc = document.querySelectorAll(".filterdanhmuc");
+            var producttest = document.querySelectorAll(".product_data");
+            for(var i = 0; i < danhmuc.length ;i++){
+                danhmuc[i].addEventListener("click", function() {
+                    if(this.checked == true){
+                        for(var j = 0; j < producttest.length; j++){
+                            if(this.value == producttest[j].getAttribute("data-categories")){
+                                producttest[j].style.display = "block";
+                            }
+                        }
+                    }
+                    else{
+                        for(var j = 0; j < producttest.length; j++){
+                            producttest[j].style.display = "none";
+                        }
+                    }
+                    
+                })
+            };
+    </script>
 @endsection

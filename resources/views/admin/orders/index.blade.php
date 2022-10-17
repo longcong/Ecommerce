@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| All Orders')
+@section('title', '| Quản lý đơn hàng')
 
 @section('content')
 
@@ -10,9 +10,8 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>New Order
-                        <a href="{{ 'order-history' }}" class="btn btn-primary float-end">Order
-                            History</a>
+                    <h4>Đơn Hàng Hiện Tại
+                        <a href="{{ 'order-history' }}" class="btn btn-primary float-end">Lịch Sử Đơn Hàng</a>
                     </h4>
                 </div>
 
@@ -20,12 +19,12 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr class="order1">
-                                <th>Tracking Number</th>
-                                <th>Total Price</th>
-                                <th>Address</th>
-                                <th>Order Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>ID</th>
+                                <th>Tổng giá tiền</th>
+                                <th>Địa chỉ</th>
+                                <th>ngày đặt hàng</th>
+                                <th>trạng thái</th>
+                                <th>hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +41,7 @@
                                     </td>
                                     <td class="order1">
                                         <a href="{{ url('admin/view-order/'.$item->id) }}"
-                                            class="btn btn-primary">View</a>
+                                            class="btn btn-primary">xem chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach

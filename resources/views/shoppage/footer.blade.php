@@ -4,50 +4,48 @@
             <div class="col-md-3">
                 <div class="c-container c-first">
                     <div class="c-content-title-1">
-                        <h3 class="c-font-uppercase c-font-bold c-font-white">JAN<span class="c-theme-font">GO</span></h3>
+                        <h3 class="c-font-uppercase c-font-bold c-font-white">Denim<span class="c-theme-font">st</span></h3>
                         <div class="c-line-left hide"></div>
                         <p class="c-text">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, s
-                        ed elit diam nonummy ad minim veniam quis nostrud exerci et 
-                        tation diam.</p>
+                        Denimst mang tới cho bạn một khuôn diễn mới, một phong cách mới</p>
                     </div>
                     <ul class="c-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Về cái gì</a></li>
+                        
+                        <li><a href="#">Lien hệ</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="c-container">
                     <div class="c-content-title-1">
-                        <h3 class="c-font-uppercase c-font-bold c-font-white">Latest Posts</h3>
+                        <h3 class="c-font-uppercase c-font-bold c-font-white">Bài đăng mới nhất</h3>
                         <div class="c-line-left hide"></div>
                     </div>
                     <div class="c-blog">
                         <div class="c-post">
                             <div class="c-post-img"><img src="{{ asset('main/base/img/content/stock/9.jpg') }}" alt="" class="img-responsive"/></div>
                             <div class="c-post-content">
-                                <h4 class="c-post-title"><a href="#">Ready to Launch</a></h4>
-                                <p class="c-text">Lorem ipsum dolor sit amet ipsum sit, consectetuer adipiscing elit sit amet</p>
+                                <h4 class="c-post-title"><a href="#">Denimst là gì?</a></h4>
+                                <p class="c-text">Denimst mang tới cho bạn một khuôn diễn mới, một phong cách mới</p>
                             </div>
                         </div>
                         <div class="c-post c-last">
                             <div class="c-post-img"><img src="{{ asset('main/base/img/content/stock/14.jpg') }}" alt="" class="img-responsive"/></div>
                             <div class="c-post-content">
-                                <h4 class="c-post-title"><a href="#">Dedicated Support</a></h4>
-                                <p class="c-text">Lorem ipsum dolor ipsum sit ipsum amet, consectetuer sit adipiscing elit ipsum elit elit ipsum elit</p>
+                                <h4 class="c-post-title"><a href="#">Bạn biết gì về Denimst</a></h4>
+                                <!-- <p class="c-text">Denimst mang tới cho bạn một khuôn diễn mới, một phong cách mới</p> -->
                             </div>
                         </div>
-                        <a href="#" class="btn btn-md c-btn-border-1x c-theme-btn c-btn-uppercase c-btn-square c-btn-bold c-read-more hide">Read More</a>
+                        <!-- <a href="#" class="btn btn-md c-btn-border-1x c-theme-btn c-btn-uppercase c-btn-square c-btn-bold c-read-more hide">Read More</a> -->
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="c-container">
                     <div class="c-content-title-1">
-                        <h3 class="c-font-uppercase c-font-bold c-font-white">Latest Works</h3>
+                        <h3 class="c-font-uppercase c-font-bold c-font-white">Công việc mới</h3>
                         <div class="c-line-left hide"></div>
                     </div>
                     <ul class="c-works">
@@ -71,9 +69,9 @@
             <div class="col-md-3">
                 <div class="c-container c-last">
                     <div class="c-content-title-1">
-                        <h3 class="c-font-uppercase c-font-bold c-font-white">Find us</h3>
+                        <h3 class="c-font-uppercase c-font-bold c-font-white">Tìm kiếm</h3>
                         <div class="c-line-left hide"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed elit diam nonummy ad minim.</p>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed elit diam nonummy ad minim.</p> -->
                     </div>
                     <ul class="c-socials">
                         <li><a href="#"><i class="icon-social-facebook"></i></a></li>
@@ -82,9 +80,9 @@
                         <li><a href="#"><i class="icon-social-tumblr"></i></a></li>
                     </ul>
                     <ul class="c-address">
-                        <li><i class="icon-pointer c-theme-font"></i> One Boulevard, Beverly Hills</li>
-                        <li><i class="icon-call-end c-theme-font"></i> +1800 1234 5678</li>
-                        <li><i class="icon-envelope c-theme-font"></i> email@example.com</li>
+                        <li><i class="icon-pointer c-theme-font"></i>Nguyễn Thanh Long</li>
+                        <li><i class="icon-call-end c-theme-font"></i> 0985244526</li>
+                        <li><i class="icon-envelope c-theme-font"></i>longcong3005@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -95,8 +93,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 c-col">
-                <p class="c-copyright c-font-grey">2015 &copy; JANGO
-                    <span class="c-font-grey-3">All Rights Reserved.</span>
+                <p class="c-copyright c-font-grey">2022 &copy; DENIMST</span> -->
                 </p>
             </div>
                                 <div class="col-md-6 col-sm-12 c-col">

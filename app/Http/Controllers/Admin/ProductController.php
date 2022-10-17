@@ -107,7 +107,7 @@ class ProductController extends Controller
         $post -> save();
         $post -> tags()->sync($request->tags, false);
 
-        $request->session()->flash('success', 'The product was successfully save!');
+        $request->session()->flash('success', 'Sản phẩm được tạo mới thành công!');
 
         return redirect() -> route('products.index');
     }
@@ -230,7 +230,7 @@ class ProductController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        $request->session()->flash('success', 'The product update successfully save!');
+        $request->session()->flash('success', 'Sản phẩm được cập nhật thành công!');
 
         return redirect()->route('products.index');
     }
@@ -250,7 +250,7 @@ class ProductController extends Controller
         Storage::delete($post->image);
         $post -> delete();
 
-        $request->session()->flash('success', 'The product was successfully delete!');
+        $request->session()->flash('success', 'Sản phẩm được xóa thành công!');
 
         return redirect()->route('products.index');
     }

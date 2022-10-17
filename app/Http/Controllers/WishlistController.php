@@ -24,19 +24,19 @@ class WishlistController extends Controller
         $product_id = $request->input('product_id');
         if(!Product::find($product_id))
         {
-            return response()->json(['status' => "Product doesnot exist"]);
+            return response()->json(['status' => "Sản phẩm không tồn tại"]);
         }
 
         if(Wishlist::where('product_id',$product_id)->first())
         {
-            return response()->json(['status'=>"The Product is already in the Wishlist"]);
+            return response()->json(['status'=>"Sản phẩm đã có trong mục yêu thích"]);
             // return response()->json(['status' =>$prod_check->name."The Product is already in the Wishlist"]);
         }
         $wishlist = new Wishlist();
         $wishlist->product_id = $product_id;    
         $wishlist->user_id = Auth::id();
         $wishlist->save();
-        return response()->json(['status'=>"Product Added to Wishlist"]);         
+        return response()->json(['status'=>"Sản phẩm đã được thêm vào mục yêu thích"]);         
     }
     public function viewwishlist(Request $request, ProductInterface $productService){
         $wishlists = $productService->getViewWishlist();
@@ -56,7 +56,7 @@ class WishlistController extends Controller
         {
             $wishlist = Wishlist::where('id',$id)->where('user_id',Auth::id())->first();
             $wishlist -> delete();
-            return response()->json(['status'=> "Item Remove from Wishlish"]);
+            return response()->json(['status'=> "Xóa sản phẩm khỏi mục yêu thích thành công"]);
         }
         
     }

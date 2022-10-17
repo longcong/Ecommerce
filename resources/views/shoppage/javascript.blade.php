@@ -11,6 +11,14 @@
 	<script src="{{ asset('main/js/scripts/reveal-animate/reveal-animate.js') }}"  type="text/javascript" ></script>
 	<script src="{{ asset('js/custom.js')}}" type="text/javascript" ></script>
 
+
+	
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all"/>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.10/jquery.autocomplete.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 	<!-- END: CORE PLUGINS -->
 
 			<!-- BEGIN: LAYOUT PLUGINS -->

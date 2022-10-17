@@ -80,7 +80,7 @@ class CartController extends Controller
                         {
                             $cartItem->prod_qty = $cartItem->prod_qty + $product_qty;
                             $cartItem->save();
-                            return response()->json(['status'=>$prod_check->name."Quantity Update"]);
+                            return response()->json(['status'=>$prod_check->name."Thêm số lượng sản phẩm thành công"]);
                         }
                 }
                 else {
@@ -107,7 +107,7 @@ class CartController extends Controller
             $cartItem->prod_color = $product_color; 
             $cartItem->save();
             
-            return response()->json(['status'=>$prod_check->name."Added to Cart 0"]);
+            return response()->json(['status'=>$prod_check->name."Thêm sản phẩm vào giỏ hàng thành công"]);
         }
     }
 
@@ -153,7 +153,7 @@ class CartController extends Controller
             {
                 $cartItem = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
                 $cartItem -> delete();
-                return response()->json(['status'=> "Product Deleted Successfully"]);
+                return response()->json(['status'=> "Sản phẩm được xóa thành công!"]);
             }
         }
         else{

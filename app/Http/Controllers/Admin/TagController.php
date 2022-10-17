@@ -41,7 +41,7 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->save();
         
-        $request->session()->flash('success', 'New Tag was successfully created!');
+        $request->session()->flash('success', 'Nhãn hiệu được tạo mới thành công!');
         return redirect()->route('tags.index');
     }
 
@@ -85,7 +85,7 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        $request->session()->flash('success', 'Successfully saved your new tag!');
+        $request->session()->flash('success', 'Nhãn hiệu được cập nhật thành công!');
 
         return redirect()->route('tags.index');
     }
@@ -103,7 +103,7 @@ class TagController extends Controller
         $tag -> products() -> detach();
         $tag -> delete();
 
-        $request->session()->flash('success', 'Tag was delete successfully!');
+        $request->session()->flash('success', 'Nhãn hiệu được xóa thành công!');
 
         return redirect()->route('tags.index');
     }

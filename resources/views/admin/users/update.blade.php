@@ -13,7 +13,7 @@
 <div class="card">
     <div class="card-body">
         <div class="container">
-            <h1 class="text-center user1">Update Information</h1>
+            <h1 class="text-center user1">Cập nhật thông tin</h1>
             <hr>
              
             <div class="row">
@@ -21,7 +21,7 @@
             => 'PUT']) !!}
                     <div class="row g-2 align-items-center ">
                         <div class="col-2">
-                            {{ Form::label('username','Username:') }}
+                            {{ Form::label('username','tài khoản:') }}
                         </div>
                         <div class="col-10 font-weight-bolder mb-0" style="margin-bottom: 5px;">
                             {{ $acc_admin->username }}
@@ -43,7 +43,7 @@
                     <!-- email -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('fname','First Name:') }}
+                            {{ Form::label('fname','Họ:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('fname',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -52,7 +52,7 @@
                     <!-- First name -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('lname','Last Name:') }}
+                            {{ Form::label('lname','Tên:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('lname',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -61,7 +61,7 @@
                     <!-- Last name -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('company','Company:') }}
+                            {{ Form::label('company','Công ty:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('company',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -70,7 +70,7 @@
                     <!-- Company -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('city','City:') }}
+                            {{ Form::label('city','Thành phố:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('city',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -79,7 +79,7 @@
                     <!-- City -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('state','State:') }}
+                            {{ Form::label('state','Quận:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('state',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -88,7 +88,7 @@
                     <!-- State -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('address1','Address 1:') }}
+                            {{ Form::label('address1','Địa chỉ 1:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('address1',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -97,7 +97,7 @@
                     <!-- Address 1 -->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('address2','Address 2:') }}
+                            {{ Form::label('address2','Địa chỉ 2:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('address2',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -106,7 +106,7 @@
                     <!-- Address 2-->
                     <div class="row g-2 align-items-center user1 ">
                         <div class="col-2">
-                            {{ Form::label('phone','Phone:') }}
+                            {{ Form::label('phone','Số điện thoại:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('phone',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -115,7 +115,7 @@
                     <!-- Phone -->
                     <div class="row g-2 align-items-center user1">
                         <div class="col-2">
-                            {{ Form::label('zipcode','Postcode / Zip:') }}
+                            {{ Form::label('zipcode','Mã code:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('zipcode',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -124,7 +124,7 @@
                     <!-- Postcode -->
                     <div class="row g-2 align-items-center user1">
                         <div class="col-2">
-                            {{ Form::label('note','Note:') }}
+                            {{ Form::label('note','Lưu ý:') }}
                         </div>
                         <div class="col-10">
                             {{ Form::text('note',null, array('class'=>'form-control','required' => '', 'maxlength' => '255' ))  }}
@@ -134,10 +134,10 @@
                         <div class="row action-cate">
                             <!-- save change -->
                             <div class="col-sm-6" style="text-align: center;">
-                                {{ Form::submit('Save As', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 20px;']) }}
+                                {{ Form::submit('Lưu thay đổi', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 20px;']) }}
                             </div>
                             <div class="col-sm-6" style="text-align: center;">
-                                {{ Html::linkRoute('admin.users', 'Back',[],array('class'=>'btn btn-info btn-block', 'style' => 'margin-top: 20px;')) }}                            
+                                {{ Html::linkRoute('admin.users', 'Trở về',[],array('class'=>'btn btn-info btn-block', 'style' => 'margin-top: 20px;')) }}                            
                             </div>
                         </div>
                 {!! Form::close() !!}

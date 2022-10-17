@@ -37,6 +37,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'ShopController@index')->name('shop');
 Route::get('/search',[ShopController::class,'search'])->name('search');
+Route::get('search/autocompleteajax','ShopController@autoCompleteAjax')->name('autocomplete');
+
 Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/list', 'ProductListController@index')->name('list');
@@ -45,6 +47,9 @@ Route::get('/list', 'ProductListController@index')->name('list');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
 Route::get('brand/{slug}',[ProductDetailController::class,'getBrand']);
+Route::get('category/{slug}',[ProductDetailController::class,'GetCategories']);
+
+
 Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 Route::post('/cart/apply-coupon',[CartController::class,'applyCoupon'])->name('applyCoupon');

@@ -15,7 +15,7 @@
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">dashboard</i>
                 </div>
-                <span class="nav-link-text ms-1">User Information</span>
+                <span class="nav-link-text ms-1">Thông tin người dùng</span>
             </a>
             </li>
             <!--  -->
@@ -24,7 +24,7 @@
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">person</i>
                 </div>
-                <span class="nav-link-text ms-1">Order User</span>
+                <span class="nav-link-text ms-1">Người đặt hàng</span>
             </a>
             </li>
         </ul>

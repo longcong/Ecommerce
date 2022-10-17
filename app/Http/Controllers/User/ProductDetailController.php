@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Brands;
 use App\Cart;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductInterface;
 use App\Product;
@@ -37,6 +38,15 @@ class ProductDetailController extends Controller
             $product_filter = Product::where('brand_id',$filter_brand->id)->paginate(4);
         }
         return view('user.detail.branddetail',compact('filter_brand','product_filter'));
+    }
+
+    public function GetCategories(Request $request, $slug)
+    {
+        if($filter_category = Category::where('slug', $slug)->first()) {
+            $filter_category = Category::where('slug', $slug)->first();
+            $product_filter = Product::where('category_id',$filter_category->id)->paginate(4);
+        }
+        return view('user.category.category_detail',compact('filter_category','product_filter'));
     }
     public function updateCart2 (Request $request){
 

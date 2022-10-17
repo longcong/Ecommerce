@@ -12,7 +12,7 @@
 <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
 <div class="container">
     <div class="c-page-title c-pull-left">
-        <h3 class="c-font-uppercase c-font-sbold">Product Details</h3>
+        <h3 class="c-font-uppercase c-font-sbold">Chi tiết sản phẩm</h3>
         
     </div>
     <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
@@ -51,10 +51,10 @@
                     </div>
                     <div class="c-product-badge">
                         <div class="c-product-sale">Sale</div>
-                        <div class="c-product-new">New</div>
+                        <div class="c-product-new">Mới</div>
                     </div>
                     <div class="c-product-review">
-                        <div class="c-product-rating">
+                        <!-- <div class="c-product-rating">
                             <i class="fa fa-star c-font-red"></i>
                             <i class="fa fa-star c-font-red"></i>
                             <i class="fa fa-star c-font-red"></i>
@@ -63,10 +63,11 @@
                         </div>
                         <div class="c-product-write-review">
                             <a class="c-font-red" href="#">Write a review</a>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="c-product-price">{{number_format($product->price -$product->discount_value)}} VNĐ</div>
-                    <div class="c-product-price c-font-line-through c-font-red">{{ number_format($product->price) }} VNĐ</div>
+                    <div class="c-product-price c-font-line-through ">{{ number_format($product->price) }} VNĐ</div>
+                    <div class="c-product-price c-font-red">{{number_format($product->price -$product->discount_value)}} VNĐ</div>
+                    
                     <div class="row c-product-variant">
                         <div class="col-sm-12 col-xs-12">
                             <p class="c-product-meta-label c-product-margin-1 c-font-uppercase c-font-bold">Size:</p>
@@ -82,7 +83,7 @@
                         @else
                         <div class="col-sm-12 col-xs-12 c-margin-t-20">
                             <div class="c-product-color"> 
-                                <p class="c-product-meta-label c-font-uppercase c-font-bold">Color:</p>
+                                <p class="c-product-meta-label c-font-uppercase c-font-bold">Màu:</p>
                                 <select id="productcolor">
                                     @foreach($product_color as $color)
                                         <option value="{{ $color }}">{{ $color }}</option>
@@ -99,7 +100,7 @@
                                 <div class="c-input-group c-spinner product_data">
                                     <input type="hidden" value="{{ $product->id }}" class="product_id">
                                     @if(!$product->quantity <= 0)
-                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">QTY:</p>
+                                        <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">Số lượng:</p>
                                         <input type="text" class="form-control qty-input" value="1">
                                         <div class="c-input-group-btn-vertical">
                                             <button class="btn btn-default" type="button" data_input="c-item-1"><i class="fa fa-caret-up changeQuantity_2 increment-btn-1"></i></button>
@@ -125,15 +126,15 @@
                             <div class="col-sm-12 col-xs-12 c-margin-t-20">
                                 @if(!$product->quantity <= 0)
                                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
-                                        <i class="fa fa-shopping-cart"></i>Add To Cart
+                                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
                                     </button>
                                 @else
                                     <button type="button" class="btn btn-sm-1 c-theme-btn-1 c-btn-square-1 c-btn-uppercase-1 c-btn-bold-1">
-                                        <i class="fa fa-shopping-cart"></i>Out Of Stock
+                                        <i class="fa fa-shopping-cart"></i>Hết hàng
                                     </button>
                                 @endif
                                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
-                                        <i class="fa fa-heart-o"></i>Add Wishlist
+                                        <i class="fa fa-heart-o"></i>Thêm vào mục yêu thích
                                     </button>
                             </div>
                         </div>
@@ -151,7 +152,7 @@
     <div class="container">
         <ul class="nav nav-justified" role="tablist">
             <li role="presentation" class="active">
-                <a class="c-font-uppercase c-font-bold" href="#tab-1" role="tab" data-toggle="tab">Description</a>
+                <a class="c-font-uppercase c-font-bold" href="#tab-1" role="tab" data-toggle="tab">Mô tả</a>
             </li>
             <!-- <li role="presentation">
                 <a class="c-font-uppercase c-font-bold" href="#tab-2" role="tab" data-toggle="tab">Additional Information</a>
@@ -237,6 +238,7 @@
         });
 
         $('select').change(function(){
+            
             $(this).find(':selected').data('id');
         });
     </script>

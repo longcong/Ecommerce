@@ -115,7 +115,7 @@ class CheckoutController extends Controller
         $order->lname = $request->input('lname');
         $order->company = $request->input('company');
         $order->address1 = $request->input('address1');
-        $order->address2 = $request->input('address2');
+        $order->address2 = $request->input('address1');
         $order->city = $request->input('city');
         $order->state = $request->input('state');
         $order->zipcode = $request->input('zipcode');
@@ -149,7 +149,7 @@ class CheckoutController extends Controller
             $user->lname = $request->input('lname');
             $user->company = $request->input('company');
             $user->address1 = $request->input('address1');
-            $user->address2 = $request->input('address2');
+            $user->address2 = $request->input('address1');
             $user->city = $request->input('city');
             $user->state = $request->input('state');
             $user->zipcode = $request->input('zipcode');

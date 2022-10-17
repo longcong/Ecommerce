@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $category->status = $request->status;
         $category->save();
 
-        $request->session()->flash('success', 'New Category has been created!');
+        $request->session()->flash('success', 'Danh mục mới được khởi tạo!');
 
         return redirect() -> route('categories.index');
     }
@@ -105,7 +105,7 @@ class CategoryController extends Controller
         $categories->description = $request->input('description');
         $categories->save();
 
-        $request->session()->flash('success', 'Successfully saved your new category!');
+        $request->session()->flash('success', 'Danh mục được cập nhật thành công!');
 
         return redirect()->route('categories.index', $categories->id);
     }
@@ -123,7 +123,7 @@ class CategoryController extends Controller
         
         $categories -> delete(); 
 
-        $request->session()->flash('success', 'This category was successfully saved.');
+        $request->session()->flash('success', 'Danh mục được xóa thành công!');
 
         return redirect()->route('categories.index');
     }

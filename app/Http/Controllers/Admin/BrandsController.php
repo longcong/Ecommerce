@@ -58,7 +58,7 @@ class BrandsController extends Controller
 
 
         $brand->save();
-        $request->session()->flash('success', 'New brand has been created!');
+        $request->session()->flash('success', 'Nhãn hàng mới được khởi tạo!');
         return redirect() -> route('brands.index' );
     }
     /**
@@ -115,7 +115,7 @@ class BrandsController extends Controller
         }
         //save
         $brand->save();
-        $request->session()->flash('success', 'Successfully saved your new brand!');
+        $request->session()->flash('success', 'Nhãn hàng được cập nhật thành công!');
         return redirect()->route('brands.index', $brands->id);
     }
 
@@ -129,7 +129,7 @@ class BrandsController extends Controller
     {
         $brands = Brands::find($id);
         $brands -> delete(); 
-        $request->session()->flash('success', 'This brand was successfully saved.');
+        $request->session()->flash('success', 'Nhãn hàng được xóa thành công.');
 
         return redirect()->route('brands.index');
     }

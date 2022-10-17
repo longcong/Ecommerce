@@ -119,7 +119,7 @@ class CouponController extends Controller
         $coupon = Coupon::find($id);
         $coupon->delete();
 
-        $request->session()->flash('success', 'Phiếu giảm giá đã được xóa đi!');
+        $request->session()->flash('success', 'Phiếu giảm giá đã được xóa thành công!');
 
         return redirect()->route('coupons.index');
     }
