@@ -66,7 +66,7 @@
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="{{ url('/') }}" class="c-logo">
-                        <img
+                        <!-- <img
                             src="{{
                                 asset('main/base/img/layout/logos/logo-3.png')
                             }}"
@@ -86,7 +86,7 @@
                             }}"
                             alt="JANGO"
                             class="c-mobile-logo"
-                        />
+                        /> -->
                     </a>
                     <button
                         class="c-hor-nav-toggler"
@@ -126,31 +126,27 @@
                 >
                     <ul class="nav navbar-nav c-theme-nav">
                     <li >
-                            <a href="javascript:;" class="c-link dropdown-toggle">Trang chủ<span class="c-arrow c-toggler"></span></a>
+                            <a href="{{ url('/')}}" class="c-link dropdown-toggle">Trang chủ<span class="c-arrow c-toggler"></span></a>
                         </li>
                         <li>
                             <a href="javascript:;" class="c-link dropdown-toggle">Danh Mục<span class="c-arrow c-toggler"></span></a>     
                             <ul class="dropdown-menu c-menu-type-mega">
                                 <li>
                                     <ul class="dropdown-menu">
+                                    @foreach($categories as $category)
                                         <li>
-                                            <a href="shop-home-1.html" target="_blank">Shop Home 1</a>
+                                            <a href="{{ url('category/'.$category->slug) }}">{{ $category->name }}</a>
                                         </li>
-                                        <li>
-                                            <a href="shop-home-2.html">Shop Home 2</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-home-3.html">Shop Home 3</a>
-                                        </li>          
+                                    @endforeach         
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li class="c-menu-type-classic">
-                            <a href="javascript:;" class="c-link dropdown-toggle">Danh sách sản phẩm<span class="c-arrow c-toggler"></span></a>
+                            <a href="{{url('list')}}" class="c-link dropdown-toggle">Danh sách sản phẩm<span class="c-arrow c-toggler"></span></a>
                         </li>
                         <li >
-                            <a href="javascript:;" class="c-link dropdown-toggle">Sản phẩm yêu thích<span class="c-arrow c-toggler"></span></a>
+                            <a href="{{ url('wishlist') }}" class="c-link dropdown-toggle">Sản phẩm yêu thích<span class="c-arrow c-toggler"></span></a>
                         </li>
 
                             <!-- BEGIN: DESKTOP VERSION OF THE TAB MEGA MENU -->

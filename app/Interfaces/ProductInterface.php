@@ -12,4 +12,9 @@ interface ProductInterface{
     public function getCoupons();
     public function getPayments();
     public function getBrands();
+    public function getAoPhong(int $limit = 4);
+    public function getAoPolo(int $limit = 4);
+    public function getQuanDai(int $limit = 4);
+    public function getQuanDui(int $limit = 4);
+    public function getPRoductImport();
 }

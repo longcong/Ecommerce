@@ -9,11 +9,13 @@
 
 @endsection
 @section('content')
-<h1>Danh Mục</h1>
+
 <div class="card">
     <div class="card-body">
+        <h2>Danh Mục</h2> 
         <div class="container">
             <div class="row">
+        
                 <div class="well index-cate">
                     {!! Form::open(['route' => 'categories.store', 'data-parsley-validate' =>'', 'method' => 'POST'])
                     !!}
@@ -63,7 +65,6 @@
                     <tr class="order1">
                         <th>#</th>
                         <th>Tên danh mục</th>
-                        <th>Slug</th>
                         <th>Mô tả</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
@@ -74,7 +75,6 @@
                         <tr class="order1">
                             <th>{{ $category->id }}</th>
                             <th>{{ $category->name }}</th>
-                            <th>{{ $category->slug }}</th>
                             <th>{{ $category->description }}</th>
                             <th>
                                 <div class="form-check form-switch ps-0 is-filled" >

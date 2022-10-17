@@ -348,7 +348,7 @@
 					<div class="row">
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="2" class="form-check-input filterhang" type="checkbox" value="Việt Nam" >
+								<input name="brand" id="1" class="form-check-input filterhang" type="checkbox" value="Việt Nam">
 								<label class="form-check-label">
 									Việt Nam
 								</label>
@@ -356,7 +356,7 @@
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="2" class="form-check-input filterhang" type="checkbox" value="Quảng Châu" >
+								<input name="brand" id="2" class="form-check-input filterhang" type="checkbox" value="Quảng Châu">
 								<label class="form-check-label">
 									Quảng Châu
 								</label>
@@ -379,26 +379,27 @@
 							  padding: 0px 10px;
 							  font-family: 'Roboto', sans-serif;
 							  font-size: 16px;" 
-							  class="form-label tpInputLabel">{{  $filter_category->name }}
+							  class="form-label tpInputLabel">{{ $filter_category->name }}
 				</label>
 			</div>
 			<!-- 1 cái if quần què gì đó đi -->
+			@if($filter_category->id == '2')
 			<div class="filter-checkbox">
 				<div class="container-sm">
 					<div class="row">
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="đủi" >
+								<input name="brand" id="[["1"]]" class="form-check-input filterdanhmuc" type="checkbox" value="Quần Dài" >
 								<label class="form-check-label">
-									Đủi
+									Dài
 								</label>
 							</div>
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="đủi" >
+								<input name="brand" id="[["2"]]" class="form-check-input filterdanhmuc" type="checkbox" value="Quần ngắn" >
 								<label class="form-check-label">
-									Short
+									Ngắn
 								</label>
 							</div>
 						</div>
@@ -406,7 +407,39 @@
 					</div>
 				</div>
 			</div>
-			
+			@else
+			<!-- áo -->
+			<div class="filter-checkbox">
+				<div class="container-sm">
+					<div class="row">
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="5" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Polo">
+								<label class="form-check-label">
+									Áo Polo
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="4" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Phong">
+								<label class="form-check-label">
+									Áo Phong
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-sm-6">
+							<div class="form-check">
+								<input name="brand" id="3" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Sweater">
+								<label class="form-check-label">
+									Áo Sweater
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			@endif
 		</ul>
     </li>
 </ul>
@@ -432,17 +465,17 @@
 			<!-- BEGIN: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
 <div class="c-shop-result-filter-1 clearfix form-inline">
 	<div class="c-filter">
-		<label class="control-label c-font-16">Show:</label>
+		<!-- <label class="control-label c-font-16">Show:</label>
 		<select class="form-control c-square c-theme c-input">
 			<option value="#?limit=24" selected="selected">24</option>
 			<option value="#?limit=25">25</option>
 			<option value="#?limit=50">50</option>
 			<option value="#?limit=75">75</option>
 			<option value="#?limit=100" selected>100</option>
-		</select>
+		</select> -->
 	</div>
 	<div class="c-filter">
-		<label class="control-label c-font-16">Sort&nbsp;By:</label>
+		<!-- <label class="control-label c-font-16">Sort&nbsp;By:</label>
 		<select class="form-control c-square c-theme c-input">
 			<option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
 			<option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
@@ -453,7 +486,7 @@
 			<option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
 			<option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
 			<option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
-		</select>
+		</select> -->
 	</div>
 </div>
 <!-- END: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
@@ -462,8 +495,8 @@
 
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-8 -->
 @foreach($product_filter as $post)
-<div class="row c-margin-b-40 product_data">
-	<input type="hidden" value="{{ $post->id }}" class="product_id">
+<div class="row c-margin-b-40 product_data" data-filter="{{ $post->brand->name }}" data-tag="{{ $post->tag_id }} ">
+	<input type="hidden" value="{{ $post->id }}" class="product_id" >
 	<div class="c-content-product-2 c-bg-white">
             <div class="col-md-4">
                 <div class="c-content-overlay">
@@ -561,7 +594,9 @@
                     if(this.checked == true){
                         for(var j = 0; j < producttest.length; j++){
                             if(this.value == producttest[j].getAttribute("data-filter")){
+								
                                 producttest[j].style.display = "block";
+							
                             }
                         }
                     }
@@ -572,6 +607,7 @@
                     }
                     
                 })
+				
             };
 
             var danhmuc = document.querySelectorAll(".filterdanhmuc");
@@ -580,7 +616,7 @@
                 danhmuc[i].addEventListener("click", function() {
                     if(this.checked == true){
                         for(var j = 0; j < producttest.length; j++){
-                            if(this.value == producttest[j].getAttribute("data-categories")){
+                            if(this.value == producttest[j].getAttribute("data-tag")){
                                 producttest[j].style.display = "block";
                             }
                         }

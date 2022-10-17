@@ -20,10 +20,16 @@ class ShopController extends Controller
         $products = $productService->getProducts();
         $populars = $productService->getPopulars();
         $brand = $productService->getBrands();
-        // $brands = Product::where('id',$brand)->get();
-        // dd($brands);
         $categories = Category::all();
-        return view('shop', compact('products','populars','brand','categories'));
+        $productAoPhong = $productService->getAoPhong();
+        $productAoPolo = $productService->getAoPolo();
+        $productQuanDai = $productService->getQuanDai();
+        $productQuanDui = $productService->getQuanDui();
+       
+        
+        return view('shop', compact('products','populars','brand',
+                    'categories','productAoPhong','productAoPolo','productQuanDai',
+                    'productQuanDui'));
     }
     public function search(Request $request)
     {

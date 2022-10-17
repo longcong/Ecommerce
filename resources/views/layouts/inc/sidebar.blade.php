@@ -27,19 +27,22 @@
             </button>
             <div id="demo1" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('brands.index')}}">
-                Nhãn hàng
+                Nhãn Hàng
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('categories.index') }}">
-              Danh mục
+              Danh Mục
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('coupons.index')}}">
-              Mã giảm giá
+              Mã Giảm Giá
             </a>  
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('products.index') }}">
-              Sản phẩm
+              Sản Phẩm
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('tags.index') }}">
-              Nhãn hiệu
+              Nhãn Hiệu
+            </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('import.index') }}">
+              Nhập Hàng Hóa
             </a> 
           </div>
         </li>
@@ -52,10 +55,10 @@
           </button>
           <div id="demo2" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('admin.orders')}}">
-              Đặt hàng
+              Đặt Hàng
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('payments')}}">
-              Thanh toán
+              Thanh Toán
             </a> 
           </div>
         <li>

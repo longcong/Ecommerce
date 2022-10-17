@@ -246,27 +246,28 @@ Follow: http://www.twitter.com/themehats
                 <!-- Nav tabs -->
                 <ul class="nav nav-pills c-nav-tab c-arrow" role="tablist">
                     <li role="presentation" class="active">
-                        <a class="c-font-uppercase" href="#watches5" aria-controls="watches" role="tab"
+                        <a class="c-font-uppercase" href="#quandai" aria-controls="quandai" role="tab"
                             data-toggle="tab">Quần Dài</a>
                     </li>
                     <li role="presentation">
-                        <a class="c-font-uppercase" href="#phone5" aria-controls="phone" role="tab"
+                        <a class="c-font-uppercase" href="#aophong" aria-controls="aophong" role="tab"
                             data-toggle="tab">Áo Phong</a>
                     </li>
                     <li role="presentation">
-                        <a class="c-font-uppercase" href="#imac5" aria-controls="imac" role="tab"
-                            data-toggle="tab">Áo dài tay</a>
+                        <a class="c-font-uppercase" href="#polo" aria-controls="polo" role="tab"
+                            data-toggle="tab">Áo Polo</a>
                     </li>
                     <li role="presentation">
-                        <a class="c-font-uppercase" href="#accessories5" aria-controls="accessories" role="tab"
-                            data-toggle="tab">Quần nỉ</a>
+                        <a class="c-font-uppercase" href="#aodaitay" aria-controls="accessories" role="tab"
+                            data-toggle="tab">Áo dài tay</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="watches5">
+                    <div role="tabpanel" class="tab-pane fade in active" id="quandai">
                         <div class="row">
-                            @foreach($populars as $product )
+                            <!-- trỏ trỏ -->
+                            @foreach($productQuanDui as $product )
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
@@ -285,61 +286,66 @@ Follow: http://www.twitter.com/themehats
                         </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="phone5">
+                    <div role="tabpanel" class="tab-pane fade" id="aophong">
                         <div class="row">
+                            @foreach($productAoPhong as $product)
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
                                         <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                                            <a href="{{ url('product/'.$product->slug) }}"
+                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Chi Tiết</a>
                                         </div>
                                     </div>
                                     <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/63.jpg') }}">
+                                        style="height: 270px; background-image: url({{ asset('images/' . $product->image) }}">
                                     </div>
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="imac5">
+                    <div role="tabpanel" class="tab-pane fade" id="polo">
                         <div class="row">
+                            @foreach($productAoPolo as $product)
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
                                         <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
+                                            <a href="{{ url('product/'.$product->slug) }}"
                                                 class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                         </div>
                                     </div>
                                     <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/73.jpg') }}">
+                                        style="height: 270px; background-image: url({{ asset('images/' . $product->image) }}">
                                     </div>
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="accessories5">
+                    <div role="tabpanel" class="tab-pane fade" id="aodaitay">
                         <div class="row">
+                            @foreach($productQuanDui as $product)
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
                                         <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
+                                            <a href="{{ url('product/'.$product->slug) }}"
                                                 class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
                                         </div>
                                     </div>
                                     <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/63.jpg') }}">
+                                        style="height: 270px; background-image: url({{ asset('images/' . $product->image) }}">
                                     </div>
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
-                            
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -487,7 +493,7 @@ Follow: http://www.twitter.com/themehats
         <!-- BEGIN: CONTENT/SHOPS/SHOP-6-1 -->
         <div class="c-content-box c-size-sm c-overflow-hide c-bg-white c-bs-grid-reset-space">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-7 col-sm-6">
                         <div class="c-content c-content-overlay">
                             <div class="c-overlay-wrapper c-overlay-padding">
@@ -516,7 +522,7 @@ Follow: http://www.twitter.com/themehats
                             <div class="c-overlay-border"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div><!-- END: CONTENT/SHOPS/SHOP-6-1 -->
         <!-- END: PAGE CONTENT -->

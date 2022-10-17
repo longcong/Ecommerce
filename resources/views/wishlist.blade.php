@@ -153,7 +153,7 @@
                 </div>
 
             @else
-                <h4>There are no products in your Wishlist</h4>
+                <h4>Không có sản phẩm nào trong Danh sách yêu thích của bạn</h4>
             @endif
             <!-- END: PRODUCT ITEM ROW -->
 

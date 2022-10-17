@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImportProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
@@ -105,6 +106,11 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::resource('attributes','Admin\ProductAttributesController');
     Route::resource('coupons','Admin\CouponController');
     Route::get('update/active','Admin\CouponController@active')->name('update.active');
+
+    Route::get('import', [ImportProductController::class, 'index'])->name('import.index');
+    Route::get('import/{id}',[ImportProductController::class, 'edit'])->name('import.create');
+    Route::put('import/{id}',[ImportProductController::class, 'update'])->name('import.edit');
+    Route::get('import-history', [ImportProductController::class, 'importHistory'])->name('import.importhistory');
 
 }); 
 Route::get('payment',[PaymentController::class, 'viewpayment'])->name('viewpayment');

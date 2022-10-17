@@ -46,6 +46,26 @@ Class ProductService implements ProductInterface{
     {
         return Brands::all();
     }
+    public function getAoPhong(int $limit = 4)
+    {
+        return Product::where('phong', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getAoPolo(int $limit = 4)
+    {
+        return Product::where('polo', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getQuanDai(int $limit = 4)
+    {
+        return Product::where('dai', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getQuanDui(int $limit = 4)
+    {
+        return Product::where('dui', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getProductImport()
+    {
+        return Product::all();   
+    }
 }
 
 

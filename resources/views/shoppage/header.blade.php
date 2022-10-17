@@ -86,7 +86,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{ 'list' }}" class="c-link dropdown-toggle">Danh sách sản phẩm<span class="c-arrow c-toggler"></span></a>
+            <a href="{{ route('list') }}" class="c-link dropdown-toggle">Danh sách sản phẩm<span class="c-arrow c-toggler"></span></a>
         </li>
         <li>
             <a href="{{ 'wishlist' }}" class="c-link dropdown-toggle">Danh sách sản phẩm yêu thích<span class="c-arrow c-toggler"></span></a>

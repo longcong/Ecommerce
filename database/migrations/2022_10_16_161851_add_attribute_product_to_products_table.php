@@ -14,10 +14,11 @@ class AddAttributeProductToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('ni')->nullable()->after('sizeS');
-            $table->string('dui')->nullable()->after('ni');
-            $table->string('phong')->nullable()->after('dui');
-            $table->string('ao dai tay')->nullable()->after('phong');
+            $table->string('dai')->nullable()->after('status_id');
+            $table->string('dui')->nullable()->after('dai');
+            $table->string('polo')->nullable()->after('dui');
+            $table->string('phong')->nullable()->after('polo');
+            $table->string('aodaitay')->nullable()->after('phong');
         });
     }
 
@@ -29,10 +30,11 @@ class AddAttributeProductToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('ni');
+            $table->dropColumn('dai');
             $table->dropColumn('dui');
+            $table->dropColumn('polo');
             $table->dropColumn('phong');
-            $table->dropColumn('ao dai tay');
+            $table->dropColumn('aodaitay');
         });
     }
 }

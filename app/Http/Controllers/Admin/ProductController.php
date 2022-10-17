@@ -164,39 +164,40 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         $this -> Validate($request, array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
+            'title'          =>  'required|max:255',
+            'discount_unit'  => 'required|max:255',
             'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            'slug'  =>  'required|alpha_dash|min:5|max:255|',
+            'price'          => 'required|integer',
+            'slug'           =>  'required|alpha_dash|min:5|max:255|',
             'product_color'  => 'max:255',
-            'product_size'  => 'required|max:255',
-            'category_id' => 'required|integer',
-            'brand_id'  => 'required|integer',
-            'note'  =>  'required',
+            'product_size'   => 'required|max:255',
+            'category_id'    => 'required|integer',
+            'brand_id'       => 'required|integer',
+            'note'           =>  'required',
             'featured_image' => 'image',
-            'meta_image' => 'image',
+            'meta_image'     => 'image',
             ));
         $post = Product::find($id);
 
-        $post->title = $request->input('title');
-        $post->price = $request->input('price');
-        $post->quantity = $request ->input('quantity');
-        $post->slug = $request->input('slug');
-        $post->discount_unit = $request->input('discount_unit');
-        $post->category_id = $request->input('category_id');
-        $post->brand_id = $request->input('brand_id');
-        $post->product_color = $request->input('product_color');
-        $post->product_size = $request->input('product_size');
-        $post->is_popular = $request->input('is_popular');
+        $post->title          = $request->input('title');
+        $post->price          = $request->input('price');
+        $post->quantity       = $request->input('quantity');
+        $post->slug           = $request->input('slug');
+        $post->discount_unit  = $request->input('discount_unit');
+        $post->category_id    = $request->input('category_id');
+        $post->brand_id       = $request->input('brand_id');
+        $post->product_color  = $request->input('product_color');
+        $post->product_size   = $request->input('product_size');
+        $post->is_popular     = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');
-        $post->note = $request->input('note');
-
+        $post->note           = $request->input('note');
+        $post->tag_id         = $request->tags;
+       
         if($request->hasFile('featured_image')) {
             // Add the new photo
-            $image = $request->file('featured_image');
+            $image    = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);

@@ -78,6 +78,13 @@
         .m2{
             font-size: larger;
         }
+
+        .ui-menu-item{
+            background-color: green !important;
+        }
+        .ui-menu-item-wrapper:hover {
+            background-color: red !important;
+        }
         
    
     </style>
