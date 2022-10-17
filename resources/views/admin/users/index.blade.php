@@ -10,18 +10,18 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>Registered users</h4>
+                    <h4>Tài khoản đăng ký</h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered ">
                         <thead>
                             <tr style="text-align: center;">
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Tên tài khoản</th>
                                 <th>Email</th>
-                                <th>Phone</th>
+                                <th>Số điện thoại</th>
                                 <th>Role</th>
-                                <th>Action</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,12 +39,14 @@
                                     <td>
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
+                                                hành động
                                             </a>
 
                                             <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ url('admin/view-user/'.$item->id) }}">View</a>
-                                                <a class="dropdown-item" href="#">Update</a>   
+                                                <a class="dropdown-item" href="{{ url('admin/view-user/'.$item->id) }}">Chi tiết</a>
+                                                @if(Auth::check())
+                                                    <a class="dropdown-item" href="{{ url('admin/create/'.$item->id) }}">Cập nhật</a>
+                                                @endif
                                             </div>
                                         </div>  
                                     </td>

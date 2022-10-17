@@ -21,5 +21,8 @@ class Product extends Model
     public function wishlist(){
         return $this->belongsToMany('App\Wishlist');
     }
+    public function brand(){
+        return $this->belongsTo('App\Brands');
+    } 
 
 }

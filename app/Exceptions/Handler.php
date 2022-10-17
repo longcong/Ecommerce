@@ -68,7 +68,7 @@ class Handler extends ExceptionHandler
         //     return response()->json(['Error' => 'Unauthenticated.'], 401);
         // }
         if ($request->expectsJson()) {
-            return response()->json(['status'=>"Login to Continue !"]);
+            return response()->json(['status'=>"Bạn hãy đăng nhập !"]);
         }
         $guard = Arr::get($exception->guards(), 0);
 

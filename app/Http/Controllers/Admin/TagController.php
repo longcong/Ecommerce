@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagFormRequest;
 use Illuminate\Http\Request;
 use App\Tag;
 
@@ -32,7 +33,6 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, array(
             'name' => 'required|max:255'
         ));
@@ -41,7 +41,7 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->save();
         
-        $request->session()->flash('success', 'New Tag was successfully created!');
+        $request->session()->flash('success', 'Nhãn hiệu được tạo mới thành công!');
         return redirect()->route('tags.index');
     }
 
@@ -53,10 +53,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
         $tag = Tag::find($id);
         return view('admin.tags.show')->withTag($tag);
-
     }
 
     /**
@@ -67,7 +65,6 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
         $tag = Tag::find($id);
         return view('admin.tags.edit')->withTag($tag);
     }
@@ -79,9 +76,8 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagFormRequest $request, $id)
     {
-        //
         $tag = Tag::find($id);
 
         $this->validate($request, ['name' => 'required|max:255']);
@@ -89,9 +85,9 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        $request->session()->flash('success', 'Successfully saved your new tag!');
+        $request->session()->flash('success', 'Nhãn hiệu được cập nhật thành công!');
 
-        return redirect()->route('tags.show', $tag->id);
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -104,10 +100,10 @@ class TagController extends Controller
     {
         //
         $tag = Tag::find($id);
-        $tag -> posts()-> detach();
+        $tag -> products() -> detach();
         $tag -> delete();
 
-        $request->session()->flash('success', 'Tag was delete successfully!');
+        $request->session()->flash('success', 'Nhãn hiệu được xóa thành công!');
 
         return redirect()->route('tags.index');
     }

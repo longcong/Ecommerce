@@ -149,13 +149,13 @@
     <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
         <div class="container">
             <div class="c-page-title c-pull-left">
-                <h3 class="c-font-uppercase c-font-sbold">Checkout Complete</h3>
-                <h4 class="">Page Sub Title Goes Here</h4>
+                <h3 class="c-font-uppercase c-font-sbold">Đặt hàng thành công</h3>
+                <!-- <h4 class="">Page Sub Title Goes Here</h4> -->
             </div>
             <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-                <li><a href="{{url('admin/orders')}}">Back List Order</a></li>
+                <li><a href="{{url('admin/orders')}}">Phiếu đặt hàng</a></li>
                 <li>/</li>
-                <li class="c-state_active">Jango Components</li>
+                <li class="c-state_active">Denimst</li>
 
             </ul>
         </div>
@@ -165,60 +165,55 @@
         <div class="container">
             <div class="c-shop-order-complete-1 c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
                 <div class="c-content-title-1">
-                    <h3 class="c-center c-font-uppercase c-font-bold">Checkout Completed</h3>
+                    <h3 class="c-center c-font-uppercase c-font-bold">Đặt hàng thành công</h3>
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
                 <div class="c-theme-bg">
                     <p class="c-message c-center c-font-white c-font-20 c-font-sbold">
-                        <i class="fa fa-check"></i> Thank you. Your order has been received.
+                        <i class="fa fa-check"></i> Cảm ơn bạn. Đơn hàng của bạn đã được nhận.
                     </p>
                 </div>
                 <!-- BEGIN: ORDER SUMMARY -->
                 <div class="row c-order-summary c-center">
                     <ul class="c-list-inline list-inline">
                         <li>
-                            <h3>Order Number</h3>
+                            <h3>Mã đặt hàng</h3>
                             <p>{{$orders->tracking_no}}</p>
                         </li>
                         <li>
-                            <h3>Date Purchased</h3>
+                            <h3>Ngày đặt hàng</h3>
                             <p>{{ date('M j, Y h:ia', strtotime($orders->created_at)) }}</p>
                         </li>
                         <li>
-                            <h3>Total Payable</h3>
-                            <p>${{$orders->total_price}}.00</p>
+                            <h3>Giá tiền</h3>
+                            <p>{{number_format($orders->total_price)}}đ</p>
                         </li>
                         <li>
-                            <h3>Payment Method</h3>
-                            <p>Direct Bank Transfer</p>
+                            <h3>phương thức thanh toán</h3>
+                            <p>MOMO</p>
                         </li>
                     </ul>
                 </div>
                 <!-- END: ORDER SUMMARY -->
                 <!-- BEGIN: BANK DETAILS -->
                 <div class="c-bank-details c-margin-t-30 c-margin-b-30">
-                    <p class="c-margin-b-20">Make your payment directly into our account. Please use your Order ID as
-                        the payment reference. Your order won't be shipped until the funds have cleared in our account.
+                    <p class="c-margin-b-20">Thực hiện thanh toán của bạn trực tiếp vào tài khoản của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán.
                     </p>
 
-                    <h3 class="c-margin-t-40 c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">OUR BANK DETAILS</h3>
-                    <h3 class="c-border-bottom">Account Name : &nbsp;<span class="c-font-thin">{{$users->username}}</span></h3>
+                    <h3 class="c-margin-t-40 c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Thông tin đơn hàng</h3>
+                    <h3 class="c-border-bottom">Tên người đặt hàng : &nbsp;<span class="c-font-thin">{{ $users->fname }}&nbsp;{{ $users->lname }}</span></h3>
                     <ul class="c-list-inline list-inline">
                         <li>
-                            <h3>Account Number</h3>
-                            <p></p>
+                            <h3>Tài khoản</h3>
+                            <p>9704 0000 0000 0018</p>
                         </li>
                         <li>
-                            <h3>Sort Code</h3>
-                            <p>123</p>
+                            <h3>Mã code</h3>
+                            <p>{{ $orders->zipcode }}</p>
                         </li>
                         <li>
-                            <h3>Bank</h3>
-                            <p>Bank Name</p>
-                        </li>
-                        <li>
-                            <h3>BIC</h3>
-                            <p>12345</p>
+                            <h3>tên ngân hàng</h3>
+                            <p>Long Nguyen</p>
                         </li>
                     </ul>
                 </div>
@@ -228,19 +223,19 @@
                     <div class="c-border-bottom hidden-sm hidden-xs">
                         <div class="row">
                             <div class="col-md-3">
-                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Product</h3>
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Sản phẩm</h3>
                             </div>
                             <div class="col-md-3">
-                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Description</h3>
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Mô tả</h3>
                             </div>
                             <div class="col-md-2">
-                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Discount</h3>
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Giảm giá</h3>
                             </div>
                             <div class="col-md-2">
-                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Unit Price</h3>
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Giá ban đầu</h3>
                             </div>
                             <div class="col-md-2">
-                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Total</h3>
+                                <h3 class="c-font-uppercase c-font-16 c-font-grey-2 c-font-bold">Tổng tiền</h3>
                             </div>
                         </div>
                     </div>
@@ -267,20 +262,21 @@
                                 <ul class="c-list list-unstyled">
                                     <li class="c-margin-b-25"><a href="shop-product-details-2.html"
                                             class="c-font-bold c-font-22 c-theme-link"></a></li>
-                                    <li>Quantity: {{$item->quantity}} </li>
+                                    <li>Số lượng: {{$item->quantity}} </li>
+                                    <li>Size: {{$item->quantity}} </li>
                                 </ul>
                             </div>
                             <div class="col-md-2 col-sm-2">
-                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Discount</p>
-                                <p class="c-font-sbold c-font-uppercase c-font-18">{{$item->products->discount_value}}</p>
+                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Giảm giá</p>
+                                <p class="c-font-sbold c-font-uppercase c-font-18">{{number_format($item->products->discount_value) }}đ</p>
                             </div>
                             <div class="col-md-2 col-sm-2">
-                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Unit Price</p>
-                                <p class="c-font-sbold c-font-uppercase c-font-18">{{$item->price}}</p>
+                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Giá ban đầu</p>
+                                <p class="c-font-sbold c-font-uppercase c-font-18">{{number_format($item->price) }}đ</p>
                             </div>
                             <div class="col-md-2 col-sm-2">
-                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Total</p>
-                                <p class="c-font-sbold c-font-18">{{($item->price * $item->quantity)-($item->products->discount_value* $item->quantity)}}</p>
+                                <p class="visible-xs-block c-theme-font c-font-uppercase c-font-bold">Tổng tiền</p>
+                                <p class="c-font-sbold c-font-18">{{number_format(($item->price * $item->quantity)-($item->products->discount_value* $item->quantity))}}đ</p>
                             </div>
                         </div>
                     </div>
@@ -293,12 +289,12 @@
                             <ul class="c-list list-unstyled">
                             @if(!empty(Session::get('couponAmount')))
                                 <li>
-                                    <h3 class="c-font-regular c-font-22">Coupon Sale: &nbsp;
-                                        <span class="c-font-dark c-font-bold c-font-22">${{ Session::get('couponAmount') }}</span>
+                                    <h3 class="c-font-regular c-font-22">Giảm giá: &nbsp;
+                                        <span class="c-font-dark c-font-bold c-font-22">{{ number_format(Session::get('couponAmount')) }}đ</span>
                                     </h3>
                                 </li>
                                 <li>
-                                    <h3 class="c-font-regular c-font-22">Coupon Code: &nbsp;
+                                    <h3 class="c-font-regular c-font-22">Mã giảm giá: &nbsp;
                                         <span class="c-font-dark c-font-bold c-font-22">{{ Session::get('code') }}</span>
                                     </h3>
                                 </li>
@@ -309,17 +305,17 @@
                                 </li> -->
                                 @if(!Session::get('success_momo') == true)
                                     <li>
-                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                        <h3 class="c-font-regular c-font-22">Giá gốc : &nbsp;
                                             <span class="c-font-dark c-font-bold c-font-22">
-                                                ${{ Session::get('totalFinal') }}.00
+                                                {{ number_format(Session::get('totalFinal')) }}đ
                                             </span>
                                         </h3>
                                     </li>
                                     @else
                                     <li>
-                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                        <h3 class="c-font-regular c-font-22">giá tiền thanh toán : &nbsp;
                                             <span class="c-font-dark c-font-bold c-font-22">
-                                                ${{ Session::get('totalFinal') }}.00
+                                                {{ number_format(Session::get('totalFinal')) }}đ
                                             </span>
                                         </h3>
                                     </li>
@@ -328,19 +324,19 @@
                                 
                                 @if(!Session::get('success_momo') == true)
                                     <li>
-                                        <h3 class="c-font-regular c-font-22">Grand Total : &nbsp;
+                                        <h3 class="c-font-regular c-font-22">Giá gốc : &nbsp;
                                             <span
                                                 class="c-font-dark c-font-bold c-font-22">
-                                                ${{ $orders->total_price }}.00
+                                                {{ number_format($orders->total_price) }}đ
                                             </span>
                                         </h3>
                                     </li>
                                     @else
                                     <li>
-                                        <h3 class="c-font-regular c-font-22">Payment Completed : &nbsp;
+                                        <h3 class="c-font-regular c-font-22">Giá tiền thanh toán : &nbsp;
                                             <span
                                                 class="c-font-dark c-font-bold c-font-22">
-                                                ${{ $orders->total_price }}.00
+                                                {{ number_format($orders->total_price) }}đ
                                             </span>
                                         </h3>
                                     </li>
@@ -355,17 +351,17 @@
                 <div class="c-customer-details row" data-auto-height="true">
                     <div class="col-md-6 col-sm-6 c-margin-t-20">
                         <div data-height="height">
-                            <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Customer Details</h3>
+                            <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Tài khoản người mua</h3>
                             <ul class="list-unstyled">
                                 <li>{{$orders->fname.' '.$orders->lname}}</li>
-                                <li>Phone: {{$orders->phone}}</li>
+                                <li>Số điện thoại: {{$orders->phone}}</li>
                                 <li>Email: <a href="{{$orders->email}}" class="c-theme-color">{{$orders->email}}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 c-margin-t-20">
                         <div data-height="height">
-                            <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Billing Address</h3>
+                            <h3 class=" c-margin-b-20 c-font-uppercase c-font-22 c-font-bold">Địa chỉ</h3>
                             <ul class="list-unstyled">
                                 <li>{{$orders->fname.' '.$orders->lname}}</li>
                                 <li>

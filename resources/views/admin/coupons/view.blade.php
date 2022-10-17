@@ -10,35 +10,46 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>Coupons
-                        <a href="{{ route('coupons.create') }}" class="btn btn-primary float-end">New Coupons</a>
+                    <h4>Mã giảm giá
+                        <a href="{{ route('coupons.create') }}" class="btn btn-primary float-end">Tạo mới mã giảm giá</a>
                     </h4>
                 </div>
 
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
-                            <tr style="text-align:center">
-                                <th>Coupon Code</th>
-                                <th>Coupon Type</th>
-                                <th>Coupon Discount</th>
-                                <th>Expiry Date</th>
-                                <th>Status</th>
-                                <th class="order1">Action</th>
+                            <tr class="order1">
+                                <th>Mã giảm giá</th>
+                                <th>Giảm giá theo</th>
+                                <th>Giá tiền</th>
+                                <th>Số lượng</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày hết hạn</th>
+                                <th>Trạng thái</th>
+                                <th>Hoạt động</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($coupons as $coupon)
-                                <tr style="text-align:center;">
+                                <tr class="order1">
                                     <td>{{ $coupon->code }}</td>
                                     <td>{{ $coupon->type }}</td>
                                     <td>
                                         @if($coupon->discount_type == 'Amount')
-                                                ${{ $coupon->discount_coup }}.00
+                                                {{ number_format($coupon->discount_coup) }}đ
                                         @else
                                                 {{ $coupon->discount_coup }}.00%
                                         @endif
                                     </td>
+                                    
+                                    <td>
+                                        @if($coupon->quantity == null)
+                                            Out of stock
+                                        @else
+                                            {{ $coupon->quantity }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $coupon->start_date }}</td>
                                     <td>{{ $coupon->expiry_date }}</td>
                                     <td>
                                         <div class="form-check form-switch ps-0 is-filled" >
@@ -48,12 +59,12 @@
                                     <td class="order1">
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
+                                                Hoạt động
                                             </a>
 
-                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ route('coupons.show', $coupon->id) }}">View</a>
-                                                <a class="dropdown-item" href="{{ route('coupons.edit', $coupon->id) }}">Edit</a>  
+                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink" ">
+                                                <a class="dropdown-item" href="{{ route('coupons.show', $coupon->id) }}">Xem</a>
+                                                <a class="dropdown-item" href="{{ route('coupons.edit', $coupon->id) }}">Chỉnh sửa</a>  
                                             </div>
                                         </div>
                                     </td>

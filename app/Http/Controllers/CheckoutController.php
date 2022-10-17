@@ -104,7 +104,6 @@ class CheckoutController extends Controller
                 $removeItem->delete();
             }
         }
-        //$cartitems = Cart::where('user_id',Auth::id())->get();
         return view('checkout', compact('cartitems'));
     }
     public function placeOrder(Request $request)
@@ -116,7 +115,7 @@ class CheckoutController extends Controller
         $order->lname = $request->input('lname');
         $order->company = $request->input('company');
         $order->address1 = $request->input('address1');
-        $order->address2 = $request->input('address2');
+        $order->address2 = $request->input('address1');
         $order->city = $request->input('city');
         $order->state = $request->input('state');
         $order->zipcode = $request->input('zipcode');
@@ -150,7 +149,7 @@ class CheckoutController extends Controller
             $user->lname = $request->input('lname');
             $user->company = $request->input('company');
             $user->address1 = $request->input('address1');
-            $user->address2 = $request->input('address2');
+            $user->address2 = $request->input('address1');
             $user->city = $request->input('city');
             $user->state = $request->input('state');
             $user->zipcode = $request->input('zipcode');
@@ -160,10 +159,15 @@ class CheckoutController extends Controller
             $user->update();
 
         }
+
         $cartitems = Cart::where('user_id',Auth::id())->get();
-        Cart::destroy($cartitems);
-         
-        return redirect()->route('order-info', $order->id)->with('status',"Order placed Successfully");
+        //ddd($cartitems);
+        if($cartitems){
+            foreach($cartitems as $cartitem){
+                $cartitem->delete();
+            }
+        }
+        return redirect()->route('order-info', $order->id);
     }
     public function info($id)
     {
@@ -172,7 +176,8 @@ class CheckoutController extends Controller
         $users = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
     }
+    public function updateTotal(){
 
-    
+    }
     
 }

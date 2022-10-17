@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>BBK! @yield('title')</title>
+    <title>Denimst @yield('title')</title>
 
     <!-- Scripts -->
     
@@ -21,6 +21,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
 
@@ -56,6 +57,27 @@
         .order1{
             text-align: center;
         }
+        .user1{
+            margin-top: 5px;
+        }
+        .create_2{
+            margin-top: 5px;
+            border-style: outset;
+            padding-bottom: 9px
+        }
+        .xxx{
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            padding-left: 10px
+        }
+        .variant{
+            font-size: inherit;
+        }
+        .m2{
+            font-size: larger;
+        }
         
    
     </style>
@@ -68,7 +90,7 @@
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         @include('layouts.inc.adminnav')
         <div class="container-fluid py-4">
-        @include('layouts.inc.messager')
+        @include('layouts.messager_admin')
             @yield('content')
        
         @include('layouts.inc.adminfooter')

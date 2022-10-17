@@ -37,7 +37,6 @@ Follow: http://www.twitter.com/themehats
     <div class="modal fade c-content-login-form" id="login-form" role="dialog">
         @include('shoppage.login')
     </div><!-- END: CONTENT/USER/LOGIN-FORM -->
-
     <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
     <nav class="c-layout-quick-sidebar">
         <div class="c-header">
@@ -170,78 +169,20 @@ Follow: http://www.twitter.com/themehats
     </nav><!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
     <!-- BEGIN: PAGE CONTAINER -->
     <div class="c-layout-page">
-
+        
         <!-- BEGIN: PAGE CONTENT -->
         <!-- BEGIN: CONTENT/MISC/SHOP-BANNER-1 -->
         <div class="c-content-box c-reset c-pos-relative c-overflow-hide">
-            <div class="c-bg-splash c-splash-left"></div>
-            <div class="c-bg-splash c-splash-right"></div>
-            <div class="container">
-                <div class="c-shop-banner-1 c-shop-banner-height">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 c-shop-banner-height c-shop-banner-m-bg">
-                            <div class="c-shop-banner-content c-shop-banner-left">
-                                <img src="{{ asset('main/base/img/content/shop5/17.png') }} "
-                                    class="c-shop-banner-img" />
-                                <div class="c-shop-banner-title">
-                                    <h1 class="c-font-thin">MOTO<br /><span class="c-font-bold">PHONE</span></h1>
-                                    <button
-                                        class="btn btn-md c-btn c-btn-square c-btn-white c-btn-border-1x c-font-uppercase">Buy
-                                        Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 c-shop-banner-height c-shop-banner-m-bg">
-                            <div class="c-shop-banner-content c-shop-banner-right">
-                                <img src="{{ asset('main/base/img/content/shop5/32.png') }} "
-                                    class="c-shop-banner-img" />
-                                <div class="c-shop-banner-title">
-                                    <h1 class="c-font-thin">MOTO<br /><span class="c-font-bold">WATCH</span></h1>
-                                    <button
-                                        class="btn btn-md c-btn c-btn-square c-btn-white c-btn-border-1x c-font-uppercase">Buy
-                                        Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <img src="{{asset('brands_img/33333.jpg')}}" width="100%" height="30%">
         </div> <!-- END: CONTENT/MISC/SHOP-BANNER-1  -->
-
-        <!-- BEGIN: CONTENT/ISOTOPE/GRID-3 -->
-        <!-- <div class="c-content-box c-size-md c-bg-img-center" style="background-image: url({{ asset('main/base/img/content/backgrounds/bg-82.jpg ') }}">
-            <div class="container">
-                <div class="c-content-title-1">
-                    <h3 class="c-center c-font-uppercase c-font-bold c-font-white">Quick Shop</h3>
-                    <div class="c-line-center c-theme-bg"></div>
-                </div>
-                <div class="c-content-isotope-grid c-opt-3">
-                    <div class="c-content-isotope-item">
-                        <div class="c-content-isotope-image-container">
-                            <img class="c-content-isotope-image" src="{{ asset('main/base/img/content/shop6/85.jpg') }}"/>
-                                <div class="c-content-isotope-overlay">
-                                <div class="c-content-isotope-overlay-content">
-                                    <h3 class="c-content-isotope-overlay-title c-font-white c-font-uppercase">White Sweater</h3>
-                                    <p class="c-content-isotope-overlay-price c-font-white c-font-bold">$59.00</p>
-                                    <p class="c-content-isotope-overlay-desc c-font-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum nibh pharetra ligula rhoncus, nec iaculis nulla semper.</p>
-                                    <a href="javascript:;" class="c-content-isotope-overlay-btn btn c-btn-white c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Add to Cart</a>
-                                    <a href="javascript:;" class="c-content-isotope-overlay-btn btn c-btn-white c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Add to Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div> 
-        </div>END: CONTENT/ISOTOPE/GRID-3 -->
-
         <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 
         MOST POPULAR-->
         <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space">
             <div class="container">
+                @include('layouts.messager_admin')
                 <div class="c-content-title-4">
                     <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">
-                        Most Popular</span></h3>
+                        Thịnh hành</span></h3>
                 </div>
                 @if($populars->count() > 0 )
                     <div class="row">
@@ -259,7 +200,7 @@ Follow: http://www.twitter.com/themehats
                                                 <div class="c-overlay-wrapper">
                                                     <div class="c-overlay-content">
                                                         <a href="{{ url('product/'.$post->slug) }}"
-                                                            class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                                                            class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Chi Tiết</a>
                                                     </div>
                                                 </div>
                                                 <div class="c-bg-img-center-contain c-overlay-object" data-height="height"
@@ -278,14 +219,13 @@ Follow: http://www.twitter.com/themehats
                                                 <div class="btn-group c-border-top" role="group">
                                                     <button type="submit"
                                                         class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
-                                                        <i class="fa fa-heart-o"></i>Add Wishlist
+                                                        <i class="fa fa-heart-o"></i>Yêu Thích
                                                     </button>
                                                 </div>
                                                 <div class="btn-group c-border-left c-border-top" role="group">
-                                                    <button type="submit"
-                                                        class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
-                                                        <i class="fa fa-shopping-cart"></i>Add Cart
-                                                    </button>
+                                                    <a href="{{ url('product/'.$post->slug) }}" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                                        <i class="fa fa-shopping-cart"></i>Chi Tiết
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,81 +247,41 @@ Follow: http://www.twitter.com/themehats
                 <ul class="nav nav-pills c-nav-tab c-arrow" role="tablist">
                     <li role="presentation" class="active">
                         <a class="c-font-uppercase" href="#watches5" aria-controls="watches" role="tab"
-                            data-toggle="tab">Watches</a>
+                            data-toggle="tab">Quần Dài</a>
                     </li>
                     <li role="presentation">
                         <a class="c-font-uppercase" href="#phone5" aria-controls="phone" role="tab"
-                            data-toggle="tab">Phone</a>
+                            data-toggle="tab">Áo Phong</a>
                     </li>
                     <li role="presentation">
                         <a class="c-font-uppercase" href="#imac5" aria-controls="imac" role="tab"
-                            data-toggle="tab">iMac</a>
+                            data-toggle="tab">Áo dài tay</a>
                     </li>
                     <li role="presentation">
                         <a class="c-font-uppercase" href="#accessories5" aria-controls="accessories" role="tab"
-                            data-toggle="tab">Accessories</a>
+                            data-toggle="tab">Quần nỉ</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="watches5">
                         <div class="row">
+                            @foreach($populars as $product )
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
                                         <div class="c-overlay-content">
                                             <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Chi tiết</a>
                                         </div>
                                     </div>
                                     <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/69.jpg') }}">
+                                        style="height: 270px; background-image: url({{ asset('images/' . $product->image) }})">
                                     </div>
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/70.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/79.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/60.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -397,48 +297,6 @@ Follow: http://www.twitter.com/themehats
                                     </div>
                                     <div class="c-bg-img-center c-overlay-object" data-height="height"
                                         style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/63.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/59.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/71.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/91.jpg') }}">
                                     </div>
                                     <div class="c-overlay-border"></div>
                                 </div>
@@ -462,48 +320,6 @@ Follow: http://www.twitter.com/themehats
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/74.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/91.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop2/71.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -523,48 +339,7 @@ Follow: http://www.twitter.com/themehats
                                     <div class="c-overlay-border"></div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/67.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/77.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="c-content c-content-overlay">
-                                    <div class="c-overlay-wrapper c-overlay-padding">
-                                        <div class="c-overlay-content">
-                                            <a href="shop-product-details-2.html"
-                                                class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
-                                        </div>
-                                    </div>
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height"
-                                        style="height: 270px; background-image: url({{ asset('main/base/img/content/shop3/74.jpg') }}">
-                                    </div>
-                                    <div class="c-overlay-border"></div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -576,11 +351,11 @@ Follow: http://www.twitter.com/themehats
             <div class="container">
                 <div class="row">
                     <div class="c-shop-banner-3 c-center">
-                        <h3 class="c-title c-font-uppercase c-font-bold c-font-35 c-font-white">New Summer Collection
+                        <h3 class="c-title c-font-uppercase c-font-bold c-font-35 c-font-white">Chào đông
                         </h3>
-                        <p class="c-desc c-font-uppercase c-font-bold c-font-25 c-font-yellow-1">70% Off With Promo</p>
-                        <button class="btn btn-lg c-btn-white c-btn-border-1x c-btn-square c-btn-bold">EXPLORE</button>
-                        <button class="btn btn-lg c-btn-white c-btn-square c-btn-bold">PURCHASE</button>
+                        <p class="c-desc c-font-uppercase c-font-bold c-font-25 c-font-yellow-1">Giảm tới 30%</p>
+                        <a href="" class="btn btn-lg c-btn-white c-btn-border-1x c-btn-square c-btn-bold">Chi tiết</a>
+                        <!-- <button class="btn btn-lg c-btn-white c-btn-square c-btn-bold">PURCHASE</button> -->
                     </div>
                 </div>
             </div>
@@ -630,7 +405,7 @@ Follow: http://www.twitter.com/themehats
         <div class="c-content-box c-size-md c-bg-white">
             <div class="container">
                 <div class="c-content-title-1">
-                    <h3 class="c-center c-font-uppercase c-font-bold">Product Grid</h3>
+                    <h3 class="c-center c-font-uppercase c-font-bold">Tổng hợp</h3>
                     <div class="c-line-center"></div>
                 </div>
                 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-7 -->
@@ -644,7 +419,7 @@ Follow: http://www.twitter.com/themehats
                                         <div class="c-overlay-wrapper">
                                             <div class="c-overlay-content">
                                                 <a href="{{ url('product/'.$post->slug) }}"
-                                                    class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Explore</a>
+                                                    class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Chi Tiết</a>
                                             </div>
                                         </div>
                                         <div class="c-bg-img-center c-overlay-object" data-height="height"
@@ -663,14 +438,13 @@ Follow: http://www.twitter.com/themehats
                                         <div class="btn-group c-border-top" role="group">
                                             <button type="submit"
                                                 class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addtoWishlist">
-                                                <i class="fa fa-heart-o"></i>Add Wishlist
+                                                <i class="fa fa-heart-o"></i>Yêu Thích
                                             </button>
                                         </div>
                                         <div class="btn-group c-border-left c-border-top" role="group">
-                                            <button type="submit"
-                                                class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product addToCartBtn">
-                                                <i class="fa fa-shopping-cart"></i>Add Cart
-                                            </button>
+                                            <a href="{{ url('product/'.$post->slug) }}" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">
+                                                <i class="fa fa-shopping-cart"></i>Chi Tiết
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

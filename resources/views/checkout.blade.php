@@ -19,15 +19,15 @@
 <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
 <div class="container">
     <div class="c-page-title c-pull-left">
-        <h3 class="c-font-uppercase c-font-sbold">Checkout</h3>
-        <h4 class="">Page Sub Title Goes Here</h4>
+        <h3 class="c-font-uppercase c-font-sbold">Thanh toán</h3>
+        <!-- <h4 class="">Page Sub Title Goes Here</h4> -->
     </div>
     <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
         <li>
-            <a href="shop-checkout.html">Checkout</a>
+            <a href="shop-checkout.html">Thanh toán</a>
         </li>
         <li>/</li>
-        <li class="c-state_active">Jango Components</li>                        
+        <li class="c-state_active">Denimst</li>                        
     </ul>
 </div>
 </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
@@ -40,17 +40,17 @@
             <!-- BEGIN: ADDRESS FORM -->
             <div class="col-md-7 c-padding-20">
                 <!-- BEGIN: BILLING ADDRESS -->
-                <h3 class="c-font-bold c-font-uppercase c-font-24">Billing Address</h3>
+                <h3 class="c-font-bold c-font-uppercase c-font-24">Địa chỉ thanh toán</h3>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="control-label">Country</label>
+                        <label class="control-label">Quốc gia</label>
                         <select class="form-control c-square c-theme">
                             <option value="1">Vietnam</option>
-                            <option value="2">Singapore</option>
+                            <!-- <option value="2">Singapore</option>
                             <option value="3">Indonesia</option>
                             <option value="4">Thailand</option>
                             <option value="5">China</option>
-                            <option value="6">Malaysia</option>
+                            <option value="6">Malaysia</option> -->
                         </select>
                     </div>
                 </div>
@@ -58,36 +58,32 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="control-label">First Name</label>
-                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->fname}}" id="fname" name="fname" placeholder="First Name">
+                                <label class="control-label">Họ</label>
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->fname}}" id="fname" name="fname" placeholder="Họ">
                             </div>
                             <div class="col-md-6">
-                                <label class="control-label">Last Name</label>
-                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->lname}}" id="lname" name="lname" placeholder="Last Name">
+                                <label class="control-label">Tên</label>
+                                <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->lname}}" id="lname" name="lname" placeholder="Tên">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="control-label">Company Name</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->company}}" id="company" name="company" placeholder="Company Name">
+                        <label class="control-label">Công ty</label>
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->company}}" id="company" name="company" placeholder="Công ty">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="control-label">Address</label>
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address1}}" id="address1" name="address1" placeholder="Street Address">
+                        <label class="control-label">Địa chỉ</label>
+                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address1}}" id="address1" name="address1" placeholder="địa chỉ">
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->address2}}" id="address2" name="address2" placeholder="Apartment, suite, unit etc. (optional)">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="control-label">Town / City</label>
+                        <label class="control-label">Thành phố</label>
                         <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->city}}" id="city" name="city" placeholder="Town / City">
                     </div>
                 </div>
@@ -95,19 +91,19 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="control-label">State / County</label> 
+                                <label class="control-label">Quận</label> 
                                 <select name="state" value="{{Auth::user()->state}}" id="state" class="form-control c-square c-theme">
                                     <option value="0">Select an option...</option>
                                     <option value="1">Vietnam</option>
-                                    <option value="2">Singapore</option>
+                                    <!-- <option value="2">Singapore</option>
                                     <option value="3">Indonesia</option>
                                     <option value="4">Thailand</option>
                                     <option value="5">China</option>
-                                    <option value="6">Malaysia</option>
+                                    <option value="6">Malaysia</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="control-label">Postcode / Zip</label>
+                                <label class="control-label">Mã code</label>
                                 <input type="text" class="form-control c-square c-theme" value="{{Auth::user()->zipcode}}" id="zipcode" name="zipcode" placeholder="Postcode / Zip">
                             </div>
                         </div>
@@ -117,11 +113,11 @@
                     <div class="form-group col-md-12">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="control-label">Email Address</label>
+                                <label class="control-label">Địa chỉ email</label>
                                 <input type="email" class="form-control c-square c-theme" id="email" value="{{Auth::user()->email}}" name="email" placeholder="Email Address">
                             </div>
                             <div class="col-md-6">
-                                <label class="control-label">Phone</label>
+                                <label class="control-label">Số điện thoại</label>
                                 <input type="tel" class="form-control c-square c-theme" id="phone" value="{{Auth::user()->phone}}" name="phone" placeholder="Phone">
                             </div>
                         </div>
@@ -129,7 +125,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="control-label">Order Notes</label>
+                        <label class="control-label">Lưu ý</label>
                         <textarea class="form-control c-square c-theme" rows="3" value="{{Auth::user()->note}}" id="note" name="note" placeholder="Note about your order, e.g. special notes for delivery."></textarea>
                     </div>
                 </div>
@@ -138,49 +134,47 @@
             <!-- BEGIN: ORDER FORM -->
             <div class="col-md-5">
                 <div class="c-content-bar-1 c-align-left c-bordered c-theme-border c-shadow">
-                <h1 class="c-font-bold c-font-uppercase c-font-24">Your Order</h1>
+                <h1 class="c-font-bold c-font-uppercase c-font-24">Sản phẩm của bạn</h1>
                 <ul class="c-order list-unstyled">
                     <li class="row c-margin-b-15">
-                        <div class="col-md-6 c-font-20"><h2>Product</h2></div>
-                        <div class="col-md-6 c-font-20"><h2>Total</h2></div>
+                        <div class="col-md-6 c-font-20"><h2>Sản phẩm</h2></div>
+                        <div class="col-md-6 c-font-20"><h2>Tổng giá tiền</h2></div>
                     </li>
                     <li class="row c-border-bottom"></li>
                     <!-- @php $total =0;@endphp -->
-                    @foreach ($cartitems as $item)
+                    @foreach($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">${{ ($item->products->price - $item->products->discount_value) * $item->prod_qty }}.00</p>
+                            <p class="">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }}đ</p>
                         </div>
                     </li>
-                    <!-- @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp -->
+                    @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
                     @endforeach
-                    <!-- COUPON -->
-                    <!-- END COUPON -->
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">Subtotal</div>
+                            <div class="col-md-6 c-font-20">Tổng tiền phụ</div>
                             <div class="col-md-6 c-font-20">
-                                <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                                <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                             </div>
                         </li>
                     
                         @if(!empty(Session::get('couponAmount')))
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">Code</div>
+                            <div class="col-md-6 c-font-20">mã giảm giá</div>
                             <div class="col-md-6 c-font-20">
                                 <p><span class="c-subtotal">{{ Session::get('code') }}</span></p>
                             </div>
                         </li>
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">Discount Coupon</div>
+                            <div class="col-md-6 c-font-20">giá tiền giảm</div>
                             <div class="col-md-6 c-font-20">
-                                <p>$<span class="c-subtotal">{{ Session::get('couponAmount') }}.00</span></p>
+                                <p><span class="c-subtotal">{{ number_format(Session::get('couponAmount')) }}đ</span></p>
                             </div>
                         </li>
                         @endif
                         <li class="row c-border-top c-margin-b-15"></li>
                         <li class="row">
-                            <div class="col-md-6 c-font-20">Shipping</div>
+                            <div class="col-md-6 c-font-20">Phí giao hàng</div>
                             <div class="col-md-6">
                                 <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
                                     <div class="c-radio">
@@ -221,18 +215,18 @@
                         @if(!empty(Session::get('couponAmount')))
                             <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-30">Total</p>
+                                    <p class="c-font-30">Tổng tiền</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-bold c-font-30">$<span class="c-shipping-total">{{ Session::get('totalFinal') }}.00</span></p>
+                                    <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ number_format(Session::get('totalFinal')) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>
                         @else
                             <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20">Total</div>
+                                <div class="col-md-6 c-font-20">Tổng tiền</div>
                                 <div class="col-md-6 c-font-20">
-                                    <p>$<span class="c-subtotal">{{ $total }}.00</span></p>
+                                    <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{$total}}" id="totalFinal" name="totalFinal">
                                 </div>
                             </li>

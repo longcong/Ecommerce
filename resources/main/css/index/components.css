@@ -3972,7 +3972,7 @@ h1 {
       background: none; }
       .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-btn-icon,
       .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link {
-        color: #ffffff; }
+        color:black; }
         .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-btn-icon:hover, .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-btn-icon:focus,
         .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link:hover,
         .c-layout-header.c-layout-header-default .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link:focus {

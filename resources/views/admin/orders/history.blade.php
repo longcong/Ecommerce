@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Order Done')
+@section('title', '| Đơn hàng thành công')
 
 @section('content')
 
@@ -10,20 +10,20 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>New History
-                        <a href="{{ 'orders' }}" class="btn btn-primary float-end">New Order</a>
+                    <h4>Lịch sử đơn hàng
+                        <a href="{{ 'orders' }}" class="btn btn-primary float-end">Đơn hàng</a>
                     </h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="order1">
-                                <th>Tracking Number</th>
-                                <th>Total Price</th>
-                                <th>Address</th>
-                                <th>Order Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>ID</th>
+                                <th>Tổng giá tiền</th>
+                                <th>Địa chỉ</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Trạng thái</th>
+                                <th>hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,15 +33,15 @@
                                     <td>{{ $item->total_price }}</td>
                                     <td>{{ $item->address1 }}</td>
                                     <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                    <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}
+                                    <td>{{ $item->status == '0' ? 'Pending' : 'Thành công' }}
                                     </td>
                                     <td>
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
+                                                Hành động
                                             </a>
                                             <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{  url('admin/view-order/'.$item->id) }}">View</a>
+                                                <a class="dropdown-item" href="{{  url('admin/view-order/'.$item->id) }}">Xem chi tiết</a>
                                             </div>
                                         </div>
                                     </td>

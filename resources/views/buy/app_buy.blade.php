@@ -20,8 +20,13 @@ Follow: http://www.twitter.com/themehats
 	@include('shoppage.head')
 </head>
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
-    
-    @yield('buy_main')
+
+   
+    <header class="c-layout-header c-layout-header-default c-layout-header-dark-mobile c-header-transparent-dark"
+        data-minimize-offset="80">
+        @include('components.header')
+    </header>
+        @yield('buy_main')
     
     <a name="footer"></a>
     <footer class="c-layout-footer c-layout-footer-6 c-bg-grey-1">

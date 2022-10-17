@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| Show Product')
+@section('title', '| Chi tiết sản phẩm')
 
 @section('content')
 <div class="card">
@@ -18,10 +18,15 @@
                 <br>
                 <img src="{{ asset('images/' . $product->image) }}" height="500" width="500"
                     alt="This is a Photo">
-                <p class="lead"></p>
+                <p class="lead">Ảnh 1</p>
 
                 <hr>
-
+                <div class="md-5">
+                    <img src="{{ asset('meta_images/' . $product->meta_image) }}" height="200" width="200"
+                        alt="This is a Photo">
+                        <br>
+                    <p class="lead">Ảnh 2</p>
+                </div>
             </div>
 
             <div class="col-md-5">
@@ -29,65 +34,79 @@
                     <dl class="dl-horizontal">
                         <label>Url:</label>
                         <p><a
-                                href="{{ route('detail.productdetail', $product->slug) }}">{{ route('detail.productdetail', $product->slug) }}</a>
+                            href="{{ route('detail.productdetail', $product->slug) }}">{{ route('detail.productdetail', $product->slug) }}</a>
                         </p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Category_id:</label>
+                        <label>Danh Mục:</label>
                         <p>{{ $product->category->name }}</p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Is_Popular:</label>
+                        <label>Thịnh hành:</label>
                         <p>{{ $product->is_popular }}</p>
                     </dl>
-
                     <dl class="dl-horizontal">
-                        <label>Quantity:</label>
+                        <label>Nhãn hàng:</label>
+                        <p>{{ $product->brand->name }}</p>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <label>Số lượng:</label>
                         <p>{{ $product->quantity }}</p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Price:</label>
-                        <p>{{ $product->price }}$</p>
+                        <label>Giá:</label>
+                        <p>{{number_format($product->price) }} đ</p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Discount:</label>
-                        <p>{{ $product->discount_value }}$</p>
+                        <label>Giảm giá:</label>
+                        <p>{{ number_format($product->discount_value) }} đ</p>
                     </dl>
                     <dl class="dl-horizontal">
-                        <label>Description:</label>
+                        <label>Size:</label>
+                        <p>{{ $product->product_size }}</p>
+                    </dl>
+                    @if($product->product_color == null)
+                    @else
+                        <dl class="dl-horizontal">
+                            <label>màu:</label>
+                            <p>{{ $product->product_color }}</p>
+                        </dl>
+                    @endif
+                    <dl class="dl-horizontal">
+                        <label>Nội dung:</label>
                         <p>{{ substr($product->note, 0, 20) }} {{ strlen($product->note) > 20 ? "..." : "" }}</p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Created At:</label>
+                        <label>Ngày Tạo:</label>
                         <p>{{ date('M j, Y h:ia', strtotime($product->created_at)) }}
                         </p>
                     </dl>
 
                     <dl class="dl-horizontal">
-                        <label>Last Updated:</label>
+                        <label>Ngày Cập Nhật:</label>
                         <p>{{ date('M j, Y h:ia', strtotime($product->updated_at)) }}
                         </p>
                     </dl>
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            {!! Html::linkRoute('products.edit', 'Edit', array($product->id), array('class' => 'btn
+                            {!! Html::linkRoute('products.edit', 'Chỉnh sửa', array($product->id), array('class' => 'btn
                             btn-primary btn-block')) !!}
                         </div>
                         <div class="col-sm-2">
                             {{ Form::open(array('method' => 'DELETE', 'route' => array('products.destroy', $product->id), 'onsubmit' => 'return confirm_delete()')) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-info')) }}
+                            {{ Form::submit('Xóa sản phẩm', array('class' => 'btn btn-info')) }}
                             {{ Form::close() }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            {{ Html::linkRoute('products.index', '<< All Posts',[],['class'=>'btn btn-info btn-block btn-h1-spacing']) }}
+                            {{ Html::linkRoute('products.index', '<< Tất cả sản phẩm',[],['class'=>'btn btn-info btn-block btn-h1-spacing']) }}
                         </div>
                     </div>
                 </div>
