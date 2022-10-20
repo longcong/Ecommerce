@@ -7,7 +7,9 @@ use App\Cart;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductInterface;
+use App\OrderItem;
 use App\Product;
+use App\Product_Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,21 +17,22 @@ class ProductDetailController extends Controller
 {
     //
     public function getProductDetail(Request $request,ProductInterface $productService, $slug){
-        $product = Product::where('slug', '=', $slug)->firstorfail();
-        $cartitems = Cart::where('user_id',Auth::id())->get();
-
-        $color = $product->product_color;
+        $product       = Product::where('slug', '=', $slug)->firstorfail();
+        // dd($product->id);
+        $quantity = OrderItem::where('product_id',$product->id)->get();
+        $total_quantity = 0;
+        foreach ($quantity as $value) {
+            $total_quantity += $value->quantity;
+        }
+        //dd($product->quantity < $total_quantity);
+        //dd($total_quantity);
+        //dd($product->id,$lol);
+        $color         = $product->product_color;
         $product_color = explode(',',$color);
+        $size          = $product->product_size;
+        $product_size  = explode(',',$size);
 
-        $size = $product->product_size;
-        // $product_size = explode(',',$size);
-        // foreach($product_size as $s){
-        //     echo $s.'<br>';
-        // };
-        //return response()->json($product_size);
-        $product_size = explode(',',$size);
-
-        return view('user.detail.productdetail',compact('product','cartitems','product_color','product_size'));
+        return view('user.detail.productdetail',compact('product','product_color','product_size','total_quantity'));
     }
     public function getBrand(Request $request,ProductInterface $productService, $slug)
     {
@@ -45,6 +48,8 @@ class ProductDetailController extends Controller
         if($filter_category = Category::where('slug', $slug)->first()) {
             $filter_category = Category::where('slug', $slug)->first();
             $product_filter = Product::where('category_id',$filter_category->id)->paginate(4);
+            
+            
         }
         return view('user.category.category_detail',compact('filter_category','product_filter'));
     }

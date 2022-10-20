@@ -83,6 +83,7 @@ Route::middleware(['auth'])->group(function(){
 
 Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(){
     Route::get('/main','Admin\FontendController@index')->name('admin.dashboard');
+    Route::get('search','Admin\FontendController@profit')->name('admin.profit');
     Route::resource('products', 'Admin\ProductController');
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::get('update/status',[CategoryController::class,'updateStatus'])->name('update.status');
@@ -103,7 +104,7 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::get('payment-admin',[ViewAdminPaymentController::class,'index'])->name('payments');
 
     Route::resource('brands','Admin\BrandsController');
-    Route::resource('attributes','Admin\ProductAttributesController');
+    Route::resource('fabric','Admin\FabricController');
     Route::resource('coupons','Admin\CouponController');
     Route::get('update/active','Admin\CouponController@active')->name('update.active');
 

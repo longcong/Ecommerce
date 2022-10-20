@@ -22,7 +22,7 @@
         <li class="nav-item">
             <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo1')">
               <i class="material-icons opacity-10">assignment</i>
-                <span class="nav-link-text ms-1">Quản lý sản phẩm</span>
+                <span class="nav-link-text ms-1">Quản lý Sản phẩm</span>
               <i class="fa fa-caret-down"></i>
             </button>
             <div id="demo1" class="w3-hide">
@@ -41,6 +41,9 @@
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('tags.index') }}">
               Nhãn Hiệu
             </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('fabric.index') }}">
+              Chất Liệu
+            </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('import.index') }}">
               Nhập Hàng Hóa
             </a> 
@@ -50,7 +53,7 @@
         <li class="nav-item">
           <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo2')">
             <i class="material-icons opacity-10">table_view</i>
-              <span class="nav-link-text ms-1">Quản lý đặt hàng</span>
+              <span class="nav-link-text ms-1">Quản lý Đơn hàng</span>
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="demo2" class="w3-hide">

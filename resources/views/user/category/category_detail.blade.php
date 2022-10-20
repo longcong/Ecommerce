@@ -379,67 +379,40 @@
 							  padding: 0px 10px;
 							  font-family: 'Roboto', sans-serif;
 							  font-size: 16px;" 
-							  class="form-label tpInputLabel">{{ $filter_category->name }}
+							  class="form-label tpInputLabel">Chất Liệu
 				</label>
 			</div>
 			<!-- 1 cái if quần què gì đó đi -->
-			@if($filter_category->id == '2')
 			<div class="filter-checkbox">
 				<div class="container-sm">
 					<div class="row">
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="[["1"]]" class="form-check-input filterdanhmuc" type="checkbox" value="Quần Dài" >
+								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="vải Cotton">
 								<label class="form-check-label">
-									Dài
+									Vải Cotton
 								</label>
 							</div>
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="[["2"]]" class="form-check-input filterdanhmuc" type="checkbox" value="Quần ngắn" >
+								<input name="brand" id="2" class="form-check-input filterdanhmuc" type="checkbox" value="vải Kaki">
 								<label class="form-check-label">
-									Ngắn
-								</label>
-							</div>
-						</div>
-					
-					</div>
-				</div>
-			</div>
-			@else
-			<!-- áo -->
-			<div class="filter-checkbox">
-				<div class="container-sm">
-					<div class="row">
-						<div class="col-6 col-sm-6">
-							<div class="form-check">
-								<input name="brand" id="5" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Polo">
-								<label class="form-check-label">
-									Áo Polo
+									Vải Kaki
 								</label>
 							</div>
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="4" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Phong">
+								<input name="brand" id="3" class="form-check-input filterdanhmuc" type="checkbox" value="vải Nỉ">
 								<label class="form-check-label">
-									Áo Phong
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6">
-							<div class="form-check">
-								<input name="brand" id="3" class="form-check-input filterdanhmuc" type="checkbox" value="Áo Sweater">
-								<label class="form-check-label">
-									Áo Sweater
+									Vải Nỉ
 								</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			@endif
 		</ul>
     </li>
 </ul>
@@ -495,7 +468,7 @@
 
 <!-- BEGIN: CONTENT/SHOPS/SHOP-2-8 -->
 @foreach($product_filter as $post)
-<div class="row c-margin-b-40 product_data" data-filter="{{ $post->brand->name }}" data-tag="{{ $post->tag_id }} ">
+<div class="row c-margin-b-40 product_data" data-filter="{{ $post->brand->name }}" data-fabric="{{ $post->fabric->fabric }}">
 	<input type="hidden" value="{{ $post->id }}" class="product_id" >
 	<div class="c-content-product-2 c-bg-white">
             <div class="col-md-4">
@@ -565,28 +538,6 @@
 
 @section('buy_script')
 	<script type="text/javascript">
-            //Chơi lẻ
-            
-            // const brands = 
-            // document.getElementById('2').onclick = function() {
-            //     if(document.getElementById("2").checked == true) {
-            //         var test =  document.getElementById("2").value;	
-            //         var asus =  document.getElementsByClassName('product_data')
-            //         for (  var index = 0 ; index < asus.length ; index++) {
-            //             if(asus[index].getAttribute("data-filter") != "ASUS"){
-            //                 asus[index].style.display="none";
-            //             }    
-            //         }
-            //     }   
-            //     else{ 
-            //         var asus =  document.getElementsByClassName('product_data');
-            //         for (  var index = 0 ; index < asus.length ; index++) {
-            //             asus[index].style.display="block";
-            //         }
-            //     }
-            // };
-            
-            //Chấp tất
             var classtesst = document.querySelectorAll(".filterhang");
             var producttest = document.querySelectorAll(".product_data");
             for(var i = 0; i < classtesst.length ;i++){
@@ -594,9 +545,7 @@
                     if(this.checked == true){
                         for(var j = 0; j < producttest.length; j++){
                             if(this.value == producttest[j].getAttribute("data-filter")){
-								
                                 producttest[j].style.display = "block";
-							
                             }
                         }
                     }
@@ -605,7 +554,6 @@
                             producttest[j].style.display = "none";
                         }
                     }
-                    
                 })
 				
             };
@@ -616,7 +564,8 @@
                 danhmuc[i].addEventListener("click", function() {
                     if(this.checked == true){
                         for(var j = 0; j < producttest.length; j++){
-                            if(this.value == producttest[j].getAttribute("data-tag")){
+							console.log(this.value, producttest[j].getAttribute("data-fabric"));
+                            if(this.value == producttest[j].getAttribute("data-fabric")){
                                 producttest[j].style.display = "block";
                             }
                         }
@@ -626,7 +575,6 @@
                             producttest[j].style.display = "none";
                         }
                     }
-                    
                 })
             };
     </script>

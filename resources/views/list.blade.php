@@ -525,10 +525,13 @@
                     </p>
                 </div>
                 <div>
-					@if($post->quantity>0)
-                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
+					@if($post->quantity > 0 )
+                    <!-- <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                         <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
-                    </button>
+                    </button> -->
+					<a href="{{ url('product/'.$post->slug) }}" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+						<i class="fa fa-shopping-cart"></i>Chi Tiết
+					</a>
 					@endif
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
                         <i class="fa fa-heart-o"></i>Thêm vào mục yêu thích
@@ -536,7 +539,7 @@
                 </div>
 				<br>
 				<div>
-				@if($post->quantity >0)
+				@if($post->quantity > )
 					<label class="badge c-btn-border-2x c-btn-green-1">Còn hàng</label>
 				@else
 					<label class="badge c-btn-border-2x c-btn-red-1">Hết hàng</label>

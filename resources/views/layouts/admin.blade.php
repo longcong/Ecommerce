@@ -105,13 +105,14 @@
         
     </main>
 
-    
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/popper.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/perfect-scrollbar.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/smooth-scrollbar.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/chartjs.min.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/parsley.min.js') }}" defer></script>
     <script src="{{ asset('js/select2.min.js') }}" defer></script>

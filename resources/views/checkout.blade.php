@@ -141,7 +141,11 @@
                         <div class="col-md-6 c-font-20"><h2>Tổng giá tiền</h2></div>
                     </li>
                     <li class="row c-border-bottom"></li>
-                    <!-- @php $total =0;@endphp -->
+                    @php 
+                        $total = 0;
+                        $total_import = 0;
+                        $qty_order = 0;
+                     @endphp
                     @foreach($cartitems as $item)
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
@@ -149,7 +153,12 @@
                             <p class="">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }}đ</p>
                         </div>
                     </li>
-                    @php $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty ; @endphp
+                    @php
+                        $total += ($item->products->price - $item->products->discount_value) * $item->prod_qty;
+                        $total_import += $item->products->import_price * $item->prod_qty;
+                        $qty_order +=  $item->prod_qty;  
+                    @endphp
+                    
                     @endforeach
                         <li class="row c-margin-b-15 c-margin-t-15">
                             <div class="col-md-6 c-font-20">Tổng tiền phụ</div>
@@ -220,6 +229,8 @@
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ number_format(Session::get('totalFinal')) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" id="totalFinal" name="totalFinal">
+                                    <input type="hidden" id="import_price" name="import_price" value="{{ $total_import }}">
+                                    <input type="hidden" id="import_price" name="import_price" value="{{ $qty_order }}">
                                 </div>
                             </li>
                         @else
@@ -228,6 +239,9 @@
                                 <div class="col-md-6 c-font-20">
                                     <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{$total}}" id="totalFinal" name="totalFinal">
+                                    <input type="hidden" id="import_price" name="import_price" value="{{ $total_import }}">
+                                    <input type="hidden" id="quantity" name="quantity" value="{{ $qty_order }}">
+                                    
                                 </div>
                             </li>
                         @endif

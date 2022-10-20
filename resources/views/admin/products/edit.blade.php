@@ -41,6 +41,9 @@
                         {{ Form::label('tags', 'Nhãn:') }}
                         {{ Form::select('tags[]', $tags, null, array('class' => 'form-control select2-multi', 'multiple' => 'multiple')) }}
 
+                        {{ Form::label('fabric_id', 'Chất Liệu:') }}
+                        {{ Form::select('fabric_id', $fabric ,null, array('class' => 'form-control input-lg')) }}
+
                         {{ Form::label('discount_value', 'Giảm giá:') }}
                         {{ Form::text('discount_value', null, array('class' => 'form-control input-lg')) }}
 
@@ -60,9 +63,6 @@
                         <label class="variant">Biến thể sản phẩm</label><br>
                         {{ Form::label('product_size', 'Size:') }}
                         {{ Form::text('product_size',null, array('class' => 'form-control input-lg')) }}
-
-                        {{ Form::label('product_color', 'Màu:') }}
-                        {{ Form::text('product_color', null, array('class' => 'form-control input-lg')) }}
                     </div>
 
                     <div class="col-md-4" >

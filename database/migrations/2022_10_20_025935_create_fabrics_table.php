@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMetaImageToProductsTable extends Migration
+class CreateFabricsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddMetaImageToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('meta_image')->after('image')->nullable();
+        Schema::create('fabrics', function (Blueprint $table) {
+            $table->id();
+            $table->string('fabric');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddMetaImageToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('meta_image');
-        });
+        Schema::dropIfExists('fabrics');
     }
 }

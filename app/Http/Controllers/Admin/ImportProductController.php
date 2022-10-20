@@ -31,21 +31,25 @@ class ImportProductController extends Controller
             $product               = Product::find($id);
             $oldprice              = $product->price;
             $product->price        = $request->price;
+            $product->import_price = $request->importPrice;
             $product->quantity     = $request->quantity;
+            //dd($product);
             $product->save();
 
             $import                = new ImportProduct();
             $import->prod_id       = $product->id;
             $import->title         = $product->title;
-            $import->oldPrice      = $oldprice;
-            $import->importPrice   = $request->importPrice;
+            $import->old_price     = $oldprice;
+            $import->import_price  = $request->importPrice;
+            $import->price         = $request->price;
             $import->quantity      = $request->quantity;
             $import->save();
-
+            //dd($import, $product);
             DB::commit();
             $request->session()->flash('success', 'Mặt hàng đã được cập nhật thành công!');
             return redirect()->route('import.index');
         } catch(Exception $e) {
+            dd(123);
             DB::rollBack();
             Log::error('Error import',['error' => $e->getMessage()]);
             $request->session()->flash('error', 'Mặt hàng cập nhật thất bại!');

@@ -123,7 +123,8 @@ class CheckoutController extends Controller
         $order->phone = $request->input('phone');
         $order->note = $request->input('note');
         $order->total_price = $request->input('totalFinal');
-
+        $order->import_price = $request->import_price;
+        $order->quantity = $request->quantity;
         $order->tracking_no= 'Tam Mao'.rand(1111,9999);
         $order->save();
 
@@ -161,7 +162,7 @@ class CheckoutController extends Controller
         }
 
         $cartitems = Cart::where('user_id',Auth::id())->get();
-        //ddd($cartitems);
+        //dd($cartitems);
         if($cartitems){
             foreach($cartitems as $cartitem){
                 $cartitem->delete();

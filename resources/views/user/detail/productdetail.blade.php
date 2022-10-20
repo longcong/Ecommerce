@@ -117,14 +117,16 @@
                                     @endif
                                 </div>
                             </div>
+                            @if($product->quantity < 6)
                             <div class="col-sm-4 col-xs-12">
-                                <p class="c-product-meta-label c-product-margin-2 c-font-uppercase c-font-bold">Còn trong kho:</p>
+                                <p class="c-product-meta-label c-font-uppercase c-font-bold">Còn trong kho:</p>
                                 <div class="c-input-group-btn-vertical">
-                                    {{$product->quantity}}
+                                    <p class="c-product-meta-label c-font-uppercase c-font-bold c-font-red">{{$product->quantity}}</p>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                                @if(!$product->quantity <= 0)
+                                @if(!$product->quantity > $total_quantity)
                                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                                         <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
                                     </button>

@@ -27,8 +27,8 @@ class AddProductSizeToCartsTable extends Migration
     public function down()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->string('prod_size');
-            $table->string('prod_color');
+            $table->dropColumn('prod_size');
+            $table->dropColumn('prod_color');
         });
     }
 }

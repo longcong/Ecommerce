@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMetaImageToProductsTable extends Migration
+class AddImportPriceToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddMetaImageToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('meta_image')->after('image')->nullable();
+            $table->float('import_price')->after('price')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddMetaImageToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('meta_image');
+            $table->dropColumn('import_price');
         });
     }
 }

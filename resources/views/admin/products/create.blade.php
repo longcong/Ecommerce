@@ -139,11 +139,17 @@
                         </div>
                        <!-- Color -->
                         <div class="col-1">
-                            {{ Form::label('product_color', 'Màu: ', array('style' => 'margin-top:10px;float:left')) }}
+                            {{ Form::label('fabric_id', 'Chất Liệu: ', array('style' => 'margin-top:10px;float:left')) }}
                         </div>
+                        
                         <div class="col-5">
-                            {{ Form::text('product_color', null, array('class'=>'form-control','maxlength'=>'255','placeholder' => 'Color')) }}
+                            <select class="form-control select2-multi" name="fabric_id" >
+                                @foreach($fabrics as $fabric)
+                                    <option value="{{ $fabric->id }}">{{ $fabric->fabric }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        
                     </div>
                     {{Form::label('note',"Lưu Ý:")}}
                     {{Form::textarea('note',null,array('class' => 'form-control','required' =>'' )) }}

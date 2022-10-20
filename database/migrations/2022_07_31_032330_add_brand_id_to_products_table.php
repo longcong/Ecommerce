@@ -26,7 +26,7 @@ class AddBrandIdToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->bigInteger('brand_id');
+            $table->dropColumn('brand_id');
         });
     }
 }

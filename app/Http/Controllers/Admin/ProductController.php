@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
+use App\Fabric;
 use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
@@ -38,9 +39,10 @@ class ProductController extends Controller
     {
         //
         $categories = $productService->getCategories();
-        $tags = $productService->getTag();
-        $brands = $productService->getBrands();
-        return view('admin.products.create', compact('categories','tags','brands'));
+        $tags       = $productService->getTag();
+        $brands     = $productService->getBrands();
+        $fabrics    = Fabric::all();
+        return view('admin.products.create', compact('categories','tags','brands','fabrics'));
     }
 
     /**
@@ -51,38 +53,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $post = new Product;
 
         $this -> Validate($request,array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
+            'title'          => 'required|max:255',
+            'discount_unit'  => 'required|max:255',
             'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
-            'category_id' => 'required|integer',
-            'brand_id'  => 'required|integer',
-            'is_popular' => 'required|integer',
-            'product_color'  => 'max:255',
-            'product_size'  => 'required|max:255',
-            'quantity' => 'required|integer',
-            'note'  =>  'required',
+            'price'          => 'required|integer',
+            'slug'           => 'required|alpha_dash|min:5|max:255|unique:products,slug',
+            'category_id'    => 'required|integer',
+            'brand_id'       => 'required|integer',
+            'is_popular'     => 'required|integer',
+            'fabric_id'      => 'required|integer',
+            'product_size'   => 'required|max:255',
+            'quantity'       => 'required|integer',
+            'note'           =>  'required',
             'featured_image' => 'image',
-            'meta_image' => 'image'
+            'meta_image'     => 'image'
         ));
 
         $post = new Product;
 
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->quantity = $request->quantity;
-        $post->category_id = $request->category_id;
-        $post->brand_id = $request->brand_id;
-        $post->price = $request->price;
-        $post->discount_unit = $request->discount_unit;
-        $post->product_size = $request->product_size;
-        $post->product_color = $request->product_color;
-        $post->is_popular = $request->is_popular;
+        $post->title          = $request->title;
+        $post->slug           = $request->slug;
+        $post->quantity       = $request->quantity;
+        $post->category_id    = $request->category_id;
+        $post->brand_id       = $request->brand_id;
+        $post->price          = $request->price;
+        $post->discount_unit  = $request->discount_unit;
+        $post->product_size   = $request->product_size;
+        $post->fabric_id      = $request->fabric_id;
+        $post->is_popular     = $request->is_popular;
         $post->discount_value = $request->discount_value;
         $post->note = $request->note;
 
@@ -150,9 +152,15 @@ class ProductController extends Controller
         foreach  ($brands as $brand){
             $bra[$brand->id] = $brand->name;
         }
+        $fabrics = Fabric::all();
+        $fab = array();
+        foreach  ($fabrics as $fabric){
+            $fab[$fabric->id] = $fabric->fabric;
+        }
         
         
-        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2)->withBrands($bra);
+        
+        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2)->withBrands($bra)->withFabric($fab);
     }
 
     /**
@@ -164,14 +172,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         
         $this -> Validate($request, array(
-            'title'          =>  'required|max:255',
+            'title'          => 'required|max:255',
             'discount_unit'  => 'required|max:255',
             'discount_value' => 'required|integer',
             'price'          => 'required|integer',
-            'slug'           =>  'required|alpha_dash|min:5|max:255|',
-            'product_color'  => 'max:255',
+            'slug'           => 'required|alpha_dash|min:5|max:255|',
+            'fabric_id'      => 'required|integer',
             'product_size'   => 'required|max:255',
             'category_id'    => 'required|integer',
             'brand_id'       => 'required|integer',
@@ -188,7 +197,7 @@ class ProductController extends Controller
         $post->discount_unit  = $request->input('discount_unit');
         $post->category_id    = $request->input('category_id');
         $post->brand_id       = $request->input('brand_id');
-        $post->product_color  = $request->input('product_color');
+        $post->fabric_id      = $request->input('fabric_id');
         $post->product_size   = $request->input('product_size');
         $post->is_popular     = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');

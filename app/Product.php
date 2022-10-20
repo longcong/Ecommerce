@@ -23,6 +23,10 @@ class Product extends Model
     }
     public function brand(){
         return $this->belongsTo('App\Brands');
+    }
+    public function fabric(){
+        return $this->belongsTo('App\Fabric');
     } 
+    
 
 }

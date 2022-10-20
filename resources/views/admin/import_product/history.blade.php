@@ -34,7 +34,7 @@
                                 <tr class="order1">
                                     <th class="id-product"></th>
                                     <td>{{ $productImport->title }}</td>
-                                    <td>{{ number_format($productImport->price) }} đ</td>
+                                    <td>{{ number_format($productImport->import_price) }} đ</td>
                                     <td>{{ number_format($productImport->price) }} đ</td>
                                     <td>{{ $productImport->quantity }}</td>
                                     <td>{{ date('M j, Y', strtotime($productImport->created_at)) }}</td>
