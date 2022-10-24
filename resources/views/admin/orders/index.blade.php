@@ -10,8 +10,8 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>Đơn Hàng Hiện Tại
-                        <a href="{{ 'order-history' }}" class="btn btn-primary float-end">Lịch Sử Đơn Hàng</a>
+                    <h4>Đơn Hàng 
+                        <!-- <a href="{{ 'order-history' }}" class="btn btn-primary float-end">Trạng thái tất cả đơn hàng</a> -->
                     </h4>
                 </div>
 
@@ -35,14 +35,25 @@
                                     <td>{{ $item->address1 }}</td>
                                     <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                     <td>
-                                        <div class="form-check form-switch ps-0 is-filled" >
-                                            <input data-id="{{$item->id}}" class="toggle-class form-check-input ms-auto" type="checkbox" {{ $item->status ? 'checked' : '' }}>                                        
-                                        </div>
+                                   
+                                    <form action="{{ route('status') }} ">
+                                        <select name="status" id="status" class="form-control c-square c-theme">
+                                            <option value="0">Chờ</option>
+                                            <option value="1">Thành công</option>
+                                            <option value="2">Giao không thành công</option>
+                                        </select>
+                                        <input type="hidden" id="order_id" name="order_id" value="{{ $item->id }}">
+                                        
+                                    
                                     </td>
                                     <td class="order1">
-                                        <a href="{{ url('admin/view-order/'.$item->id) }}"
-                                            class="btn btn-primary">xem chi tiết</a>
+                                        <!-- <a href="{{ url('admin/view-order/'.$item->id) }}"
+                                            class="btn btn-primary">xem chi tiết</a> -->
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Cập nhật trạng thái') }}
+                                        </button>
                                     </td>
+                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>

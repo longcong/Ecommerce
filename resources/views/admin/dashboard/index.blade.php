@@ -353,11 +353,11 @@
     data =  null;
     if(state ==='Thang'){
       labels = ["Tư", "Năm", "Sáu", "Bảy", "Tám", "Chín", "Mười", "Mười Một", "Mười Hai"];
-      data = [0, 0, 0, 0, 0, 0,{{$sumtotal}}, 0, 0];
+      data = [0, 0, 0, 0, 0, {{$sumtotal_2}},{{$sumtotal}}, 0, 0];
     }
     else {
       labels = ["Quý 1", "Quý 2", "Quý 3", "Quý 4"];
-      data = [0, 0, 0, {{$sumtotal}}];
+      data = [0, 0, 0, {{$sumtotal + $sumtotal_2}}];
     }
     if(chart) {
       chart.destroy();

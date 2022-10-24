@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request, ProductInterface $productService)
     {
-        //
+        
         $products = $productService->getProducts();
         return view('admin.products.index', compact('products'));
     }
@@ -37,7 +37,6 @@ class ProductController extends Controller
      */
     public function create(Request $request, ProductInterface $productService)
     {
-        //
         $categories = $productService->getCategories();
         $tags       = $productService->getTag();
         $brands     = $productService->getBrands();
@@ -89,7 +88,7 @@ class ProductController extends Controller
         $post->note = $request->note;
 
         if($request->hasFile('featured_image')){
-            $image = $request->file('featured_image');
+            $image    = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);
@@ -97,7 +96,7 @@ class ProductController extends Controller
             $post->image = $filename;
         }
         if($request->hasFile('meta_image')){
-            $image = $request->file('meta_image');
+            $image    = $request->file('meta_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('meta_images/' . $filename);
             Image::make($image)->resize(300, 300)->save($location);
@@ -134,26 +133,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $posts = Product::find($id);
+        $posts      = Product::find($id);
         $categories = Category::all();
-        $cats = array();
+        $cats       = array();
         foreach  ($categories as $category){
             $cats[$category->id] = $category->name;
         }
 
-        $tags = Tag::all();
+        $tags  = Tag::all();
         $tags2 = array();
         foreach ($tags as $tag){
            $tags2[$tag->id] = $tag->name;
         }
 
         $brands = Brands::all();
-        $bra = array();
+        $bra    = array();
         foreach  ($brands as $brand){
             $bra[$brand->id] = $brand->name;
         }
         $fabrics = Fabric::all();
-        $fab = array();
+        $fab     = array();
         foreach  ($fabrics as $fabric){
             $fab[$fabric->id] = $fabric->fabric;
         }
@@ -220,7 +219,7 @@ class ProductController extends Controller
         }
         if($request->hasFile('meta_image')) {
             // Add the new photo
-            $image = $request->file('meta_image');
+            $image    = $request->file('meta_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('meta_images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);

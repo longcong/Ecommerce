@@ -22,11 +22,11 @@
                     <th>ID</th>
                     <th>Tên</th>
                     <th>Giá</th>
-                    <th>Mã giảm giá</th>
+                    <!-- <th>Mã giảm giá</th> -->
                     <th>Số lượng</th>
                     <th>Giảm giá</th>
                     <th>Ảnh</th>
-                    <th>Lưu ý</th>
+                    <th>Mô tả</th>
                     <th>Thời gian tạo</th>
                     <th>Hoạt động</th>
                 </thead>
@@ -38,7 +38,7 @@
                             <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
                             <td>{{ number_format($post->price) }} đ</td>
-                            <td>{{ $post->discount_unit}}</td>
+                            <!-- <td>{{ $post->discount_unit}}</td> -->
                             <td>{{ $post->quantity}}</td>
                             <td>{{ number_format($post->discount_value) }} đ</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
@@ -61,6 +61,9 @@
                 </tbody>
             </table>
             
+        </div>
+        <div class="row">
+            {!! $products->links(); !!}
         </div>
     </div>
 </div>

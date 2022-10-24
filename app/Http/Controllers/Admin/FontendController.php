@@ -18,6 +18,12 @@ class FontendController extends Controller
                          ->get(['total_price','created_at']);
         
         $sumtotal = $orders->sum('total_price');
+
+        $orders_2   = Order::whereMonth('created_at', date('9'))
+                         ->whereYear('created_at', date('2022'))
+                         ->where('status','1')
+                         ->get(['total_price','created_at']);
+        $sumtotal_2 = $orders_2->sum('total_price');
         
 
         $import_price = Order::whereMonth('created_at', date('10'))
@@ -25,8 +31,6 @@ class FontendController extends Controller
                          ->where('status','1')
                          ->get(['import_price','created_at']);
         $total_import = $import_price->sum('import_price');
-        
-        
         $sale     = OrderItem::whereMonth('created_at', date('10'))
                              ->whereYear('created_at', date('2022'))
                              ->orderBy('id')->get();
@@ -45,7 +49,7 @@ class FontendController extends Controller
         $total_final += $sumtotal - $total_import;
         //dd($total_final, $total, $total_import);
         //dd($sumtotal,'doanh thu', $total_import,'tổng nhập',$total_final,'lợi nhuận');
-        return view('admin.dashboard.index',compact('sumtotal','total_final'));
+        return view('admin.dashboard.index',compact('sumtotal','total_final','sumtotal_2'));
     }
     public function profit(Request $request)
     {

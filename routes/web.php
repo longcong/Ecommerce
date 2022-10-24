@@ -71,7 +71,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('update-cart-2',[ProductDetailController::class,'updateCart2'])->name('updateCart2');
     Route::get('wishlist', [WishlistController::class, 'viewwishlist'])->name('wishlist');
     Route::post('add-to-wishlist',[WishlistController::class, 'addWishlist'])->name('addWishlist');
-    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');    
+    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');
+    
+    Route::resource('/statistical', 'UserDashboard\StatisticalController');
     
     
     
@@ -91,9 +93,9 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
    
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);
-    Route::get('update/order',[OrderController::class,'updateorder']);
+    Route::get('update/order',[OrderController::class,'updateorder'])->name('status');
 
-    Route::get('order-history', [OrderController::class, 'orderhistory']);
+    Route::get('order-history', [OrderController::class, 'orderhistory'])->name('h');
 
     Route::get('users', [DashboardController::class,'users'])->name('admin.users');
     Route::get('create/{id}',[DashboardController::class,'create'])->name('admin.create');

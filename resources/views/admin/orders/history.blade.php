@@ -10,7 +10,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>Lịch sử đơn hàng
+                    <h4>Trạng thái đơn hàng
                         <a href="{{ 'orders' }}" class="btn btn-primary float-end">Đơn hàng</a>
                     </h4>
                 </div>
@@ -33,7 +33,14 @@
                                     <td>{{ $item->total_price }}</td>
                                     <td>{{ $item->address1 }}</td>
                                     <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                    <td>{{ $item->status == '0' ? 'Pending' : 'Thành công' }}
+                                    <td>
+                                        @if($item->status == '2')
+                                            Đơn hàng giao không thành công
+                                        @elseif($item->status == '1')
+                                            đơn hàng thành công
+                                        @else
+                                            đơn đang chờ
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="dropdown show">

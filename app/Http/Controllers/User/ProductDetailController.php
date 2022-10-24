@@ -15,18 +15,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductDetailController extends Controller
 {
-    //
     public function getProductDetail(Request $request,ProductInterface $productService, $slug){
         $product       = Product::where('slug', '=', $slug)->firstorfail();
-        // dd($product->id);
-        $quantity = OrderItem::where('product_id',$product->id)->get();
+        $quantity      = OrderItem::where('product_id',$product->id)
+                                    ->where('status','0')->get();
         $total_quantity = 0;
         foreach ($quantity as $value) {
             $total_quantity += $value->quantity;
         }
-        //dd($product->quantity < $total_quantity);
-        //dd($total_quantity);
-        //dd($product->id,$lol);
         $color         = $product->product_color;
         $product_color = explode(',',$color);
         $size          = $product->product_size;
@@ -47,9 +43,7 @@ class ProductDetailController extends Controller
     {
         if($filter_category = Category::where('slug', $slug)->first()) {
             $filter_category = Category::where('slug', $slug)->first();
-            $product_filter = Product::where('category_id',$filter_category->id)->paginate(4);
-            
-            
+            $product_filter = Product::where('category_id',$filter_category->id)->paginate(4); 
         }
         return view('user.category.category_detail',compact('filter_category','product_filter'));
     }
@@ -76,7 +70,7 @@ class ProductDetailController extends Controller
             {
                 return response()->json(['status'=>"Not enough quantity in stock"]);
             }
-            $carttm = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+            $carttm            = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
             $quantitycartitems = $carttm->prod_qty;
             if($quantitycartitems >= $stockQuantity){
                 return response()->json(['status'=>"Over quantity in stock"]);
@@ -86,7 +80,7 @@ class ProductDetailController extends Controller
                 $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
                 $cart->prod_qty = $cart->prod_qty + 1;
                 $cart->update();
-                return response()->json(['status'=>"Quantity Update"]);
+                return response()->json(['status'=>"Thêm số lượng thành công"]);
             }
             else{
                 $cart = new Cart();
@@ -95,7 +89,7 @@ class ProductDetailController extends Controller
                 $cart->user_id = Auth::id();
 
                 $cart->save();
-                return response()->json(['status'=>"Quatity update"]);
+                return response()->json(['status'=>"Thêm số lượng thành công"]);
             }
         }
     }

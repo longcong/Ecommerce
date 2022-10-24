@@ -58,7 +58,7 @@
           </button>
           <div id="demo2" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('admin.orders')}}">
-              Đặt Hàng
+              Đơn Hàng
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('payments')}}">
               Thanh Toán

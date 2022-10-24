@@ -17,19 +17,19 @@ class ShopController extends Controller
      */
     public function index(Request $request, ProductInterface $productService)
     {
-        $products = $productService->getProducts();
-        $populars = $productService->getPopulars();
-        $brand = $productService->getBrands();
-        $categories = Category::all();
+        $products       = $productService->getProducts();
+        $populars       = $productService->getPopulars();
+        $brand          = $productService->getBrands();
+        $categories     = Category::all();
         $productAoPhong = $productService->getAoPhong();
-        $productAoPolo = $productService->getAoPolo();
+        $productAoPolo  = $productService->getAoPolo();
         $productQuanDai = $productService->getQuanDai();
         $productQuanDui = $productService->getQuanDui();
-       
+        $cotton = Product::where('fabric_id', 1)->orderBy('id','desc')->paginate(4);
         
         return view('shop', compact('products','populars','brand',
                     'categories','productAoPhong','productAoPolo','productQuanDai',
-                    'productQuanDui'));
+                    'productQuanDui','cotton'));
     }
     public function search(Request $request)
     {
@@ -60,7 +60,7 @@ class ShopController extends Controller
                 $row_set[] = $new_row; //build an array
             }
         }
-        
+        // autoComplete
         echo json_encode($row_set); 
     }
 }

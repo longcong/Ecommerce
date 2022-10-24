@@ -11,6 +11,7 @@ use App\Order;
 use App\OrderItem;
 use App\Payment;
 use App\User;
+use App\WaitCart;
 use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
@@ -132,31 +133,39 @@ class CheckoutController extends Controller
         foreach($cartitems as $item)
         {
             OrderItem::create([
-                'order_id'=> $order->id,
+                'order_id'  => $order->id,
                 'product_id'=> $item->prod_id,
-                'quantity' => $item->prod_qty,
-                'price' => $item->products->price,
+                'quantity'  => $item->prod_qty,
+                'price'     => $item->products->price,
             ]);
 
-            $prod = Product::where('id',$item->prod_id)->first();
-            $prod->quantity = $prod->quantity - $item->prod_qty;
-            $prod->update();
+            // $prod = Product::where('id',$item->prod_id)->first();
+            // $prod->quantity = $prod->quantity - $item->prod_qty;
+            // $prod->update();
+
+            WaitCart::create([
+                'order_id'  => $order->id,
+                'product_id'=> $item->prod_id,
+                'quantity'  => $item->prod_qty,
+                'price'     => $item->products->price,
+            ]);
+
         }
 
         if(Auth::user()->address1 == NULL)
         {
             $user = User::where('id', Auth::id())->first();
-            $user->fname = $request->input('fname');
-            $user->lname = $request->input('lname');
-            $user->company = $request->input('company');
+            $user->fname    = $request->input('fname');
+            $user->lname    = $request->input('lname');
+            $user->company  = $request->input('company');
             $user->address1 = $request->input('address1');
             $user->address2 = $request->input('address1');
-            $user->city = $request->input('city');
-            $user->state = $request->input('state');
-            $user->zipcode = $request->input('zipcode');
-            $user->email = $request->input('email');
-            $user->phone = $request->input('phone');
-            $user->note = $request->input('note');
+            $user->city     = $request->input('city');
+            $user->state    = $request->input('state');
+            $user->zipcode  = $request->input('zipcode');
+            $user->email    = $request->input('email');
+            $user->phone    = $request->input('phone');
+            $user->note     = $request->input('note');
             $user->update();
 
         }
@@ -172,9 +181,9 @@ class CheckoutController extends Controller
     }
     public function info($id)
     {
-        $orders = Order::where('id', $id)->first();
+        $orders   = Order::where('id', $id)->first();
         $products = Product::orderBy('id','desc')->paginate(10);
-        $users = User::where('id', Auth::id())->first();
+        $users    = User::where('id', Auth::id())->first();
         return view('components.order.index', compact('orders','products','users'));
     }
     public function updateTotal(){

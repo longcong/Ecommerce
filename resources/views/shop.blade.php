@@ -182,7 +182,7 @@ Follow: http://www.twitter.com/themehats
                 @include('layouts.messager_admin')
                 <div class="c-content-title-4">
                     <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span class="c-bg-white">
-                        Thịnh hành</span></h3>
+                        SẢN PHẨM MỚI</span></h3>
                 </div>
                 @if($populars->count() > 0 )
                     <div class="row">
@@ -259,7 +259,7 @@ Follow: http://www.twitter.com/themehats
                     </li>
                     <li role="presentation">
                         <a class="c-font-uppercase" href="#aodaitay" aria-controls="accessories" role="tab"
-                            data-toggle="tab">Áo dài tay</a>
+                            data-toggle="tab">Vải Cotton</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
@@ -267,7 +267,7 @@ Follow: http://www.twitter.com/themehats
                     <div role="tabpanel" class="tab-pane fade in active" id="quandai">
                         <div class="row">
                             <!-- trỏ trỏ -->
-                            @foreach($productQuanDui as $product )
+                            @foreach($productQuanDai as $product )
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">
@@ -330,7 +330,7 @@ Follow: http://www.twitter.com/themehats
 
                     <div role="tabpanel" class="tab-pane fade" id="aodaitay">
                         <div class="row">
-                            @foreach($productQuanDui as $product)
+                            @foreach($cotton as $product)
                             <div class="col-md-3 col-sm-6">
                                 <div class="c-content c-content-overlay">
                                     <div class="c-overlay-wrapper c-overlay-padding">

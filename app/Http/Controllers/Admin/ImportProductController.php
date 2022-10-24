@@ -26,21 +26,23 @@ class ImportProductController extends Controller
     
     public function update(Request $request, $id){
         //dd($request->all());
+        //dd($qty                   = $request->quantity);
+            
         try {
             DB::beginTransaction();
             $product               = Product::find($id);
             $oldprice              = $product->price;
             $product->price        = $request->price;
             $product->import_price = $request->importPrice;
-            $product->quantity     = $request->quantity;
-            //dd($product);
+            $qty                   = $request->quantity;
+            $product->quantity     = $product->quantity + $qty;
             $product->save();
 
             $import                = new ImportProduct();
             $import->prod_id       = $product->id;
             $import->title         = $product->title;
-            $import->old_price     = $oldprice;
-            $import->import_price  = $request->importPrice;
+            $import->oldPrice      = $oldprice;
+            $import->importPrice   = $request->importPrice;
             $import->price         = $request->price;
             $import->quantity      = $request->quantity;
             $import->save();
@@ -49,7 +51,7 @@ class ImportProductController extends Controller
             $request->session()->flash('success', 'Mặt hàng đã được cập nhật thành công!');
             return redirect()->route('import.index');
         } catch(Exception $e) {
-            dd(123);
+            
             DB::rollBack();
             Log::error('Error import',['error' => $e->getMessage()]);
             $request->session()->flash('error', 'Mặt hàng cập nhật thất bại!');

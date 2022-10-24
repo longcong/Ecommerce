@@ -18,7 +18,7 @@ class AddAttributeProductToProductsTable extends Migration
             $table->string('dui')->nullable()->after('dai');
             $table->string('polo')->nullable()->after('dui');
             $table->string('phong')->nullable()->after('polo');
-            $table->string('aodaitay')->nullable()->after('phong');
+            $table->string('tag_id')->nullable()->after('phong');
         });
     }
 
@@ -34,7 +34,7 @@ class AddAttributeProductToProductsTable extends Migration
             $table->dropColumn('dui');
             $table->dropColumn('polo');
             $table->dropColumn('phong');
-            $table->dropColumn('aodaitay');
+            $table->dropColumn('tag_id');
         });
     }
 }

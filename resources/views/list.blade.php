@@ -331,18 +331,8 @@
 	<li class="c-dropdown c-active c-open">
 		<a href="javascript:;" class="c-toggler">Hoạt động 1<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
-			<li class="c-active">
-				<a href="#">Hoạt động</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
-			<li>
-				<a href="#">Ví dụ</a>
-			</li>
+			
+			
 		</ul>
 	</li>
 	<li class="c-dropdown">
@@ -475,16 +465,16 @@
 			<!-- BEGIN: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
 <div class="c-shop-result-filter-1 clearfix form-inline">
 	<div class="c-filter">
-		<label class="control-label c-font-16">Hiện:</label>
+		<!-- <label class="control-label c-font-16">Hiện:</label>
 		<select class="form-control c-square c-theme c-input" wire:model="pagesize">
 			<option value="4" selected="selected">4</option>
 			<option value="6">6</option>
 			<option value="10">10</option>
 			<option value="12">12</option>
-		</select>
+		</select> -->
 	</div>
 	<div class="c-filter">
-		<label class="control-label c-font-16">tTheo&nbsp;:</label>
+		<label class="control-label c-font-16">Theo&nbsp;:</label>
 		<select class="form-control c-square c-theme c-input" wire:model="sorting">
 			<option value="default" selected="selected">Tìm kiếm mặc định</option>
 			<option value="populars">Hiện hành</option>
@@ -539,7 +529,7 @@
                 </div>
 				<br>
 				<div>
-				@if($post->quantity > )
+				@if($post->quantity > 0 )
 					<label class="badge c-btn-border-2x c-btn-green-1">Còn hàng</label>
 				@else
 					<label class="badge c-btn-border-2x c-btn-red-1">Hết hàng</label>

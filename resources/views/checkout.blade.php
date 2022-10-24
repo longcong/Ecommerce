@@ -45,7 +45,7 @@
                     <div class="form-group col-md-12">
                         <label class="control-label">Quốc gia</label>
                         <select class="form-control c-square c-theme">
-                            <option value="1">Vietnam</option>
+                            <option value="1">Việt Nam</option>
                             <!-- <option value="2">Singapore</option>
                             <option value="3">Indonesia</option>
                             <option value="4">Thailand</option>
@@ -93,8 +93,8 @@
                             <div class="form-group col-md-6">
                                 <label class="control-label">Quận</label> 
                                 <select name="state" value="{{Auth::user()->state}}" id="state" class="form-control c-square c-theme">
-                                    <option value="0">Select an option...</option>
-                                    <option value="1">Vietnam</option>
+                                    <!-- <option value="0">Select an option...</option> -->
+                                    <option value="1">Việt Nam</option>
                                     <!-- <option value="2">Singapore</option>
                                     <option value="3">Indonesia</option>
                                     <option value="4">Thailand</option>
@@ -150,7 +150,7 @@
                     <li class="row c-margin-b-15 c-margin-t-15">
                         <div class="col-md-6 c-font-20"><a href="{{ url('product/'.$item->products->slug) }}" class="c-theme-link">{{$item->products->title}}</a></div>
                         <div class="col-md-6 c-font-20">
-                            <p class="">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }}đ</p>
+                            <p class="">{{ number_format(($item->products->price - $item->products->discount_value) * $item->prod_qty) }} đ</p>
                         </div>
                     </li>
                     @php
@@ -161,33 +161,43 @@
                     
                     @endforeach
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">Tổng tiền phụ</div>
+                            <div class="col-md-6 c-font-20">Tổng Tiền Phụ</div>
                             <div class="col-md-6 c-font-20">
-                                <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
+                                <p><span class="c-subtotal">{{ number_format($total) }} đ</span></p>
                             </div>
                         </li>
                     
                         @if(!empty(Session::get('couponAmount')))
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">mã giảm giá</div>
+                            <div class="col-md-6 c-font-20">Mã Giảm Giá</div>
                             <div class="col-md-6 c-font-20">
                                 <p><span class="c-subtotal">{{ Session::get('code') }}</span></p>
                             </div>
                         </li>
                         <li class="row c-margin-b-15 c-margin-t-15">
-                            <div class="col-md-6 c-font-20">giá tiền giảm</div>
+                            <div class="col-md-6 c-font-20">Giá Tiền Giảm</div>
                             <div class="col-md-6 c-font-20">
-                                <p><span class="c-subtotal">{{ number_format(Session::get('couponAmount')) }}đ</span></p>
+                                <p><span class="c-subtotal">{{ number_format(Session::get('couponAmount')) }} đ</span></p>
                             </div>
                         </li>
                         @endif
                         <li class="row c-border-top c-margin-b-15"></li>
                         <li class="row">
-                            <div class="col-md-6 c-font-20">Phí giao hàng</div>
-                            <div class="col-md-6">
-                                <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
+                            <!-- <div class="col-md-6 c-font-20">Phí Giao Hàng</div>
+                            <div class="col-md-6"> -->
+                                <!-- <select name="shipping_price" value="" id="shipping_price" class="form-control c-square c-theme">
+                                    <option value="0">Select an option...</option> -->
+                                    <!-- <option value="0">Miễn Phí</option>
+                                    <option value="20000">20,000 đ</option>
+                                    <option value="30000">30,000 đ</option> -->
+                                    
+                                    <!-- <option value="4">Thailand</option>
+                                    <option value="5">China</option>
+                                    <option value="6">Malaysia</option> -->
+                                <!-- </select> --> 
+                                <!-- <div class="c-radio-list c-shipping-calculator" data-name="shipping_price" data-subtotal-selector="c-subtotal" data-total-selector="c-shipping-total">
                                     <div class="c-radio">
-                                        <input type="radio" value="0" id="radio11" class="c-radio" name="shipping_price" checked="">
+                                        <input type="radio" id="shipping_price" class="c-radio" name="shipping_price" checked="">
                                         <label for="radio11">
                                             <span class="inc"></span>
                                             <span class="check"></span>
@@ -196,7 +206,7 @@
                                             Local Pickup
                                         </label>
                                         
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="c-radio">
                                         <input type="radio" value="10" id="radio12" class="c-radio" name="shipping_price">
                                         <label for="radio12">
@@ -217,25 +227,25 @@
                                         </label>
                                         <p class="c-shipping-price c-font-bold c-font-20">$20.00</p>
                                     </div> -->
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
                         </li>
                         
                         @if(!empty(Session::get('couponAmount')))
                             <li class="row c-margin-b-15 c-margin-t-15">
                                 <div class="col-md-6 c-font-20">
-                                    <p class="c-font-30">Tổng tiền</p>
+                                    <p class="c-font-30">Tổng Tiền</p>
                                 </div>
                                 <div class="col-md-6 c-font-20">
                                     <p class="c-font-bold c-font-30"><span class="c-shipping-total">{{ number_format(Session::get('totalFinal')) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{ Session::get('totalFinal') }}" id="totalFinal" name="totalFinal">
                                     <input type="hidden" id="import_price" name="import_price" value="{{ $total_import }}">
-                                    <input type="hidden" id="import_price" name="import_price" value="{{ $qty_order }}">
+                                    <input type="hidden" id="qty_order" name="qty_order" value="{{ $qty_order }}">
                                 </div>
                             </li>
                         @else
                             <li class="row c-margin-b-15 c-margin-t-15">
-                                <div class="col-md-6 c-font-20">Tổng tiền</div>
+                                <div class="col-md-6 c-font-20">Tổng Tiền</div>
                                 <div class="col-md-6 c-font-20">
                                     <p><span class="c-subtotal">{{ number_format($total) }}đ</span></p>
                                     <input type="hidden" class="form-control c-square c-theme" value="{{$total}}" id="totalFinal" name="totalFinal">

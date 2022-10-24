@@ -126,7 +126,7 @@
                             </div>
                             @endif
                             <div class="col-sm-12 col-xs-12 c-margin-t-20">
-                                @if(!$product->quantity > $total_quantity)
+                                @if($product->quantity > $total_quantity)
                                     <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                                         <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
                                     </button>
@@ -177,7 +177,7 @@
             </div>
             <div class="c-product-desc c-bg-dark">
                 <div class="container">
-                    <div class"row">
+                    <!-- <div class"row">
                         <div class="col-md-6">
                             <img src="{{ asset('main/base/img/content/shop5/32.png') }}"/>
                         </div>
@@ -192,7 +192,7 @@
                             <br>
                             <button class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square">Add to Cart</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

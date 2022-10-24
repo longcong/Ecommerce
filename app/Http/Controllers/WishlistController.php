@@ -32,10 +32,10 @@ class WishlistController extends Controller
             return response()->json(['status'=>"Sản phẩm đã có trong mục yêu thích"]);
             // return response()->json(['status' =>$prod_check->name."The Product is already in the Wishlist"]);
         }
-        $wishlist = new Wishlist();
-        $wishlist->product_id = $product_id;    
-        $wishlist->user_id = Auth::id();
-        $wishlist->save();
+        $wishlist               = new Wishlist();
+        $wishlist -> product_id = $product_id;    
+        $wishlist -> user_id    = Auth::id();
+        $wishlist -> save();
         return response()->json(['status'=>"Sản phẩm đã được thêm vào mục yêu thích"]);         
     }
     public function viewwishlist(Request $request, ProductInterface $productService){

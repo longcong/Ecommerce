@@ -388,7 +388,7 @@
 					<div class="row">
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="vải Cotton">
+								<input name="brand" id="1" class="form-check-input filterdanhmuc" type="checkbox" value="Vải Cotton">
 								<label class="form-check-label">
 									Vải Cotton
 								</label>
@@ -396,7 +396,7 @@
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="2" class="form-check-input filterdanhmuc" type="checkbox" value="vải Kaki">
+								<input name="brand" id="2" class="form-check-input filterdanhmuc" type="checkbox" value="Vải Kaki">
 								<label class="form-check-label">
 									Vải Kaki
 								</label>
@@ -404,7 +404,7 @@
 						</div>
 						<div class="col-6 col-sm-6">
 							<div class="form-check">
-								<input name="brand" id="3" class="form-check-input filterdanhmuc" type="checkbox" value="vải Nỉ">
+								<input name="brand" id="3" class="form-check-input filterdanhmuc" type="checkbox" value="Vải Nỉ">
 								<label class="form-check-label">
 									Vải Nỉ
 								</label>
@@ -495,11 +495,14 @@
                     </p>
                 </div>
                 <div>
-					@if($post->quantity>0)
-                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
+					
+                    <!-- <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
                         <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                    </button>
-					@endif
+                    </button> -->
+					<a href="{{ url('product/'.$post->slug) }}" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+						<i class="fa fa-shopping-cart"></i>Chi Tiết
+					</a>
+					
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
                         <i class="fa fa-heart-o"></i>Yêu Thích
                     </button>
