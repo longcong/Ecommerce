@@ -30,6 +30,8 @@ class Coupon extends Model
     public function coupon_user()
     {
         return $this -> hasMany(CouponUser::class);
+
+        
     }
 }
 
