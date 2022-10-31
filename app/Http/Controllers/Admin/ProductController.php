@@ -201,7 +201,6 @@ class ProductController extends Controller
         $post->is_popular     = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');
         $post->note           = $request->input('note');
-        $post->tag_id         = $request->tags;
        
         if($request->hasFile('featured_image')) {
             // Add the new photo
@@ -239,7 +238,7 @@ class ProductController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        $request->session()->flash('success', 'Sản phẩm được cập nhật thành công!');
+        $request->session()->flash('success', 'Sản phẩm được cập nhật thành công abcxyz!');
 
         return redirect()->route('products.index');
     }
