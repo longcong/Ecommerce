@@ -173,7 +173,22 @@ Follow: http://www.twitter.com/themehats
         <!-- BEGIN: PAGE CONTENT -->
         <!-- BEGIN: CONTENT/MISC/SHOP-BANNER-1 -->
         <div class="c-content-box c-reset c-pos-relative c-overflow-hide">
-            <img src="{{asset('brands_img/33333.jpg')}}" width="100%" height="30%">
+            <div class="container">
+                <div class="c-shop-banner-1 c-shop-banner-height">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 c-shop-banner-height c-shop-banner-m-bg">
+                            <div class="c-shop-banner-content c-shop-banner-left">
+                                <img src="{{ asset('brands_img/xyz.jpg') }} " class="c-shop-banner-img"/  style="width:100%">	
+                            </div>				
+                        </div>
+                        <div class="col-md-6 col-sm-12 c-shop-banner-height c-shop-banner-m-bg">
+                            <div class="c-shop-banner-content c-shop-banner-right">
+                                <img src="{{ asset('brands_img/abc.jpg') }}" class="c-shop-banner-img"/ style="width:100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div> <!-- END: CONTENT/MISC/SHOP-BANNER-1  -->
         <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 
         MOST POPULAR-->
