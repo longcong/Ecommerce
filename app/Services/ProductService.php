@@ -18,8 +18,8 @@ Class ProductService implements ProductInterface{
     public function getPopulars(int $limit = 4){
         return Product::where('is_popular', 1)->orderBy('id','desc')->paginate($limit);
     }
-    public function getProducts(int $limit = 12){
-        return Product::orderBy('id', 'desc')->limit($limit)->get();
+    public function getProducts(){
+        return Product::orderBy('id', 'desc')->paginate(6);
     }
     public function getCategories(){
         return Category::all();
@@ -45,6 +45,26 @@ Class ProductService implements ProductInterface{
     public function getBrands()
     {
         return Brands::all();
+    }
+    public function getAoPhong(int $limit = 4)
+    {
+        return Product::where('phong', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getAoPolo(int $limit = 4)
+    {
+        return Product::where('polo', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getQuanDai(int $limit = 4)
+    {
+        return Product::where('dai', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getQuanDui(int $limit = 4)
+    {
+        return Product::where('dui', 1)->orderBy('id','desc')->paginate($limit);
+    }
+    public function getProductImport()
+    {
+        return Product::orderBy('id', 'desc')->paginate(5);   
     }
 }
 

@@ -4,7 +4,7 @@
       <a class="navbar-brand m-0" href="{{ url('/') }}" target="_blank">
         <img src="{{ asset('admin/img/logo-ct.png') }}" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">
-          Home Page</span>
+         Trang chủ</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -15,31 +15,37 @@
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
-            <span class="nav-link-text ms-1 ">Dashboard</span>
+            <span class="nav-link-text ms-1 ">Thông kê</span>
           </a>
         </li>
         <!-- Products Management -->
         <li class="nav-item">
             <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo1')">
               <i class="material-icons opacity-10">assignment</i>
-                <span class="nav-link-text ms-1">Product Management</span>
+                <span class="nav-link-text ms-1">Quản lý Sản phẩm</span>
               <i class="fa fa-caret-down"></i>
             </button>
             <div id="demo1" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('brands.index')}}">
-                Brands
+                Nhãn Hàng
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('categories.index') }}">
-              Categories
+              Danh Mục
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('coupons.index')}}">
-              Coupons
+              Mã Giảm Giá
             </a>  
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('products.index') }}">
-              Products
+              Sản Phẩm
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('tags.index') }}">
-              Tags
+              Nhãn Hiệu
+            </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('fabric.index') }}">
+              Chất Liệu
+            </a>
+            <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{ route('import.index') }}">
+              Nhập Hàng Hóa
             </a> 
           </div>
         </li>
@@ -47,15 +53,15 @@
         <li class="nav-item">
           <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo2')">
             <i class="material-icons opacity-10">table_view</i>
-              <span class="nav-link-text ms-1">Orders Management</span>
+              <span class="nav-link-text ms-1">Quản lý Đơn hàng</span>
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="demo2" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('admin.orders')}}">
-              Orders
+              Đơn Hàng
             </a>
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('payments')}}">
-              Payments
+              Thanh Toán
             </a> 
           </div>
         <li>
@@ -63,12 +69,12 @@
         <li class="nav-item">
           <button class="nav-link text-white w3-button w3-left-align" onclick="myFunction('demo3')">
             <i class="material-icons opacity-10">person</i>
-              <span class="nav-link-text ms-1">Users Management</span>
+              <span class="nav-link-text ms-1">Quản lý Tài khoản</span>
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="demo3" class="w3-hide">
             <a class="nav-link text-white w3-button w3-block w3-left-align" href="{{route('admin.users')}}">
-              Users
+              Tài khoản
             </a> 
           </div>
         </li>

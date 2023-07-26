@@ -305,13 +305,13 @@
 <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
 	<div class="container">
 		<div class="c-page-title c-pull-left">
-			<h3 class="c-font-uppercase c-font-sbold">Product List</h3>
-			<h4 class="">Page Sub Title Goes Here</h4>
+			<h3 class="c-font-uppercase c-font-sbold">Danh sách sản phẩm</h3>
+			<!-- <h4 class="">Page Sub Title Goes Here</h4> -->
 		</div>
 		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-			<li><a href="shop-product-list.html">Product List</a></li>
+			<li><a href="shop-product-list.html">Danh sách</a></li>
 			<li>/</li>
-			<li class="c-state_active">Jango Components</li>						
+			<li class="c-state_active">Denimst</li>						
 		</ul>
 	</div>
 </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
@@ -329,161 +329,114 @@
 
 <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
 	<li class="c-dropdown c-active c-open">
-		<a href="javascript:;" class="c-toggler">Active Section<span class="c-arrow"></span></a>
+		<a href="javascript:;" class="c-toggler">Hoạt động 1<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
-			<li class="c-active">
-				<a href="#">Active Link</a>
-			</li>
-			<li>
-				<a href="#">Example Link</a>
-			</li>
-			<li>
-				<a href="#">Example Link</a>
-			</li>
-			<li>
-				<a href="#">Example Link</a>
-			</li>
+			
+			
 		</ul>
 	</li>
 	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Sub Menu Section<span class="c-arrow"></span></a>
+		<a href="javascript:;" class="c-toggler">Hoạt động phụ<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li class="c-dropdown c-dropdown-sub">
 				<a href="javascript:;" class="c-toggler c-toggler-sub">Sub Menu
 				<span class="c-arrow"></span></a>
 				<ul class="c-dropdown-menu">
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
-			</li>
-			<li class="c-dropdown">
-				<a href="javascript:;" class="c-toggler">Sub Menu<span class="c-arrow"></span></a>
-				<ul class="c-dropdown-menu">
-					<li>
-						<a href="#">Example Link</a>
-					</li>
-					<li>
-						<a href="#">Example Link</a>
-					</li>
-					<li class="c-dropdown">
-						<a href="javascript:;" class="c-toggler">Sub Menu<span class="c-arrow"></span></a>
-						<ul class="c-dropdown-menu">
-							<li>
-								<a href="#">Example Link</a>
-							</li>
-							<li>
-								<a href="#">Example Link</a>
-							</li>
-							<li>
-								<a href="#">Example Link</a>
-							</li>
-							<li>
-								<a href="#">Example Link</a>
-							</li>
-							<li>
-								<a href="#">Example Link</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Example Link</a>
-					</li>
-					<li>
-						<a href="#">Example Link</a>
-					</li>
-				</ul>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 		</ul>
 	</li>
 	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Section With Icons<span class="c-arrow"></span></a>
+		<a href="javascript:;" class="c-toggler">Hoạt động 2<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
 			<li>
-				<a href="#"><i class="icon-social-dribbble"></i> Example Link</a>
+				<a href="#"><i class="icon-social-dribbble"></i> Ví dụ</a>
 			</li>
 			<li>
-				<a href="#"><i class="icon-bell"></i> Example Link</a>
+				<a href="#"><i class="icon-bell"></i> Ví dụ</a>
 			</li>
 			<li>
-				<a href="#"><i class="icon-bubbles"></i> Example Link</a>
+				<a href="#"><i class="icon-bubbles"></i> Ví dụ</a>
 			</li>
 			<li>
-				<a href="#"><i class="icon-user"></i> Example Link</a>
+				<a href="#"><i class="icon-user"></i> Ví dụ</a>
 			</li>
 		</ul>
 	</li>
 	<li class="c-dropdown">
-		<a href="javascript:;" class="c-toggler">Expanded Section<span class="c-arrow"></span></a>
+		<a href="javascript:;" class="c-toggler">Hoạt động 3<span class="c-arrow"></span></a>
 		<ul class="c-dropdown-menu">
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 		</ul>
 	</li>
 	<li class="c-dropdown">
-		<a href="javascript:;">Arrow Toggler <span class="c-arrow c-toggler"></span></a>
+		<a href="javascript:;">Hoạt động 4 <span class="c-arrow c-toggler"></span></a>
 		<ul class="c-dropdown-menu">
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li>
-				<a href="#">Example Link</a>
+				<a href="#">Ví dụ</a>
 			</li>
 			<li class="c-dropdown">
 				<a href="javascript:;">Sub Menu
 				<span class="c-arrow c-toggler"></span></a>
 				<ul class="c-dropdown-menu">
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 					<li>
-						<a href="#">Example Link</a>
+						<a href="#">Ví dụ</a>
 					</li>
 				</ul>
 			</li>
@@ -493,7 +446,7 @@
 
 <div class="c-padding-20 c-margin-t-40 c-bg-grey-1 c-bg-img-bottom-right" style="background-image:url({{ asset('main/base/img/content/misc/feedback_box_2.png') }});">
 	<div class="c-content-title-1 c-margin-t-20">
-		<h3 class="c-font-uppercase c-font-bold">Have a question?</h3>
+		<h3 class="c-font-uppercase c-font-bold">Có câu hỏi?</h3>
 		<div class="c-line-left"></div>
 		<form action="#">
 			<div class="input-group input-group-lg c-square">
@@ -503,7 +456,7 @@
 				</span>
 			</div>
 		</form>
-		<p class="c-font-thin">Ask your questions away and let our dedicated customer service help you look through our FAQs to get your questions answered!</p>
+		<p class="c-font-thin">Đặt câu hỏi của bạn và để dịch vụ khách hàng tận tâm của chúng tôi giúp bạn xem qua Câu hỏi thường gặp của chúng tôi để nhận được câu trả lời cho câu hỏi của bạn!</p>
 	</div>
 </div><!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU -->
 			</div>
@@ -512,16 +465,16 @@
 			<!-- BEGIN: CONTENT/SHOPS/SHOP-RESULT-FILTER-1 -->
 <div class="c-shop-result-filter-1 clearfix form-inline">
 	<div class="c-filter">
-		<label class="control-label c-font-16">Show:</label>
+		<!-- <label class="control-label c-font-16">Hiện:</label>
 		<select class="form-control c-square c-theme c-input" wire:model="pagesize">
 			<option value="4" selected="selected">4</option>
 			<option value="6">6</option>
 			<option value="10">10</option>
 			<option value="12">12</option>
-		</select>
+		</select> -->
 	</div>
 	<div class="c-filter">
-		<label class="control-label c-font-16">Sort&nbsp;By:</label>
+		<label class="control-label c-font-16">Theo&nbsp;:</label>
 		<select class="form-control c-square c-theme c-input" wire:model="sorting">
 			<option value="default" selected="selected">Tìm kiếm mặc định</option>
 			<option value="populars">Hiện hành</option>
@@ -562,21 +515,24 @@
                     </p>
                 </div>
                 <div>
-					@if($post->quantity>0)
-                    <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
-                        <i class="fa fa-shopping-cart"></i>Add Cart
-                    </button>
+					@if($post->quantity > 0 )
+                    <!-- <button type="submit" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold addToCartBtn">
+                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
+                    </button> -->
+					<a href="{{ url('product/'.$post->slug) }}" class="btn btn-sm c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+						<i class="fa fa-shopping-cart"></i>Chi Tiết
+					</a>
 					@endif
                     <button type="submit" class="btn btn-sm btn-default c-btn-square c-btn-uppercase c-btn-bold addtoWishlist">
-                        <i class="fa fa-heart-o"></i>Add Wishlist
+                        <i class="fa fa-heart-o"></i>Thêm vào mục yêu thích
                     </button>
                 </div>
 				<br>
 				<div>
-				@if($post->quantity >0)
-					<label class="badge c-btn-border-2x c-btn-green-1">In stock</label>
+				@if($post->quantity > 0 )
+					<label class="badge c-btn-border-2x c-btn-green-1">Còn hàng</label>
 				@else
-					<label class="badge c-btn-border-2x c-btn-red-1">Out of stock</label>
+					<label class="badge c-btn-border-2x c-btn-red-1">Hết hàng</label>
 				@endif	
 				</div>
             </div>

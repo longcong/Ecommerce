@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImportProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'ShopController@index')->name('shop');
 Route::get('/search',[ShopController::class,'search'])->name('search');
+Route::get('search/autocompleteajax','ShopController@autoCompleteAjax')->name('autocomplete');
+
 Route::get('/cart/checkout', 'CheckoutController@index')->name('checkout');
 Route::get('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/list', 'ProductListController@index')->name('list');
@@ -45,6 +48,9 @@ Route::get('/list', 'ProductListController@index')->name('list');
 Route::get('product/{slug}',['as' => 'detail.productdetail', 'uses' =>'User\ProductDetailController@getProductDetail']) 
      -> where('slug','[\w\d\-\_]+');
 Route::get('brand/{slug}',[ProductDetailController::class,'getBrand']);
+Route::get('category/{slug}',[ProductDetailController::class,'GetCategories']);
+
+
 Route::get('ordersuser','UserDashboard\OrderUserController@vỉeworderuser')->name('orderuser');
 Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 Route::post('/cart/apply-coupon',[CartController::class,'applyCoupon'])->name('applyCoupon');
@@ -65,7 +71,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('update-cart-2',[ProductDetailController::class,'updateCart2'])->name('updateCart2');
     Route::get('wishlist', [WishlistController::class, 'viewwishlist'])->name('wishlist');
     Route::post('add-to-wishlist',[WishlistController::class, 'addWishlist'])->name('addWishlist');
-    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');    
+    Route::post('delete-wishlist-item',[WishlistController::class, 'deleteWishlist'])->name('deleteWishlist');
+    
+    Route::resource('/statistical', 'UserDashboard\StatisticalController');
     
     
     
@@ -77,6 +85,7 @@ Route::middleware(['auth'])->group(function(){
 
 Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(){
     Route::get('/main','Admin\FontendController@index')->name('admin.dashboard');
+    Route::get('search','Admin\FontendController@profit')->name('admin.profit');
     Route::resource('products', 'Admin\ProductController');
     Route::resource('categories', 'Admin\CategoryController', ['except' => ['create']]);
     Route::get('update/status',[CategoryController::class,'updateStatus'])->name('update.status');
@@ -84,9 +93,9 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
    
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('view-order/{id}', [OrderController::class, 'view']);
-    Route::get('update/order',[OrderController::class,'updateorder']);
+    Route::get('update/order',[OrderController::class,'updateorder'])->name('status');
 
-    Route::get('order-history', [OrderController::class, 'orderhistory']);
+    Route::get('order-history', [OrderController::class, 'orderhistory'])->name('h');
 
     Route::get('users', [DashboardController::class,'users'])->name('admin.users');
     Route::get('create/{id}',[DashboardController::class,'create'])->name('admin.create');
@@ -97,9 +106,14 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function(
     Route::get('payment-admin',[ViewAdminPaymentController::class,'index'])->name('payments');
 
     Route::resource('brands','Admin\BrandsController');
-    Route::resource('attributes','Admin\ProductAttributesController');
+    Route::resource('fabric','Admin\FabricController');
     Route::resource('coupons','Admin\CouponController');
     Route::get('update/active','Admin\CouponController@active')->name('update.active');
+
+    Route::get('import', [ImportProductController::class, 'index'])->name('import.index');
+    Route::get('import/{id}',[ImportProductController::class, 'edit'])->name('import.create');
+    Route::put('import/{id}',[ImportProductController::class, 'update'])->name('import.edit');
+    Route::get('import-history', [ImportProductController::class, 'importHistory'])->name('import.importhistory');
 
 }); 
 Route::get('payment',[PaymentController::class, 'viewpayment'])->name('viewpayment');

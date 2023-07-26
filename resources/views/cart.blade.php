@@ -1,6 +1,6 @@
 @extends('buy.app_buy')
 
-@section('title' ,  '| Cart')
+@section('title' ,  '| Giỏ hàng')
 
 @section('buy_main')
 		
@@ -18,13 +18,13 @@
 <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
 	<div class="container">
 		<div class="c-page-title c-pull-left">
-			<h3 class="c-font-uppercase c-font-sbold">Cart</h3>
-			<h4 class="">Page Sub Title Goes Here</h4>
+			<h3 class="c-font-uppercase c-font-sbold">Giỏ hàng</h3>
+			<!-- <h4 class="">Page Sub Title Goes Here</h4> -->
 		</div>
 		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-			<li><a href="shop-cart.html">Shopping Cart</a></li>
+			<li><a href="shop-cart.html">Giỏ hàng</a></li>
 			<li>/</li>
-			<li class="c-state_active">Jango Components</li>
+			<li class="c-state_active">Denimst</li>
 									
 		</ul>
 	</div>
@@ -43,9 +43,13 @@
 				<div class="col-md-3 c-cart-desc">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Tên sản phẩm</h3>
 				</div>
+				@foreach ($cartitems as $item)
+				@if($item->prod_color != null)
 				<div class="col-md-1 c-cart-ref">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">màu sắc</h3>
 				</div>
+				@endif
+				@endforeach
 				<div class="col-md-1 c-cart-ref">
 					<h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Size</h3>
 				</div>
@@ -75,10 +79,12 @@
 				<div class="col-md-3 col-sm-6 col-xs-7 c-cart-desc">
 					<h3><a href="{{ url('product/'.$item->products->slug) }}" class="c-font-bold c-theme-link c-font-22 c-font-dark">{{$item->products->title}}</a></h3>
 				</div>
+				@if($item->prod_color != null)
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">màu</p>
 					<p>{{$item->prod_color}}</p>
 				</div>
+				@endif
 				<div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref">
 					<p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">SIZE</p>
 					<p>{{$item->prod_size}}</p>
@@ -124,7 +130,7 @@
 			<div class="row">
 				<div class="c-cart-subtotal-row c-margin-t-20">
 					<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Subtotal</h3>
+						<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Tổng phụ</h3>
 					</div>
 					<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
 						<h3 class="c-font-bold c-font-16">{{ number_format($total) }}đ</h3>
@@ -140,7 +146,7 @@
 				<div class="row">
 					<div class="c-cart-subtotal-row">
 						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Discount Coupon</h3>
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Giá tiền giảm</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
 							<h3 class="c-font-bold c-font-16">{{ number_format(Session::get('couponAmount')) }}đ</h3>
@@ -151,7 +157,7 @@
 				<div class="row">
 					<div class="c-cart-subtotal-row">
 						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Discount Code</h3>
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Mã giảm giá</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
 							<h3 class="c-font-bold c-font-16">{{ Session::get('code') }}</h3>
@@ -161,7 +167,7 @@
 				<div class="row">
 					<div class="c-cart-subtotal-row">
 						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Giá tiền</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
 							<h3 class="c-font-bold c-font-16">{{ number_format(Session::get('totalFinal')) }}đ</h3>
@@ -174,18 +180,17 @@
 						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
 							<label class="c-font-bold c-font-16" for="have-coupon">
 								<input class="frm-input" type="checkbox" id="have-code" name="have-code" value="1" wire:model="haveCouponCode">
-								<span>I have coupon code ?</span>
+								<span>Bạn có mã giảm giá không?</span>
 							</label>
 							<div class="col-md-10 c-font-20 abc" style="display:none">
 								<form action="{{ route('applyCoupon')}}" method="post">
 									@csrf
 									<div>	
-										<h2 class="title-box">Coupon Code</h2>
+										<h2 class="title-box">Mã giảm giá</h2>
 											<p class="row-in-form">
-												<input placeholder="Enter your coupon code" aria-label="Coupon code" type="text" name="code">
+												<input placeholder="Nhập mã sau đó nhấn áp dụng" aria-label="Coupon code" type="text" name="code">
 											</p>
-										<button type="submit" class="c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn btn-small">Apply</button>
-										<br>
+										<button type="submit" class="c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn btn-small">Áp dụng</button>
 									</div>
 								</form>
 							</div>
@@ -195,7 +200,7 @@
 				<div class="row">
 					<div class="c-cart-subtotal-row">
 						<div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
-							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Grand Total</h3>
+							<h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Giá tiền</h3>
 						</div>
 						<div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
 							<h3 class="c-font-bold c-font-16">{{ number_format($total) }}đ</h3>
@@ -205,8 +210,8 @@
 			@endif
 			<!-- END: SUBTOTAL ITEM ROW -->
 			<div class="c-cart-buttons">
-				<a href="{{ url('/') }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Continue Shopping</a>
-				<a href="{{route('checkout')}}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Checkout</a>
+				<a href="{{ url('/') }}" class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l">Trang chủ</a>
+				<a href="{{route('checkout')}}" class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r">Thanh toán</a>
 			</div>
 		</div>
 	</div>
@@ -220,24 +225,24 @@
                 <div class="col-md-4 c-steps-3-block">
                     <i class="fa fa-truck"></i>
                     <div class="c-steps-3-title">
-                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Free shipping</h2>
-                        <em>Express delivery withing 3 days</em>
+                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Giao hàng miễn phí</h2>
+                        <em>Chuyển phát nhanh trong vòng 3 ngày</em>
                     </div>
                     <span>&nbsp;</span>
                 </div>  
                 <div class="col-md-4 c-steps-3-block">
                     <i class="fa fa-gift"></i>
                     <div class="c-steps-3-title">
-                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Daily Gifts</h2>
-                        <em>3 Gifts daily for lucky customers</em>
+                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Ưu đãi hấp dẫn</h2>
+                        <em>tặng quà cho khách hàng may mắn</em>
                     </div>
                     <span>&nbsp;</span>
                 </div>
                 <div class="col-md-4 c-steps-3-block">
                     <i class="fa fa-phone"></i>
                     <div class="c-steps-3-title">
-                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">477 505 8877</h2>
-                        <em>24/7 customer care available</em>
+                        <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">0985244526</h2>
+                        <em>Chăm sóc khách hàng 24/7</em>
                     </div>
                 </div>
             </div>

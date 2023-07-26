@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', '| All Products')
+@section('title', '| Quản lý sản phẩm')
 
 @section('content')
 
 <div class="row">
     <div class="col-md-9">
-        <h1>All Product</h1>
+        <h1>Tất cả sản phẩm</h1>
     </div>
 
     <div class="col-md-3" style="text-align: right">
-        <a href="{{ route('products.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Product</a>
+        <a href="{{ route('products.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Thêm mới sản phẩm</a>
     </div>
 </div>
 
@@ -20,15 +20,15 @@
             <table id="tblabc" class="table table-bordered">
                 <thead class="order1" >
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Code</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Image</th>
-                    <th>Note</th>
-                    <th>Created At</th>
-                    <th >action</th>
+                    <th>Tên</th>
+                    <th>Giá</th>
+                    <!-- <th>Mã giảm giá</th> -->
+                    <th>Số lượng</th>
+                    <th>Giảm giá</th>
+                    <th>Ảnh</th>
+                    <th>Mô tả</th>
+                    <th>Thời gian tạo</th>
+                    <th>Hoạt động</th>
                 </thead>
 
                 <tbody>
@@ -38,7 +38,7 @@
                             <th class="id-product"></th>
                             <td>{{ $post->title }}</td>
                             <td>{{ number_format($post->price) }} đ</td>
-                            <td>{{ $post->discount_unit}}</td>
+                            <!-- <td>{{ $post->discount_unit}}</td> -->
                             <td>{{ $post->quantity}}</td>
                             <td>{{ number_format($post->discount_value) }} đ</td>
                             <td><img src="{{asset('images/' . $post->image)}}" height="100" width="100" alt="This is a Photo"></td>
@@ -51,8 +51,8 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('products.show', $post->id) }}">View</a>
-                                        <a class="dropdown-item" href="{{ route('products.edit' , $post->id) }}">Edit</a> 
+                                        <a class="dropdown-item" href="{{ route('products.show', $post->id) }}">Xem chi tiết</a>
+                                        <a class="dropdown-item" href="{{ route('products.edit' , $post->id) }}">Chỉnh sửa</a> 
                                     </div>
                                 </div>
                             </td>
@@ -61,6 +61,9 @@
                 </tbody>
             </table>
             
+        </div>
+        <div class="row">
+            {!! $products->links(); !!}
         </div>
     </div>
 </div>

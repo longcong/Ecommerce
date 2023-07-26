@@ -26,7 +26,7 @@ class AddMetaImageToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('meta_image');
+            $table->dropColumn('meta_image');
         });
     }
 }

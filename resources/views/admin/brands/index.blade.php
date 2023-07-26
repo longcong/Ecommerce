@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| All Brands')
+@section('title', '| Quản lý nhãn hàng')
 
 @section('stylesheets')
 
@@ -9,7 +9,7 @@
 
 @endsection
 @section('content')
-<h1>Brands</h1>
+<h1>Nhãn hàng</h1>
 <div class="card ">
     <div class="card-body">
         <div class="container">
@@ -17,13 +17,13 @@
                 <div class="well index-cate">
                     {!! Form::open(['route' => 'brands.store', 'data-parsley-validate' =>'','files' => true ,'method' => 'POST',])
                     !!}
-                    <h4>New brand</h4>
+                    <h4>Tạo mới nhãn hàng</h4>
                     <div class="row g-2 align-items-center">
                         <div class="col-2 ">
-                            {{ Form::label('name', 'Name:') }}
+                            {{ Form::label('name', 'Tên nhãn hàng:') }}
                         </div>
                         <div class="col-8">
-                            {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;')) }}
+                            {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;', 'placeholder' => 'Tên nhãn hàng')) }}
                         </div>
                     </div>
                     <div class="row g-2 align-items-center">
@@ -31,13 +31,13 @@
                             {{ Form::label('slug', 'Slug: ', array('style' => 'margin-top:10px;')) }}
                         </div>
                         <div class="col-8">
-                            {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '2', 'maxlength'=>'255', 'style'=>'margin-bottom: 10px;')) }}
+                            {{ Form::text('slug', null, array('class'=>'form-control', 'required' => '', 'minlength' => '2', 'maxlength'=>'255', 'style'=>'margin-bottom: 10px;', 'placeholder' => 'Đường dẫn')) }}
                         </div>
                     </div>
                     <br>
                     <div class="row g-2">
                         <div class="col-2 ">
-                            {{ Form::label ('brand_image','Upload Brand Image:') }}
+                            {{ Form::label ('brand_image','Hình ảnh:') }}
                         </div>
                         <div class="col-8">
                             {{ Form::file('brand_image',array('style' => 'text-align: left;'))}}
@@ -46,10 +46,10 @@
                     <br>
                     <div class="row g-2 align-items-center">
                         <div class="col-2 ">
-                            {{ Form::label('meta_title', 'Title:') }}
+                            {{ Form::label('meta_title', 'Tiêu đề:') }}
                         </div>
                         <div class="col-8">
-                            {{ Form::text('meta_title',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;')) }}
+                            {{ Form::text('meta_title',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;', 'placeholder' => 'Tiêu đề')) }}
                         </div>
                     </div>
                     <div class="row g-2 align-items-center">
@@ -57,7 +57,7 @@
                             {{ Form::label('meta_description', 'Description:') }}
                         </div>
                         <div class="col-8">
-                            {{ Form::textarea('meta_description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;')) }}
+                            {{ Form::textarea('meta_description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 10px;', 'placeholder' => 'Mô tả')) }}
                         </div>
                     </div>
 
@@ -71,10 +71,10 @@
             <table class="table table-bordered">
                 <thead class="order1">
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Tên nhãn hàng</th>
                     <th>Slug</th>
-                    <th>Meta_description</th>
-                    <th>Action</th>
+                    <th>Mô tả</th>
+                    <th>Hành động</th>
                 </thead>
                 <tbody>
                     @foreach($brands as $brand)
@@ -85,7 +85,7 @@
                             <th>{{ substr($brand->meta_description, 0, 60) }} {{ strlen($brand->meta_description) >60 ? "..." : "" }}</th>
 
                             <td>
-                                {!! Html::linkRoute('brands.edit','Edit', array($brand->id), array('class' =>
+                                {!! Html::linkRoute('brands.edit','Chỉnh sửa', array($brand->id), array('class' =>
                                 'btn btn-primary btn-block')) !!}
                             </td>
                         </tr>

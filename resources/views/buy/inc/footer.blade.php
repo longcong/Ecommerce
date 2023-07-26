@@ -115,8 +115,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-sm-12 c-col">
-					<p class="c-copyright c-font-grey">2015 &copy; JANGO
-						<span class="c-font-grey-3">All Rights Reserved.</span>
+					<p class="c-copyright c-font-grey">2022 &copy; Denimst
+						<!-- <span class="c-font-grey-3">All Rights Reserved.</span> -->
 					</p>
 				</div>
 									<div class="col-md-6 col-sm-12 c-col">

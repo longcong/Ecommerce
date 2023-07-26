@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
+use App\Fabric;
 use App\Interfaces\ProductInterface;
 use App\Tag;
 use Image;
@@ -23,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request, ProductInterface $productService)
     {
-        //
+        
         $products = $productService->getProducts();
         return view('admin.products.index', compact('products'));
     }
@@ -36,11 +37,11 @@ class ProductController extends Controller
      */
     public function create(Request $request, ProductInterface $productService)
     {
-        //
         $categories = $productService->getCategories();
-        $tags = $productService->getTag();
-        $brands = $productService->getBrands();
-        return view('admin.products.create', compact('categories','tags','brands'));
+        $tags       = $productService->getTag();
+        $brands     = $productService->getBrands();
+        $fabrics    = Fabric::all();
+        return view('admin.products.create', compact('categories','tags','brands','fabrics'));
     }
 
     /**
@@ -51,43 +52,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $post = new Product;
 
         $this -> Validate($request,array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
+            'title'          => 'required|max:255',
+            'discount_unit'  => 'required|max:255',
             'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            'slug'  => 'required|alpha_dash|min:5|max:255|unique:products,slug',
-            'category_id' => 'required|integer',
-            'brand_id'  => 'required|integer',
-            'is_popular' => 'required|integer',
-            'product_color'  => 'max:255',
-            'product_size'  => 'required|max:255',
-            'quantity' => 'required|integer',
-            'note'  =>  'required',
+            'price'          => 'required|integer',
+            'slug'           => 'required|alpha_dash|min:5|max:255|unique:products,slug',
+            'category_id'    => 'required|integer',
+            'brand_id'       => 'required|integer',
+            'is_popular'     => 'required|integer',
+            'fabric_id'      => 'required|integer',
+            'product_size'   => 'required|max:255',
+            'quantity'       => 'required|integer',
+            'note'           =>  'required',
             'featured_image' => 'image',
-            'meta_image' => 'image'
+            'meta_image'     => 'image'
         ));
 
         $post = new Product;
 
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->quantity = $request->quantity;
-        $post->category_id = $request->category_id;
-        $post->brand_id = $request->brand_id;
-        $post->price = $request->price;
-        $post->discount_unit = $request->discount_unit;
-        $post->product_size = $request->product_size;
-        $post->product_color = $request->product_color;
-        $post->is_popular = $request->is_popular;
+        $post->title          = $request->title;
+        $post->slug           = $request->slug;
+        $post->quantity       = $request->quantity;
+        $post->category_id    = $request->category_id;
+        $post->brand_id       = $request->brand_id;
+        $post->price          = $request->price;
+        $post->discount_unit  = $request->discount_unit;
+        $post->product_size   = $request->product_size;
+        $post->fabric_id      = $request->fabric_id;
+        $post->is_popular     = $request->is_popular;
         $post->discount_value = $request->discount_value;
         $post->note = $request->note;
 
         if($request->hasFile('featured_image')){
-            $image = $request->file('featured_image');
+            $image    = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);
@@ -95,7 +96,7 @@ class ProductController extends Controller
             $post->image = $filename;
         }
         if($request->hasFile('meta_image')){
-            $image = $request->file('meta_image');
+            $image    = $request->file('meta_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('meta_images/' . $filename);
             Image::make($image)->resize(300, 300)->save($location);
@@ -107,7 +108,7 @@ class ProductController extends Controller
         $post -> save();
         $post -> tags()->sync($request->tags, false);
 
-        $request->session()->flash('success', 'The product was successfully save!');
+        $request->session()->flash('success', 'Sản phẩm được tạo mới thành công!');
 
         return redirect() -> route('products.index');
     }
@@ -132,27 +133,33 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $posts = Product::find($id);
+        $posts      = Product::find($id);
         $categories = Category::all();
-        $cats = array();
+        $cats       = array();
         foreach  ($categories as $category){
             $cats[$category->id] = $category->name;
         }
 
-        $tags = Tag::all();
+        $tags  = Tag::all();
         $tags2 = array();
         foreach ($tags as $tag){
            $tags2[$tag->id] = $tag->name;
         }
 
         $brands = Brands::all();
-        $bra = array();
+        $bra    = array();
         foreach  ($brands as $brand){
             $bra[$brand->id] = $brand->name;
         }
+        $fabrics = Fabric::all();
+        $fab     = array();
+        foreach  ($fabrics as $fabric){
+            $fab[$fabric->id] = $fabric->fabric;
+        }
         
         
-        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2)->withBrands($bra);
+        
+        return view('admin.products.edit')->withPost($posts)->withCategories($cats)->withTags($tags2)->withBrands($bra)->withFabric($fab);
     }
 
     /**
@@ -164,39 +171,40 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //dd($request->all());
+        
         $this -> Validate($request, array(
-            'title' =>  'required|max:255',
-            'discount_unit' => 'required|max:255',
+            'title'          => 'required|max:255',
+            'discount_unit'  => 'required|max:255',
             'discount_value' => 'required|integer',
-            'price' => 'required|integer',
-            'slug'  =>  'required|alpha_dash|min:5|max:255|',
-            'product_color'  => 'max:255',
-            'product_size'  => 'required|max:255',
-            'category_id' => 'required|integer',
-            'brand_id'  => 'required|integer',
-            'note'  =>  'required',
+            'price'          => 'required|integer',
+            'slug'           => 'required|alpha_dash|min:5|max:255|',
+            'fabric_id'      => 'required|integer',
+            'product_size'   => 'required|max:255',
+            'category_id'    => 'required|integer',
+            'brand_id'       => 'required|integer',
+            'note'           =>  'required',
             'featured_image' => 'image',
-            'meta_image' => 'image',
+            'meta_image'     => 'image',
             ));
         $post = Product::find($id);
 
-        $post->title = $request->input('title');
-        $post->price = $request->input('price');
-        $post->quantity = $request ->input('quantity');
-        $post->slug = $request->input('slug');
-        $post->discount_unit = $request->input('discount_unit');
-        $post->category_id = $request->input('category_id');
-        $post->brand_id = $request->input('brand_id');
-        $post->product_color = $request->input('product_color');
-        $post->product_size = $request->input('product_size');
-        $post->is_popular = $request->input('is_popular');
+        $post->title          = $request->input('title');
+        $post->price          = $request->input('price');
+        $post->quantity       = $request->input('quantity');
+        $post->slug           = $request->input('slug');
+        $post->discount_unit  = $request->input('discount_unit');
+        $post->category_id    = $request->input('category_id');
+        $post->brand_id       = $request->input('brand_id');
+        $post->fabric_id      = $request->input('fabric_id');
+        $post->product_size   = $request->input('product_size');
+        $post->is_popular     = $request->input('is_popular');
         $post->discount_value = $request->input('discount_value');
-        $post->note = $request->input('note');
-
+        $post->note           = $request->input('note');
+       
         if($request->hasFile('featured_image')) {
             // Add the new photo
-            $image = $request->file('featured_image');
+            $image    = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);
@@ -210,7 +218,7 @@ class ProductController extends Controller
         }
         if($request->hasFile('meta_image')) {
             // Add the new photo
-            $image = $request->file('meta_image');
+            $image    = $request->file('meta_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('meta_images/' . $filename);
             Image::make($image)->resize(600, 600)->save($location);
@@ -250,7 +258,7 @@ class ProductController extends Controller
         Storage::delete($post->image);
         $post -> delete();
 
-        $request->session()->flash('success', 'The product was successfully delete!');
+        $request->session()->flash('success', 'Sản phẩm được xóa thành công!');
 
         return redirect()->route('products.index');
     }

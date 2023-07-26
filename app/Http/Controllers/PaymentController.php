@@ -16,13 +16,13 @@ class PaymentController extends Controller
             $payment = new Payment();
 
             $payment->partnerCode = $request->partnerCode;
-            $payment->order_id  = $request->orderId;
+            $payment->order_id    = $request->orderId;
             $payment->request_id  = $request->requestId;
-            $payment->amount  = $request->amount;
+            $payment->amount      = $request->amount;
             $payment->order_info  = $request->orderInfo;
             $payment->order_type  = $request->orderType;
-            $payment->trans_id  = $request->transId;
-            $payment->pay_type  = $request->payType;
+            $payment->trans_id    = $request->transId;
+            $payment->pay_type    = $request->payType;
 
             $payment->save();
             $request->session()->flash('success', 'Your order has been paid!');

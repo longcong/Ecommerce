@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Interfaces\ProductInterface;
 use App\Product;
@@ -16,10 +17,19 @@ class ShopController extends Controller
      */
     public function index(Request $request, ProductInterface $productService)
     {
-        $products = $productService->getProducts();
-        $populars = $productService->getPopulars();
-        $brand = $productService->getBrands();
-        return view('shop', compact('products','populars','brand'));
+        $products       = $productService->getProducts();
+        $populars       = $productService->getPopulars();
+        $brand          = $productService->getBrands();
+        $categories     = Category::all();
+        $productAoPhong = $productService->getAoPhong();
+        $productAoPolo  = $productService->getAoPolo();
+        $productQuanDai = $productService->getQuanDai();
+        $productQuanDui = $productService->getQuanDui();
+        $cotton = Product::where('fabric_id', 1)->orderBy('id','desc')->paginate(4);
+        
+        return view('shop', compact('products','populars','brand',
+                    'categories','productAoPhong','productAoPolo','productQuanDai',
+                    'productQuanDui','cotton'));
     }
     public function search(Request $request)
     {
@@ -31,5 +41,26 @@ class ShopController extends Controller
                             ->orWhere('note', 'like', "%$query%")
                             ->paginate(4);
         return view('search-results', compact('products_filter'));
+    }
+    public function autoCompleteAjax(Request $request)
+    {
+        $search = $request->term;
+        $products = Product::where('title','like',"%$search%")
+                    ->orWhere('note', 'like', "%$search%")->paginate(4);
+        // dd($products);
+        if(!$products->isEmpty())
+        {
+            foreach($products as $product)
+            {
+                
+                $new_row['title']= $product->title;
+	            $new_row['image']= url('images/' . $product->image);
+                $new_row['url']= url('product/'. $product->slug);
+                
+                $row_set[] = $new_row; //build an array
+            }
+        }
+        // autoComplete
+        echo json_encode($row_set); 
     }
 }

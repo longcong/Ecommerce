@@ -10,8 +10,8 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <h4>Coupons
-                        <a href="{{ route('coupons.create') }}" class="btn btn-primary float-end">New Coupons</a>
+                    <h4>Mã giảm giá
+                        <a href="{{ route('coupons.create') }}" class="btn btn-primary float-end">Tạo mới mã giảm giá</a>
                     </h4>
                 </div>
 
@@ -19,14 +19,14 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr class="order1">
-                                <th>Coupon Code</th>
-                                <th>Coupon Type</th>
-                                <th>Coupon Discount</th>
-                                <th>Quantity</th>
-                                <th>Start Date</th>
-                                <th>Expiry Date</th>
-                                <th>Status</th>
-                                <th >Action</th>
+                                <th>Mã giảm giá</th>
+                                <th>Giảm giá theo</th>
+                                <th>Giá tiền</th>
+                                <th>Số lượng</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày hết hạn</th>
+                                <th>Trạng thái</th>
+                                <th>Hoạt động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,12 +59,12 @@
                                     <td class="order1">
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
+                                                Hoạt động
                                             </a>
 
-                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ route('coupons.show', $coupon->id) }}">View</a>
-                                                <a class="dropdown-item" href="{{ route('coupons.edit', $coupon->id) }}">Edit</a>  
+                                            <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink" ">
+                                                <a class="dropdown-item" href="{{ route('coupons.show', $coupon->id) }}">Xem</a>
+                                                <a class="dropdown-item" href="{{ route('coupons.edit', $coupon->id) }}">Chỉnh sửa</a>  
                                             </div>
                                         </div>
                                     </td>

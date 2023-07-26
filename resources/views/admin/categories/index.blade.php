@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '| All Categories')
+@section('title', '| Quản lý danh mục')
 
 @section('stylesheets')
 
@@ -9,21 +9,23 @@
 
 @endsection
 @section('content')
-<h1>Categories</h1>
+
 <div class="card">
     <div class="card-body">
+        <h2>Danh Mục</h2> 
         <div class="container">
             <div class="row">
+        
                 <div class="well index-cate">
                     {!! Form::open(['route' => 'categories.store', 'data-parsley-validate' =>'', 'method' => 'POST'])
                     !!}
-                    <h4>New Category</h4>
+                    <h4>Tạo Danh Mục Mới</h4>
                     <div class="row g-2 align-items-center">
                         <div class="col-2 ">
-                            {{ Form::label('name', 'Name:') }}
+                            {{ Form::label('name', 'Tên danh mục:') }}
                         </div>
                         <div class="col-9">
-                            {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => 'Category')) }}
+                            {{ Form::text('name',null,array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => 'Tên danh mục')) }}
                         </div>
                     </div>
                     <div class="row g-2 align-items-center">
@@ -31,27 +33,27 @@
                             {{ Form::label('slug', 'Slug:') }}
                         </div>
                         <div class="col-9">
-                            {{ Form::text('slug',null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255', 'style'=>'margin-bottom: 5px;','placeholder' => 'Slug Category')) }}
+                            {{ Form::text('slug',null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength'=>'255', 'style'=>'margin-bottom: 5px;','placeholder' => 'đường dẫn')) }}
                         </div>
                     </div>
                     <div class="row g-2 align-items-center">
                         <div class="col-2 ">
-                            {{ Form::label('description', 'Description:') }}
+                            {{ Form::label('description', 'Mô tả:') }}
                         </div>
                         <div class="col-9">
-                            {{ Form::text('description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;' , 'placeholder' => 'Description')) }}
+                            {{ Form::text('description',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;' , 'placeholder' => 'mô tả')) }}
                         </div>
                     </div>
                     <div class="row g-2 align-items-center">
                         <div class="col-2 ">
-                            {{ Form::label('status', 'Status:') }}
+                            {{ Form::label('status', 'Trạng thái:') }}
                         </div>
                         <div class="col-9">
-                            {{ Form::text('status',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => '0 or 1' )) }}
+                            {{ Form::text('status',null, array('class' => 'form-control', 'required' => '', 'style'=>'margin-bottom: 5px;','placeholder' => '0 hoặc 1' )) }}
                         </div>
                     </div>
                     <br>
-                    {{ Form::submit ('Create New Category',['class' => 'btn btn-primary btn-block']) }}
+                    {{ Form::submit ('Tạo mới danh mục',['class' => 'btn btn-primary btn-block']) }}
                     {!! Form::close() !!}
                 </div>
 
@@ -62,11 +64,10 @@
                 <thead>
                     <tr class="order1">
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Slug</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Tên danh mục</th>
+                        <th>Mô tả</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +75,6 @@
                         <tr class="order1">
                             <th>{{ $category->id }}</th>
                             <th>{{ $category->name }}</th>
-                            <th>{{ $category->slug }}</th>
                             <th>{{ $category->description }}</th>
                             <th>
                                 <div class="form-check form-switch ps-0 is-filled" >
@@ -84,11 +84,11 @@
                             <td class="order1">
                                 <div class="dropdown show">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Action
+                                        Hành động
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left:30px;">                                       
-                                        <a class="dropdown-item" href="{{ route('categories.edit' , $category->id) }}">Edit</a> 
+                                        <a class="dropdown-item" href="{{ route('categories.edit' , $category->id) }}">Chỉnh sửa</a> 
                                     </div>
                                 </div>
                             </td>

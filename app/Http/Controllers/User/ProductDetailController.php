@@ -4,31 +4,31 @@ namespace App\Http\Controllers\User;
 
 use App\Brands;
 use App\Cart;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductInterface;
+use App\OrderItem;
 use App\Product;
+use App\Product_Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductDetailController extends Controller
 {
-    //
     public function getProductDetail(Request $request,ProductInterface $productService, $slug){
-        $product = Product::where('slug', '=', $slug)->firstorfail();
-        $cartitems = Cart::where('user_id',Auth::id())->get();
-
-        $color = $product->product_color;
+        $product       = Product::where('slug', '=', $slug)->firstorfail();
+        $quantity      = OrderItem::where('product_id',$product->id)
+                                    ->where('status','0')->get();
+        $total_quantity = 0;
+        foreach ($quantity as $value) {
+            $total_quantity += $value->quantity;
+        }
+        $color         = $product->product_color;
         $product_color = explode(',',$color);
+        $size          = $product->product_size;
+        $product_size  = explode(',',$size);
 
-        $size = $product->product_size;
-        // $product_size = explode(',',$size);
-        // foreach($product_size as $s){
-        //     echo $s.'<br>';
-        // };
-        //return response()->json($product_size);
-        $product_size = explode(',',$size);
-
-        return view('user.detail.productdetail',compact('product','cartitems','product_color','product_size'));
+        return view('user.detail.productdetail',compact('product','product_color','product_size','total_quantity'));
     }
     public function getBrand(Request $request,ProductInterface $productService, $slug)
     {
@@ -37,6 +37,15 @@ class ProductDetailController extends Controller
             $product_filter = Product::where('brand_id',$filter_brand->id)->paginate(4);
         }
         return view('user.detail.branddetail',compact('filter_brand','product_filter'));
+    }
+
+    public function GetCategories(Request $request, $slug)
+    {
+        if($filter_category = Category::where('slug', $slug)->first()) {
+            $filter_category = Category::where('slug', $slug)->first();
+            $product_filter = Product::where('category_id',$filter_category->id)->paginate(4); 
+        }
+        return view('user.category.category_detail',compact('filter_category','product_filter'));
     }
     public function updateCart2 (Request $request){
 
@@ -61,7 +70,7 @@ class ProductDetailController extends Controller
             {
                 return response()->json(['status'=>"Not enough quantity in stock"]);
             }
-            $carttm = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+            $carttm            = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
             $quantitycartitems = $carttm->prod_qty;
             if($quantitycartitems >= $stockQuantity){
                 return response()->json(['status'=>"Over quantity in stock"]);
@@ -71,7 +80,7 @@ class ProductDetailController extends Controller
                 $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
                 $cart->prod_qty = $cart->prod_qty + 1;
                 $cart->update();
-                return response()->json(['status'=>"Quantity Update"]);
+                return response()->json(['status'=>"Thêm số lượng thành công"]);
             }
             else{
                 $cart = new Cart();
@@ -80,7 +89,7 @@ class ProductDetailController extends Controller
                 $cart->user_id = Auth::id();
 
                 $cart->save();
-                return response()->json(['status'=>"Quatity update"]);
+                return response()->json(['status'=>"Thêm số lượng thành công"]);
             }
         }
     }

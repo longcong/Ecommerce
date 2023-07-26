@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Cart;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
  
 class ViewProvider extends ServiceProvider
@@ -39,6 +40,12 @@ class ViewProvider extends ServiceProvider
                 $cartItems = Cart::where('user_id', Auth::id())->get();
             }
             $view->with('minicartitems', $cartItems);
+        });
+
+        View::composer('components.header', function ($view) {
+            
+            $categories = Category::all();
+            $view->with('categories', $categories);
         });
     }
 }
